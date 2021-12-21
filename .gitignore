@@ -26,16 +26,16 @@ hs_err_pid*
 
 # MacOS files
 
-.DS_Store
+*.DS_Store
 
 
 # Directories
 
-nbproject/private/
+*.nbproject/private/
 
-dist/
+*.dist/
 
-build/
+*.build/
 
 
 # Compiled class file
