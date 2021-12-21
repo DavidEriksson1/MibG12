@@ -131,6 +131,7 @@ public class InloggningAgent extends javax.swing.JFrame {
           try{
               String namn = lblAnvNamnAgent.getText();
               String losen = lblLosenAgent.getText();
+              
               String fraga1 = "SELECT Namn from agent where Namn='" + namn + "'";
               String fraga2 = "SELECT Losenord from Agent where Namn='" + namn + "'";
               
