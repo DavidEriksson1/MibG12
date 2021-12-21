@@ -128,36 +128,30 @@ public class InloggningAgent extends javax.swing.JFrame {
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         // TODO add your handling code here:
-          try {
-          String namn = lblAnvNamnAgent.getText();
-          String losen = lblLosenAgent.getText(); 
-          String fraga1 = "SELECT Namn from Agent where Namn='" + namn + "'"; 
-          String fraga2 = "SELECT Losenord from Agent where Namn='" + namn + "'";
-          
-          
-          
-           ArrayList<String> svar1 = idb.fetchColumn(fraga1);
-           String aSvar = svar1.toString();
-           String anvNamn = aSvar.replaceAll("[\\p{Ps}\\p{Pe}]", "");
-           ArrayList<String> svar2 = idb.fetchColumn(fraga2);
-           String lSvar = svar2.toString();
-           String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]", "");
-           
-           
-        if(namn.equals(anvNamn) && losen.equals(losOrd))
-        {
-            new ().setVisible(true);
-            dispose();
-        }
-        if(!namn.equals(anvNamn) || !losen.equals(losOrd)){
-            JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
-        }
-       }
-       catch(InfException e)
-       {
-           JOptionPane.showMessageDialog(null, "Något gick fel");
-       }
-    }                     
+          try{
+              String namn = lblAnvNamnAgent.getText();
+              String losen = lblLosenAgent.getText();
+              String fraga1 = "SELECT Namn from agent where Namn='" + namn + "'";
+              String fraga2 = "SELECT Losenord from Agent where Namn='" + namn + "'";
+              
+              ArrayList<String> svar1 = idb.fetchColumn(fraga1);
+              String aSvar = svar1.toString();
+              String anvNamn = aSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
+              
+              ArrayList<String> svar2 = idb.fetchColumn(fraga2);
+              String lSvar = svar2.toString();
+              String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
+              
+              if(namn.equals(anvNamn) && losen.equals(losOrd)){
+                  
+              }
+              if(!namn.equals(anvNamn) || !losen.equals(losOrd)){
+                  JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
+              }
+          }   
+          catch(InfException e){
+              JOptionPane.showMessageDialog(null, "Något gick fel");
+          }
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
     private void lblLosenAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblLosenAgentActionPerformed
