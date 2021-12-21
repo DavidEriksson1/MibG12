@@ -178,4 +178,5 @@ public class InloggningAgent extends javax.swing.JFrame {
     private javax.swing.JTextField lblAnvNamnAgent;
     private javax.swing.JPasswordField lblLosenAgent;
     // End of variables declaration//GEN-END:variables
-}
+        }
+
