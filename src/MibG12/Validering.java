@@ -17,9 +17,9 @@ import oru.inf.InfException;
  */
 public class Validering {
     
-private InfDB idb;
+private static InfDB idb;
 
-public boolean checkAdminStatus(String anvNamn) {
+public static boolean checkAdminStatus(String anvNamn) {
         boolean adminStatus = false;
 
         try {
@@ -46,4 +46,24 @@ public boolean checkAdminStatus(String anvNamn) {
         return adminStatus;
         
     }
+
+public static boolean kollaLosenordAgent (String losenord, String namn)
+{
+  boolean losenordKorrekt = false;
+    
+  try {
+  String fraga = "Select losenord from agent where namn = '" + namn + "'";
+  String svar = idb.fetchSingle(fraga);
+  
+  if (losenord.equals(svar))
+      losenordKorrekt = true;
+    
+  }
+  catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+    return losenordKorrekt;
+    
+}
 }

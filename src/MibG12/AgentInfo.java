@@ -14,19 +14,20 @@ import oru.inf.InfException;
  *
  * @author Victo
  */
-public class AgentInfo1 extends javax.swing.JFrame {
+public class AgentInfo extends javax.swing.JFrame {
 
-  private InfDB idb;
+  private static InfDB idb;
+  private String agent;
     
     /**
      * Creates new form AgentInfo
      */
-    public AgentInfo1(InfDB idb) {
+    public AgentInfo(InfDB idb) {
         initComponents();
         this.idb = idb;
     }
 
-    AgentInfo1(MibG12.Startklass idb) {
+    AgentInfo(MibG12.Startklass idb) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -51,6 +52,7 @@ public class AgentInfo1 extends javax.swing.JFrame {
         anstallningDatumTF = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         omradeTF = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +70,7 @@ public class AgentInfo1 extends javax.swing.JFrame {
 
         jLabel4.setText("Agent information");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication1/Pictures/Tommy-lee-jones-as-agent-k-in-men-in-black.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Victo\\OneDrive\\Skrivbord\\Tommy-lee-jones-as-agent-k-in-men-in-black.jpg")); // NOI18N
         jLabel5.setText("jLabel5");
 
         anstallningsDatum.setText("Anställningsdatum:");
@@ -78,6 +80,13 @@ public class AgentInfo1 extends javax.swing.JFrame {
         omradeTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 omradeTFActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Tillbaka");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -114,6 +123,10 @@ public class AgentInfo1 extends javax.swing.JFrame {
                             .addComponent(anstallningDatumTF)
                             .addComponent(omradeTF))))
                 .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(205, 205, 205)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +156,9 @@ public class AgentInfo1 extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(omradeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addComponent(jButton1)
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         pack();
@@ -158,6 +173,17 @@ public class AgentInfo1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_omradeTFActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        HuvudMenyAgent hMA = new HuvudMenyAgent(idb);
+        hMA.setNuvarandeAgent(agent);
+        hMA.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void setAgent (String agent)
+    {
+        this.agent = agent;
+    }
        
     public void showInfo (String namn)
     {
@@ -166,7 +192,8 @@ public class AgentInfo1 extends javax.swing.JFrame {
        String fraga2 = "Select telefon from agent where namn= '" + namn + "'";
        String fraga3 = "Select administrator from agent where namn = '" + namn + "'";
        String fraga4 = "Select anstallningsdatum from agent where namn = '" + namn + "'";
-       String fraga5 = "Select benamning from omrade where Omrades_ID = (Select omrade from agent where namn = 'Agent K')";
+       String fraga5 = "Select benamning from omrade where Omrades_ID = (Select omrade from agent where namn = '" + namn + "')";
+       System.out.print(fraga5);
         
        String svar1 = idb.fetchSingle(fraga1);
        String svar2 = idb.fetchSingle(fraga2);
@@ -180,6 +207,7 @@ public class AgentInfo1 extends javax.swing.JFrame {
        adminStatus.setText(svar3);
        anstallningDatumTF.setText(svar4);
        omradeTF.setText(svar5);
+       
                 
         
         }
@@ -196,6 +224,7 @@ public class AgentInfo1 extends javax.swing.JFrame {
     private javax.swing.JTextField anstallningDatumTF;
     private javax.swing.JLabel anstallningsDatum;
     private javax.swing.JTextField betackning;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

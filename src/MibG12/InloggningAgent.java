@@ -154,7 +154,11 @@ public class InloggningAgent extends javax.swing.JFrame {
               String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
               
               if(namn.equals(anvNamn) && losen.equals(losOrd)){
-                  
+                    HuvudMenyAgent hMA = new HuvudMenyAgent(idb);
+                    hMA.setVisible(true);
+                    hMA.setHuvudText(namn);
+                    hMA.setNuvarandeAgent(namn);
+                    dispose();
               }
               if(!namn.equals(anvNamn) || !losen.equals(losOrd)){
                   JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
