@@ -118,7 +118,14 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAlienActionPerformed
-        // TODO add your handling code here:
+        // Combobox med alternativ över vad admin kan göra med alien-tabellen
+        int i = jComboAlien.getSelectedIndex();
+        
+        if(i == 0){
+            new NyRegistreraAlien(idb).setVisible(true);
+            dispose();
+        }
+        
     }//GEN-LAST:event_jComboAlienActionPerformed
 
     private void jComboAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAgentActionPerformed
