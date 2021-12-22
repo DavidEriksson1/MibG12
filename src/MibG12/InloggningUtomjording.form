@@ -45,7 +45,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblLosenUtomjording" pref="90" max="32767" attributes="0"/>
+                          <Component id="lblLosenUtomjording" max="32767" attributes="0"/>
                           <Component id="lblAnvNamnUtomjording" max="32767" attributes="0"/>
                           <Component id="btnLoggaIn" max="32767" attributes="0"/>
                       </Group>

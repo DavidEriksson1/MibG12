@@ -15,7 +15,7 @@ import oru.inf.InfException;
  */
 public class InloggningUtomjording extends javax.swing.JFrame {
 
-    private InfDB idb;
+    private static InfDB idb;
 
     /**
      * Creates new form InloggningUtomjording
@@ -152,6 +152,11 @@ public class InloggningUtomjording extends javax.swing.JFrame {
             String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
             
             if(namn.equals(anvNamn) && losen.equals(losOrd)){
+                HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb);
+                hMU.setVisible(true);
+                dispose();
+                hMU.setNuvarandeUtomjording(namn);
+                hMU.valkommenUtomjording();
                 
             }
             if(!namn.equals(anvNamn) || !losen.equals(losOrd)){
