@@ -162,16 +162,16 @@ public class AndraLosenord extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     public boolean losenordKorrekt()
-    {
-        boolean losenordKorrekt = false;
-        
+    {   
         char[] c1 = gammaltLosen1.getPassword();
         String losen1 = new String (c1);
         
         char[] c2 = gammaltLosen2.getPassword();
         String losen2 = new String (c2);
         
-        if (losen1.equals(losen2))
+        boolean losenordKorrekt = Validering.losenordKorrekt(losen1, losen2);
+        
+        if (losenordKorrekt == true)
         {
             lblStatus.setText("Lösenord korrekt");
             losenordKorrekt = true;
