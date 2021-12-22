@@ -155,14 +155,19 @@ public class InloggningAdmin extends javax.swing.JFrame {
               
               inloggningKorrekt = Validering.kollaInloggningAgent(aNamn, anvNamn, losen, losOrd);
               
-              if(inloggningKorrekt == true && adminStatus == true){
+              if (adminStatus == true)
+              {
+                  
+              if(inloggningKorrekt == true){
                   HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, aNamn);
                     hMA.setVisible(true);
                     dispose();
                     
               }
-              else{
+              else if (inloggningKorrekt == false)
+              {
                   JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
+              }
               }
           }   
           catch(InfException e){
@@ -188,10 +193,6 @@ public class InloggningAdmin extends javax.swing.JFrame {
             String J = "J";
             
             adminStatus = Validering.checkAdminStatus(admin);
-            
-            if(adminStatus == false){
-                JOptionPane.showMessageDialog(null, "Denna Agent är inte admin!");
-            }
 
         } catch (InfException ex) {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
