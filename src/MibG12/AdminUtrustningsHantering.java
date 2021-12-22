@@ -4,7 +4,10 @@
  */
 package MibG12;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -31,21 +34,88 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        txtTaBortUtrustning = new javax.swing.JTextField();
+        btnTaBortUtrustning = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Vänligen ange namnet på utrustningen du vill ta bort från systemet.");
+
+        btnTaBortUtrustning.setText("Ta bort");
+        btnTaBortUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortUtrustningActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTaBortUtrustning)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTaBortUtrustning))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTaBortUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortUtrustningActionPerformed
+        // Läs in textfältet och ta bort den angivna utrustningen.
+        boolean utrustningFinns = false;
+        
+        try{
+        String utrustning = txtTaBortUtrustning.getText();
+        
+        String namn = "select Benamning from utrustning where Benamning ='" + utrustning + "'";
+        String inmatning = "delete from utrustning where Benamning ='" + utrustning + "'";
+        
+        String svar1 = idb.fetchSingle(namn);
+        System.out.println(namn);
+        
+        if(svar1.equals(utrustning)){
+            String svar2 = idb.fetchSingle(inmatning);
+            JOptionPane.showMessageDialog(null,svar1 + " har tagits bort!");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med det namnet");
+        }
+        
+        
+        //ArrayList<String> uNamn = idb.fetchColumn(namn);
+        //String uSvar = uNamn.toString();
+        //String utrNamn = uSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
+        
+        //ArrayList<String> uInmatning = idb.fetchColumn(inmatning);
+        //String utrInmatning = uInmatning.toString();
+        //String utrustningsInmatning = utrInmatning.replaceAll("[\\p{Ps}\\p{Pe}]","");
+        }
+       
+        catch(InfException ie){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+                }
+        
+        
+    }//GEN-LAST:event_btnTaBortUtrustningActionPerformed
 
     /**
      * @param args the command line arguments
@@ -53,5 +123,8 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTaBortUtrustning;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField txtTaBortUtrustning;
     // End of variables declaration//GEN-END:variables
 }
