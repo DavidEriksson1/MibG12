@@ -16,11 +16,12 @@ import oru.inf.InfException;
 public class AndraLosenord extends javax.swing.JFrame {
 
     private static InfDB idb; 
-    private String namn;
+    private String nuvarandeAgent;
     
-    public AndraLosenord(InfDB idb) {
+    public AndraLosenord(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
+        this.nuvarandeAgent = nuvarandeAgent;
     }
 
     /**
@@ -187,8 +188,8 @@ public class AndraLosenord extends javax.swing.JFrame {
         boolean losenAndrat = false;
         
         try {
-            System.out.println(namn);
-            String kommando = "UPDATE agent set losenord = '" + losenord + "' where Namn = '" + namn + "'";
+            System.out.println(nuvarandeAgent);
+            String kommando = "UPDATE agent set losenord = '" + losenord + "' where Namn = '" + nuvarandeAgent + "'";
             idb.fetchSingle(kommando);
             JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
             losenAndrat = true;
@@ -200,9 +201,9 @@ public class AndraLosenord extends javax.swing.JFrame {
         return losenAndrat;
     }
     
-    public void setNamn (String namn)
+    public void setNuvarandeAgent (String nuvarandeAgent)
     {
-        this.namn = namn; 
+        this.nuvarandeAgent = nuvarandeAgent; 
     }
     
     private void gammaltLosen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gammaltLosen1ActionPerformed
@@ -225,7 +226,7 @@ public class AndraLosenord extends javax.swing.JFrame {
             char[] c = nyttLosen1.getPassword();
             String nyttLosen = new String (c);
             setLosenord(nyttLosen);
-            HuvudMenyAgent hMA = new HuvudMenyAgent(idb);
+            HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
             hMA.
             dispose();
         }
@@ -238,8 +239,8 @@ public class AndraLosenord extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        HuvudMenyAgent hMA = new HuvudMenyAgent (idb);
-        hMA.setNuvarandeAgent(namn);
+        HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
+        hMA.setNuvarandeAgent(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
