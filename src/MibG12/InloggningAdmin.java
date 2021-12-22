@@ -4,7 +4,12 @@
  */
 package MibG12;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author 46737
@@ -12,6 +17,7 @@ import oru.inf.InfDB;
 public class InloggningAdmin extends javax.swing.JFrame {
 
     private InfDB idb;
+
     /**
      * Creates new form InloggningAdmin
      */
@@ -124,9 +130,76 @@ public class InloggningAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        // TODO add your handling code here:
+        // Kontrollera adminstatus för att ta sig till huvudmeny admin
+     
+        boolean inloggningKorrekt = false;
+     
+          
+     try{
+              String aNamn = lblAnvNamnAdmin.getText();
+              char[] c = lblLosenAdmin.getPassword();
+              String losen = new String (c);
+              
+              boolean adminStatus = checkAdmin(aNamn);
+              
+              String fraga1 = "SELECT Namn from agent where Namn='" + aNamn + "'";
+              String fraga2 = "SELECT Losenord from Agent where Namn='" + aNamn + "'";
+              
+              ArrayList<String> svar1 = idb.fetchColumn(fraga1);
+              String aSvar = svar1.toString();
+              String anvNamn = aSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
+              
+              ArrayList<String> svar2 = idb.fetchColumn(fraga2);
+              String lSvar = svar2.toString();
+              String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
+              
+              inloggningKorrekt = Validering.kollaInloggningAgent(aNamn, anvNamn, losen, losOrd);
+              
+              if(inloggningKorrekt == true && adminStatus == true){
+                  HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, aNamn);
+                    hMA.setVisible(true);
+                    dispose();
+                    
+              }
+              else{
+                  JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
+              }
+          }   
+          catch(InfException e){
+              JOptionPane.showMessageDialog(null, "Något gick fel");
+          }
+          
+    
+
+
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
+    public boolean checkAdmin(String anvNamn) {
+        
+        boolean adminStatus = false;
+
+        
+
+        try {
+            String fraga1 = "Select administrator from agent where namn = '" + anvNamn + "'";
+            ArrayList<String> svar1 = idb.fetchColumn(fraga1);
+            String svar = svar1.toString();
+            String admin = svar.replaceAll("[\\p{Ps}\\p{Pe}]", "");
+            String J = "J";
+            
+            adminStatus = Validering.checkAdminStatus(admin);
+            
+            if(adminStatus == false){
+                JOptionPane.showMessageDialog(null, "Denna Agent är inte admin!");
+            }
+
+        } catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        return adminStatus;
+    }
+    
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // Tillbaka till inloggningstyp
         new InloggningsTyp(idb).setVisible(true);
