@@ -194,7 +194,7 @@ public class AndraLosenord extends javax.swing.JFrame {
             losenAndrat = true;
         }
         catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
+            JOptionPane.showMessageDialog(null, "Ditt nya lösenord innehåller för många tecken! Vänligen skriv ett nytt lösen med max 6 tecken.");
             System.out.println(ex + "har inträffat!");
         }
         return losenAndrat;
