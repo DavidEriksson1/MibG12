@@ -138,7 +138,8 @@ public class InloggningUtomjording extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             String namn = lblAnvNamnUtomjording.getText();
-            String losen = lblLosenUtomjording.getText();
+            char[] c = lblLosenUtomjording.getPassword();
+            String losen = new String (c);
             
             String fraga1 = "SELECT Namn from Alien where Namn='" + namn + "'";
             String fraga2 = "SELECT Losenord from Alien where Namn='" + namn + "'";
@@ -152,11 +153,11 @@ public class InloggningUtomjording extends javax.swing.JFrame {
             String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
             
             if(namn.equals(anvNamn) && losen.equals(losOrd)){
-                HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb);
+                HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb, namn);
                 hMU.setVisible(true);
                 dispose();
                 hMU.setNuvarandeUtomjording(namn);
-                hMU.valkommenUtomjording();
+                hMU.setValkommenUtomjording();
                 
             }
             if(!namn.equals(anvNamn) || !losen.equals(losOrd)){

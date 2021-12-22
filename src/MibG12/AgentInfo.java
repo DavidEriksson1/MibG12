@@ -18,14 +18,18 @@ public class AgentInfo extends javax.swing.JFrame {
 
   private static InfDB idb;
   private String nuvarandeAgent;
+  private String nuvarandeUtomjording;
+  private HuvudMenyAgent huvudMenyAgent; 
+  private HuvudMenyUtomjording huvudMenyUtomjording;       
     
     /**
      * Creates new form AgentInfo
      */
-    public AgentInfo(InfDB idb, String nuvarandeAgent) {
+    public AgentInfo(InfDB idb) {
         initComponents();
         this.idb = idb;
-        this.nuvarandeAgent = nuvarandeAgent;
+        huvudMenyAgent = null;
+        huvudMenyUtomjording = null;
     }
 
     AgentInfo(MibG12.Startklass idb) {
@@ -170,20 +174,50 @@ public class AgentInfo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_betackningActionPerformed
 
+    public void setHuvudMenyAgent ()
+    {
+        HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
+        huvudMenyAgent = hMA;
+    }
+    
+    public void setHuvudMenyUtomjording ()
+    {
+        HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb, nuvarandeUtomjording);
+        huvudMenyUtomjording = hMU;
+    }
+    
     private void omradeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_omradeTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_omradeTFActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if (huvudMenyAgent !=null)
+        {
         HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
         hMA.setNuvarandeAgent(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
+        }
+        
+        else if (huvudMenyUtomjording !=null)
+        {
+            HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb, nuvarandeUtomjording);
+            hMU.setNuvarandeUtomjording(nuvarandeUtomjording);
+            hMU.setVisible(true);
+            hMU.setValkommenUtomjording();
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void setNuvarandeAgent (String nuvarandeAgent)
     {
         this.nuvarandeAgent = nuvarandeAgent;
+    }
+    
+    public void setNuvarandeUtomjording (String nuvarandeUtomjording)
+    {
+        this.nuvarandeUtomjording = nuvarandeUtomjording;
     }
        
     public void showInfo (String namn)

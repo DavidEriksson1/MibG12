@@ -18,10 +18,10 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
     /**
      * Creates new form HuvudMenyUtomjording
      */
-    public HuvudMenyUtomjording(InfDB idb) {
+    public HuvudMenyUtomjording(InfDB idb, String nuvarandeUtomjording) {
         initComponents();
         this.idb = idb;
-        
+        this.nuvarandeUtomjording = nuvarandeUtomjording;
     }
 
     /**
@@ -93,10 +93,11 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(lblValkommen)
                 .addGap(127, 127, 127)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
@@ -110,7 +111,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
          
          
     }//GEN-LAST:event_jButton1ActionPerformed
-    public void valkommenUtomjording()
+    public void setValkommenUtomjording()
     {
         
         lblValkommen.setText("Välkommen " + nuvarandeUtomjording +"!");
@@ -128,10 +129,13 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
       
         String svar = idb.fetchSingle(fraga);        
         
-        AgentInfo aI = new AgentInfo (idb, svar);
+        AgentInfo aI = new AgentInfo (idb);
         aI.setVisible(true);
         aI.showInfo(svar);
+        aI.setNuvarandeUtomjording(nuvarandeUtomjording);
+        aI.setHuvudMenyUtomjording();
         dispose();
+        
       }
       catch(InfException e){
           JOptionPane.showMessageDialog(null, "Något gick fel");
