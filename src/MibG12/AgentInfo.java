@@ -22,9 +22,10 @@ public class AgentInfo extends javax.swing.JFrame {
     /**
      * Creates new form AgentInfo
      */
-    public AgentInfo(InfDB idb) {
+    public AgentInfo(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
+        this.nuvarandeAgent = nuvarandeAgent;
     }
 
     AgentInfo(MibG12.Startklass idb) {

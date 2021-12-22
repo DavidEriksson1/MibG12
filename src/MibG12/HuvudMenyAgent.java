@@ -104,7 +104,7 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
     }
     
     private void btnAgentInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgentInfoActionPerformed
-        AgentInfo aI = new AgentInfo(idb);
+        AgentInfo aI = new AgentInfo(idb, nuvarandeAgent);
         aI.setVisible(true);
         aI.showInfo(nuvarandeAgent);
         aI.setNuvarandeAgent(nuvarandeAgent);
