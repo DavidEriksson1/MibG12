@@ -177,8 +177,6 @@ public class AndraLosenord extends javax.swing.JFrame {
         }
         else {
             lblStatus.setText("Fel Lösenord");
-            System.out.println(losen1);
-            System.out.println(losen2);
         }
         
         return losenordKorrekt;
@@ -227,6 +225,8 @@ public class AndraLosenord extends javax.swing.JFrame {
             char[] c = nyttLosen1.getPassword();
             String nyttLosen = new String (c);
             setLosenord(nyttLosen);
+            HuvudMenyAgent hMA = new HuvudMenyAgent(idb);
+            hMA.
             dispose();
         }
         

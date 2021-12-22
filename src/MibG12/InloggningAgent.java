@@ -15,7 +15,8 @@ import oru.inf.InfException;
  */
 public class InloggningAgent extends javax.swing.JFrame {
 
-    private InfDB idb;
+    private static InfDB idb;
+    private static Validering val;
     /**
      * Creates new form MIBDB
      */
@@ -137,13 +138,15 @@ public class InloggningAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        // TODO add your handling code here:
+        
+        boolean inloggningKorrekt = false;
           try{
-              String namn = lblAnvNamnAgent.getText();
-              String losen = lblLosenAgent.getText();
+              String aNamn = lblAnvNamnAgent.getText();
+              char[] c = lblLosenAgent.getPassword();
+              String losen = new String (c);
               
-              String fraga1 = "SELECT Namn from agent where Namn='" + namn + "'";
-              String fraga2 = "SELECT Losenord from Agent where Namn='" + namn + "'";
+              String fraga1 = "SELECT Namn from agent where Namn='" + aNamn + "'";
+              String fraga2 = "SELECT Losenord from Agent where Namn='" + aNamn + "'";
               
               ArrayList<String> svar1 = idb.fetchColumn(fraga1);
               String aSvar = svar1.toString();
@@ -153,20 +156,24 @@ public class InloggningAgent extends javax.swing.JFrame {
               String lSvar = svar2.toString();
               String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
               
-              if(namn.equals(anvNamn) && losen.equals(losOrd)){
-                    HuvudMenyAgent hMA = new HuvudMenyAgent(idb);
+              inloggningKorrekt = Validering.kollaInloggningAgent(aNamn, anvNamn, losen, losOrd);
+              
+              if(inloggningKorrekt == true){
+                  HuvudMenyAgent hMA = new HuvudMenyAgent(idb);
                     hMA.setVisible(true);
-                    hMA.setHuvudText(namn);
-                    hMA.setNuvarandeAgent(namn);
+                    hMA.setHuvudText(aNamn);
+                    hMA.setNuvarandeAgent(aNamn);
                     dispose();
+                    
               }
-              if(!namn.equals(anvNamn) || !losen.equals(losOrd)){
+              else{
                   JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
               }
           }   
           catch(InfException e){
               JOptionPane.showMessageDialog(null, "Något gick fel");
           }
+          
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
     private void lblLosenAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblLosenAgentActionPerformed

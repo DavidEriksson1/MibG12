@@ -30,6 +30,7 @@ public static boolean checkAdminStatus(String anvNamn) {
             String J = "J";
             
 
+            
             if (admin.equals(J)) {
                 adminStatus = true;
                 System.out.println("Denna Agent är admin");
@@ -47,23 +48,19 @@ public static boolean checkAdminStatus(String anvNamn) {
         
     }
 
-public static boolean kollaLosenordAgent (String losenord, String namn)
-{
-  boolean losenordKorrekt = false;
-    
-  try {
-  String fraga = "Select losenord from agent where namn = '" + namn + "'";
-  String svar = idb.fetchSingle(fraga);
-  
-  if (losenord.equals(svar))
-      losenordKorrekt = true;
-    
-  }
-  catch (InfException ex) {
-            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Ett fel har uppstått " + ex);
-        }
-    return losenordKorrekt;
-    
-}
+    public static boolean kollaInloggningAgent(String anvNamn1, String anvNamn2, String losenord1, String losenord2)
+    {
+        boolean inloggningKorrekt = false;
+          
+              
+              if(anvNamn1.equals(anvNamn2) && losenord1.equals(losenord2)){
+              inloggningKorrekt = true;
+                    
+              }
+              else{
+                  JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
+              }
+          
+          return inloggningKorrekt;
+    }
 }
