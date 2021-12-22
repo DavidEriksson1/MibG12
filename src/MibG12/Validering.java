@@ -47,4 +47,23 @@ public class Validering {
 
         return inloggningKorrekt;
     }
+    
+    public static boolean losenordKorrekt (String losen1, String losen2)
+    {
+        boolean losenordKorrekt = false;
+        
+        if (losen1.equals(losen2))
+        {
+            losenordKorrekt = true;
+        }
+        
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Lösenordet är fel");
+        }
+        
+        return losenordKorrekt;
+        
+               
+    }
 }

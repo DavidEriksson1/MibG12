@@ -22,9 +22,10 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
     /**
      * Creates new form HuvudMenyAgent
      */
-    public HuvudMenyAgent(InfDB idb) {
+    public HuvudMenyAgent(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
+        this.nuvarandeAgent = nuvarandeAgent;
     }
     public void setHuvudText(String namn)
     {
@@ -103,17 +104,17 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
     }
     
     private void btnAgentInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgentInfoActionPerformed
-        AgentInfo aI = new AgentInfo(idb);
+        AgentInfo aI = new AgentInfo(idb, nuvarandeAgent);
         aI.setVisible(true);
         aI.showInfo(nuvarandeAgent);
-        aI.setAgent(nuvarandeAgent);
+        aI.setNuvarandeAgent(nuvarandeAgent);
         dispose();
     }//GEN-LAST:event_btnAgentInfoActionPerformed
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
-    AndraLosenord aL = new AndraLosenord(idb);
+    AndraLosenord aL = new AndraLosenord(idb, nuvarandeAgent);
     aL.setVisible(true);
-    aL.setNamn(nuvarandeAgent);
+    aL.setNuvarandeAgent(nuvarandeAgent);
     dispose();
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 

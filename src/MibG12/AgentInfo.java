@@ -17,14 +17,15 @@ import oru.inf.InfException;
 public class AgentInfo extends javax.swing.JFrame {
 
   private static InfDB idb;
-  private String agent;
+  private String nuvarandeAgent;
     
     /**
      * Creates new form AgentInfo
      */
-    public AgentInfo(InfDB idb) {
+    public AgentInfo(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
+        this.nuvarandeAgent = nuvarandeAgent;
     }
 
     AgentInfo(MibG12.Startklass idb) {
@@ -174,15 +175,15 @@ public class AgentInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_omradeTFActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        HuvudMenyAgent hMA = new HuvudMenyAgent(idb);
-        hMA.setNuvarandeAgent(agent);
+        HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
+        hMA.setNuvarandeAgent(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void setAgent (String agent)
+    public void setNuvarandeAgent (String nuvarandeAgent)
     {
-        this.agent = agent;
+        this.nuvarandeAgent = nuvarandeAgent;
     }
        
     public void showInfo (String namn)

@@ -159,7 +159,7 @@ public class InloggningAgent extends javax.swing.JFrame {
               inloggningKorrekt = Validering.kollaInloggningAgent(aNamn, anvNamn, losen, losOrd);
               
               if(inloggningKorrekt == true){
-                  HuvudMenyAgent hMA = new HuvudMenyAgent(idb);
+                  HuvudMenyAgent hMA = new HuvudMenyAgent(idb, aNamn);
                     hMA.setVisible(true);
                     hMA.setHuvudText(aNamn);
                     hMA.setNuvarandeAgent(aNamn);
