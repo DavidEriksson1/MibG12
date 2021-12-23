@@ -45,48 +45,44 @@ public class AgentInfo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        betackning = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        telefon = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        adminStatus = new javax.swing.JTextField();
+        lblBetackningRubrik = new javax.swing.JLabel();
+        lblTelefonRubrik = new javax.swing.JLabel();
+        lblAdminstatusRubrik = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        anstallningsDatum = new javax.swing.JLabel();
-        anstallningDatumTF = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        omradeTF = new javax.swing.JTextField();
+        lblAnstallningsDatumRubrik = new javax.swing.JLabel();
+        lblOmradeRubrik = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        lblAgentNamn = new javax.swing.JLabel();
+        lblAgentTelefon = new javax.swing.JLabel();
+        lblAdminStatus = new javax.swing.JLabel();
+        lblAnstallningsDatum = new javax.swing.JLabel();
+        lblOmrade = new javax.swing.JLabel();
+        lblIdNummerKol = new javax.swing.JLabel();
+        lblIdNummer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        betackning.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                betackningActionPerformed(evt);
-            }
-        });
+        lblBetackningRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblBetackningRubrik.setText("Betäckning:");
 
-        jLabel1.setText("Betäckning");
+        lblTelefonRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTelefonRubrik.setText("Telefon:");
 
-        jLabel2.setText("Telefon");
+        lblAdminstatusRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAdminstatusRubrik.setText("Adminstatus:");
 
-        jLabel3.setText("Adminstatus");
-
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Agent information");
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Victo\\OneDrive\\Skrivbord\\Tommy-lee-jones-as-agent-k-in-men-in-black.jpg")); // NOI18N
         jLabel5.setText("jLabel5");
 
-        anstallningsDatum.setText("Anställningsdatum:");
+        lblAnstallningsDatumRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAnstallningsDatumRubrik.setText("Anställningsdatum:");
 
-        jLabel7.setText("Område");
-
-        omradeTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                omradeTFActionPerformed(evt);
-            }
-        });
+        lblOmradeRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblOmradeRubrik.setText("Område:");
 
         jButton1.setText("Tillbaka");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +91,21 @@ public class AgentInfo extends javax.swing.JFrame {
             }
         });
 
+        lblAgentNamn.setText("Namn");
+
+        lblAgentTelefon.setText("Telefonummer");
+
+        lblAdminStatus.setText("Adminstatus");
+
+        lblAnstallningsDatum.setText("Anställningsdatum");
+
+        lblOmrade.setText("Område");
+
+        lblIdNummerKol.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblIdNummerKol.setText("ID-Nummer:");
+
+        lblIdNummer.setText("ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,36 +113,41 @@ public class AgentInfo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(betackning, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(telefon, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(adminStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(anstallningsDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(anstallningDatumTF)
-                            .addComponent(omradeTF))))
-                .addContainerGap(65, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblBetackningRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTelefonRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAgentNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAdminStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAgentTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(143, 143, 143))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAdminstatusRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblAnstallningsDatumRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblOmradeRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblIdNummerKol, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblIdNummer, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblAnstallningsDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(205, 205, 205)
+                .addGap(250, 250, 250)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,38 +157,40 @@ public class AgentInfo extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(betackning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addComponent(lblAdminstatusRubrik)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblAnstallningsDatumRubrik)
+                                    .addComponent(lblAnstallningsDatum)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblBetackningRubrik)
+                                    .addComponent(lblAgentNamn))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblTelefonRubrik)
+                                    .addComponent(lblAgentTelefon))
+                                .addGap(18, 18, 18)
+                                .addComponent(lblAdminStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOmradeRubrik)
+                            .addComponent(lblOmrade))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(telefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(adminStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(anstallningDatumTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(anstallningsDatum))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(omradeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(57, 57, 57)
+                            .addComponent(lblIdNummerKol)
+                            .addComponent(lblIdNummer))))
+                .addGap(44, 44, 44)
                 .addComponent(jButton1)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void betackningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betackningActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_betackningActionPerformed
 
     public void setHuvudMenyAgent ()
     {
@@ -186,10 +204,6 @@ public class AgentInfo extends javax.swing.JFrame {
         huvudMenyUtomjording = hMU;
     }
     
-    private void omradeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_omradeTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_omradeTFActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if (huvudMenyAgent !=null)
@@ -228,23 +242,24 @@ public class AgentInfo extends javax.swing.JFrame {
        String fraga3 = "Select administrator from agent where namn = '" + namn + "'";
        String fraga4 = "Select anstallningsdatum from agent where namn = '" + namn + "'";
        String fraga5 = "Select benamning from omrade where Omrades_ID = (Select omrade from agent where namn = '" + namn + "')";
-       System.out.print(fraga5);
+       String fraga6 = "SELECT `Agent_ID` FROM agent where namn = '" + namn + "'";
         
        String svar1 = idb.fetchSingle(fraga1);
        String svar2 = idb.fetchSingle(fraga2);
        String svar3 = idb.fetchSingle(fraga3);
        String svar4 = idb.fetchSingle(fraga4);
        String svar5 = idb.fetchSingle(fraga5);
+       String svar6 = idb.fetchSingle(fraga6);
        
-        
-       betackning.setText(svar1);
-       telefon.setText(svar2);
-       adminStatus.setText(svar3);
-       anstallningDatumTF.setText(svar4);
-       omradeTF.setText(svar5);
+       String adminSvar = Validering.setAdminStatus(svar3);
        
-                
-        
+       lblAgentNamn.setText(svar1);
+       lblAgentTelefon.setText(svar2);
+       lblAdminStatus.setText(adminSvar);
+       lblAnstallningsDatum.setText(svar4);
+       lblOmrade.setText(svar5);
+       lblIdNummer.setText(svar6);
+       
         }
         catch (InfException ex) {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
@@ -255,18 +270,20 @@ public class AgentInfo extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField adminStatus;
-    private javax.swing.JTextField anstallningDatumTF;
-    private javax.swing.JLabel anstallningsDatum;
-    private javax.swing.JTextField betackning;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField omradeTF;
-    private javax.swing.JTextField telefon;
+    private javax.swing.JLabel lblAdminStatus;
+    private javax.swing.JLabel lblAdminstatusRubrik;
+    private javax.swing.JLabel lblAgentNamn;
+    private javax.swing.JLabel lblAgentTelefon;
+    private javax.swing.JLabel lblAnstallningsDatum;
+    private javax.swing.JLabel lblAnstallningsDatumRubrik;
+    private javax.swing.JLabel lblBetackningRubrik;
+    private javax.swing.JLabel lblIdNummer;
+    private javax.swing.JLabel lblIdNummerKol;
+    private javax.swing.JLabel lblOmrade;
+    private javax.swing.JLabel lblOmradeRubrik;
+    private javax.swing.JLabel lblTelefonRubrik;
     // End of variables declaration//GEN-END:variables
 }

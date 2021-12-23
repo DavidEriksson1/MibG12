@@ -166,9 +166,7 @@ public class InloggningAgent extends javax.swing.JFrame {
                     dispose();
                     
               }
-              else{
-                  JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
-              }
+ 
           }   
           catch(InfException e){
               JOptionPane.showMessageDialog(null, "Något gick fel");

@@ -38,7 +38,7 @@ public class Validering {
     public static boolean kollaInloggningAgent(String anvNamn1, String anvNamn2, String losenord1, String losenord2) {
         boolean inloggningKorrekt = false;
 
-        if (anvNamn1.equals(anvNamn2) && losenord1.equals(losenord2)) {
+        if (anvNamn1.toLowerCase().equals(anvNamn2.toLowerCase()) && losenord1.toLowerCase().equals(losenord2.toLowerCase())) {
             inloggningKorrekt = true;
 
         } else {
@@ -65,5 +65,29 @@ public class Validering {
         return losenordKorrekt;
         
                
+    }
+    
+    public static String setAdminStatus (String svar)
+    {
+        String svar1 = svar;
+        String ja = "Ja";
+        String nej = "Nej";
+        
+        if (svar1.toLowerCase().equals("j"))
+        {
+            svar1 = ja;
+        }
+        
+        else if (svar1.toLowerCase().equals("n"))
+        {
+            svar1 = nej;
+        }
+        
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+        }
+        
+        return svar1;
     }
 }
