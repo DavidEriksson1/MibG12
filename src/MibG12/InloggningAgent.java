@@ -156,15 +156,14 @@ public class InloggningAgent extends javax.swing.JFrame {
               String lSvar = svar2.toString();
               String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
               
-              inloggningKorrekt = Validering.kollaInloggningAgent(aNamn, anvNamn, losen, losOrd);
+              inloggningKorrekt = Validering.kollaInloggningsUppgifter(aNamn, anvNamn, losen, losOrd);
               
               if(inloggningKorrekt == true){
                   HuvudMenyAgent hMA = new HuvudMenyAgent(idb, aNamn);
                     hMA.setVisible(true);
                     hMA.setHuvudText(aNamn);
                     hMA.setNuvarandeAgent(aNamn);
-                    dispose();
-                    
+                    dispose();    
               }
  
           }   

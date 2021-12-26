@@ -160,11 +160,17 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         
         if(i == 0){
             
-            
+            ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
+            vAFAHM.setVisaInfoText();
+            vAFAHM.visaBaraInfo();
+            vAFAHM.setVisible(true);
+            dispose();
         }
         if(i == 1){
-            AndraInfoOmAlien aLA = new AndraInfoOmAlien();
-            aLA.setVisible(true);
+            ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
+            vAFAHM.setVisaAndraText();
+            vAFAHM.setVisible(true);
+            dispose();
         }
         if(i == 2){
             

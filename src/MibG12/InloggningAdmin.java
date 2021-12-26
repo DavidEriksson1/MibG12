@@ -153,7 +153,7 @@ public class InloggningAdmin extends javax.swing.JFrame {
               String lSvar = svar2.toString();
               String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
               
-              inloggningKorrekt = Validering.kollaInloggningAgent(aNamn, anvNamn, losen, losOrd);
+              inloggningKorrekt = Validering.kollaInloggningsUppgifter(aNamn, anvNamn, losen, losOrd);
               
               if (adminStatus == true)
               {

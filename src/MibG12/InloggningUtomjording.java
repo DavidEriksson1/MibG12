@@ -136,13 +136,14 @@ public class InloggningUtomjording extends javax.swing.JFrame {
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         // TODO add your handling code here:
+        boolean inloggningKorrekt;
         try{
-            String namn = lblAnvNamnUtomjording.getText();
+            String aNamn = lblAnvNamnUtomjording.getText();
             char[] c = lblLosenUtomjording.getPassword();
             String losen = new String (c);
             
-            String fraga1 = "SELECT Namn from Alien where Namn='" + namn + "'";
-            String fraga2 = "SELECT Losenord from Alien where Namn='" + namn + "'";
+            String fraga1 = "SELECT Namn from Alien where Namn='" + aNamn + "'";
+            String fraga2 = "SELECT Losenord from Alien where Namn='" + aNamn + "'";
             
             ArrayList<String> svar1 = idb.fetchColumn(fraga1);
             String aSvar = svar1.toString();
@@ -152,17 +153,16 @@ public class InloggningUtomjording extends javax.swing.JFrame {
             String lSvar = svar2.toString();
             String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
             
-            if(namn.equals(anvNamn) && losen.equals(losOrd)){
-                HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb, namn);
+            inloggningKorrekt = Validering.kollaInloggningsUppgifter(aNamn, anvNamn, losen, losOrd);
+            
+            if(inloggningKorrekt == true){
+                HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb, aNamn);
                 hMU.setVisible(true);
                 dispose();
-                hMU.setNuvarandeUtomjording(namn);
-                hMU.setValkommenUtomjording();
-                
+                hMU.setNuvarandeUtomjording(anvNamn);
+                hMU.setValkommenUtomjording(); 
             }
-            if(!namn.equals(anvNamn) || !losen.equals(losOrd)){
-                JOptionPane.showMessageDialog(null, "Användarnamn eller lösenord är fel");
-            }
+ 
         }
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel");

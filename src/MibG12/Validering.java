@@ -35,7 +35,7 @@ public class Validering {
 
     }
 
-    public static boolean kollaInloggningAgent(String anvNamn1, String anvNamn2, String losenord1, String losenord2) {
+    public static boolean kollaInloggningsUppgifter(String anvNamn1, String anvNamn2, String losenord1, String losenord2) {
         boolean inloggningKorrekt = false;
 
         if (anvNamn1.toLowerCase().equals(anvNamn2.toLowerCase()) && losenord1.toLowerCase().equals(losenord2.toLowerCase())) {
@@ -89,5 +89,26 @@ public class Validering {
         }
         
         return svar1;
+    }
+    
+    public static boolean namnFinns (String namn1, String namn2)
+    {
+        boolean namnetFinns = false;
+        
+        try {
+        String namnet1 = namn1.toLowerCase();
+        String namnet2 = namn2.toLowerCase();
+        
+        if (namnet1.equals(namnet2))
+        {
+            namnetFinns = true;
+        }
+        }
+        catch (NullPointerException ex) {
+            
+            namnetFinns = false;
+            System.out.println("Ett fel har uppstått: " + ex);
+        }
+        return namnetFinns;
     }
 }
