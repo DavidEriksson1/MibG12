@@ -128,8 +128,18 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         btnAndraRas.setText("Ändra");
 
         btnAndraNamn.setText("Ändra");
+        btnAndraNamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraNamnActionPerformed(evt);
+            }
+        });
 
         btnAndraRegDatum.setText("Ändra");
+        btnAndraRegDatum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraRegDatumActionPerformed(evt);
+            }
+        });
 
         btnAndraPlats.setText("Ändra");
 
@@ -339,6 +349,63 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         vAFAHM.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void btnAndraNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraNamnActionPerformed
+        
+        String nyttNamn = txtNamn.getText();
+        String gammaltNamn = lblAlienNamn.getText();
+        boolean namnetKorrekt = Validering.namnFinns(nyttNamn, gammaltNamn);
+        
+        if (namnetKorrekt == false)
+        {
+        
+        try {
+        String fraga = "Update Alien set namn = '" + nyttNamn +"' where namn = '" + gammaltNamn + "'";
+        String svar = idb.fetchSingle(fraga);
+        JOptionPane.showMessageDialog(null, "Namnet har ändrats!");
+        txtNamn.setText("");
+        showInfo(nyttNamn);
+        }
+        
+        catch (InfException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Någonting gick fel, vänligen prova igen");
+        }
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Namnet har inte ändrats, Vänligen skriv in ett annat namn!");
+        }
+        
+        
+    }//GEN-LAST:event_btnAndraNamnActionPerformed
+
+    private void btnAndraRegDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraRegDatumActionPerformed
+        String gammaltDatum = txtRegDatum.getText();
+        String nyttDatum = lblRegDatumAlien.getText();
+        boolean datumKorrekt = Validering.namnFinns(gammaltDatum, nyttDatum);
+        
+        if (datumKorrekt == false)
+        {
+        
+        try {
+        String fraga = "Update Alien set datum = '" + nyttDatum +"' where namn = '" + nuvarandeUtomjording + "'";
+        String svar = idb.fetchSingle(fraga);
+        JOptionPane.showMessageDialog(null, "Registreingsdatumet har ändrats!");
+        txtRegDatum.setText("");
+        showInfo(nuvarandeUtomjording);
+        }
+        
+        catch (InfException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Någonting gick fel, vänligen prova igen");
+        }
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Namnet har inte ändrats, Vänligen skriv in ett annat namn!");
+        }
+    }//GEN-LAST:event_btnAndraRegDatumActionPerformed
 
     public void setNuvarandeAgent (String nuvarandeAgent)
     {

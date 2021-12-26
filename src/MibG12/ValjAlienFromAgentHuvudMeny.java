@@ -46,7 +46,7 @@ public class ValjAlienFromAgentHuvudMeny extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblHuvudText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblHuvudText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblHuvudText.setText("Välj utomjording att visa info om:");
 
         txtValjAlien.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +105,7 @@ public class ValjAlienFromAgentHuvudMeny extends javax.swing.JFrame {
                 .addComponent(lblFelAlienNamn)
                 .addGap(35, 35, 35)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         pack();
