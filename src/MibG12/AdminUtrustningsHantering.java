@@ -92,13 +92,8 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         String svar1 = idb.fetchSingle(namn);
         System.out.println(namn);
         
-        if(svar1.equals(utrustning)){
-            String svar2 = idb.fetchSingle(inmatning);
-            JOptionPane.showMessageDialog(null,svar1 + " har tagits bort!");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med det namnet");
-        }
+        utrustningFinns = Validering.kontrolleraUtrustning(svar1, utrustning, inmatning);
+        
         
         
         //ArrayList<String> uNamn = idb.fetchColumn(namn);

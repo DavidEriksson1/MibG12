@@ -111,4 +111,18 @@ public class Validering {
         }
         return namnetFinns;
     }
+    
+    public static boolean kontrolleraUtrustning(String svar1, String utrustning, String inmatning)
+    {
+        boolean utrustningFinns = false;
+        
+        if(svar1.equals(utrustning)){
+            String svar2 = idb.fetchSingle(inmatning);
+            JOptionPane.showMessageDialog(null,svar1 + " har tagits bort!");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med det namnet");
+        }
+        return utrustningFinns;
+    }
 }
