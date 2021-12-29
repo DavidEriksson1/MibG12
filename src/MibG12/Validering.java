@@ -91,9 +91,9 @@ public class Validering {
         return svar1;
     }
     
-    public static boolean namnFinns (String namn1, String namn2)
+    public static boolean stringFinns (String namn1, String namn2)
     {
-        boolean namnetFinns = false;
+        boolean stringFinns = false;
         
         try {
         String namnet1 = namn1.toLowerCase();
@@ -101,28 +101,31 @@ public class Validering {
         
         if (namnet1.equals(namnet2))
         {
-            namnetFinns = true;
+            stringFinns = true;
         }
         }
         catch (NullPointerException ex) {
             
-            namnetFinns = false;
+            stringFinns = false;
             System.out.println("Ett fel har uppstått: " + ex);
         }
-        return namnetFinns;
+        return stringFinns;
     }
     
-    public static boolean kontrolleraUtrustning(String svar1, String utrustning, String inmatning)
+    public static boolean kontrolleraUtrustning(String svar1, String utrustning)
     {
         boolean utrustningFinns = false;
         
+       
+        
         if(svar1.equals(utrustning)){
-            String svar2 = idb.fetchSingle(inmatning);
+            utrustningFinns = true;
             JOptionPane.showMessageDialog(null,svar1 + " har tagits bort!");
         }
         else{
-            JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med det namnet");
+            JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med det namnet, prova med ett annat namn");
         }
+        
         return utrustningFinns;
     }
 }

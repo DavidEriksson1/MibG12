@@ -354,7 +354,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         
         String nyttNamn = txtNamn.getText();
         String gammaltNamn = lblAlienNamn.getText();
-        boolean namnetKorrekt = Validering.namnFinns(nyttNamn, gammaltNamn);
+        boolean namnetKorrekt = Validering.stringFinns(nyttNamn, gammaltNamn);
         
         if (namnetKorrekt == false)
         {
@@ -383,7 +383,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private void btnAndraRegDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraRegDatumActionPerformed
         String gammaltDatum = txtRegDatum.getText();
         String nyttDatum = lblRegDatumAlien.getText();
-        boolean datumKorrekt = Validering.namnFinns(gammaltDatum, nyttDatum);
+        boolean datumKorrekt = Validering.stringFinns(gammaltDatum, nyttDatum);
         
         if (datumKorrekt == false)
         {
