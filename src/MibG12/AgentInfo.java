@@ -210,6 +210,7 @@ public class AgentInfo extends javax.swing.JFrame {
         {
         HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
         hMA.setNuvarandeAgent(nuvarandeAgent);
+        hMA.setHuvudText(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
         }

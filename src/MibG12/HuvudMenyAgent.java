@@ -29,7 +29,7 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
     }
     public void setHuvudText(String namn)
     {
-     lblHuvudText.setText("Välkommen " + namn + "!");
+     lblHuvudText.setText("Välkommen " + namn.toLowerCase() + "!");
     }
 
     @SuppressWarnings("unchecked")

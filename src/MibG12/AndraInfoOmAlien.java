@@ -27,6 +27,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
+        nuvarandeUtomjording ="";
         
     }
 
@@ -67,10 +68,9 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         lblInfoRubrik = new javax.swing.JLabel();
         lblIdNummer = new javax.swing.JLabel();
         lblAlienIdNummer = new javax.swing.JLabel();
-        txtAndraID = new javax.swing.JTextField();
-        btnAndraIDNummer = new javax.swing.JButton();
         btnTillbakaTillHM = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
+        cmbValjRas = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +126,11 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         });
 
         btnAndraRas.setText("Ändra");
+        btnAndraRas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraRasActionPerformed(evt);
+            }
+        });
 
         btnAndraNamn.setText("Ändra");
         btnAndraNamn.addActionListener(new java.awt.event.ActionListener() {
@@ -142,10 +147,25 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         });
 
         btnAndraPlats.setText("Ändra");
+        btnAndraPlats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraPlatsActionPerformed(evt);
+            }
+        });
 
         btnAndraTelefon.setText("Ändra");
+        btnAndraTelefon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraTelefonActionPerformed(evt);
+            }
+        });
 
         btnAndraLosenord.setText("Ändra");
+        btnAndraLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraLosenordActionPerformed(evt);
+            }
+        });
 
         lblInfoRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblInfoRubrik.setText("Ny Information");
@@ -154,13 +174,6 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         lblIdNummer.setText("ID-Nummer:");
 
         lblAlienIdNummer.setText("5");
-
-        btnAndraIDNummer.setText("Ändra");
-        btnAndraIDNummer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAndraIDNummerActionPerformed(evt);
-            }
-        });
 
         btnTillbakaTillHM.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         btnTillbakaTillHM.setText("Tillbaka till huvudmeny");
@@ -176,6 +189,8 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                 btnTillbakaActionPerformed(evt);
             }
         });
+
+        cmbValjRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Worm", "Booglodite", "Squid" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -227,8 +242,9 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                         .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtRegDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtAndraID, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cmbValjRas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLosenord, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAndraPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,8 +252,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                     .addComponent(btnAndraRas, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAndraNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAndraTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAndraIDNummer, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -255,6 +270,10 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                         .addComponent(lblInfoRubrik)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAndraNamn)
+                                .addGap(201, 201, 201)
+                                .addComponent(btnAndraLosenord))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -299,22 +318,16 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(lblIdNummer)
                                         .addComponent(lblAlienIdNummer))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txtAndraID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnAndraIDNummer))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAndraNamn)
-                                .addGap(201, 201, 201)
-                                .addComponent(btnAndraLosenord))))
+                                    .addComponent(cmbValjRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(HuvudText)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNamn)
                             .addComponent(lblAlienNamn))))
-                .addGap(18, 18, 18)
+                .addGap(18, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTillbaka, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btnTillbaka, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTillbakaTillHM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -331,15 +344,13 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRasActionPerformed
 
     private void txtLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLosenordActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_txtLosenordActionPerformed
-
-    private void btnAndraIDNummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraIDNummerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAndraIDNummerActionPerformed
 
     private void btnTillbakaTillHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaTillHMActionPerformed
         HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
+        hMA.setHuvudText(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaTillHMActionPerformed
@@ -354,42 +365,55 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         
         String nyttNamn = txtNamn.getText();
         String gammaltNamn = lblAlienNamn.getText();
-        boolean namnetKorrekt = Validering.namnFinns(nyttNamn, gammaltNamn);
+        boolean namnetFinns = Validering.namnFinns(nyttNamn, gammaltNamn);
+        boolean textRutaArTom = Validering.textRutaArTom(nyttNamn);
         
-        if (namnetKorrekt == false)
+        if (textRutaArTom == false)
+        {
+        
+        if (namnetFinns == false)
         {
         
         try {
-        String fraga = "Update Alien set namn = '" + nyttNamn +"' where namn = '" + gammaltNamn + "'";
+        String fraga = "Update Alien set namn = '" + nyttNamn +"' where namn = '" + nuvarandeUtomjording + "'";
         String svar = idb.fetchSingle(fraga);
         JOptionPane.showMessageDialog(null, "Namnet har ändrats!");
+        setNuvarandeUtomjording(nyttNamn);
+        showInfo(nuvarandeUtomjording);
         txtNamn.setText("");
-        showInfo(nyttNamn);
         }
         
         catch (InfException ex)
         {
             JOptionPane.showMessageDialog(null, "Någonting gick fel, vänligen prova igen");
+            txtNamn.setText("");
         }
         }
         else 
         {
             JOptionPane.showMessageDialog(null, "Namnet har inte ändrats, Vänligen skriv in ett annat namn!");
+            txtNamn.setText("");
+        }
+        }
+        else
+        {
+           txtNamn.setText(""); 
         }
         
         
     }//GEN-LAST:event_btnAndraNamnActionPerformed
 
     private void btnAndraRegDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraRegDatumActionPerformed
-        String gammaltDatum = txtRegDatum.getText();
-        String nyttDatum = lblRegDatumAlien.getText();
+        String gammaltDatum = lblRegDatumAlien.getText();
+        String nyttDatum = txtRegDatum.getText();
         boolean datumKorrekt = Validering.namnFinns(gammaltDatum, nyttDatum);
+        boolean textRutaArTom = Validering.textRutaArTom(gammaltDatum);
         
-        if (datumKorrekt == false)
+        if (datumKorrekt == false && textRutaArTom == false)
         {
         
         try {
-        String fraga = "Update Alien set datum = '" + nyttDatum +"' where namn = '" + nuvarandeUtomjording + "'";
+        String fraga = "Update Alien set registreringsdatum = '" + nyttDatum +"' where namn = '" + nuvarandeUtomjording + "'";
         String svar = idb.fetchSingle(fraga);
         JOptionPane.showMessageDialog(null, "Registreingsdatumet har ändrats!");
         txtRegDatum.setText("");
@@ -398,23 +422,131 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         
         catch (InfException ex)
         {
-            JOptionPane.showMessageDialog(null, "Någonting gick fel, vänligen prova igen");
+            JOptionPane.showMessageDialog(null, "Fel datumformat, vänligen ange ett nytt datum enligt 'YYYY-MM-DD'");
+            txtRegDatum.setText("");
         }
         }
         else 
         {
-            JOptionPane.showMessageDialog(null, "Namnet har inte ändrats, Vänligen skriv in ett annat namn!");
+            JOptionPane.showMessageDialog(null, "Vänligen skriv ett annat datum!");
+            txtRegDatum.setText("");
         }
     }//GEN-LAST:event_btnAndraRegDatumActionPerformed
+
+    private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
+        
+        String nyttLosenord = txtLosenord.getText();
+        String gammaltLosenord = lblAlienLosen.getText();
+        boolean losenFinns = Validering.namnFinns(nyttLosenord, gammaltLosenord);
+        boolean textRutaArTom = Validering.textRutaArTom(nyttLosenord);
+        
+        if (losenFinns == false && textRutaArTom == false)
+        {
+        
+        try {
+        String fraga = "Update Alien set losenord = '" + nyttLosenord +"' where namn = '" + nuvarandeUtomjording + "'";
+        String svar = idb.fetchSingle(fraga);
+        JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
+        txtLosenord.setText("");
+        showInfo(nuvarandeUtomjording);
+        }
+        
+        catch (InfException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Det nya lösenordet är för långt, vänligen skriv ett nytt med max 6 tecken!");
+            txtLosenord.setText("");
+        }
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats, Vänligen skriv in ett annat löseord!");
+            txtLosenord.setText("");
+        }   
+    }//GEN-LAST:event_btnAndraLosenordActionPerformed
+
+    private void btnAndraTelefonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraTelefonActionPerformed
+        
+        String nyttTelefonNummer = txtTelefon.getText();
+        String gammaltTelefonNummer = lblAlienTelefon.getText();
+        boolean TelefonFinns = Validering.namnFinns(nyttTelefonNummer, gammaltTelefonNummer);
+        boolean textRutaArTom = Validering.textRutaArTom(nyttTelefonNummer);
+        
+        if (TelefonFinns == false && textRutaArTom == false)
+        {
+        
+        try {
+        String fraga = "Update Alien set telefon = '" + nyttTelefonNummer +"' where namn = '" + nuvarandeUtomjording + "'";
+        String svar = idb.fetchSingle(fraga);
+        JOptionPane.showMessageDialog(null, "Telefonnumret har ändrats!");
+        txtTelefon.setText("");
+        showInfo(nuvarandeUtomjording);
+        }
+        
+        catch (InfException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
+            txtTelefon.setText("");
+        }
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Telefonnumret har inte ändrats, Vänligen skriv in ett annat nummer!");
+            txtTelefon.setText("");
+        }   
+          
+    }//GEN-LAST:event_btnAndraTelefonActionPerformed
+
+    private void btnAndraPlatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraPlatsActionPerformed
+        
+        String nyPlats = txtPlats.getText();
+        String gammalPlats = lblAlienPlats.getText();
+        boolean platsFinns = Validering.namnFinns(nyPlats, gammalPlats);
+        boolean textRutaArTom = Validering.textRutaArTom(nyPlats);
+        
+        if (platsFinns == false && textRutaArTom == false)
+        {
+        
+        try {
+        String fraga = "Select benamning from omrade where omrades_id = (Select Plats from alien where namn = '" + nuvarandeUtomjording + "')";
+        String svar = idb.fetchSingle(fraga);
+        JOptionPane.showMessageDialog(null, "Telefonnumret har ändrats!");
+        txtTelefon.setText("");
+        showInfo(nuvarandeUtomjording);
+        }
+        
+        catch (InfException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
+            txtTelefon.setText("");
+        }
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Telefonnumret har inte ändrats, Vänligen skriv in ett annat nummer!");
+            txtTelefon.setText("");
+        }    
+    }//GEN-LAST:event_btnAndraPlatsActionPerformed
+
+    private void btnAndraRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraRasActionPerformed
+        
+        
+        
+        
+    }//GEN-LAST:event_btnAndraRasActionPerformed
 
     public void setNuvarandeAgent (String nuvarandeAgent)
     {
         this.nuvarandeAgent = nuvarandeAgent;
     }
     
-    public void setNuvarandeUtomjording (String nuvarandeUtomjording)
+    public void setNuvarandeUtomjording (String utomjording)
     {
-        this.nuvarandeUtomjording = nuvarandeUtomjording;
+        nuvarandeUtomjording = utomjording;
+    }
+    
+    public String visaNuvarandeUtomjording()
+    {
+        return nuvarandeUtomjording;
     }
     
     public void showInfo (String namn)
@@ -451,10 +583,24 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         }
     }
     
+    public void visaRas (String namn)
+    {
+        
+        try {
+            String fraga = "Select Alien_ID from alien where namn = '" + namn + "'";
+            String svar1 = idb.fetchSingle(fraga);
+            String fragaBog = "Select alien_id from boglodite";
+            ArrayList<String> boglodite = idb.fetchColumn(fragaBog);
+        }
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel HuvudText;
-    private javax.swing.JButton btnAndraIDNummer;
     private javax.swing.JButton btnAndraLosenord;
     private javax.swing.JButton btnAndraNamn;
     private javax.swing.JButton btnAndraPlats;
@@ -463,6 +609,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private javax.swing.JButton btnAndraTelefon;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton btnTillbakaTillHM;
+    private javax.swing.JComboBox<String> cmbValjRas;
     private javax.swing.JLabel lblAlienIdNummer;
     private javax.swing.JLabel lblAlienLosen;
     private javax.swing.JLabel lblAlienNamn;
@@ -478,7 +625,6 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblRegDatum;
     private javax.swing.JLabel lblRegDatumAlien;
     private javax.swing.JLabel lblTelefon;
-    private javax.swing.JTextField txtAndraID;
     private javax.swing.JTextField txtLosenord;
     private javax.swing.JTextField txtNamn;
     private javax.swing.JTextField txtPlats;

@@ -4,6 +4,7 @@
  */
 package MibG12;
 
+import java.util.ArrayList;
 import oru.inf.InfException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,6 +53,8 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         lblID = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JButton();
         btnTillbakaTillHuvudmeny = new javax.swing.JButton();
+        lblAnsvarigAgentRubrik = new javax.swing.JLabel();
+        lblAnsvarigAgent = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +111,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
             }
         });
 
+        lblAnsvarigAgentRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAnsvarigAgentRubrik.setText("Ansvarig agent:");
+
+        lblAnsvarigAgent.setText("ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,10 +136,6 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(lblRegDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblIDRubrik)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblLosenordRubrik)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,7 +148,16 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(lblAnsvarigAgentRubrik)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblAnsvarigAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(lblIDRubrik)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,6 +201,10 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIDRubrik)
                     .addComponent(lblID))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAnsvarigAgentRubrik)
+                    .addComponent(lblAnsvarigAgent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTillbakaTillHuvudmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,11 +218,13 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
         vAFAHM.setVisible(true);
+        vAFAHM.visaBaraInfo();
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnTillbakaTillHuvudmenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaTillHuvudmenyActionPerformed
         HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
+        hMA.setHuvudText(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaTillHuvudmenyActionPerformed
@@ -214,20 +233,23 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
     {
         try {
        String fraga1 = "SELECT namn FROM alien where namn = '" + namn + "'";
-       String fraga2 = "Select telefon from alien where namn = '" + namn + "'";
+       //String fraga2 = "Select benamning from omrade where omrades_id = (Select Plats from alien where namn = '" + namn + "')";
        String fraga3 = "Select Registreringsdatum from alien where namn = '" + namn + "'";
        String fraga4 = "Select benamning from plats where plats_id = (Select Plats from alien where namn = '" + namn + "')";
        String fraga5 = "Select telefon from alien where namn = '" + namn + "'";
        String fraga6 = "Select losenord from alien where namn = '" + namn + "'";
        String fraga7 = "Select alien_id from alien where namn = '" + namn + "'";
+       String fraga8 = "Select namn from agent where agent_id = (Select Ansvarig_Agent from alien where namn = '" + namn + "')";
         
        String svar1 = idb.fetchSingle(fraga1);
-       String svar2 = idb.fetchSingle(fraga2);
+       //String svar2 = idb.fetchSingle(fraga2);
+       String svar2 = visaRas(namn);
        String svar3 = idb.fetchSingle(fraga3);
        String svar4 = idb.fetchSingle(fraga4);
        String svar5 = idb.fetchSingle(fraga5);
        String svar6 = idb.fetchSingle(fraga6);
        String svar7 = idb.fetchSingle(fraga7);
+       String svar8 = idb.fetchSingle(fraga8);
        
        lblNamn.setText(svar1);
        lblRas.setText(svar2);
@@ -236,6 +258,7 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
        lblTelefon.setText(svar5);
        lblLosenord.setText(svar6);
        lblID.setText(svar7);
+       lblAnsvarigAgent.setText(svar8);
        
         }
         catch (InfException ex) {
@@ -248,10 +271,97 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
     {
         this.nuvarandeUtomjording = namn;
     }
+    
+    public String visaRas (String utomjording)
+    {
+        boolean isBoglodite = false;
+        boolean isWorm = false;
+        boolean isSquid = false;
+        String ras = "";
+        
+        try {
+        String fraga = "Select alien_id from alien where namn = '" + utomjording + "'";
+        String svarID = idb.fetchSingle(fraga);
+        
+        String fragaBoglodite = "Select alien_id from boglodite";
+        ArrayList<String> boglodite = idb.fetchColumn(fragaBoglodite);
+        
+        String fragaWorm= "Select alien_id from worm";
+        ArrayList<String> worm = idb.fetchColumn(fragaWorm);
+        
+        String fragaSquid = "Select alien_id from squid";
+        ArrayList<String> squid = idb.fetchColumn(fragaSquid);
+        
+            for (String id : boglodite)
+            {
+                System.out.print(id);
+                if (id.equals(svarID))
+                {
+                    isBoglodite = true;
+                    break;
+                }
+            }
+            
+                    if (isBoglodite == false)
+                    {
+                        for (String id : worm)
+                        {
+                            System.out.print(id);
+                            if (id.equals(svarID))
+                            {
+                               isWorm = true;
+                               break;
+                            }
+                        }
+                    }
+                    
+                                if (isWorm == false && isBoglodite == false)
+                                {
+                                    for (String id : squid)
+                                    {
+                                        System.out.print(id);
+                                        if (id.equals(svarID))
+                                        {
+                                            isSquid = true;
+                                            break;
+                                            
+                                        }
+                                    }
+                                }
+        }
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        
+        if (isBoglodite == true)
+        {
+            ras = "Boglodite";
+            System.out.println(ras);
+        }
+        else if (isWorm == true)
+        {
+            ras = "Worm";
+            System.out.println(ras);
+        }
+        else if (isSquid == true)
+        {
+            ras = "Squid";
+            System.out.println(ras);
+        }
+        else 
+        {
+            System.out.println("Ingen ras hittad");
+        }
+        return ras;
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton btnTillbakaTillHuvudmeny;
+    private javax.swing.JLabel lblAnsvarigAgent;
+    private javax.swing.JLabel lblAnsvarigAgentRubrik;
     private javax.swing.JLabel lblHuvudText;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIDRubrik;

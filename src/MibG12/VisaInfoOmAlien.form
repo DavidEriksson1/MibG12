@@ -41,11 +41,6 @@
                               <Component id="lblRegDatum" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblIDRubrik" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblID" min="-2" pref="110" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="lblLosenordRubrik" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lblLosenord" min="-2" pref="110" max="-2" attributes="0"/>
@@ -61,6 +56,18 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblPlats" min="-2" pref="110" max="-2" attributes="0"/>
                                   <Component id="lblTelefon" min="-2" pref="110" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblAnsvarigAgentRubrik" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblAnsvarigAgent" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblIDRubrik" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblID" min="-2" pref="110" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -120,6 +127,11 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblIDRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblAnsvarigAgentRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAnsvarigAgent" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="27" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -249,6 +261,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaTillHuvudmenyActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAnsvarigAgentRubrik">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Ansvarig agent:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAnsvarigAgent">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ID"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

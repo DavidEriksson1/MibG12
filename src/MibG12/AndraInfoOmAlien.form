@@ -82,8 +82,10 @@
                       <Component id="txtNamn" min="-2" pref="115" max="-2" attributes="0"/>
                       <Component id="txtRegDatum" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                       <Component id="txtTelefon" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="txtLosenord" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="txtAndraID" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="cmbValjRas" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                          <Component id="txtLosenord" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
@@ -94,7 +96,6 @@
                   <Component id="btnAndraNamn" min="-2" pref="78" max="-2" attributes="0"/>
                   <Component id="btnAndraTelefon" min="-2" pref="78" max="-2" attributes="0"/>
                   <Component id="btnAndraLosenord" min="-2" pref="78" max="-2" attributes="0"/>
-                  <Component id="btnAndraIDNummer" min="-2" pref="78" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
@@ -116,7 +117,12 @@
                       <Component id="lblInfoRubrik" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnAndraNamn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                              <Component id="btnAndraLosenord" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="txtNamn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -170,20 +176,12 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblIdNummer" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblAlienIdNummer" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtAndraID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnAndraIDNummer" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="cmbValjRas" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="btnAndraNamn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
-                              <Component id="btnAndraLosenord" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -196,9 +194,9 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="separate" pref="41" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnTillbaka" pref="35" max="32767" attributes="0"/>
+                  <Component id="btnTillbaka" max="32767" attributes="0"/>
                   <Component id="btnTillbakaTillHM" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -318,6 +316,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAndraRasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAndraNamn">
       <Properties>
@@ -339,16 +340,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAndraPlatsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAndraTelefon">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAndraTelefonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAndraLosenord">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAndraLosenordActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblInfoRubrik">
       <Properties>
@@ -371,16 +381,6 @@
         <Property name="text" type="java.lang.String" value="5"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAndraID">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAndraIDNummer">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAndraIDNummerActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnTillbakaTillHM">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -399,6 +399,20 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbValjRas">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Worm"/>
+            <StringItem index="1" value="Booglodite"/>
+            <StringItem index="2" value="Squid"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

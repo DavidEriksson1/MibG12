@@ -117,12 +117,43 @@ public class Validering {
         boolean utrustningFinns = false;
         
         if(svar1.equals(utrustning)){
-            String svar2 = idb.fetchSingle(inmatning);
-            JOptionPane.showMessageDialog(null,svar1 + " har tagits bort!");
+            
+            utrustningFinns = true;
         }
         else{
             JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med det namnet");
         }
         return utrustningFinns;
     }
+    
+    public static boolean kontrolleraDatum(String datum)
+    {
+        boolean datumKorrekt = false;
+        
+        if (datum != null)
+        {
+            datumKorrekt = true;
+        }
+        
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Fel datumformat, vänligen ange enligt 'YYYY-MM-DDä'");
+        }
+        return datumKorrekt;
+    }
+    
+    public static boolean textRutaArTom(String string)
+    {
+        boolean textRutaArTom = string.isEmpty();
+        
+        if (textRutaArTom == true || string.equals(" ") || string.equals("  ") || string.equals("  "))
+        {
+            JOptionPane.showMessageDialog(null, "Vänligen skriv in ett värde i textrutan!");
+            textRutaArTom = true;
+        }
+        
+        return textRutaArTom;
+    }
 }
+
+ 

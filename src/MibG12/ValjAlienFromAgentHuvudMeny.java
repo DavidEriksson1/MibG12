@@ -134,7 +134,7 @@ public class ValjAlienFromAgentHuvudMeny extends javax.swing.JFrame {
             if (visaBaraInfo == false)
             {
             AndraInfoOmAlien aIOA = new AndraInfoOmAlien(idb, nuvarandeAgent);
-            aIOA.setNuvarandeUtomjording(nuvarandeUtomjording);
+            aIOA.setNuvarandeUtomjording(namn);
             aIOA.showInfo(namn);
             aIOA.setVisible(true);
             dispose();
@@ -143,7 +143,7 @@ public class ValjAlienFromAgentHuvudMeny extends javax.swing.JFrame {
             else 
             {
                 VisaInfoOmAlien vIOA = new VisaInfoOmAlien (idb, nuvarandeAgent);
-                vIOA.setNuvarandeUtomjording(nuvarandeUtomjording);
+                vIOA.setNuvarandeUtomjording(namn);
                 vIOA.showInfo(namn);
                 vIOA.setVisible(true);
                 dispose();

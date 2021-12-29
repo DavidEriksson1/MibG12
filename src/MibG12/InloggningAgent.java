@@ -165,6 +165,9 @@ public class InloggningAgent extends javax.swing.JFrame {
                     hMA.setNuvarandeAgent(aNamn);
                     dispose();    
               }
+              else
+              {
+              }
  
           }   
           catch(InfException e){
