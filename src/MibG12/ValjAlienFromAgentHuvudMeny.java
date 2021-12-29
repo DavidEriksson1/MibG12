@@ -126,7 +126,7 @@ public class ValjAlienFromAgentHuvudMeny extends javax.swing.JFrame {
         String fraga1 = "SELECT namn FROM alien where namn =  '" + namn + "'";
         String svar1 = idb.fetchSingle(fraga1);
         
-        namnKorrekt = Validering.namnFinns(namn, svar1);
+        namnKorrekt = Validering.stringFinns(namn, svar1);
         
         if (namnKorrekt == true)
         {

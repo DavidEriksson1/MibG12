@@ -365,8 +365,12 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         
         String nyttNamn = txtNamn.getText();
         String gammaltNamn = lblAlienNamn.getText();
+<<<<<<< HEAD
         boolean namnetFinns = Validering.namnFinns(nyttNamn, gammaltNamn);
         boolean textRutaArTom = Validering.textRutaArTom(nyttNamn);
+=======
+        boolean namnetKorrekt = Validering.stringFinns(nyttNamn, gammaltNamn);
+>>>>>>> c0f197bfadd8df4bd59ea0d90744c0bad45f8ce8
         
         if (textRutaArTom == false)
         {
@@ -404,10 +408,16 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAndraNamnActionPerformed
 
     private void btnAndraRegDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraRegDatumActionPerformed
+<<<<<<< HEAD
         String gammaltDatum = lblRegDatumAlien.getText();
         String nyttDatum = txtRegDatum.getText();
         boolean datumKorrekt = Validering.namnFinns(gammaltDatum, nyttDatum);
         boolean textRutaArTom = Validering.textRutaArTom(gammaltDatum);
+=======
+        String gammaltDatum = txtRegDatum.getText();
+        String nyttDatum = lblRegDatumAlien.getText();
+        boolean datumKorrekt = Validering.stringFinns(gammaltDatum, nyttDatum);
+>>>>>>> c0f197bfadd8df4bd59ea0d90744c0bad45f8ce8
         
         if (datumKorrekt == false && textRutaArTom == false)
         {

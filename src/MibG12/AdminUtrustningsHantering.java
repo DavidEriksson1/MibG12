@@ -92,22 +92,20 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         String svar1 = idb.fetchSingle(namn);
         System.out.println(namn);
         
-        utrustningFinns = Validering.kontrolleraUtrustning(svar1, utrustning, inmatning);
+        utrustningFinns = Validering.stringFinns(svar1, utrustning);
         
-        
-        
-        //ArrayList<String> uNamn = idb.fetchColumn(namn);
-        //String uSvar = uNamn.toString();
-        //String utrNamn = uSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
-        
-        //ArrayList<String> uInmatning = idb.fetchColumn(inmatning);
-        //String utrInmatning = uInmatning.toString();
-        //String utrustningsInmatning = utrInmatning.replaceAll("[\\p{Ps}\\p{Pe}]","");
+        if(utrustningFinns == true){
+            String svar2 = idb.fetchSingle(inmatning);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
+        }
         }
        
         catch(InfException ie){
                 JOptionPane.showMessageDialog(null, "Något gick fel");
                 }
+        
         
         
     }//GEN-LAST:event_btnTaBortUtrustningActionPerformed
