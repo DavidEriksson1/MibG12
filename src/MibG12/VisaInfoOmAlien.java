@@ -267,9 +267,147 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         }
     }
     
+    public void setInfo (String namn)
+    {
+       lblNamn.setText(visaNamn(namn));
+       lblRas.setText(visaRas(namn));
+       lblRegDatum.setText(visaRegDatum(namn));
+       lblPlats.setText(visaPlats(namn));
+       lblTelefon.setText(visaTelefon(namn));
+       lblLosenord.setText(visaLosenord(namn));
+       lblID.setText(visaID(namn));
+       lblAnsvarigAgent.setText(visaAnsvarigAgent(namn));
+    }
+    
     public void setNuvarandeUtomjording(String namn)
     {
         this.nuvarandeUtomjording = namn;
+    }
+    
+    public String visaNamn (String namn)
+    {
+        String namnet = "";
+        
+        try {
+        String fraga = "Select namn from alien where namn = '" + namn + "'";
+        String svar = idb.fetchSingle(fraga);
+        namnet = svar;
+        }
+        
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        
+        return namnet;
+    }
+    
+    public String visaRegDatum (String namn)
+    {
+        String regDatum = "";
+        
+        try {
+        String fraga = "Select Registreringsdatum from alien where namn = '" + namn + "'";
+        String svar = idb.fetchSingle(fraga);
+        regDatum = svar;
+        }
+        
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        
+        return regDatum;
+    }
+    
+    public String visaPlats (String namn)
+    {
+        String plats = "";
+        
+        try {
+        String fraga = "Select benamning from plats where plats_id = (Select Plats from alien where namn = '" + namn + "')";
+        String svar = idb.fetchSingle(fraga);
+        plats = svar;
+        }
+        
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        
+        return plats;
+    }
+    
+    public String visaTelefon (String namn)
+    {
+        String telefon = "";
+        
+        try {
+        String fraga = "Select telefon from alien where namn = '" + namn + "'";
+        String svar = idb.fetchSingle(fraga);
+        telefon = svar;
+        }
+        
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        
+        return telefon;
+    }
+    
+    public String visaLosenord (String namn)
+    {
+        String losenord = "";
+        
+        try {
+        String fraga = "Select losenord from alien where namn = '" + namn + "'";
+        String svar = idb.fetchSingle(fraga);
+        losenord = svar;
+        }
+        
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        
+        return losenord;
+    }
+    
+    public String visaID (String namn)
+    {
+        String iD = "";
+        
+        try {
+        String fraga = "Select alien_id from alien where namn = '" + namn + "'";
+        String svar = idb.fetchSingle(fraga);
+        iD = svar;
+        }
+        
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        
+        return iD;
+    }
+    
+    public String visaAnsvarigAgent (String namn)
+    {
+        String Agent = "";
+        
+        try {
+        String fraga = "Select namn from agent where agent_id = (Select Ansvarig_Agent from alien where namn = '" + namn + "')";
+        String svar = idb.fetchSingle(fraga);
+        Agent = svar;
+        }
+        
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+        
+        return Agent;
     }
     
     public String visaRas (String utomjording)
@@ -278,79 +416,63 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         boolean isWorm = false;
         boolean isSquid = false;
         String ras = "";
-        
+
         try {
-        String fraga = "Select alien_id from alien where namn = '" + utomjording + "'";
-        String svarID = idb.fetchSingle(fraga);
-        
-        String fragaBoglodite = "Select alien_id from boglodite";
-        ArrayList<String> boglodite = idb.fetchColumn(fragaBoglodite);
-        
-        String fragaWorm= "Select alien_id from worm";
-        ArrayList<String> worm = idb.fetchColumn(fragaWorm);
-        
-        String fragaSquid = "Select alien_id from squid";
-        ArrayList<String> squid = idb.fetchColumn(fragaSquid);
-        
-            for (String id : boglodite)
-            {
+            String fraga = "Select alien_id from alien where namn = '" + utomjording + "'";
+            String svarID = idb.fetchSingle(fraga);
+
+            String fragaBoglodite = "Select alien_id from boglodite";
+            ArrayList<String> boglodite = idb.fetchColumn(fragaBoglodite);
+
+            String fragaWorm = "Select alien_id from worm";
+            ArrayList<String> worm = idb.fetchColumn(fragaWorm);
+
+            String fragaSquid = "Select alien_id from squid";
+            ArrayList<String> squid = idb.fetchColumn(fragaSquid);
+
+            for (String id : boglodite) {
                 System.out.print(id);
-                if (id.equals(svarID))
-                {
+                if (id.equals(svarID)) {
                     isBoglodite = true;
                     break;
                 }
             }
-            
-                    if (isBoglodite == false)
-                    {
-                        for (String id : worm)
-                        {
-                            System.out.print(id);
-                            if (id.equals(svarID))
-                            {
-                               isWorm = true;
-                               break;
-                            }
-                        }
+
+            if (isBoglodite == false) {
+                for (String id : worm) {
+                    System.out.print(id);
+                    if (id.equals(svarID)) {
+                        isWorm = true;
+                        break;
                     }
-                    
-                                if (isWorm == false && isBoglodite == false)
-                                {
-                                    for (String id : squid)
-                                    {
-                                        System.out.print(id);
-                                        if (id.equals(svarID))
-                                        {
-                                            isSquid = true;
-                                            break;
-                                            
-                                        }
-                                    }
-                                }
-        }
-        catch (InfException ex) {
+                }
+            }
+
+            if (isWorm == false && isBoglodite == false) {
+                for (String id : squid) {
+                    System.out.print(id);
+                    if (id.equals(svarID)) {
+                        isSquid = true;
+                        break;
+
+                    }
+                }
+            }
+        } catch (InfException ex) {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Ett fel har uppstått " + ex);
         }
-        
-        if (isBoglodite == true)
-        {
+
+        if (isBoglodite == true) {
             ras = "Boglodite";
             System.out.println(ras);
-        }
-        else if (isWorm == true)
-        {
+        } else if (isWorm == true) {
             ras = "Worm";
             System.out.println(ras);
-        }
-        else if (isSquid == true)
-        {
+        } else if (isSquid == true) {
             ras = "Squid";
             System.out.println(ras);
-        }
-        else 
-        {
+        } else {
             System.out.println("Ingen ras hittad");
         }
         return ras;

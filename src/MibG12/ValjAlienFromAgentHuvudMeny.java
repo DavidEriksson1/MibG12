@@ -118,46 +118,41 @@ public class ValjAlienFromAgentHuvudMeny extends javax.swing.JFrame {
 
     private void btnValjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValjActionPerformed
         
-        boolean namnKorrekt = false;
-        
         try {
-        String namn = txtValjAlien.getText();
-        
-        String fraga1 = "SELECT namn FROM alien where namn =  '" + namn + "'";
-        String svar1 = idb.fetchSingle(fraga1);
-        
-        namnKorrekt = Validering.stringFinns(namn, svar1);
-        
-        if (namnKorrekt == true)
-        {
-            
-            if (visaBaraInfo == false)
-            {
-            AndraInfoOmAlien aIOA = new AndraInfoOmAlien(idb, nuvarandeAgent);
-            aIOA.setNuvarandeUtomjording(namn);
-            aIOA.showInfo(namn);
-            aIOA.setVisible(true);
-            dispose();
+            String namn = txtValjAlien.getText();
+
+            String fraga1 = "SELECT namn FROM alien where namn =  '" + namn + "'";
+            String svar1 = idb.fetchSingle(fraga1);
+
+            boolean namnKorrekt = Validering.stringFinns(namn, svar1);
+            boolean textRutaArTom = Validering.textRutaArTom(namn);
+
+            if (textRutaArTom == false) {
+
+                if (namnKorrekt == true) {
+
+                    if (visaBaraInfo == false) {
+                        AndraInfoOmAlien aIOA = new AndraInfoOmAlien(idb, nuvarandeAgent, namn);
+                        //aIOA.setNuvarandeUtomjording(namn);
+                        //aIOA.showInfo(namn);
+                        aIOA.setInfo(namn);
+                        aIOA.setVisible(true);
+                        dispose();
+                    } else {
+                        VisaInfoOmAlien vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent);
+                        vIOA.setNuvarandeUtomjording(namn);
+                        //vIOA.showInfo(namn);
+                        vIOA.setInfo(namn);
+                        vIOA.setVisible(true);
+                        dispose();
+
+                    }
+                } else {
+                    lblFelAlienNamn.setText("Det finns ingen utomjording med namnet: " + namn);
+                }
             }
-            
-            else 
-            {
-                VisaInfoOmAlien vIOA = new VisaInfoOmAlien (idb, nuvarandeAgent);
-                vIOA.setNuvarandeUtomjording(namn);
-                vIOA.showInfo(namn);
-                vIOA.setVisible(true);
-                dispose();
-                
-            }
-        }
-        
-        else {
-            lblFelAlienNamn.setText("Det finns ingen utomjording med namnet: " + namn);
-        }
-        
-        
-        }
-        catch (InfException ex) {
+
+        } catch (InfException ex) {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Ett fel har uppstått " + ex);
         }

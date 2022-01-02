@@ -119,13 +119,13 @@ public class Validering {
        
         
         if(svar1.equals(utrustning)){
-<<<<<<< HEAD
+
             
             utrustningFinns = true;
-=======
+
             utrustningFinns = true;
             JOptionPane.showMessageDialog(null,svar1 + " har tagits bort!");
->>>>>>> c0f197bfadd8df4bd59ea0d90744c0bad45f8ce8
+
         }
         else{
             JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med det namnet, prova med ett annat namn");
