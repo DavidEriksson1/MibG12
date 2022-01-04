@@ -125,6 +125,11 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
             new NyRegistreraAlien(idb).setVisible(true);
             dispose();
         }
+        else if(i == 2){
+             new AdminTaBortAlien(idb, agent).setVisible(true); 
+             dispose();
+                    
+        }
         
     }//GEN-LAST:event_jComboAlienActionPerformed
 
