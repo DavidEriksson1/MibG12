@@ -134,7 +134,15 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboAlienActionPerformed
 
     private void jComboAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAgentActionPerformed
-        // TODO add your handling code here:
+        // Combobox för att visa alternativ för hantering gällande agenter
+        int i = jComboAgent.getSelectedIndex();
+        
+        if(i == 5){
+            AdminOmrådesChef adminOmrådesChef = new AdminOmrådesChef(idb, agent);
+            adminOmrådesChef.setVisible(true);
+            dispose();
+        }
+        
     }//GEN-LAST:event_jComboAgentActionPerformed
 
     private void btnUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUtrustningActionPerformed
