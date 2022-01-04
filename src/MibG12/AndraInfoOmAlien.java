@@ -387,8 +387,12 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         boolean namnetSamma = Validering.stringFinns(nyttNamn, gammaltNamn);
         boolean textRutaArTom = Validering.textRutaArTom(nyttNamn);
         boolean namnetEjAnvant = kollaNamn(nyttNamn);
+        boolean endastBokstaver = Validering.arStringEndastBokstaver(nyttNamn);
         
         if (textRutaArTom == false) {
+            
+            if (endastBokstaver == true)
+            {
             
             if (namnetEjAnvant == false) {
                 
@@ -411,6 +415,11 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Namnet används redan av en annan utomjording. Vänligen skriv ett annat namn!");
+                txtNamn.setText("");
+            }
+            }
+            else
+            {
                 txtNamn.setText("");
             }
             
@@ -485,29 +494,36 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         String gammaltTelefonNummer = lblTelefon.getText();
         boolean TelefonFinns = Validering.stringFinns(nyttTelefonNummer, gammaltTelefonNummer);
         boolean textRutaArTom = Validering.textRutaArTom(nyttTelefonNummer);
-        
-        if (textRutaArTom == false)
-        
-        {
-        if (TelefonFinns == false) {
+        boolean endastSiffror = Validering.endastSiffror(nyttTelefonNummer);
 
-            try {
-                String fraga = "Update Alien set telefon = '" + nyttTelefonNummer + "' where namn = '" + nuvarandeUtomjording + "'";
-                String svar = idb.fetchSingle(fraga);
-                JOptionPane.showMessageDialog(null, "Telefonnumret har ändrats!");
-                txtTelefon.setText("");
-                showInfo(nuvarandeUtomjording);
-            } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
+        if (textRutaArTom == false) {
+
+            if (endastSiffror == true) {
+                
+                if (TelefonFinns == false) {
+
+                    try {
+                        String fraga = "Update Alien set telefon = '" + nyttTelefonNummer + "' where namn = '" + nuvarandeUtomjording + "'";
+                        String svar = idb.fetchSingle(fraga);
+                        JOptionPane.showMessageDialog(null, "Telefonnumret har ändrats!");
+                        txtTelefon.setText("");
+                        showInfo(nuvarandeUtomjording);
+                    } catch (InfException ex) {
+                        JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
+                        txtTelefon.setText("");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Telefonnumret har inte ändrats, Vänligen skriv in ett annat nummer!");
+                    txtTelefon.setText("");
+                }
+            }
+            else
+            {
                 txtTelefon.setText("");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Telefonnumret har inte ändrats, Vänligen skriv in ett annat nummer!");
-            txtTelefon.setText("");
-        }  
-        
-        } 
-    
+
+        }
+
           
     }//GEN-LAST:event_btnAndraTelefonActionPerformed
 

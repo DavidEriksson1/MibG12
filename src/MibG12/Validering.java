@@ -7,6 +7,8 @@ package MibG12;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -152,15 +154,49 @@ public class Validering {
     
     public static boolean textRutaArTom(String string)
     {
-        boolean textRutaArTom = string.isEmpty();
+        boolean textRutaArTom = string.trim().isEmpty();
         
-        if (textRutaArTom == true || string.equals(" ") || string.equals("  ") || string.equals("  "))
+        if (textRutaArTom == true)
         {
             JOptionPane.showMessageDialog(null, "Vänligen skriv in ett värde i textrutan!");
             textRutaArTom = true;
         }
         
         return textRutaArTom;
+    }
+    
+    public static boolean arStringEndastBokstaver(String str)
+    {
+        boolean stringEndastBokstaver = false;
+                
+        if (str.matches("^[a-zA-Z]*$"))
+        {
+            stringEndastBokstaver = true;
+        }
+        
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Skriv ett värde med endast bokstäver!");
+        }
+        
+        return stringEndastBokstaver;
+    }
+    
+    public static boolean endastSiffror (String str)
+    {
+        String regex = "[0-9]+";
+        Pattern p = Pattern.compile(regex);
+ 
+        Matcher m = p.matcher(str);
+        boolean endastSiffror = m.matches();
+        
+        if (endastSiffror == false)
+        {
+            JOptionPane.showMessageDialog(null, "Skriv in ett värde endast med siffror!");
+        }
+        
+        return endastSiffror;
+    
     }
 }
 

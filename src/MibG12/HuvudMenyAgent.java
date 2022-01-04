@@ -174,6 +174,9 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         }
         if(i == 2){
             
+            VisaAllaUtomjordingarPaEnPlats vAUPEP = new VisaAllaUtomjordingarPaEnPlats (idb, nuvarandeAgent);
+            vAUPEP.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
