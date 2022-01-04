@@ -80,11 +80,15 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTaBortUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortUtrustningActionPerformed
-        // Läs in textfältet och ta bort den angivna utrustningen.
+        // Kontrollera att utrustningen finns och så att textrutan inte är tom
         boolean utrustningFinns = false;
         
+       
+                
         try{
         String utrustning = txtTaBortUtrustning.getText();
+        
+        boolean textRutaArTom = Validering.textRutaArTom(utrustning);
         
         String namn = "select Benamning from utrustning where Benamning ='" + utrustning + "'";
         String inmatning = "delete from utrustning where Benamning ='" + utrustning + "'";
@@ -94,14 +98,17 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         
         utrustningFinns = Validering.stringFinns(svar1, utrustning);
         
+        if(textRutaArTom == false){
+            
+        
         if(utrustningFinns == true){
             String svar2 = idb.fetchSingle(inmatning);
-        }
+        }  
         else{
             JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
         }
         }
-       
+        }
         catch(InfException ie){
                 JOptionPane.showMessageDialog(null, "Något gick fel");
                 }
