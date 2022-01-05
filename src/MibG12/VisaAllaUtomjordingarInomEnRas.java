@@ -16,16 +16,17 @@ import oru.inf.InfException;
  *
  * @author Victo
  */
-public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
+public class VisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
 
     InfDB idb;
     String nuvarandeAgent;
-    Validering validering;
-    public VisaAllaUtomjordingarPaEnPlats(InfDB idb, String nuvarandeAgent) {
+    VisaInfoOmAlien visaInfoOmAlien;
+    
+    public VisaAllaUtomjordingarInomEnRas(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
-        this.nuvarandeAgent = nuvarandeAgent;  
-        validering = new Validering();
+        this.nuvarandeAgent = nuvarandeAgent;
+        visaInfoOmAlien = new VisaInfoOmAlien(idb, nuvarandeAgent);
     }
 
     
@@ -33,19 +34,19 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnVisaAlienPaPlats = new javax.swing.JButton();
+        btnVisaAlienInomRas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaVisaInfo = new javax.swing.JTextArea();
-        txtValdPlats = new javax.swing.JTextField();
+        txtValdRas = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnVisaAlienPaPlats.setText("Visa");
-        btnVisaAlienPaPlats.addActionListener(new java.awt.event.ActionListener() {
+        btnVisaAlienInomRas.setText("Visa");
+        btnVisaAlienInomRas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisaAlienPaPlatsActionPerformed(evt);
+                btnVisaAlienInomRasActionPerformed(evt);
             }
         });
 
@@ -53,8 +54,14 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
         txtAreaVisaInfo.setRows(5);
         jScrollPane1.setViewportView(txtAreaVisaInfo);
 
+        txtValdRas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValdRasActionPerformed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Visa utomjordingar på angiven plats");
+        jLabel1.setText("Visa utomjordingar inom en ras:");
 
         jButton1.setText("Tillbaka");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,31 +77,31 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(77, 77, 77)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(txtValdPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(btnVisaAlienPaPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtValdRas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(75, 75, 75)
+                                .addComponent(btnVisaAlienInomRas, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(jButton1)))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValdPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisaAlienPaPlats))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                    .addComponent(txtValdRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisaAlienInomRas))
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -104,33 +111,38 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVisaAlienPaPlatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaAlienPaPlatsActionPerformed
+    private void btnVisaAlienInomRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaAlienInomRasActionPerformed
         
         txtAreaVisaInfo.setText("");
         ArrayList<String> utomjordingar;
-        String plats = txtValdPlats.getText();
-        boolean textRutaArTom = Validering.textRutaArTom(plats);
-        boolean platsFinns = kollaPlats(plats);
-        boolean endastBokstaver = Validering.arStringEndastBokstaver(plats);
+        String ras = txtValdRas.getText();
+        boolean textRutaArTom = Validering.textRutaArTom(ras); 
 
         if (textRutaArTom == false) {
+            
+            boolean endastBokstaver = Validering.arStringEndastBokstaver(ras);
 
             if (endastBokstaver == true) {
+                
+                boolean rasFinns = kollaRas(ras);
 
-                if (platsFinns == true) {
+                if (rasFinns == true) {
                     try {
-                        String fraga = "Select namn from alien where plats = (Select plats_id from plats where benamning = '" + plats + "')";
-                        System.out.println(fraga);
+                        String fraga = "Select alien_id from " + ras;
                         utomjordingar = idb.fetchColumn(fraga);
                         
                         if (utomjordingar.isEmpty())
                         {
-                            txtAreaVisaInfo.append("Det finns ingen utomjording som är av vald ras! :(");
+                            txtAreaVisaInfo.append("Det finns ingen utomjording av vald ras! :(");
+                            
                         }
                         else
                         {
-                        for (String namn : utomjordingar) {
-                            txtAreaVisaInfo.append(namn + "\n");
+                        for (String id : utomjordingar) {
+                            
+                            String fraga2 = "Select namn from alien where alien_id = " + id;
+                            String svar = idb.fetchSingle(fraga2);
+                            txtAreaVisaInfo.append(svar + "\n");
                         }
                         }
                     } catch (InfException ex) {
@@ -139,20 +151,20 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Ett fel har uppstått¨" + ex);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Det finns ingen ras med namnet: " + plats + ".");
-                    txtValdPlats.setText("");
+                    
+                    txtValdRas.setText("");
                 }
 
             }
             else 
             {
-                txtValdPlats.setText("");
+                txtValdRas.setText("");
             }
 
         }
         
         
-    }//GEN-LAST:event_btnVisaAlienPaPlatsActionPerformed
+    }//GEN-LAST:event_btnVisaAlienInomRasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
@@ -161,42 +173,44 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public boolean kollaPlats (String plats)
+    private void txtValdRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValdRasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValdRasActionPerformed
+    
+    public boolean kollaRas (String ras)
     {
-        boolean platsFinns = false;
+        boolean rasFinns = false;
         
-        try {
-        
-        String fraga = "Select benamning from plats";
-        ArrayList<String> platser = idb.fetchColumn(fraga);
-        
-        for (String platsen : platser)
+        if (ras.toLowerCase().equals("boglodite"))
         {
-            platsFinns = Validering.stringFinns(platsen,plats);
+            rasFinns = true;
+        }
+        
+        else if (ras.toLowerCase().equals("worm"))
+        {
+            rasFinns = true;
+        }
+        
+        else if (ras.toLowerCase().equals("squid"))
+        {
+            rasFinns = true;
+        }
+        
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Det finns ingen ras med namnet: " + ras);
+        }
             
-            if (platsFinns == true)
-            {
-                break;
-            }
-        }
-        }
-        catch (InfException ex)
-        {
-           JOptionPane.showMessageDialog(null, "Något gick fel"); 
-        }
-        return platsFinns;
-        
+            return rasFinns;
     }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVisaAlienPaPlats;
+    private javax.swing.JButton btnVisaAlienInomRas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtAreaVisaInfo;
-    private javax.swing.JTextField txtValdPlats;
+    private javax.swing.JTextField txtValdRas;
     // End of variables declaration//GEN-END:variables
 }
 

@@ -70,6 +70,11 @@
                                   <Component id="lblID" min="-2" pref="110" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblRasExtraRubrik" min="-2" pref="86" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblRasExtra" min="-2" pref="47" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -103,6 +108,11 @@
                   <Component id="lblRasRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblRas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblRasExtraRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRasExtra" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblRegistreringsDatumRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -133,7 +143,7 @@
                   <Component id="lblAnsvarigAgentRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblAnsvarigAgent" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTillbakaTillHuvudmeny" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="btnTillbaka" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -273,6 +283,19 @@
     <Component class="javax.swing.JLabel" name="lblAnsvarigAgent">
       <Properties>
         <Property name="text" type="java.lang.String" value="ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRasExtraRubrik">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Antal Boogies:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRasExtra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="3"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -40,7 +40,7 @@ public class Validering {
     public static boolean kollaInloggningsUppgifter(String anvNamn1, String anvNamn2, String losenord1, String losenord2) {
         boolean inloggningKorrekt = false;
 
-        if (anvNamn1.toLowerCase().equals(anvNamn2.toLowerCase()) && losenord1.toLowerCase().equals(losenord2.toLowerCase())) {
+        if (anvNamn1.toLowerCase().equals(anvNamn2.toLowerCase()) && losenord1.equals(losenord2)) {
             inloggningKorrekt = true;
 
         } else {
@@ -169,7 +169,8 @@ public class Validering {
     {
         boolean stringEndastBokstaver = false;
                 
-        if (str.matches("^[a-zA-Z]*$"))
+        if (str.matches("^[a-öA-Ö][a-öA-Ö ]*$"))
+            
         {
             stringEndastBokstaver = true;
         }
@@ -198,6 +199,8 @@ public class Validering {
         return endastSiffror;
     
     }
+    
+    
 }
 
  
