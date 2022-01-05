@@ -137,6 +137,12 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         // Combobox för att visa alternativ för hantering gällande agenter
         int i = jComboAgent.getSelectedIndex();
         
+        if(i == 2){
+            AdminGeAdminStatus adminGeAdminStatus = new AdminGeAdminStatus(idb, agent);
+            adminGeAdminStatus.setVisible(true);
+            dispose();
+        }
+        
         if(i == 5){
             AdminOmrådesChef adminOmrådesChef = new AdminOmrådesChef(idb, agent);
             adminOmrådesChef.setVisible(true);
