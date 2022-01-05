@@ -178,6 +178,17 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
             vAUPEP.setVisible(true);
             dispose();
         }
+        if (i == 3){
+            VisaAllaUtomjordingarInomEnRas vAUIER = new VisaAllaUtomjordingarInomEnRas (idb, nuvarandeAgent);
+            vAUIER.setVisible(true);
+            dispose();
+        }
+        if (i == 4){
+            
+        }
+        if (i == 5){
+            
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

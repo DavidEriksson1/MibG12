@@ -55,6 +55,8 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         btnTillbakaTillHuvudmeny = new javax.swing.JButton();
         lblAnsvarigAgentRubrik = new javax.swing.JLabel();
         lblAnsvarigAgent = new javax.swing.JLabel();
+        lblRasExtraRubrik = new javax.swing.JLabel();
+        lblRasExtra = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +118,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
 
         lblAnsvarigAgent.setText("ID");
 
+        lblRasExtraRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblRasExtraRubrik.setText("Antal Boogies:");
+
+        lblRasExtra.setText("3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,7 +164,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(lblIDRubrik)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblRasExtraRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblRasExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,6 +192,10 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRasRubrik)
                     .addComponent(lblRas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRasExtraRubrik)
+                    .addComponent(lblRasExtra))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRegistreringsDatumRubrik)
@@ -205,7 +220,7 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAnsvarigAgentRubrik)
                     .addComponent(lblAnsvarigAgent))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTillbakaTillHuvudmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -458,23 +473,33 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                     }
                 }
             }
+            
+            if (isBoglodite == true) {
+            ras = "Boglodite";
+            String fraga1 = "Select antal_boogies from boglodite";
+            String svar1 = idb.fetchSingle(fraga1);
+            lblRasExtra.setText(svar1);
+            lblRasExtraRubrik.setText("Antal boogies:");
+            
+        } else if (isWorm == true) {
+            ras = "Worm";
+            lblRasExtra.setText("");
+            lblRasExtraRubrik.setText("");
+        } else if (isSquid == true) {
+            ras = "Squid";
+            String fraga1 = "Select Antal_armar from squid";
+            String svar1 = idb.fetchSingle(fraga1);
+            lblRasExtra.setText(svar1);
+            lblRasExtraRubrik.setText("Antal armar:");
+        } else {
+            System.out.println("Ingen ras hittad");
+        }
         } catch (InfException ex) {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Ett fel har uppstått " + ex);
         }
 
-        if (isBoglodite == true) {
-            ras = "Boglodite";
-            System.out.println(ras);
-        } else if (isWorm == true) {
-            ras = "Worm";
-            System.out.println(ras);
-        } else if (isSquid == true) {
-            ras = "Squid";
-            System.out.println(ras);
-        } else {
-            System.out.println("Ingen ras hittad");
-        }
+        
         return ras;
         
     }
@@ -494,6 +519,8 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblPlats;
     private javax.swing.JLabel lblPlatsRubrik;
     private javax.swing.JLabel lblRas;
+    private javax.swing.JLabel lblRasExtra;
+    private javax.swing.JLabel lblRasExtraRubrik;
     private javax.swing.JLabel lblRasRubrik;
     private javax.swing.JLabel lblRegDatum;
     private javax.swing.JLabel lblRegistreringsDatumRubrik;

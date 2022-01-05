@@ -37,7 +37,7 @@ public class InloggningsTyp extends javax.swing.JFrame {
 
         jLabel1.setText("Välkommen till MIB sektor skandinavien! Vänligen ange inloggningstyp.");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent", "Utomjording", "Admin" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------------", "Agent", "Utomjording", "Admin" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -55,7 +55,7 @@ public class InloggningsTyp extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -75,15 +75,15 @@ public class InloggningsTyp extends javax.swing.JFrame {
         // Välj inloggningstyp
         int i = jComboBox1.getSelectedIndex();
         
-        if(i == 0){
+        if(i == 1){
             new InloggningAgent(idb).setVisible(true);
             dispose();
         }
-        if(i == 1){
+        if(i == 2){
             new InloggningUtomjording(idb).setVisible(true);
             dispose();
         }
-        if(i == 2){
+        if(i == 3){
             new InloggningAdmin(idb).setVisible(true);
             dispose();
         }
