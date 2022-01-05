@@ -159,25 +159,25 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
             int raderatId = Integer.parseInt(svarId);
             int nyttId = Integer.parseInt(nyId);
             
-            String radera1 = "Delete from Agent where Agent_ID=" + raderatId;
+            String radera1 = "Delete from Agent where Agent_ID= " + raderatId;
             System.out.println(radera1);
             
-            String radera2 = "Delete from Faltagent where Agent_ID =" + raderatId; 
+            String radera2 = "Delete from Faltagent where Agent_ID = " + raderatId; 
             System.out.println(radera2);
             
-            String radera3 = "Delete from Kontorschef where Agent_ID =" + raderatId;
+            String radera3 = "Delete from Kontorschef where Agent_ID = " + raderatId;
             System.out.println(radera3);
             
-            String radera4 = "Delete from Omradeschef where Agent_ID =" + raderatId;
+            String radera4 = "Delete from Omradeschef where Agent_ID = " + raderatId;
             System.out.println(radera4);
             
-            String radera5 = "Delete from Innehar_Fordon where Agent_ID =" + raderatId;
+            String radera5 = "Delete from Innehar_Fordon where Agent_ID = " + raderatId;
             System.out.println(radera5);
             
-            String radera6 = "Delete from Innehar_Utrustning where Agent_ID =" + raderatId;
+            String radera6 = "Delete from Innehar_Utrustning where Agent_ID = " + raderatId;
             System.out.println(radera6);
             
-            String update1 = "Update Alien set Ansvarig_agent = " + nyttId +  "where ansvarig_agent =" + raderatId;
+            String update1 = "Update Alien set Ansvarig_agent = " + nyttId +  " where ansvarig_agent = " + raderatId;
             System.out.println(update1);
             
             String svar1 = idb.fetchSingle(fraga1);
@@ -195,8 +195,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
             if(textRutaTom == false){
                 if(textRutaTom2 == false){
                 
-            if(agentFinns == false ){
-                if (agentFinns2 == false){
+            if(agentFinns == true ){
+                if (agentFinns2 == true){
                 idb.fetchSingle(radera2);
                 idb.fetchSingle(radera4);
                 idb.fetchSingle(radera3);
@@ -211,13 +211,13 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
             }
                 
              else{
-                JOptionPane.showMessageDialog(null, "Det fanns ingen agent att radera med det namnet!");
+                JOptionPane.showMessageDialog(null, "Det fanns ingen agent att radera med namnet " + svar1 +"!");
                 txtAgentNamn.setText("");
                     txtNyAgent.setText("");
             }   
              }
             else{
-                JOptionPane.showMessageDialog(null, "Det fanns ingen agent att ersätta med det namnet");
+                JOptionPane.showMessageDialog(null, "Det fanns ingen agent att ersätta med namnet " + svar2 + "!");
                 txtAgentNamn.setText("");
                 txtNyAgent.setText("");
             }
