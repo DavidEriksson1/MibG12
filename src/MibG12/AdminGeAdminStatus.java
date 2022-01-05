@@ -4,7 +4,10 @@
  */
 package MibG12;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -14,14 +17,14 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
-    
+
     /**
      * Creates new form AdminGeAdminStatus
      */
     public AdminGeAdminStatus(InfDB idb, String agent) {
         this.idb = idb;
         this.agent = agent;
-        
+
         initComponents();
     }
 
@@ -34,14 +37,54 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnTillbaka = new javax.swing.JButton();
+        jLabelAndradStatus = new javax.swing.JLabel();
+        txtFieldAgent = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtFieldTaBortAdminStatus = new javax.swing.JTextField();
+        btnTaBortAdmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOk.setText("Verkställ");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnOkActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Vänligen ange beteckning på den agent du vill ändra administratörsstatus på");
+
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
+        txtFieldAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldAgentActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Ge adminstatus");
+
+        jLabel4.setText("Ta bort adminstatus");
+
+        txtFieldTaBortAdminStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldTaBortAdminStatusActionPerformed(evt);
+            }
+        });
+
+        btnTaBortAdmin.setText("Verkställ");
+        btnTaBortAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortAdminActionPerformed(evt);
             }
         });
 
@@ -51,30 +94,171 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelAndradStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFieldAgent, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                            .addComponent(txtFieldTaBortAdminStatus))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                            .addComponent(btnTaBortAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnTillbaka)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFieldAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(btnOk))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtFieldTaBortAdminStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTaBortAdmin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jLabelAndradStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTillbaka)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        // Metod för att ge eller ta bort adminstatus från en agent, vi har valt att ge användaren
+        // möjlighet att ta bort adminstatus då vi anser att det kan vara användbart
+
+        try {
+            String agentNamn = txtFieldAgent.getText();
+
+            boolean namnFinns = kontrolleraNamn(agentNamn);
+
+            String adminStatus = "select Administrator from Agent where namn = '" + agentNamn + "'";
+
+            String svar1 = idb.fetchSingle(adminStatus);
+
+            String AdminStatusJa = "update agent set administrator = 'J' where namn = '" + agentNamn + "'";
+
+            boolean tomTextRuta = Validering.textRutaArTom(agentNamn);
+
+            if (tomTextRuta == false) {
+
+                if (namnFinns == true) {
+
+                    if (svar1.toUpperCase().equals("N")) {
+                        idb.fetchSingle(AdminStatusJa);
+                        jLabelAndradStatus.setText(agentNamn + " är nu administratör!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Denna agent är redan administratör!");
+                    }
+                }
+            }
+
+        } catch (InfException ie) {
+
+        }
+    }
+
+    public boolean kontrolleraNamn(String agentNamn) {
+        boolean namnFinns = false;
+
+        try {
+            String namn = "select namn from Agent";
+            ArrayList<String> agenter = idb.fetchColumn(namn);
+
+            for (String agent : agenter) {
+                if (agent.toLowerCase().equals(agentNamn.toLowerCase())) {
+                    namnFinns = true;
+                    break;
+                }
+            }
+        } catch (InfException ie) {
+
+        }
+        if (namnFinns == false) {
+            JOptionPane.showMessageDialog(null, "Det finns ingen agent med det namnet!");
+        }
+
+        return namnFinns;
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        // Tillbaka till huvudmeny admin
+        HuvudMenyAdmin huvudMenyAdmin = new HuvudMenyAdmin(idb, agent);
+        huvudMenyAdmin.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void txtFieldAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldAgentActionPerformed
+        // Textfält där agent som skall få adminstatus matas in
+    }//GEN-LAST:event_txtFieldAgentActionPerformed
+
+    private void txtFieldTaBortAdminStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldTaBortAdminStatusActionPerformed
+        // Textfält där agent som inte längre skall ha adminstatus matas in
+    }//GEN-LAST:event_txtFieldTaBortAdminStatusActionPerformed
+
+    private void btnTaBortAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortAdminActionPerformed
+        // Knapp för att ta bort adminstatus från en agent
+        try {
+
+            String agentNamnInteAdmin = txtFieldTaBortAdminStatus.getText();
+
+            String adminStatus = "select Administrator from Agent where namn = '" + agentNamnInteAdmin + "'";
+
+            String svar1 = idb.fetchSingle(adminStatus);
+
+            String AdminStatusNej = "update agent set administrator = 'N' where namn = '" + agentNamnInteAdmin + "'";
+
+            boolean tomTextRuta = Validering.textRutaArTom(agentNamnInteAdmin);
+
+            if (tomTextRuta == false) {
+                boolean namnFinns = kontrolleraNamn(agentNamnInteAdmin);
+
+                if (namnFinns == true) {
+
+                    if (svar1.toUpperCase().equals("J")) {
+                        idb.fetchSingle(AdminStatusNej);
+                        jLabelAndradStatus.setText(agentNamnInteAdmin + " är inte längre administratör!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Denna agent är inte administratör!");
+                    }
+                }
+            }
+        } catch (InfException ie) {
+        }
+
+
+    }//GEN-LAST:event_btnTaBortAdminActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnOk;
+    private javax.swing.JButton btnTaBortAdmin;
+    private javax.swing.JButton btnTillbaka;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelAndradStatus;
+    private javax.swing.JTextField txtFieldAgent;
+    private javax.swing.JTextField txtFieldTaBortAdminStatus;
     // End of variables declaration//GEN-END:variables
 }
