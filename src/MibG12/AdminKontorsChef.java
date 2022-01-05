@@ -132,7 +132,7 @@ public class AdminKontorsChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // Knapp för att fastställa val av ny kontorschef
+        // Metod för att validera och fastställa val av ny kontorschef
 
         try {
 
