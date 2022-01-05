@@ -142,6 +142,11 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
             adminOmrådesChef.setVisible(true);
             dispose();
         }
+        if(i == 6){
+            AdminKontorsChef adminKontorsChef = new AdminKontorsChef(idb, agent);
+            adminKontorsChef.setVisible(true);
+            dispose();
+        }
         
     }//GEN-LAST:event_jComboAgentActionPerformed
 
