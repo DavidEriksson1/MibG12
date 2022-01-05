@@ -40,6 +40,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         lblTaBort = new javax.swing.JLabel();
         txtAlienNamn = new javax.swing.JTextField();
         btnRadera = new javax.swing.JButton();
+        btnTillbaka = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,31 +55,45 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
             }
         });
 
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRadera, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(lblTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(btnRadera, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(txtAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(lblTaBort)
-                .addGap(33, 33, 33)
+                .addGap(45, 45, 45)
                 .addComponent(txtAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
-                .addComponent(btnRadera)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRadera)
+                    .addComponent(btnTillbaka))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -98,23 +113,37 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
             System.out.println(namn);
             
             alienFinns = Validering.stringFinns(svar1, alienAttRadera);
+            boolean textRutaTom = Validering.textRutaArTom(alienAttRadera);
+             
+             if(textRutaTom == false){
+                 
+             
             
             if(alienFinns == true){
                 String svar2 = idb.fetchSingle(radera);
                 JOptionPane.showMessageDialog(null, alienAttRadera + " raderades ur systemet!");
                 txtAlienNamn.setText("");
             }
+            
             else{
                 JOptionPane.showMessageDialog(null,"Det finns ingen Alien med det namnet");
                 txtAlienNamn.setText("");
             }
         }
-        
+        }
         catch (InfException e){
             JOptionPane.showMessageDialog(null, "Något fick fel");
             System.out.println(e);
         }
+        
     }//GEN-LAST:event_btnRaderaActionPerformed
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        // TODO add your handling code here:
+        HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
+        hMA.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +153,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRadera;
+    private javax.swing.JButton btnTillbaka;
     private javax.swing.JLabel lblTaBort;
     private javax.swing.JTextField txtAlienNamn;
     // End of variables declaration//GEN-END:variables

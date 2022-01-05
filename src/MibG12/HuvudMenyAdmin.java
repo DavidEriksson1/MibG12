@@ -135,6 +135,12 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
 
     private void jComboAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAgentActionPerformed
         // TODO add your handling code here:
+        int i = jComboAgent.getSelectedIndex();
+        
+        if(i == 4){
+            new AdminTaBortAgent(idb, agent).setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jComboAgentActionPerformed
 
     private void btnUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUtrustningActionPerformed
