@@ -14,7 +14,7 @@ import oru.inf.InfException;
  */
 public class AndraLosenAlien extends javax.swing.JFrame {
     private static InfDB idb;
-    private String namn;
+    private String nuvarandeUtomjording;
     /**
      * Creates new form AndraLosenAlien
      */
@@ -136,31 +136,53 @@ public class AndraLosenAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_nyttLosenordActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-       InloggningUtomjording iU = new InloggningUtomjording(idb);
-       iU.setVisible(true);
+       HuvudMenyUtomjording hMU = new HuvudMenyUtomjording (idb, nuvarandeUtomjording);
+       hMU.setVisible(true);
+       hMU.setValkommenUtomjording();
        dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
         // TODO add your handling code here:
-        boolean gammaltLosenKorrekt = losenordKorrekt();
-        if (nyttLosenord != gammaltLosenord2 && gammaltLosenKorrekt == true)
-        {
-            char[] c = nyttLosenord.getPassword();
-            String nyttLosen = new String (c);
-            setLosenord(nyttLosen);
-            dispose();
-        }
         
-        else 
+
+        boolean gammaltLosenKorrekt = losenordKorrekt();
+
+        if (gammaltLosenKorrekt == true) 
         {
-            JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats");
+            if (nyttLosenord != gammaltLosenord2) 
+            {
+                char[] c = nyttLosenord.getPassword();
+                String nyttLosen = new String(c);
+                boolean losenordForLangt = Validering.kollaLosenordsLangd(nyttLosen);
+
+                if (losenordForLangt == false) 
+                {
+                    
+                    setLosenord(nyttLosen);
+                    gammaltLosenord1.setText("");
+                    gammaltLosenord2.setText("");
+                    nyttLosenord.setText("");
+                } 
+                else 
+                {
+                    JOptionPane.showMessageDialog(null, "Lösenordet är samma som det tidigate, vänligen välj ett annat lösenord!");
+                    gammaltLosenord1.setText("");
+                    gammaltLosenord2.setText("");
+                    nyttLosenord.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Gamla lösenordet är fel, vänligen prova igen!");
+                gammaltLosenord1.setText("");
+                gammaltLosenord2.setText("");
+                nyttLosenord.setText("");
+            }
         }
             
      
     }//GEN-LAST:event_btnAndraLosenActionPerformed
-    public void setNamn(String namn){
-        this.namn = namn;
+    public void setNuvarandeUtomjording(String namn){
+        nuvarandeUtomjording = namn;
     }
     
     public boolean losenordKorrekt()
@@ -192,8 +214,8 @@ public class AndraLosenAlien extends javax.swing.JFrame {
         boolean losenAndrat = false;
         
         try {
-            System.out.println(namn);
-            String fraga = "UPDATE Alien set Losenord = '" + losenord + "' where Namn = '" + namn + "'";
+            System.out.println(nuvarandeUtomjording);
+            String fraga = "UPDATE Alien set Losenord = '" + losenord + "' where Namn = '" + nuvarandeUtomjording + "'";
             idb.fetchSingle(fraga);
             JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
             losenAndrat = true;

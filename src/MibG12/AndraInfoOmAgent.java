@@ -29,7 +29,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        this.visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent);
+        this.visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent, true);
         visaInfoOmAgent.setNuvarandeAgent(nuvarandeAgent);
         visaInfoOmAgent.setInfo(nuvarandeAgent);
     }
@@ -76,7 +76,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         HuvudText.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        HuvudText.setText("Information om Alien");
+        HuvudText.setText("Information om Agent:");
 
         lblNamnRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNamnRubrik.setText("Namn: ");
@@ -434,6 +434,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         if (textRutaArTom == false)
         {
             boolean losenordsFormatKorrekt = Validering.kollaLosenordsLangd(nyttLosenord);
+            
             if (losenordsFormatKorrekt == true)
                     {
         

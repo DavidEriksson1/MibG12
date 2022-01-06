@@ -130,7 +130,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
       
         String svar = idb.fetchSingle(fraga);        
         
-        VisaInfoOmAlien aI = new VisaInfoOmAlien (idb, nuvarandeUtomjording);
+        VisaInfoOmAgent aI = new VisaInfoOmAgent (idb, svar, false);
         aI.setVisible(true);
         aI.setInfo(svar);
         aI.setNuvarandeUtomjording(nuvarandeUtomjording);
@@ -147,8 +147,8 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
         
         AndraLosenAlien aLA = new AndraLosenAlien(idb);
         aLA.setVisible(true);
-        aLA.setNamn(nuvarandeUtomjording);
-        
+        aLA.setNuvarandeUtomjording(nuvarandeUtomjording);
+        dispose();
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 
     

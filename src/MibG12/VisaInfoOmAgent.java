@@ -18,17 +18,18 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
 
   private static InfDB idb;
   private String nuvarandeAgent;
-  private String nuvarandeUtomjording;
-  private HuvudMenyAgent huvudMenyAgent; 
-  private HuvudMenyUtomjording huvudMenyUtomjording;       
+  private String nuvarandeUtomjording; 
+  private boolean anvandareArAdmin;
     
     /**
      * Creates new form AgentInfo
      */
-    public VisaInfoOmAgent(InfDB idb, String nuvarandeAgent) {
+    public VisaInfoOmAgent(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
+        this.anvandareArAdmin = anvandareArAdmin;
+        btnTillbakaTillHM.setVisible(false);
     }
 
     VisaInfoOmAgent(MibG12.Startklass idb) {
@@ -58,6 +59,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         lblOmrade = new javax.swing.JLabel();
         lblLosenordRubrik = new javax.swing.JLabel();
         lblLosenord = new javax.swing.JLabel();
+        btnTillbakaTillHM = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +103,14 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
 
         lblLosenord.setText("hejhej");
 
+        btnTillbakaTillHM.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btnTillbakaTillHM.setText("Tillbaka till huvudmeny");
+        btnTillbakaTillHM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaTillHMActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,42 +121,43 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
                         .addGap(141, 141, 141)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(127, 127, 127)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblTelefonRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(59, 59, 59)
-                                        .addComponent(lblAgentTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblAdminstatusRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(lblAdminStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblAnstallningsDatumRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblOmradeRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblLosenordRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblAnstallningsDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblBetackningRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(lblAgentNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lblTelefonRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(lblAgentTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(158, 158, 158)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblAdminstatusRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(lblAdminStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAnstallningsDatumRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblOmradeRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblLosenordRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAnstallningsDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblBetackningRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(lblAgentNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTillbakaTillHM)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -175,38 +186,36 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLosenordRubrik)
                     .addComponent(lblLosenord))
-                .addGap(54, 54, 54)
-                .addComponent(jButton1)
-                .addGap(35, 35, 35))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTillbakaTillHM, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(114, 114, 114))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setHuvudMenyAgent ()
+    public void setAnvandareArAdmin ()
     {
-        HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
-        huvudMenyAgent = hMA;
+        anvandareArAdmin = true;
     }
     
     public void setHuvudMenyUtomjording ()
     {
-        HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb, nuvarandeUtomjording);
-        huvudMenyUtomjording = hMU;
+        anvandareArAdmin = false;
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (huvudMenyAgent !=null)
+        if (anvandareArAdmin == true)
         {
-        HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
-        hMA.setNuvarandeAgent(nuvarandeAgent);
-        hMA.setHuvudText(nuvarandeAgent);
+        HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
         }
         
-        else if (huvudMenyUtomjording !=null)
+        else
         {
             HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb, nuvarandeUtomjording);
             hMU.setNuvarandeUtomjording(nuvarandeUtomjording);
@@ -215,6 +224,12 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnTillbakaTillHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaTillHMActionPerformed
+        HuvudMenyAdmin hMA = new HuvudMenyAdmin (idb, nuvarandeAgent);
+        hMA.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnTillbakaTillHMActionPerformed
 
     public void setNuvarandeAgent (String nuvarandeAgent)
     {
@@ -381,12 +396,18 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         return adminStatus;  
     }
     
+    public void visaTillbakaTillHMknapp()
+    {
+        btnTillbakaTillHM.setVisible(true);
+    }
+    
     
     
     
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTillbakaTillHM;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblAdminStatus;
