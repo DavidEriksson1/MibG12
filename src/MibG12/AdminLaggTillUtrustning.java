@@ -14,13 +14,15 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
+    private boolean anvandareArAdmin;
 
     /**
      * Creates new form AdminLaggTillFordon
      */
-    public AdminLaggTillUtrustning(InfDB idb, String agent) {
+    public AdminLaggTillUtrustning(InfDB idb, String agent, boolean anvandareArAdmin) {
         this.idb = idb;
         this.agent = agent;
+        this.anvandareArAdmin = anvandareArAdmin;
         initComponents();
 
     }
@@ -136,9 +138,17 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // Metod för att ta sig tillbaka till huvudmeny admin
 
-        HuvudMenyAdmin huvudMenyAdmin = new HuvudMenyAdmin(idb, agent);
-        huvudMenyAdmin.setVisible(true);
-        dispose();
+        if (anvandareArAdmin == true) {
+
+            HuvudMenyAdmin huvudMenyAdmin = new HuvudMenyAdmin(idb, agent);
+            huvudMenyAdmin.setVisible(true);
+            dispose();
+        } else {
+            HuvudMenyAgent hMA = new HuvudMenyAgent(idb, agent);
+            hMA.setVisible(true);
+            dispose();
+        }
+        
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void txtFieldUtrustningsNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldUtrustningsNamnActionPerformed
@@ -169,6 +179,11 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
     }//GEN-LAST:event_comboUtrustningsTypActionPerformed
 
+    public void setAgent()
+    {
+        anvandareArAdmin = false;
+    }
+    
     /**
      * @param args the command line arguments
      */

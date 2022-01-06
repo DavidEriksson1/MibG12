@@ -17,17 +17,18 @@ import oru.inf.InfException;
  *
  * @author Victo
  */
-public class VisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
+public class VisaOmradesChef extends javax.swing.JFrame {
 
     InfDB idb;
     String nuvarandeAgent;
     VisaInfoOmAlien visaInfoOmAlien;
     
-    public VisaAllaUtomjordingarInomEnRas(InfDB idb, String nuvarandeAgent) {
+    public VisaOmradesChef(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         visaInfoOmAlien = new VisaInfoOmAlien(idb, nuvarandeAgent);
+        laggTillOmrade(jComboBoxOmrade);
     }
 
     
@@ -35,19 +36,19 @@ public class VisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnVisaAlienInomRas = new javax.swing.JButton();
+        btnVisaOmradesChef = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaVisaInfo = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jComboBoxRas = new javax.swing.JComboBox<>();
+        jComboBoxOmrade = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnVisaAlienInomRas.setText("Visa");
-        btnVisaAlienInomRas.addActionListener(new java.awt.event.ActionListener() {
+        btnVisaOmradesChef.setText("Visa");
+        btnVisaOmradesChef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisaAlienInomRasActionPerformed(evt);
+                btnVisaOmradesChefActionPerformed(evt);
             }
         });
 
@@ -56,7 +57,7 @@ public class VisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtAreaVisaInfo);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Visa utomjordingar inom en ras:");
+        jLabel1.setText("Visa områdeschef :");
 
         jButton1.setText("Tillbaka");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,30 +66,29 @@ public class VisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Boglodite", "Worm", "Squid" }));
+        jComboBoxOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addComponent(jComboBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(btnVisaOmradesChef, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jComboBoxRas, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(btnVisaAlienInomRas, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(97, 97, 97)
-                                .addComponent(jButton1)))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addGap(97, 97, 97)
+                        .addComponent(jButton1)))
+                .addContainerGap(55, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,8 +97,8 @@ public class VisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVisaAlienInomRas)
-                    .addComponent(jComboBoxRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVisaOmradesChef)
+                    .addComponent(jComboBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -109,54 +109,37 @@ public class VisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVisaAlienInomRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaAlienInomRasActionPerformed
+    private void btnVisaOmradesChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaOmradesChefActionPerformed
         
         txtAreaVisaInfo.setText("");
-        ArrayList<String> utomjordingar;
-        String ras = jComboBoxRas.getSelectedItem().toString();
-        boolean textRutaArTom = Validering.textRutaArTom(ras); 
-
-        if (textRutaArTom == false) {
-            
-            boolean endastBokstaver = Validering.arStringEndastBokstaver(ras);
-
-            if (endastBokstaver == true) {
-                
-                boolean rasFinns = kollaRas(ras);
-
-                if (rasFinns == true) {
+        String omrade = jComboBoxOmrade.getSelectedItem().toString();
+        
                     try {
-                        String fraga = "Select alien_id from " + ras;
-                        utomjordingar = idb.fetchColumn(fraga);
-                        
-                        if (utomjordingar.isEmpty())
+                        String fraga = "Select namn from agent where agent_id = (Select agent_id from omradeschef where omrade = (Select omrades_id from omrade where benamning ='" + omrade + "'))";
+                        System.out.println(fraga);
+                        String agent = idb.fetchSingle(fraga);
+                       
+                        if (agent.isEmpty())
                         {
-                            txtAreaVisaInfo.append("Det finns ingen utomjording av vald ras! :(");
+                            txtAreaVisaInfo.append("Det finns ingen områdeschef av valt område! :(");
                             
                         }
                         else
                         {
-                        for (String id : utomjordingar) {
-                            
-                            String fraga2 = "Select namn from alien where alien_id = " + id;
-                            String svar = idb.fetchSingle(fraga2);
-                            txtAreaVisaInfo.append(svar + "\n");
-                        }
+                         
+                            txtAreaVisaInfo.append(agent + "\n");
+                        
                         }
                     } catch (InfException ex) {
                         JOptionPane.showMessageDialog(null, "Ett fel har uppstått " + ex);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Ett fel har uppstått¨" + ex);
                     }
-                } 
 
-            }
-            
-
-        }
+       
         
         
-    }//GEN-LAST:event_btnVisaAlienInomRasActionPerformed
+    }//GEN-LAST:event_btnVisaOmradesChefActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
@@ -165,38 +148,29 @@ public class VisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    public boolean kollaRas (String ras)
-    {
-        boolean rasFinns = false;
-        
-        if (ras.toLowerCase().equals("boglodite"))
-        {
-            rasFinns = true;
-        }
-        
-        else if (ras.toLowerCase().equals("worm"))
-        {
-            rasFinns = true;
-        }
-        
-        else if (ras.toLowerCase().equals("squid"))
-        {
-            rasFinns = true;
-        }
-        
-        else 
-        {
-            JOptionPane.showMessageDialog(null, "Det finns ingen ras med namnet: " + ras);
-        }
+    public void laggTillOmrade(JComboBox cb) {
+        String omradesFraga = "Select benamning from omrade";
+
+        ArrayList<String> allaOmraden;
+
+        try {
+            allaOmraden = idb.fetchColumn(omradesFraga);
+            for (String o : allaOmraden) {
+                cb.addItem(o);
+            }
+
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null,"Något gick fel");
+            System.out.println(ex);
             
-            return rasFinns;
+        }
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVisaAlienInomRas;
+    private javax.swing.JButton btnVisaOmradesChef;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBoxRas;
+    private javax.swing.JComboBox<String> jComboBoxOmrade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtAreaVisaInfo;

@@ -26,10 +26,11 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
+        setHuvudText(nuvarandeAgent);
     }
     public void setHuvudText(String namn)
     {
-     lblHuvudText.setText("Välkommen " + namn.toLowerCase() + "!");
+    lblHuvudText.setText("Välkommen " + namn.toUpperCase() + "!");
     }
 
     @SuppressWarnings("unchecked")
@@ -38,24 +39,18 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
 
         lblHuvudText = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnAgentInfo = new javax.swing.JButton();
         btnAndraLosen = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnRegNyUtrustning = new javax.swing.JButton();
+        btnAndraLosen2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblHuvudText.setText("Välkommen Agent!");
 
         jLabel1.setText("Vänligen välj någon av de operationer du vill utföra:");
-
-        btnAgentInfo.setText("Agent Information");
-        btnAgentInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgentInfoActionPerformed(evt);
-            }
-        });
 
         btnAndraLosen.setText("Ändra Lösenord");
         btnAndraLosen.addActionListener(new java.awt.event.ActionListener() {
@@ -80,10 +75,39 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
             }
         });
 
+        btnRegNyUtrustning.setText("Registrera ny utrustning");
+        btnRegNyUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegNyUtrustningActionPerformed(evt);
+            }
+        });
+
+        btnAndraLosen2.setText("Visa områdeschef för enskilt område");
+        btnAndraLosen2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraLosen2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnRegNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAndraLosen2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(216, 216, 216)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,24 +116,10 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
                         .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblHuvudText, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(163, 163, 163))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgentInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addGap(163, 163, 163))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(161, 161, 161))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,13 +128,15 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
                 .addComponent(lblHuvudText)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAgentInfo)
-                .addGap(28, 28, 28)
+                .addGap(31, 31, 31)
                 .addComponent(btnAndraLosen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(btnRegNyUtrustning)
+                .addGap(26, 26, 26)
+                .addComponent(btnAndraLosen2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jButton1)
@@ -139,15 +151,6 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         nuvarandeAgent = agent;  
     }
     
-    private void btnAgentInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgentInfoActionPerformed
-        VisaInfoOmAgent aI = new VisaInfoOmAgent(idb, nuvarandeAgent, true);
-        aI.setVisible(true);
-        aI.setInfo(nuvarandeAgent);
-        aI.setNuvarandeAgent(nuvarandeAgent);
-        //aI.setHuvudMenyAgent();
-        dispose();
-    }//GEN-LAST:event_btnAgentInfoActionPerformed
-
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
     AndraLosenord aL = new AndraLosenord(idb, nuvarandeAgent);
     aL.setVisible(true);
@@ -197,10 +200,26 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnRegNyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegNyUtrustningActionPerformed
+        
+        AdminLaggTillUtrustning aLTU = new AdminLaggTillUtrustning(idb, nuvarandeAgent, false);
+        aLTU.setVisible(true);
+        aLTU.setAgent();
+        dispose();
+        
+    }//GEN-LAST:event_btnRegNyUtrustningActionPerformed
+
+    private void btnAndraLosen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosen2ActionPerformed
+        VisaOmradesChef vOC = new VisaOmradesChef (idb, nuvarandeAgent);
+        vOC.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAndraLosen2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgentInfo;
     private javax.swing.JButton btnAndraLosen;
+    private javax.swing.JButton btnAndraLosen2;
+    private javax.swing.JButton btnRegNyUtrustning;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

@@ -59,7 +59,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
 
         lblVisaChef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setText("Tillbaka");
+        jButton1.setText("Logga Ut");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -107,8 +107,8 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        InloggningUtomjording iU = new InloggningUtomjording(idb);
-        iU.setVisible(true);
+        InloggningsTyp iT = new InloggningsTyp(idb);
+        iT.setVisible(true);
         dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed

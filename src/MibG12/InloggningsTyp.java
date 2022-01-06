@@ -37,7 +37,7 @@ public class InloggningsTyp extends javax.swing.JFrame {
 
         jLabel1.setText("Välkommen till MIB sektor skandinavien! Vänligen ange inloggningstyp.");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------------", "Agent", "Utomjording", "Admin" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Agent", "Utomjording", "Admin" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
