@@ -4,17 +4,21 @@
  */
 package MibG12;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
+=======
+>>>>>>> parent of edecc00 (Skapa jFrame ge adminstatus)
 /**
  *
  * @author 46737
  */
 public class AdminGeAdminStatus extends javax.swing.JFrame {
 
+<<<<<<< HEAD
     private static InfDB idb;
     private String agent;
 
@@ -25,6 +29,12 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
         this.idb = idb;
         this.agent = agent;
 
+=======
+    /**
+     * Creates new form AdminGeAdminStatus
+     */
+    public AdminGeAdminStatus() {
+>>>>>>> parent of edecc00 (Skapa jFrame ge adminstatus)
         initComponents();
     }
 
@@ -37,6 +47,7 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
         btnOk = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JButton();
@@ -88,10 +99,15 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
             }
         });
 
+=======
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+>>>>>>> parent of edecc00 (Skapa jFrame ge adminstatus)
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,11 +150,19 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTillbaka)
                 .addContainerGap())
+=======
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+>>>>>>> parent of edecc00 (Skapa jFrame ge adminstatus)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // Metod för att ge eller ta bort adminstatus från en agent, vi har valt att ge användaren
         // möjlighet att ta bort adminstatus då vi anser att det kan vara användbart
@@ -260,5 +284,43 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelAndradStatus;
     private javax.swing.JTextField txtFieldAgent;
     private javax.swing.JTextField txtFieldTaBortAdminStatus;
+=======
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AdminGeAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AdminGeAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AdminGeAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AdminGeAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AdminGeAdminStatus().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+>>>>>>> parent of edecc00 (Skapa jFrame ge adminstatus)
     // End of variables declaration//GEN-END:variables
 }
