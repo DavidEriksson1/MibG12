@@ -5,6 +5,7 @@
 package MibG12;
 
 import oru.inf.InfDB;
+
 /**
  *
  * @author 46737
@@ -13,7 +14,7 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
-    
+
     /**
      * Creates new form AdminLaggTillFordon
      */
@@ -21,6 +22,7 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
         this.idb = idb;
         this.agent = agent;
         initComponents();
+
     }
 
     /**
@@ -33,34 +35,18 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtFieldFordonsID = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtFieldFordonsBeskrivning = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtFieldRegDatum = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtFieldArsModell = new javax.swing.JTextField();
         btnLaggTillFordon = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtFieldUtrustningsNamn = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        comboUtrustningsTyp = new javax.swing.JComboBox<>();
+        lblUtrustning = new javax.swing.JLabel();
+        txtFieldKaliber = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Vänligen mata in angivna uppgifter för att lägga till ny utrustning");
-
-        jLabel2.setText("Fordons ID");
-
-        txtFieldFordonsID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldFordonsIDActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Fordonsbeskrivning");
-
-        jLabel4.setText("Registreringsdatum");
-
-        jLabel5.setText("Årsmodell");
 
         btnLaggTillFordon.setText("Lägg till");
 
@@ -71,34 +57,53 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Utrustningsnamn");
+
+        txtFieldUtrustningsNamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldUtrustningsNamnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Utrustningstyp");
+
+        comboUtrustningsTyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------", "Vapen", "Kommunikation", "Teknik" }));
+        comboUtrustningsTyp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboUtrustningsTypActionPerformed(evt);
+            }
+        });
+
+        txtFieldKaliber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldKaliberActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFieldFordonsID)
-                            .addComponent(txtFieldFordonsBeskrivning)
-                            .addComponent(txtFieldRegDatum)
-                            .addComponent(txtFieldArsModell, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnTillbaka)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLaggTillFordon)))
+                .addComponent(btnTillbaka)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLaggTillFordon)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblUtrustning, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFieldUtrustningsNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                            .addComponent(comboUtrustningsTyp, 0, 1, Short.MAX_VALUE)
+                            .addComponent(txtFieldKaliber))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,23 +111,19 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(txtFieldUtrustningsNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtFieldFordonsID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboUtrustningsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtFieldFordonsBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtFieldRegDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(txtFieldArsModell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblUtrustning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtFieldKaliber))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLaggTillFordon)
                     .addComponent(btnTillbaka))
@@ -132,35 +133,55 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFieldFordonsIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldFordonsIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldFordonsIDActionPerformed
-
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // Metod för att ta sig tillbaka till huvudmeny admin
-        
+
         HuvudMenyAdmin huvudMenyAdmin = new HuvudMenyAdmin(idb, agent);
         huvudMenyAdmin.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    private void txtFieldUtrustningsNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldUtrustningsNamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldUtrustningsNamnActionPerformed
+
+    private void txtFieldKaliberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldKaliberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldKaliberActionPerformed
+
+    private void comboUtrustningsTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboUtrustningsTypActionPerformed
+        // Combobox för att välja vilken utrustning som skall läggas till och då visa olika textrutor
+        int i = comboUtrustningsTyp.getSelectedIndex();
+
+        if (i == 0) {
+            lblUtrustning.setText("");
+        }
+
+        if (i == 1) {
+            lblUtrustning.setText("Kaliber");
+        }
+        if (i == 2) {
+            lblUtrustning.setText("Överföringsteknik");
+        }
+        if (i == 3) {
+            lblUtrustning.setText("Kraftkälla");
+        }
+
+    }//GEN-LAST:event_comboUtrustningsTypActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTillFordon;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JComboBox<String> comboUtrustningsTyp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField txtFieldArsModell;
-    private javax.swing.JTextField txtFieldFordonsBeskrivning;
-    private javax.swing.JTextField txtFieldFordonsID;
-    private javax.swing.JTextField txtFieldRegDatum;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblUtrustning;
+    private javax.swing.JTextField txtFieldKaliber;
+    private javax.swing.JTextField txtFieldUtrustningsNamn;
     // End of variables declaration//GEN-END:variables
 }
