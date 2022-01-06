@@ -137,7 +137,6 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
  // Combobox för att visa alternativ för hantering gällande agenter
         int i = jComboAgent.getSelectedIndex();
         
-<<<<<<< Updated upstream
 <<<<<<< HEAD
         if(i == 4){
             new AdminTaBortAgent(idb, agent).setVisible(true);
@@ -152,24 +151,6 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         
 =======
 >>>>>>> parent of edecc00 (Skapa jFrame ge adminstatus)
-=======
-        if(i == 1){
-            ValjAgentFromAdmin valjAgentFromAdmin = new ValjAgentFromAdmin(idb, agent);
-            valjAgentFromAdmin.setVisible(true);
-            dispose();    
-        }
-        
-        if (i == 3)
-                {
-                   
-                ValjAgentFromAdmin valjAgentFromAdmin = new ValjAgentFromAdmin(idb, agent);
-                valjAgentFromAdmin.setVisible(true);
-                valjAgentFromAdmin.setHuvudTextTillAndra();
-                dispose();    
-        
-                }
-        
->>>>>>> Stashed changes
         if(i == 5){
             AdminOmrådesChef adminOmrådesChef = new AdminOmrådesChef(idb, agent);
             adminOmrådesChef.setVisible(true);
@@ -181,11 +162,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
             dispose();
         }
         
-<<<<<<< Updated upstream
 
-=======
-        
->>>>>>> Stashed changes
     }//GEN-LAST:event_jComboAgentActionPerformed
 
     private void btnUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUtrustningActionPerformed

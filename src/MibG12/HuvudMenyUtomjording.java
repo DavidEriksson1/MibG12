@@ -130,10 +130,11 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
       
         String svar = idb.fetchSingle(fraga);        
         
-        VisaInfoOmAgent aI = new VisaInfoOmAgent (idb);
+        AgentInfo aI = new AgentInfo (idb);
         aI.setVisible(true);
-        aI.setInfo(svar);
+        aI.showInfo(svar);
         aI.setNuvarandeUtomjording(nuvarandeUtomjording);
+        aI.setHuvudMenyUtomjording();
         dispose();
         
       }

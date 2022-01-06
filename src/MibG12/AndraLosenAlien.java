@@ -142,41 +142,19 @@ public class AndraLosenAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
-
+        // TODO add your handling code here:
         boolean gammaltLosenKorrekt = losenordKorrekt();
-
-        if (gammaltLosenKorrekt == true) {
-
-            if (nyttLosenord != gammaltLosenord2) {
-                char[] c = nyttLosenord.getPassword();
-                String nyttLosen = new String(c);
-                boolean losenForLangt = Validering.kollaLosenordsLangd(nyttLosen);
-
-                if (losenForLangt == false) {
-
-                    setLosenord(nyttLosen);
-                    dispose();
-                }
-                else 
-                {
-                    JOptionPane.showMessageDialog(null, "Det nya lösenordet är för långt, vänligen skriv ett nytt med max 6 tecken!");
-                    gammaltLosenord1.setText("");
-                    gammaltLosenord2.setText("");
-                    nyttLosenord.setText("");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Det nya lösenordet är samma som det gamla! Välj ett annat lösenord");
-                gammaltLosenord1.setText("");
-                gammaltLosenord2.setText("");
-                nyttLosenord.setText("");
-            }
+        if (nyttLosenord != gammaltLosenord2 && gammaltLosenKorrekt == true)
+        {
+            char[] c = nyttLosenord.getPassword();
+            String nyttLosen = new String (c);
+            setLosenord(nyttLosen);
+            dispose();
         }
+        
         else 
         {
-            JOptionPane.showMessageDialog(null, "Fel lösenord! Lösenordet har inte ändrats");
-            gammaltLosenord1.setText("");
-            gammaltLosenord2.setText("");
-            nyttLosenord.setText("");
+            JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats");
         }
             
      

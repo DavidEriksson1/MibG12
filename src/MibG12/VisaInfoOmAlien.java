@@ -43,12 +43,14 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         lblPlatsRubrik = new javax.swing.JLabel();
         lblTelefonRubrik = new javax.swing.JLabel();
         lblLosenordRubrik = new javax.swing.JLabel();
+        lblIDRubrik = new javax.swing.JLabel();
         lblNamn = new javax.swing.JLabel();
         lblRas = new javax.swing.JLabel();
         lblRegDatum = new javax.swing.JLabel();
         lblPlats = new javax.swing.JLabel();
         lblTelefon = new javax.swing.JLabel();
         lblLosenord = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JButton();
         btnTillbakaTillHuvudmeny = new javax.swing.JButton();
         lblAnsvarigAgentRubrik = new javax.swing.JLabel();
@@ -79,6 +81,9 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         lblLosenordRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLosenordRubrik.setText("Lösenord:");
 
+        lblIDRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblIDRubrik.setText("ID-nummer:");
+
         lblNamn.setText("Namn");
 
         lblRas.setText("Ras");
@@ -90,6 +95,8 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         lblTelefon.setText("Telefon");
 
         lblLosenord.setText("HejHej");
+
+        lblID.setText("ID");
 
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
@@ -149,14 +156,19 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(lblAnsvarigAgentRubrik)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblAnsvarigAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(lblIDRubrik)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblRasExtraRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblRasExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblAnsvarigAgentRubrik)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lblRasExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +192,7 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRasRubrik)
                     .addComponent(lblRas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRasExtraRubrik)
                     .addComponent(lblRasExtra))
@@ -202,13 +214,17 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
                     .addComponent(lblLosenord))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIDRubrik)
+                    .addComponent(lblID))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAnsvarigAgentRubrik)
                     .addComponent(lblAnsvarigAgent))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTillbakaTillHuvudmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -227,6 +243,44 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaTillHuvudmenyActionPerformed
+
+    public void showInfo (String namn)
+    {
+        try {
+       String fraga1 = "SELECT namn FROM alien where namn = '" + namn + "'";
+       //String fraga2 = "Select benamning from omrade where omrades_id = (Select Plats from alien where namn = '" + namn + "')";
+       String fraga3 = "Select Registreringsdatum from alien where namn = '" + namn + "'";
+       String fraga4 = "Select benamning from plats where plats_id = (Select Plats from alien where namn = '" + namn + "')";
+       String fraga5 = "Select telefon from alien where namn = '" + namn + "'";
+       String fraga6 = "Select losenord from alien where namn = '" + namn + "'";
+       String fraga7 = "Select alien_id from alien where namn = '" + namn + "'";
+       String fraga8 = "Select namn from agent where agent_id = (Select Ansvarig_Agent from alien where namn = '" + namn + "')";
+        
+       String svar1 = idb.fetchSingle(fraga1);
+       //String svar2 = idb.fetchSingle(fraga2);
+       String svar2 = visaRas(namn);
+       String svar3 = idb.fetchSingle(fraga3);
+       String svar4 = idb.fetchSingle(fraga4);
+       String svar5 = idb.fetchSingle(fraga5);
+       String svar6 = idb.fetchSingle(fraga6);
+       String svar7 = idb.fetchSingle(fraga7);
+       String svar8 = idb.fetchSingle(fraga8);
+       
+       lblNamn.setText(svar1);
+       lblRas.setText(svar2);
+       lblRegDatum.setText(svar3);
+       lblPlats.setText(svar4);
+       lblTelefon.setText(svar5);
+       lblLosenord.setText(svar6);
+       lblID.setText(svar7);
+       lblAnsvarigAgent.setText(svar8);
+       
+        }
+        catch (InfException ex) {
+            Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ett fel har uppstått " + ex);
+        }
+    }
     
     public void setInfo (String namn)
     {
@@ -236,6 +290,7 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
        lblPlats.setText(visaPlats(namn));
        lblTelefon.setText(visaTelefon(namn));
        lblLosenord.setText(visaLosenord(namn));
+       lblID.setText(visaID(namn));
        lblAnsvarigAgent.setText(visaAnsvarigAgent(namn));
     }
     
@@ -455,6 +510,8 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblAnsvarigAgent;
     private javax.swing.JLabel lblAnsvarigAgentRubrik;
     private javax.swing.JLabel lblHuvudText;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblIDRubrik;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblLosenordRubrik;
     private javax.swing.JLabel lblNamn;
