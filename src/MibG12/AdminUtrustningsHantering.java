@@ -16,13 +16,15 @@ import oru.inf.InfException;
 public class AdminUtrustningsHantering extends javax.swing.JFrame {
     
     private static InfDB idb;
+    private String agent;
 
     /**
      * Creates new form AdminUtrustningsHantering
      */
-    public AdminUtrustningsHantering(InfDB idb) {
+    public AdminUtrustningsHantering(InfDB idb, String agent) {
         initComponents();
         this.idb = idb;
+        this.agent = agent;
     }
 
     /**
@@ -37,15 +39,46 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtTaBortUtrustning = new javax.swing.JTextField();
         btnTaBortUtrustning = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        ComboUtrustningsTyp = new javax.swing.JComboBox<>();
+        btnLaggTill = new javax.swing.JButton();
+        btnTillbaka = new javax.swing.JButton();
+        lblHarAndrats = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Vänligen ange namnet på utrustningen du vill ta bort från systemet.");
+        jLabel1.setText("Välkommen till utrustningshanteraren! Här kan du ta bort utrustning från systemet");
 
         btnTaBortUtrustning.setText("Ta bort");
         btnTaBortUtrustning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTaBortUtrustningActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Utrustningsnamn");
+
+        jLabel3.setText("Utrustningstyp");
+
+        ComboUtrustningsTyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fordon", "Kommunikation", "Teknik", "Utrustning", "Vapen" }));
+        ComboUtrustningsTyp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboUtrustningsTypActionPerformed(evt);
+            }
+        });
+
+        btnLaggTill.setText("Lägg till");
+        btnLaggTill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillActionPerformed(evt);
+            }
+        });
+
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
             }
         });
 
@@ -56,12 +89,28 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHarAndrats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTaBortUtrustning)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(btnTillbaka))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(ComboUtrustningsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(btnTaBortUtrustning)))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLaggTill)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -69,11 +118,24 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTaBortUtrustning))
-                .addContainerGap(178, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(ComboUtrustningsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblHarAndrats, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLaggTill)
+                        .addComponent(btnTaBortUtrustning))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnTillbaka)
+                        .addContainerGap())))
         );
 
         pack();
@@ -90,20 +152,46 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         
         boolean textRutaArTom = Validering.textRutaArTom(utrustning);
         
-        String namn = "select Benamning from utrustning where Benamning ='" + utrustning + "'";
-        String inmatning = "delete from utrustning where Benamning ='" + utrustning + "'";
+        //SQL frågor för att hämta utrustningsnamn och ID för att ta bort dem ur systemet
         
-        String svar1 = idb.fetchSingle(namn);
+        String namn = "select Benamning from utrustning where Benamning ='" + utrustning + "'";
+        String utrustningsID = "select Utrustnings_ID from Utrustning where Benamning = '" + namn + "'";
+        
+        String svarUtrustningsNamn = idb.fetchSingle(namn);
+        String svarUtrustningsID = idb.fetchSingle(utrustningsID);
+        
+        String taBortUtrustning = "delete from utrustning where Benamning ='" + svarUtrustningsNamn + "'";
+        String taBortUtrustningsID = "delete from innehar_utrustning where Utrustnings_ID = '" + svarUtrustningsID + "'";
+        
+        String tabortKommunikation = "delete from kommunikation where Utrustnings_ID = '" + svarUtrustningsID + "'";
+        String taBortTeknik = " delete from teknik where Utrustnings_ID = '" + svarUtrustningsID + "'";
+        String taBortVapen = " delete from vapen where Utrustnings_ID = '" + svarUtrustningsID + "'";
+        
+
         System.out.println(namn);
         
-        utrustningFinns = Validering.stringFinns(svar1, utrustning);
+        //SQL frågor för att hämta fordonsnamn och ID för att ta bort dem ur systemet
         
-        if(textRutaArTom == false){
-            
+        String fordonsNamn = "select Fordonsbeskrivning from Fordon where Fordonsbeskrivning = '" + utrustning + "'";
+        String fordonsID = "select Fordons_ID from fordon where FordonsBeskrivning = '" + fordonsNamn + "'";
         
-        if(utrustningFinns == true){
-            String svar2 = idb.fetchSingle(inmatning);
-        }  
+        String svarFordonsNamn = idb.fetchSingle(fordonsNamn);
+        String svarFordonsID = idb.fetchSingle(fordonsID);
+        
+        String taBortFordon = "delete from Fordon where Fordonsbeskrivning = '" + svarFordonsNamn + "'";
+        String taBortFordonsID = "delete from innehar_fordon where Fordons_ID = '" + svarFordonsID + "'";
+ 
+        
+            utrustningFinns = Validering.stringFinns(svarUtrustningsNamn, utrustning);
+
+            if (textRutaArTom == false) {
+
+                if (utrustningFinns == true) {
+                    String svar2 = idb.fetchSingle(taBortUtrustning);
+                }
+                
+                //if(i == 3){
+                //}
         else{
             JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
         }
@@ -117,14 +205,49 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnTaBortUtrustningActionPerformed
 
+    private void ComboUtrustningsTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboUtrustningsTypActionPerformed
+        // Combobox för att välja utrustningstyp
+        int i = ComboUtrustningsTyp.getSelectedIndex();
+        
+        
+    }//GEN-LAST:event_ComboUtrustningsTypActionPerformed
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        // Knapp för att komma tillbaka till huvudmeny admin
+
+        HuvudMenyAdmin huvudMenyAdmin = new HuvudMenyAdmin(idb, agent);
+        huvudMenyAdmin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
+        // Metod för att lägga till ny utrustning
+        //boolean utrustningFinns = false;
+        
+        //try{
+            //String utrustning = txtTaBortUtrustning.getText();
+            
+            //boolean textRutaArTom = Validering.textRutaArTom(utrustning);
+            
+            
+        //}
+        
+    }//GEN-LAST:event_btnLaggTillActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboUtrustningsTyp;
+    private javax.swing.JButton btnLaggTill;
     private javax.swing.JButton btnTaBortUtrustning;
+    private javax.swing.JButton btnTillbaka;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblHarAndrats;
     private javax.swing.JTextField txtTaBortUtrustning;
     // End of variables declaration//GEN-END:variables
 }
