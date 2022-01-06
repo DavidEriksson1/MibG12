@@ -283,7 +283,7 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
             int agId = Integer.parseInt(agentID);
             
             
-            String insertAlien = "insert into alien values ("+ iD + "','" +  regDatum + "','" + losenord +"','" + namn + "','" + telefon + "',"+ stadId + "," + agId +")";
+            String insertAlien = "insert into alien values ("+ iD + ",'" + regDatum + "','" + losenord +"','" + namn + "','" + telefon + "',"+ stadId + "," + agId +")";
             String insertBog = "insert into Boglodite values("+ iD + "," + arm + ")";
             String insertSquid = "insert into Squid values("+ iD + "," + arm + ")";
             String insertWorm = "insert into Worm values("+ iD + ")";
