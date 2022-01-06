@@ -137,8 +137,11 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
  // Combobox för att visa alternativ för hantering gällande agenter
         int i = jComboAgent.getSelectedIndex();
         
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> parent of 2082af4 (jj)
         if(i == 4){
             new AdminTaBortAgent(idb, agent).setVisible(true);
             dispose();
@@ -150,6 +153,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
             dispose();
         }
         
+<<<<<<< HEAD
 =======
 >>>>>>> parent of edecc00 (Skapa jFrame ge adminstatus)
 =======
@@ -170,6 +174,8 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
                 }
         
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 2082af4 (jj)
         if(i == 5){
             AdminOmrådesChef adminOmrådesChef = new AdminOmrådesChef(idb, agent);
             adminOmrådesChef.setVisible(true);
