@@ -23,7 +23,7 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
     private String nuvarandeAgent;
     private boolean visaBaraInfo; 
     
-    public ValjAgentFromAdminHuvudMeny(InfDB idb, String nuvarandeAgent) {
+    public ValjAgentFromAdminHuvudMeny(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
@@ -39,7 +39,7 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
     private void initComponents() {
 
         lblHuvudText = new javax.swing.JLabel();
-        txtValjAlien = new javax.swing.JTextField();
+        txtValjAgent = new javax.swing.JTextField();
         btnValj = new javax.swing.JButton();
         lblFelAlienNamn = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -49,9 +49,9 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
         lblHuvudText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblHuvudText.setText("Välj utomjording att visa info om:");
 
-        txtValjAlien.addActionListener(new java.awt.event.ActionListener() {
+        txtValjAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValjAlienActionPerformed(evt);
+                txtValjAgentActionPerformed(evt);
             }
         });
 
@@ -78,18 +78,18 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHuvudText, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtValjAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtValjAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
                         .addComponent(btnValj, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblFelAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblFelAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,30 +99,31 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
                 .addComponent(lblHuvudText)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValjAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValjAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnValj))
                 .addGap(32, 32, 32)
                 .addComponent(lblFelAlienNamn)
-                .addGap(35, 35, 35)
+                .addGap(37, 37, 37)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtValjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjAlienActionPerformed
+    private void txtValjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjAgentActionPerformed
         
         
-    }//GEN-LAST:event_txtValjAlienActionPerformed
+    }//GEN-LAST:event_txtValjAgentActionPerformed
 
     private void btnValjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValjActionPerformed
         
         try {
-            String namn = txtValjAlien.getText();
+            String namn = txtValjAgent.getText();
 
-            String fraga1 = "SELECT namn FROM alien where namn =  '" + namn + "'";
+            String fraga1 = "SELECT namn FROM agent where namn = '" + namn + "'";
             String svar1 = idb.fetchSingle(fraga1);
+            System.out.println(namn);
 
             boolean namnKorrekt = Validering.stringFinns(namn, svar1);
             boolean textRutaArTom = Validering.textRutaArTom(namn);
@@ -132,16 +133,13 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
                 if (namnKorrekt == true) {
 
                     if (visaBaraInfo == false) {
-                        AndraInfoOmAlien aIOA = new AndraInfoOmAlien(idb, nuvarandeAgent, namn);
-                        //aIOA.setNuvarandeUtomjording(namn);
-                        //aIOA.showInfo(namn);
+                        AndraInfoOmAgent aIOA = new AndraInfoOmAgent(idb, namn);
                         aIOA.setInfo(namn);
                         aIOA.setVisible(true);
                         dispose();
                     } else {
-                        VisaInfoOmAlien vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent);
-                        vIOA.setNuvarandeUtomjording(namn);
-                        //vIOA.showInfo(namn);
+                        VisaInfoOmAgent vIOA = new VisaInfoOmAgent(idb, namn);
+                        vIOA.setNuvarandeAgent(nuvarandeAgent);
                         vIOA.setInfo(namn);
                         vIOA.setVisible(true);
                         dispose();
@@ -160,7 +158,7 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnValjActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
+        HuvudMenyAdmin hMA = new HuvudMenyAdmin (idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -177,12 +175,12 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
     
     public void setVisaInfoText()
     {
-        lblHuvudText.setText("Välj utomjording att visa information om:");
+        lblHuvudText.setText("Välj agent att visa information om:");
     }
 
     public void setVisaAndraText()
     {
-        lblHuvudText.setText("Välj utomjording att ändra information om:");
+        lblHuvudText.setText("Välj agent att ändra information om:");
     }
     
     public void visaBaraInfo()
@@ -195,6 +193,6 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblFelAlienNamn;
     private javax.swing.JLabel lblHuvudText;
-    private javax.swing.JTextField txtValjAlien;
+    private javax.swing.JTextField txtValjAgent;
     // End of variables declaration//GEN-END:variables
 }

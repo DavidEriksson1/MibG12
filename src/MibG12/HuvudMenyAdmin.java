@@ -57,7 +57,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
             }
         });
 
-        jComboAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nyregistrera", "Visa info", "Ge Adminstatus", "Ändra info", "Ta bort", "Områdeschef", "Kontorschef" }));
+        jComboAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Nyregistrera", "Visa info", "Ge Adminstatus", "Ändra info", "Ta bort", "Områdeschef", "Kontorschef" }));
         jComboAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboAgentActionPerformed(evt);
@@ -134,23 +134,40 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
  // Combobox för att visa alternativ för hantering gällande agenter
         int i = jComboAgent.getSelectedIndex();
         
-        if(i == 4){
+        if(i == 5){
             new AdminTaBortAgent(idb, agent).setVisible(true);
             dispose();
         }
         
-        if(i == 2){
+        if (i == 2)
+        {
+           ValjAgentFromAdminHuvudMeny valjAgentFromAdminHuvudMeny = new ValjAgentFromAdminHuvudMeny(idb);
+           valjAgentFromAdminHuvudMeny.setVisible(true);
+           valjAgentFromAdminHuvudMeny.visaBaraInfo();
+           valjAgentFromAdminHuvudMeny.setVisaInfoText();
+           dispose();
+        }
+        
+        if (i == 4)
+        {
+           ValjAgentFromAdminHuvudMeny valjAgentFromAdminHuvudMeny = new ValjAgentFromAdminHuvudMeny(idb);
+           valjAgentFromAdminHuvudMeny.setVisible(true);
+           valjAgentFromAdminHuvudMeny.setVisaAndraText();
+           dispose();
+        }
+        
+        if(i == 3){
             AdminGeAdminStatus adminGeAdminStatus = new AdminGeAdminStatus(idb, agent);
             adminGeAdminStatus.setVisible(true);
             dispose();
         }
         
-        if(i == 5){
+        if(i == 6){
             AdminOmrådesChef adminOmrådesChef = new AdminOmrådesChef(idb, agent);
             adminOmrådesChef.setVisible(true);
             dispose();
         }
-        if(i == 6){
+        if(i == 7){
             AdminKontorsChef adminKontorsChef = new AdminKontorsChef(idb, agent);
             adminKontorsChef.setVisible(true);
             dispose();

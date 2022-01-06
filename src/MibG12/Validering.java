@@ -185,7 +185,7 @@ public class Validering {
     
     public static boolean endastSiffror (String str)
     {
-        String regex = "[0-9]+";
+        String regex = "[0-9-]+";
         Pattern p = Pattern.compile(regex);
  
         Matcher m = p.matcher(str);
@@ -224,7 +224,7 @@ public class Validering {
             
             else
             {
-                JOptionPane.showMessageDialog(null, "Fel datumformat, prova igen enligt YYYY-MM-DD");
+                JOptionPane.showMessageDialog(null, "Fel datumformat, prova igen enligt 'YYYY-MM-DD'");
             }
             
             return datumFormatKorrekt;

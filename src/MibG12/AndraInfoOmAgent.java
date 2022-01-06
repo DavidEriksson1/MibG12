@@ -25,14 +25,13 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     /**
      * Creates new form AndraInfoOmAlien
      */
-    public AndraInfoOmAgent(InfDB idb, String nuvarandeAgent, String nuvarandeUtomjording) {
+    public AndraInfoOmAgent(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        this.nuvarandeUtomjording = nuvarandeUtomjording;
-        VisaInfoOmAgent visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent);
+        this.visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent);
+        visaInfoOmAgent.setNuvarandeAgent(nuvarandeAgent);
         visaInfoOmAgent.setInfo(nuvarandeAgent);
-        
     }
 
     /**
@@ -327,14 +326,13 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNamnActionPerformed
 
     private void btnTillbakaTillHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaTillHMActionPerformed
-        HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
-        hMA.setHuvudText(nuvarandeAgent);
+        HuvudMenyAdmin hMA = new HuvudMenyAdmin (idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaTillHMActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
+        ValjAgentFromAdminHuvudMeny vAFAHM = new ValjAgentFromAdminHuvudMeny(idb);
         vAFAHM.setVisible(true);
         vAFAHM.setVisaAndraText();
         dispose();
@@ -366,6 +364,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
                         idb.fetchSingle(fraga);
                         JOptionPane.showMessageDialog(null, "Namnet har ändrats!");
                         setNuvarandeUtomjording(nyttNamn);
+                        setNuvarandeAgent(nyttNamn);
                         setInfo(nuvarandeAgent);
                         txtNamn.setText("");
                     } catch (InfException ex) {
@@ -401,12 +400,15 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
 
         if (textRutaArTom == false)
         {
+            boolean datumFormatKorrekt = Validering.kollaDatumFormat(nyttDatum);
+            if (datumFormatKorrekt == true)
+            {
             boolean datumKorrekt = Validering.stringFinns(gammaltDatum, nyttDatum);
         
         if (datumKorrekt == false) {
 
             try {
-                String fraga = "Update agent set registreringsdatum = '" + nyttDatum + "' where namn = '" + nuvarandeAgent + "'";
+                String fraga = "Update agent set anstalningsdatum = '" + nyttDatum + "' where namn = '" + nuvarandeAgent + "'";
                 idb.fetchSingle(fraga);
                 JOptionPane.showMessageDialog(null, "Registreingsdatumet har ändrats!");
                 txtRegDatum.setText("");
@@ -418,6 +420,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Vänligen skriv ett annat datum!");
             txtRegDatum.setText("");
+        }
         }
         }
     }//GEN-LAST:event_btnAndraRegDatumActionPerformed
@@ -521,13 +524,13 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
                     String svar1 = idb.fetchSingle(fraga1);
 
                     if (svar1 != null) {
-                        String fraga2 = "update agent set plats = '" + svar1 + "' where namn = '" + nuvarandeAgent + "'";
+                        String fraga2 = "update agent set omrade = '" + svar1 + "' where namn = '" + nuvarandeAgent + "'";
                         idb.fetchSingle(fraga2);
                         JOptionPane.showMessageDialog(null, "Platsen har ändrats!");
                         txtPlats.setText("");
                         setInfo(nuvarandeAgent);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Det finns ingen plats med namnet " + nyPlats + "! Vänligen skriv in en annan plats!");
+                        JOptionPane.showMessageDialog(null, "Det finns inget område med namnet " + nyPlats + "! Vänligen skriv in ett annat område!");
                         txtPlats.setText("");
                     }
                 } catch (InfException ex) {
@@ -606,7 +609,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
        lblPlats.setText(visaInfoOmAgent.visaPlats(namn));
        lblTelefon.setText(visaInfoOmAgent.visaTelefon(namn));
        lblLosen.setText(visaInfoOmAgent.visaLosenord(namn));
-       lblAdminStatus.setText(visaInfoOmAgent.visaID(namn));
+       lblAdminStatus.setText(visaInfoOmAgent.visaAdminStatus(namn));
        
     }
     
