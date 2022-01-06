@@ -6,22 +6,26 @@ package MibG12;
 
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import oru.inf.InfException;
+
 /**
  *
- * @author Victo
+ * @author eriknilsson
  */
 public class AndraLosenord extends javax.swing.JFrame {
-
-    private static InfDB idb; 
+    private static InfDB idb;
+    private String nuvarandeUtomjording;
     private String nuvarandeAgent;
-    
-    public AndraLosenord(InfDB idb, String nuvarandeAgent) {
+    private boolean anvandareArUtomjording;
+    /**
+     * Creates new form AndraLosenAlien
+     */
+    public AndraLosenord(InfDB idb, boolean anvandareArUtomjording) {
         initComponents();
         this.idb = idb;
+        this.nuvarandeUtomjording = nuvarandeUtomjording;
         this.nuvarandeAgent = nuvarandeAgent;
+        this.anvandareArUtomjording = anvandareArUtomjording;
     }
 
     /**
@@ -33,63 +37,49 @@ public class AndraLosenord extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPasswordField3 = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        lblStatus = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblGammaltLosen1 = new javax.swing.JLabel();
+        lblGammaltLosen2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        gammaltLosen1 = new javax.swing.JPasswordField();
-        gammaltLosen2 = new javax.swing.JPasswordField();
-        nyttLosen1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-
-        jPasswordField3.setText("jPasswordField3");
+        gammaltLosenord1 = new javax.swing.JPasswordField();
+        gammaltLosenord2 = new javax.swing.JPasswordField();
+        nyttLosenord = new javax.swing.JPasswordField();
+        btnTillbaka = new javax.swing.JButton();
+        btnAndraLosen = new javax.swing.JButton();
+        lblStatus = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jCheckBox1.setText("Visa Lösenord");
+        lblGammaltLosen1.setText("Nuvarande lösenord");
+
+        lblGammaltLosen2.setText("Nuvarande lösenord");
+
+        jLabel3.setText("Nytt lösenord");
+
+        nyttLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nyttLosenordActionPerformed(evt);
+            }
+        });
+
+        btnTillbaka.setText("TIllbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
+        btnAndraLosen.setText("Ändra lösenord");
+        btnAndraLosen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraLosenActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setText("Visa nytt lösenord");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Nuvarande Lösenord");
-
-        jLabel3.setText("Nuvarande Lösenord");
-
-        jLabel4.setText("Nytt Lösenord");
-
-        gammaltLosen1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gammaltLosen1ActionPerformed(evt);
-            }
-        });
-
-        gammaltLosen2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gammaltLosen2ActionPerformed(evt);
-            }
-        });
-        gammaltLosen2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                gammaltLosen2KeyPressed(evt);
-            }
-        });
-
-        jButton1.setText("Byt Lösenord");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Tillbaka");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -97,87 +87,168 @@ public class AndraLosenord extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(btnAndraLosen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTillbaka)
+                .addGap(96, 96, 96))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gammaltLosen1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(nyttLosen1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(gammaltLosen2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-                                .addGap(23, 23, 23)
-                                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 61, Short.MAX_VALUE))
+                            .addComponent(lblGammaltLosen1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(gammaltLosenord2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(gammaltLosenord1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(nyttLosenord, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblGammaltLosen2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(172, 172, 172))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
+                .addGap(22, 22, 22)
+                .addComponent(lblGammaltLosen1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gammaltLosenord1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addComponent(gammaltLosen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblGammaltLosen2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gammaltLosenord2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gammaltLosen2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(12, 12, 12)
-                .addComponent(nyttLosen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
-                .addGap(18, 18, 18)
+                .addComponent(nyttLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(jCheckBox1)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(btnTillbaka)
+                    .addComponent(btnAndraLosen))
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nyttLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyttLosenordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nyttLosenordActionPerformed
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+       
+       if (anvandareArUtomjording == true)
+       { 
+       HuvudMenyUtomjording hMU = new HuvudMenyUtomjording (idb, nuvarandeUtomjording);
+       hMU.setVisible(true);
+       hMU.setValkommenUtomjording();
+       dispose();
+       }
+       else
+       {
+       HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
+       hMA.setVisible(true);
+       dispose();
+       }
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
+        // TODO add your handling code here:
+        
+
+        boolean gammaltLosenKorrekt = losenordKorrekt();
+
+        if (gammaltLosenKorrekt == true) 
+        {
+            if (nyttLosenord != gammaltLosenord2) 
+            {
+                char[] c = nyttLosenord.getPassword();
+                String nyttLosen = new String(c);
+                boolean losenordForLangt = Validering.kollaLosenordsLangd(nyttLosen);
+
+                if (losenordForLangt == false) 
+                {
+                    
+                    setLosenord(nyttLosen);
+                    gammaltLosenord1.setText("");
+                    gammaltLosenord2.setText("");
+                    nyttLosenord.setText("");
+                } 
+                else 
+                {
+                    JOptionPane.showMessageDialog(null, "Lösenordet är samma som det tidigate, vänligen välj ett annat lösenord!");
+                    gammaltLosenord1.setText("");
+                    gammaltLosenord2.setText("");
+                    nyttLosenord.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Gamla lösenordet är fel, vänligen prova igen!");
+                gammaltLosenord1.setText("");
+                gammaltLosenord2.setText("");
+                nyttLosenord.setText("");
+            }
+        }
+            
+     
+    }//GEN-LAST:event_btnAndraLosenActionPerformed
+
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+       
         if (jCheckBox1.isSelected()) 
         {
-            nyttLosen1.setEchoChar((char)0);
+            nyttLosenord.setEchoChar((char)0);
         }
         else 
         {
-            nyttLosen1.setEchoChar('*');
+            nyttLosenord.setEchoChar('*');
         }
-    
+        
     }//GEN-LAST:event_jCheckBox1ActionPerformed
-
+    public void setNuvarandeUtomjording(String namn)
+    {
+        nuvarandeUtomjording = namn;
+    }
+    
+    public void setNuvarandeAgent(String namn)
+    {
+        nuvarandeAgent = namn;
+    }
+    
+    
     public boolean losenordKorrekt()
-    {   
-        char[] c1 = gammaltLosen1.getPassword();
+    {
+        boolean losenordKorrekt = false;
+        
+        char[] c1 = gammaltLosenord1.getPassword();
         String losen1 = new String (c1);
         
-        char[] c2 = gammaltLosen2.getPassword();
+        char[] c2 = gammaltLosenord2.getPassword();
         String losen2 = new String (c2);
         
-        boolean losenordKorrekt = Validering.losenordKorrekt(losen1, losen2);
-        
-        if (losenordKorrekt == true)
+        if (losen1.equals(losen2))
         {
             lblStatus.setText("Lösenord korrekt");
             losenordKorrekt = true;
         }
         else {
             lblStatus.setText("Fel Lösenord");
+            System.out.println(losen1);
+            System.out.println(losen2);
         }
         
         return losenordKorrekt;
@@ -188,75 +259,31 @@ public class AndraLosenord extends javax.swing.JFrame {
         boolean losenAndrat = false;
         
         try {
-            System.out.println(nuvarandeAgent);
-            String kommando = "UPDATE agent set losenord = '" + losenord + "' where Namn = '" + nuvarandeAgent + "'";
-            idb.fetchSingle(kommando);
+            System.out.println(nuvarandeUtomjording);
+            String fraga = "UPDATE Alien set Losenord = '" + losenord + "' where Namn = '" + nuvarandeUtomjording + "'";
+            idb.fetchSingle(fraga);
             JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
             losenAndrat = true;
         }
         catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Ditt nya lösenord innehåller för många tecken! Vänligen skriv ett nytt lösen med max 6 tecken.");
-            System.out.println(ex + "har inträffat!");
+            JOptionPane.showMessageDialog(null, "Lösenordet får max vara 6 tecken!");
+            System.out.println(ex + " har inträffat!");
         }
         return losenAndrat;
     }
     
-    public void setNuvarandeAgent (String nuvarandeAgent)
-    {
-        this.nuvarandeAgent = nuvarandeAgent; 
-    }
     
-    private void gammaltLosen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gammaltLosen1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gammaltLosen1ActionPerformed
-
-    private void gammaltLosen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gammaltLosen2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gammaltLosen2ActionPerformed
-
-    private void gammaltLosen2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gammaltLosen2KeyPressed
-        
-    }//GEN-LAST:event_gammaltLosen2KeyPressed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        boolean gammaltLosenKorrekt = losenordKorrekt();
-        if (nyttLosen1 != gammaltLosen2 && gammaltLosenKorrekt == true)
-        {
-            char[] c = nyttLosen1.getPassword();
-            String nyttLosen = new String (c);
-            setLosenord(nyttLosen);
-            HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
-            hMA.
-            dispose();
-        }
-        
-        else 
-        {
-            JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats");
-        }
-            
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
-        hMA.setNuvarandeAgent(nuvarandeAgent);
-        hMA.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField gammaltLosen1;
-    private javax.swing.JPasswordField gammaltLosen2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAndraLosen;
+    private javax.swing.JButton btnTillbaka;
+    private javax.swing.JPasswordField gammaltLosenord1;
+    private javax.swing.JPasswordField gammaltLosenord2;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JLabel lblGammaltLosen1;
+    private javax.swing.JLabel lblGammaltLosen2;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JPasswordField nyttLosen1;
+    private javax.swing.JPasswordField nyttLosenord;
     // End of variables declaration//GEN-END:variables
 }

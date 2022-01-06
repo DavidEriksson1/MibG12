@@ -152,7 +152,7 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
     }
     
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
-    AndraLosenord aL = new AndraLosenord(idb, nuvarandeAgent);
+    AndraLosenord aL = new AndraLosenord(idb, false);
     aL.setVisible(true);
     aL.setNuvarandeAgent(nuvarandeAgent);
     dispose();

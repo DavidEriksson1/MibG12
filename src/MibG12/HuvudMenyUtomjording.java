@@ -145,7 +145,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
         
-        AndraLosenAlien aLA = new AndraLosenAlien(idb);
+        AndraLosenord aLA = new AndraLosenord(idb, true);
         aLA.setVisible(true);
         aLA.setNuvarandeUtomjording(nuvarandeUtomjording);
         dispose();
