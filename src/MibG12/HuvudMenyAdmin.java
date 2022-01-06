@@ -190,7 +190,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
 
     private void btnUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUtrustningActionPerformed
         // Öppna fönstret för utrustningshantering
-        new AdminUtrustningsHantering(idb).setVisible(true);
+        new AdminUtrustningsHantering(idb, agent).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnUtrustningActionPerformed
 
