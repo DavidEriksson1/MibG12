@@ -200,6 +200,37 @@ public class Validering {
     
     }
     
+    public static boolean kollaLosenordsLangd (String losen)
+    {
+        int langd = losen.length();
+        boolean losenForLangt = false;
+        
+        if (langd>6)
+        {
+            losenForLangt = true;
+        }
+            
+        return losenForLangt;    
+    }
+    
+    public static boolean kollaDatumFormat (String datum)        
+    {
+        boolean datumFormatKorrekt = false;
+        
+            if (datum.matches("\\d{4}-\\d{2}-\\d{2}")) 
+            {
+                datumFormatKorrekt = true;
+            } 
+            
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Fel datumformat, prova igen enligt YYYY-MM-DD");
+            }
+            
+            return datumFormatKorrekt;
+    }
+
+    
     
 }
 
