@@ -42,9 +42,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtFieldUtrustningsNamn" pref="85" max="32767" attributes="0"/>
-                          <Component id="comboUtrustningsTyp" pref="0" max="32767" attributes="0"/>
+                          <Component id="comboUtrustningsTyp" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="txtFieldKaliber" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtFieldUtrustningsNamn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
