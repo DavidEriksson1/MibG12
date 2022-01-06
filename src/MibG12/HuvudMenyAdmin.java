@@ -122,7 +122,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         int i = jComboAlien.getSelectedIndex();
         
         if(i == 0){
-            new NyRegistreraAlien(idb).setVisible(true);
+            new NyRegistreraAlien(idb, agent).setVisible(true);
             dispose();
         }
         else if(i == 2){
