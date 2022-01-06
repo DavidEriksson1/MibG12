@@ -5,11 +5,14 @@
 package MibG12;
 
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 
 /**
  *
@@ -18,9 +21,10 @@ import oru.inf.InfException;
 public class MetoderFyllaComboBox {
     private static InfDB idb;
  
-     public static void databas(InfDB idb) {
+ public static void databas(InfDB idb) {
         MetoderFyllaComboBox.idb = idb;
     }
+ 
      public static void laggTillAgent(JComboBox cb) {
         String agentFraga = "SELECT namn FROM agent";
 
@@ -35,6 +39,7 @@ public class MetoderFyllaComboBox {
         catch (InfException ex) {
            JOptionPane.showMessageDialog(null, "Något gick fel");
            System.out.println(ex);
+           
         }
 
        
@@ -42,7 +47,7 @@ public class MetoderFyllaComboBox {
 
     
 
-    public static void laggTillOmrade(JComboBox cb1) {
+    public static void laggTillOmrade(JComboBox cb) {
         String omradesFraga = "Select benamning from omrade";
 
         ArrayList<String> allaOmraden;
@@ -50,12 +55,13 @@ public class MetoderFyllaComboBox {
         try {
             allaOmraden = idb.fetchColumn(omradesFraga);
             for (String o : allaOmraden) {
-                cb1.addItem(o);
+                cb.addItem(o);
             }
 
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null,"Något gick fel");
             System.out.println(ex);
+            
         }
     }
 }
