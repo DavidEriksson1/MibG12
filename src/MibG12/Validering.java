@@ -185,7 +185,7 @@ public class Validering {
     
     public static boolean endastSiffror (String str)
     {
-        String regex = "[0-9]+";
+        String regex = "[0-9-]+";
         Pattern p = Pattern.compile(regex);
  
         Matcher m = p.matcher(str);
@@ -198,6 +198,19 @@ public class Validering {
         
         return endastSiffror;
     
+    }
+    
+    public static boolean kollaLosenordsLangd (String losen)
+    {
+        int langd = losen.length();
+        boolean losenForLangt = false;
+        
+        if (langd>6)
+        {
+            losenForLangt = true;
+        }
+            
+        return losenForLangt;    
     }
     
     

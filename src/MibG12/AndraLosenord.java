@@ -221,21 +221,42 @@ public class AndraLosenord extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         boolean gammaltLosenKorrekt = losenordKorrekt();
-        if (nyttLosen1 != gammaltLosen2 && gammaltLosenKorrekt == true)
-        {
-            char[] c = nyttLosen1.getPassword();
-            String nyttLosen = new String (c);
-            setLosenord(nyttLosen);
-            HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
-            hMA.
-            dispose();
+
+        if (gammaltLosenKorrekt == true) {
+
+            if (nyttLosen1 != gammaltLosen2) {
+                char[] c = nyttLosen1.getPassword();
+                String nyttLosen = new String(c);
+
+                boolean losenForLangt = Validering.kollaLosenordsLangd(nyttLosen);
+
+                if (losenForLangt == false) {
+
+                    setLosenord(nyttLosen);
+                    HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
+                    hMA.
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Det nya lösenordet är för långt, vänligen skriv ett nytt med max 6 tecken!");
+                    gammaltLosen1.setText("");
+                    gammaltLosen2.setText("");
+                    nyttLosen1.setText("");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Det nya lösenordet är samma som det gamla! Välj ett annat lösenord");
+                gammaltLosen1.setText("");
+                gammaltLosen2.setText("");
+                nyttLosen1.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fel lösenord! Lösenordet har inte ändrats");
+            gammaltLosen1.setText("");
+            gammaltLosen2.setText("");
+            nyttLosen1.setText("");
         }
-        
-        else 
-        {
-            JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats");
-        }
-            
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
