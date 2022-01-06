@@ -408,13 +408,13 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         if (datumKorrekt == false) {
 
             try {
-                String fraga = "Update agent set anstalningsdatum = '" + nyttDatum + "' where namn = '" + nuvarandeAgent + "'";
+                String fraga = "Update agent set anstallningsdatum = '" + nyttDatum + "' where namn = '" + nuvarandeAgent + "'";
                 idb.fetchSingle(fraga);
                 JOptionPane.showMessageDialog(null, "Registreingsdatumet har ändrats!");
                 txtRegDatum.setText("");
                 setInfo(nuvarandeAgent);
             } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Fel datumformat, vänligen ange ett nytt datum enligt 'YYYY-MM-DD'");
+                JOptionPane.showMessageDialog(null, "Databasfel");
                 txtRegDatum.setText("");
             }
         } else {
