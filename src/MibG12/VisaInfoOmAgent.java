@@ -20,15 +20,18 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
   private String nuvarandeAgent;
   private String nuvarandeUtomjording; 
   private boolean anvandareArAdmin;
+  private boolean anvandareArAlien;
     
     /**
      * Creates new form AgentInfo
      */
-    public VisaInfoOmAgent(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin) {
+    public VisaInfoOmAgent(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin, String nuvarandeUtomjording,boolean anvandareArAlien) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.anvandareArAdmin = anvandareArAdmin;
+        this.nuvarandeUtomjording = nuvarandeUtomjording;
+        this.anvandareArAlien = anvandareArAlien;
         btnTillbakaTillHM.setVisible(false);
     }
 
@@ -101,8 +104,6 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         lblLosenordRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLosenordRubrik.setText("Lösenord:");
 
-        lblLosenord.setText("hejhej");
-
         btnTillbakaTillHM.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         btnTillbakaTillHM.setText("Tillbaka till huvudmeny");
         btnTillbakaTillHM.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +158,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -182,10 +183,10 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblOmradeRubrik)
                     .addComponent(lblOmrade))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblLosenordRubrik)
-                    .addComponent(lblLosenord))
+                    .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,6 +204,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
     
     public void setHuvudMenyUtomjording ()
     {
+        
         anvandareArAdmin = false;
     }
     
@@ -239,16 +241,27 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
     public void setNuvarandeUtomjording (String nuvarandeUtomjording)
     {
         this.nuvarandeUtomjording = nuvarandeUtomjording;
+        anvandareArAlien = true;
     }
           
     public void setInfo (String namn)
     {
+        
+        if(anvandareArAlien == true){
+       lblAgentNamn.setText(visaNamn(namn));
+       lblAnstallningsDatum.setText(visaAnstallningsDatum(namn));
+       lblOmrade.setText(visaPlats(namn));
+       lblAgentTelefon.setText(visaTelefon(namn));
+       lblAdminStatus.setText(visaAdminStatus(namn));
+        }
+        else{
        lblAgentNamn.setText(visaNamn(namn));
        lblAnstallningsDatum.setText(visaAnstallningsDatum(namn));
        lblOmrade.setText(visaPlats(namn));
        lblAgentTelefon.setText(visaTelefon(namn));
        lblLosenord.setText(visaLosenord(namn));
-       lblAdminStatus.setText(visaAdminStatus(namn));
+       lblAdminStatus.setText(visaAdminStatus(namn));   
+        }
     }
     
     public String visaNamn (String namn)

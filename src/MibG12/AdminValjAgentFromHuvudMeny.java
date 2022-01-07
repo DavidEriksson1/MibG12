@@ -138,7 +138,7 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
                         aIOA.setVisible(true);
                         dispose();
                     } else {
-                        VisaInfoOmAgent vIOA = new VisaInfoOmAgent(idb, namn, true);
+                        VisaInfoOmAgent vIOA = new VisaInfoOmAgent(idb, namn, true,nuvarandeUtomjording,false);
                         vIOA.visaTillbakaTillHMknapp();
                         vIOA.setNuvarandeAgent(namn);
                         vIOA.setInfo(namn);

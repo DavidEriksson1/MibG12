@@ -29,7 +29,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        this.visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent, true);
+        this.visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent, true,nuvarandeUtomjording,false);
         visaInfoOmAgent.setNuvarandeAgent(nuvarandeAgent);
         visaInfoOmAgent.setInfo(nuvarandeAgent);
     }
