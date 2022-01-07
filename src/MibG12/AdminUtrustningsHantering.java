@@ -166,8 +166,6 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
                     if (valdTyp.equals("Vapen")) {
                         
                         idb.fetchSingle(taBortVapenID);
-                        idb.fetchSingle(taBortUtrustning);
-                        idb.fetchSingle(taBortUtrustningsID);
                         lblHarTagitsBort.setText(utrustning + " har tagits bort!");
                         
                     } else if (valdTyp.equals("Kommunikation")) {
@@ -195,6 +193,60 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnTaBortUtrustningActionPerformed
 
+    public String visaTyp(String Typ)
+    {
+        boolean isVapen = false;
+        boolean isKommunikation = false;
+        boolean isTeknik = false;
+        String typ = "";
+        
+        try{
+            String utrustningsID = "select Utrustnings_ID from utrustning where Benamning ='" + Typ + "'";
+            String svarID = idb.fetchSingle(utrustningsID);
+            
+            String fragaVapen = "select Utrustnings_ID from vapen";
+            ArrayList<String> vapen = idb.fetchColumn(fragaVapen);
+            
+            String fragaKommunikation = "select Utrustnings_ID from kommunikation";
+            ArrayList<String> kommunikation = idb.fetchColumn(fragaKommunikation);
+            
+            String fragaTeknik = "select Utrustnings_ID from teknik";
+            ArrayList<String> teknik = idb.fetchColumn(fragaTeknik);
+            
+            for(String id : vapen) {
+                System.out.print(id);
+                if(id.equals(svarID)){
+                    isVapen = true;
+                    break;
+                }
+            }
+            if(isVapen == false){
+                for(String id : kommunikation) {
+                    System.out.print(id);
+                    if(id.equals(svarID)){
+                        isKommunikation = true;
+                        break;
+                    }
+                }
+            }
+            if(isVapen == false && isKommunikation == false){
+                for(String id : teknik) {
+                    System.out.print(id);
+                    if(id.equals(svarID)){
+                        isTeknik = true;
+                        break;
+                    }
+                }
+            }
+            
+        }
+        catch(InfException ie){
+            
+        }
+        return Typ;
+    }
+            
+    
     private void ComboUtrustningsTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboUtrustningsTypActionPerformed
         // Combobox för att välja utrustningstyp
         int i = ComboUtrustningsTyp.getSelectedIndex();
