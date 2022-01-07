@@ -21,17 +21,19 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private String nuvarandeAgent;
     private String nuvarandeUtomjording;
     private VisaInfoOmAlien visaInfoOmAlien;
+    private boolean anvandareArAdmin;
     
     /**
      * Creates new form AndraInfoOmAlien
      */
-    public AndraInfoOmAlien(InfDB idb, String nuvarandeAgent, String nuvarandeUtomjording) {
+    public AndraInfoOmAlien(InfDB idb, String nuvarandeAgent, String nuvarandeUtomjording, boolean anvandareArAlien) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.nuvarandeUtomjording = nuvarandeUtomjording;
+        this.anvandareArAdmin = anvandareArAdmin;
         
-        visaInfoOmAlien = new VisaInfoOmAlien (idb, nuvarandeAgent);
+        visaInfoOmAlien = new VisaInfoOmAlien (idb, nuvarandeAgent, true);
         visaInfoOmAlien.setInfo(nuvarandeAgent);
         txtRasExtra.setVisible(false);
         
@@ -392,10 +394,22 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTillbakaTillHMActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent);
-        vAFAHM.setVisible(true);
-        vAFAHM.setVisaAndraText();
-        dispose();
+        
+        if (anvandareArAdmin == true)
+        {
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, true);
+            vAFAHM.setVisible(true);
+            vAFAHM.setVisaAndraText();
+            dispose(); 
+        }
+        
+        else 
+        {
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, false);
+            vAFAHM.setVisible(true);
+            vAFAHM.setVisaAndraText();
+            dispose();
+        }
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnAndraNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraNamnActionPerformed

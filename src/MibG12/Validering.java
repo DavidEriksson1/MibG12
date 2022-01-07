@@ -14,20 +14,25 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
- * @author Victo
+ * Java klass som sköter validering av inputdata.
+ * 
  */
 public class Validering {
 
     private static InfDB idb;
 
+    /**
+     * Metod som kollar om en agent har admin status.
+     * Returner en boolean som sätt till true om en agent är admin och
+     * false om den inte är det.
+     */
+    
     public static boolean checkAdminStatus(String anvNamn) {
         
         boolean adminStatus = false;
         
         if (anvNamn.equals("J")) {
             adminStatus = true;
-            System.out.println("Denna Agent är admin");
             
         } else {
             JOptionPane.showMessageDialog(null, "Denna Agent är inte admin");
@@ -36,6 +41,13 @@ public class Validering {
         return adminStatus;
 
     }
+    
+    /**
+     * Metod som kollar inloggningsuppgifter.
+     * Den tar in 4 parametrar av string och ska checka så de första två strängarna matchar och
+     * de sista två strängarna matchar.
+     * Returnerar true om dom matchar och false om dom inte gör det.
+     */
 
     public static boolean kollaInloggningsUppgifter(String anvNamn1, String anvNamn2, String losenord1, String losenord2) {
         boolean inloggningKorrekt = false;
@@ -49,6 +61,13 @@ public class Validering {
 
         return inloggningKorrekt;
     }
+    
+    /**
+     * Metod som kollar lösenord.
+     * Den tar in 2 parametrar av string och ska checkar så att dom matchar.
+     * de sista två strängarna matchar.
+     * Returnerar true om dom matchar och false om dom inte gör det.
+     */
     
     public static boolean losenordKorrekt (String losen1, String losen2)
     {
@@ -68,6 +87,13 @@ public class Validering {
         
                
     }
+    
+    /**
+     * Metod ssom ändrar en sträng från J eller N till Ja eller Nej.
+     * Konvertar svaret från databasen till ja eller nej.
+     * Om svaret från db är "J" så returner denna metod "JA"
+     * Samma sak med "Nej".
+     */
     
     public static String setAdminStatus (String svar)
     {

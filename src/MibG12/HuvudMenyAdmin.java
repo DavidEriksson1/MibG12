@@ -134,6 +134,14 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
             new NyRegistreraAlien(idb, agent,true).setVisible(true);
             dispose();
         }
+        
+        if (i == 2)
+        {
+            AgentValjAlienFromHuvudMeny aVAFH = new AgentValjAlienFromHuvudMeny (idb, agent, true);
+            aVAFH.setVisible(true);
+            aVAFH.setVisaAndraText();
+            dispose();  
+        }
         else if(i == 3){
              new AdminTaBortAlien(idb, agent).setVisible(true); 
              dispose();

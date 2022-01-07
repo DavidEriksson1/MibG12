@@ -28,7 +28,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        visaInfoOmAlien = new VisaInfoOmAlien(idb, nuvarandeAgent);
+        visaInfoOmAlien = new VisaInfoOmAlien(idb, nuvarandeAgent, false);
         laggTillOmrade(jComboBoxOmrade);
     }
 

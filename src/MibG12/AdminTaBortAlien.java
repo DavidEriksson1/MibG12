@@ -27,7 +27,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        vIOA = new VisaInfoOmAlien (idb, nuvarandeAgent);
+        vIOA = new VisaInfoOmAlien (idb, nuvarandeAgent, true);
     }
 
     /**

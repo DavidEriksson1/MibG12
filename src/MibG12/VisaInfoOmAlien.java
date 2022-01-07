@@ -20,11 +20,13 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
     private InfDB idb;
     private String nuvarandeAgent;
     private String nuvarandeUtomjording;
+    private boolean anvandareArAdmin;
     
-    public VisaInfoOmAlien(InfDB idb, String nuvarandeAgent) {
+    public VisaInfoOmAlien(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
+        this.anvandareArAdmin = anvandareArAdmin;
     }
 
     
@@ -232,10 +234,22 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
      */
     
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent);
-        vAFAHM.setVisible(true);
-        vAFAHM.visaBaraInfo();
-        dispose();
+        
+        if (anvandareArAdmin == true)
+        {
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, true);
+            vAFAHM.setVisible(true);
+            vAFAHM.setVisaAndraText();
+            dispose(); 
+        }
+        else
+        {
+        
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, false);
+            vAFAHM.setVisible(true);
+            vAFAHM.visaBaraInfo();
+            dispose();
+        }
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**
@@ -244,14 +258,26 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
      */
     
     private void btnTillbakaTillHuvudmenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaTillHuvudmenyActionPerformed
+        
+        if (anvandareArAdmin == true)
+        {
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, true);
+            vAFAHM.setVisible(true);
+            vAFAHM.setVisaAndraText();
+            dispose(); 
+        }
+        else
+        {
+        
         HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
         hMA.setHuvudText(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
+        }
     }//GEN-LAST:event_btnTillbakaTillHuvudmenyActionPerformed
 
     /**
-     * Metod som går tillbaka till huvudMenyAgent JFrame Klass.
+     * Metod ändrar all info om vald alien.
      *  
      */
     
@@ -267,10 +293,20 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
        lblAnsvarigAgent.setText(visaAnsvarigAgent(namn));
     }
     
+    /**
+     * Metod ändrar värde på fältet nuvarandeUtomjording.
+     *  
+     */
+    
     public void setNuvarandeUtomjording(String namn)
     {
         this.nuvarandeUtomjording = namn;
     }
+    
+    /**
+     * Metod som visar namnet på vald utomjording.
+     * Returnerar en sträng. 
+     */
     
     public String visaNamn (String namn)
     {
@@ -290,6 +326,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         return namnet;
     }
     
+    /**
+     * Metod som visar Registreringsdatum för vald utomjording.
+     * Returnerar en sträng. 
+     */
+    
     public String visaRegDatum (String namn)
     {
         String regDatum = "";
@@ -307,6 +348,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         
         return regDatum;
     }
+    
+    /**
+     * Metod som visar platsen för vald utomjording.
+     * Returnerar en sträng. 
+     */
     
     public String visaPlats (String namn)
     {
@@ -326,6 +372,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         return plats;
     }
     
+    /**
+     * Metod som visar telefonnumret för vald utomjording.
+     * Returnerar en sträng. 
+     */
+    
     public String visaTelefon (String namn)
     {
         String telefon = "";
@@ -343,6 +394,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         
         return telefon;
     }
+    
+    /**
+     * Metod som visar lösenordet för vald utomjording.
+     * Returnerar en sträng. 
+     */
     
     public String visaLosenord (String namn)
     {
@@ -362,6 +418,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         return losenord;
     }
     
+    /**
+     * Metod som visar idNummer för för vald utomjording.
+     * Returnerar en sträng. 
+     */
+    
     public String visaID (String namn)
     {
         String iD = "";
@@ -380,6 +441,11 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         return iD;
     }
     
+    /**
+     * Metod som visar ansvarigAgent för vald utomjording.
+     * Returnerar en sträng.
+     */
+    
     public String visaAnsvarigAgent (String namn)
     {
         String Agent = "";
@@ -397,6 +463,12 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         
         return Agent;
     }
+    
+    /**
+     * Metod som visar rasen för vald utomjording.
+     * Returnerar en sträng.
+     *  
+     */
     
     public String visaRas (String utomjording)
     {

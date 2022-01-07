@@ -174,14 +174,14 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         
         if(i == 1){
             
-            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent);
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, false);
             vAFAHM.setVisaInfoText();
             vAFAHM.visaBaraInfo();
             vAFAHM.setVisible(true);
             dispose();
         }
         if(i == 2){
-            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent);
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, false);
             vAFAHM.setVisaAndraText();
             vAFAHM.setVisible(true);
             dispose();

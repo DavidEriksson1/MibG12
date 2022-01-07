@@ -21,12 +21,14 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
     
     private String nuvarandeUtomjording;
     private String nuvarandeAgent;
-    private boolean visaBaraInfo; 
+    private boolean visaBaraInfo;
+    private boolean anvandareArAdmin;
     
-    public AgentValjAlienFromHuvudMeny(InfDB idb, String nuvarandeAgent) {
+    public AgentValjAlienFromHuvudMeny(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
+        this.anvandareArAdmin = anvandareArAdmin;
     }
 
     /**
@@ -131,27 +133,45 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
 
                 if (namnKorrekt == true) {
 
-                    if (visaBaraInfo == false) {
-                        AndraInfoOmAlien aIOA = new AndraInfoOmAlien(idb, nuvarandeAgent, namn);
-                        //aIOA.setNuvarandeUtomjording(namn);
-                        //aIOA.showInfo(namn);
+                    if (visaBaraInfo == false && anvandareArAdmin == true) 
+                    {
+                        AndraInfoOmAlien aIOA = new AndraInfoOmAlien(idb, nuvarandeAgent, namn, true);
                         aIOA.setInfo(namn);
                         aIOA.setVisible(true);
                         dispose();
-                    } else {
-                        VisaInfoOmAlien vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent);
+                    }
+                    else if (visaBaraInfo == true && anvandareArAdmin == true)
+                        {
+                            VisaInfoOmAlien vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent, true);
+                            vIOA.setNuvarandeUtomjording(namn);
+                            vIOA.setInfo(namn);
+                            vIOA.setVisible(true);
+                            dispose();
+                        }
+                    else if (visaBaraInfo == false && anvandareArAdmin == false)
+                        {
+                            AndraInfoOmAlien aIOA = new AndraInfoOmAlien(idb, nuvarandeAgent, namn, false);
+                            aIOA.setInfo(namn);
+                            aIOA.setVisible(true);
+                            dispose();
+                        }
+                    else if (visaBaraInfo == false && anvandareArAdmin == false)
+                    {
+                        VisaInfoOmAlien vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent, false);
                         vIOA.setNuvarandeUtomjording(namn);
                         vIOA.setInfo(namn);
                         vIOA.setVisible(true);
                         dispose();
-
                     }
-                } else {
+                    
+            }
+                else {
                     lblFelAlienNamn.setText("Det finns ingen utomjording med namnet: " + namn);
                 }
-            }
 
-        } catch (InfException ex) {
+        } 
+        }
+            catch (InfException ex) {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Ett fel har uppstått " + ex);
         }
@@ -159,9 +179,16 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnValjActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
-        hMA.setVisible(true);
-        dispose();
+        
+        if (anvandareArAdmin == true) {
+            HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
+            hMA.setVisible(true);
+            dispose();
+        } else {
+            HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
+            hMA.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void setUtomjording (String namn)
