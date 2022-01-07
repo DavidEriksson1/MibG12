@@ -231,7 +231,7 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
+        AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent);
         vAFAHM.setVisible(true);
         vAFAHM.visaBaraInfo();
         dispose();

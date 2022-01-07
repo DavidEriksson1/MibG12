@@ -19,12 +19,12 @@ import oru.inf.InfException;
  * JFrame klass för att visa utomjordingar som finns inom en viss plats.
  * Klassen tar in ett parametervärde som den plats man vill använda.
  */
-public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
+public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
 
     InfDB idb;
     String nuvarandeAgent;
     Validering validering;
-    public VisaAllaUtomjordingarPaEnPlats(InfDB idb, String nuvarandeAgent) {
+    public AgentVisaAllaUtomjordingarPaEnPlats(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;  

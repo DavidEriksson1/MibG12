@@ -15,7 +15,7 @@ import oru.inf.InfException;
  *
  * @author Victo
  */
-public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
+public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
 
     InfDB idb;
     
@@ -23,7 +23,7 @@ public class ValjAgentFromAdminHuvudMeny extends javax.swing.JFrame {
     private String nuvarandeAgent;
     private boolean visaBaraInfo; 
     
-    public ValjAgentFromAdminHuvudMeny(InfDB idb) {
+    public AdminValjAgentFromHuvudMeny(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;

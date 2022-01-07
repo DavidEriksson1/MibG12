@@ -392,7 +392,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTillbakaTillHMActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
+        AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent);
         vAFAHM.setVisible(true);
         vAFAHM.setVisaAndraText();
         dispose();
