@@ -125,13 +125,17 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                         
                         if (utomjordingar.isEmpty())
                         {
-                            txtAreaVisaInfo.append("Det finns ingen utomjording som är av vald ras! :(");
+                            txtAreaVisaInfo.append("Det finns ingen utomjording i" + plats + "! :(");
+                            txtValdPlats.setText("");
                         }
                         else
                         {
+                            txtAreaVisaInfo.append("Utomjordingar i: " + plats + "\n");
+                            txtAreaVisaInfo.append("\n");
                         for (String namn : utomjordingar) {
                             txtAreaVisaInfo.append(namn + "\n");
                         }
+                            txtValdPlats.setText("");
                         }
                     } catch (InfException ex) {
                         JOptionPane.showMessageDialog(null, "Ett fel har uppstått " + ex);
@@ -139,7 +143,7 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Ett fel har uppstått¨" + ex);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Det finns ingen ras med namnet: " + plats + ".");
+                    JOptionPane.showMessageDialog(null, "Det finns ingen plats med namnet: " + plats + ".");
                     txtValdPlats.setText("");
                 }
 

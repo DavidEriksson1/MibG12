@@ -59,7 +59,7 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visa info om enskild alien", "Ändra information om enskild alien", "Visa alla alien på angiven plats", "Visa alla alien av angiven ras", "Visa alla aliens som registrerats mellan angivna datum", "Registrera ny alien" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Visa info om enskild alien", "Ändra information om enskild alien", "Visa alla alien på angiven plats", "Visa alla alien av angiven ras", "Visa alla aliens som registrerats mellan angivna datum", "Registrera ny alien" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -161,7 +161,7 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
        int i = jComboBox1.getSelectedIndex();
         
-        if(i == 0){
+        if(i == 1){
             
             ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
             vAFAHM.setVisaInfoText();
@@ -169,24 +169,27 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
             vAFAHM.setVisible(true);
             dispose();
         }
-        if(i == 1){
+        if(i == 2){
             ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
             vAFAHM.setVisaAndraText();
             vAFAHM.setVisible(true);
             dispose();
         }
-        if(i == 2){
+        if(i == 3){
             
             VisaAllaUtomjordingarPaEnPlats vAUPEP = new VisaAllaUtomjordingarPaEnPlats (idb, nuvarandeAgent);
             vAUPEP.setVisible(true);
             dispose();
         }
-        if (i == 3){
+        if (i == 4){
             VisaAllaUtomjordingarInomEnRas vAUIER = new VisaAllaUtomjordingarInomEnRas (idb, nuvarandeAgent);
             vAUIER.setVisible(true);
             dispose();
         }
-        if (i == 4){
+        if (i == 5){
+            VisaAllaUtomjordingarMellanTvaDatum vAUMTD = new VisaAllaUtomjordingarMellanTvaDatum (idb, nuvarandeAgent);
+            vAUMTD.setVisible(true);
+            dispose();
             
         }
         if (i == 5){
