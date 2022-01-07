@@ -20,7 +20,7 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
     private static String nuvarandeAgent;
     private boolean anvandareArAdmin;
     /**
-     * Konstruktor
+     * Konstruktor för att regstrera ny alien
      */
     public NyRegistreraAlien(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin) {
         initComponents();
@@ -242,23 +242,32 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
         String id = lblID.getText();
         String armar = txtRasVal.getText();
 
-        
+        //Validering så Datumrutan inte är tom
         boolean textRutaTom2 = Validering.textRutaArTom(regDatum);
         boolean namnetAnvands = false;
 
         if (textRutaTom2 == false) {
+            //Validering så lösenordsrutan inte är tom
             boolean textRutaTom3 = Validering.textRutaArTom(losenord);
             if (textRutaTom3 == false) {
+                //Validering så att namnrutan inte är tom 
                 boolean textRutaTom4 = Validering.textRutaArTom(namn);
                 if (textRutaTom4 == false) {
+                    //Validering så att telefonrutan inte är tom
                     boolean textRutaTom5 = Validering.textRutaArTom(telefon);
                     if (textRutaTom5 == false) {
+                        //Validering som kollar att datumet är rätt format dvs YYYY-MM-DD
                         boolean datumKorrekt = Validering.kollaDatumFormat(regDatum);
                         if (datumKorrekt == true) {
+                            //Validering som kollar så telefon endast består av siffror
                             boolean telefonKorrekt = Validering.endastSiffror(telefon);
                             if (telefonKorrekt == true) {
+                                //Validering som kollar att namnet endast består av bokstäver
                                 boolean namnKorrekt = Validering.arStringEndastBokstaver(namn);
                                 if (namnKorrekt == true) {
+                                    //VAlidering som kollar att lösenordet är rätt längd, max 6 tecken
+                                    boolean losenordKorrekt = Validering.kollaLosenordsLangd(losenord);
+                                    if (losenordKorrekt == false) {
 
                                     String agenten = cbAgent.getSelectedItem().toString().toLowerCase();
                                     String platsen = cbPlats.getSelectedItem().toString().toLowerCase();
@@ -343,7 +352,7 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
                 }
             }
         }
-                          
+      }                   
     }//GEN-LAST:event_btnLaggTillAlienActionPerformed
 
  //Ger ett id till alien som är ett högre än det nuvarande max som finns   
@@ -398,7 +407,6 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
     }
 
     private void txtAlienLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlienLosenordActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtAlienLosenordActionPerformed
  // Går tillbaka till huvudmeny för admin.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed

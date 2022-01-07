@@ -11,7 +11,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
+ * Klass för att registrera en ny agent
  * @author 
  */
 public class NyRegistreraAgent extends javax.swing.JFrame {
@@ -19,7 +19,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
     private static InfDB idb;
     private static String nuvarandeAgent;
     /**
-     * Creates new form NyRegistreraAlien
+     * Konstruktor NyRegistreraAlien
      */
     public NyRegistreraAgent(InfDB idb, String nuvarandeAgent) {
         initComponents();
@@ -224,12 +224,10 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
    
-            
+//Metod som lägger till en ny agent i agent tabellen            
     private void btnLaggTillAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAgentActionPerformed
         // Lägg till ny alien med inmatad information
         ArrayList<String> agenter;
-
-        
 
         String anstDatum = txtAnstDatum.getText();
         String losenord = txtAgentLosen.getText();
@@ -238,67 +236,65 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
 
         String id = lblID.getText();
         
-
-       
+        //Använder validering metoden så datumrutan inte är tom
         boolean textRutaTom2 = Validering.textRutaArTom(anstDatum);
         boolean namnetAnvands = false;
 
         if (textRutaTom2 == false) {
+            //Kollar så lösenordsrutan inte är tom
             boolean textRutaTom3 = Validering.textRutaArTom(losenord);
             if (textRutaTom3 == false) {
+                //Kollar så namnrutan inte är tom
                 boolean textRutaTom4 = Validering.textRutaArTom(namn);
                 if (textRutaTom4 == false) {
+                    //Kollar så telefonrutan inte är tom
                     boolean textRutaTom5 = Validering.textRutaArTom(telefon);
                     if (textRutaTom5 == false) {
+                        //Kollar så datumet är i rätt format dvs YYYY-MM-DD
                         boolean datumKorrekt = Validering.kollaDatumFormat(anstDatum);
                         if (datumKorrekt == true) {
+                            //Kollar så att telefonnumret endast består av siffror
                             boolean telefonKorrekt = Validering.endastSiffror(telefon);
                             if (telefonKorrekt == true) {
+                                //Kollar så namnet endast består av bokstäver
                                 boolean namnKorrekt = Validering.arStringEndastBokstaver(namn);
                                 if (namnKorrekt == true) {
+                                    //Kollar så lösenordet inte är för långt max 6 tecken
                                     boolean losenordKorrekt = Validering.kollaLosenordsLangd(losenord);
-                                    if (losenordKorrekt == false)
-                                    {
+                                    if (losenordKorrekt == false) {
 
-                                    
-                                    String omrade = cbPlats.getSelectedItem().toString().toLowerCase();
+                                        String omrade = cbPlats.getSelectedItem().toString().toLowerCase();
 
-                                    String jamforNamn = "select namn from agent";
-                                    String omradeId = "Select omrades_id from omrade where benamning='" + omrade + "'";
+                                        String jamforNamn = "select namn from agent";
+                                        String omradeId = "Select omrades_id from omrade where benamning='" + omrade + "'";
 
-                                    try {
+                                        try {
 
-                                        agenter = idb.fetchColumn(jamforNamn);
-                                        String omradeID = idb.fetchSingle(omradeId);
-                                        String adminStatus = "";
-                                        
-                                        if (jRadioButtonJa.isSelected())
-                                        {
-                                            adminStatus = "J";
-                                        }
-                                        else if (jRadioButtonNej.isSelected())
-                                        {
-                                            adminStatus = "N";
-                                        }
-                                            
+                                            agenter = idb.fetchColumn(jamforNamn);
+                                            String omradeID = idb.fetchSingle(omradeId);
+                                            String adminStatus = "";
 
-                                        String insertAgent = "insert into agent values (" + id + ",'" + namn + "','" + telefon + "','" + anstDatum + "','" + adminStatus + "','" + losenord + "'," + omradeID + ")";
-                                        
-
-                                        for (String namnet : agenter) {
-
-                                            if (namnet.toLowerCase().equals(namn.toLowerCase())) {
-                                                namnetAnvands = true;
-                                                JOptionPane.showMessageDialog(null, "Namnet finns redan registrerat vänligen ange ett annat!");
-                                                break;
+                                            if (jRadioButtonJa.isSelected()) {
+                                                adminStatus = "J";
+                                            } else if (jRadioButtonNej.isSelected()) {
+                                                adminStatus = "N";
                                             }
-                                        }
 
-                                        if (namnetAnvands == false) {
+                                            String insertAgent = "insert into agent values (" + id + ",'" + namn + "','" + telefon + "','" + anstDatum + "','" + adminStatus + "','" + losenord + "'," + omradeID + ")";
 
-                                            
+                                            for (String namnet : agenter) {
+
+                                                if (namnet.toLowerCase().equals(namn.toLowerCase())) {
+                                                    namnetAnvands = true;
+                                                    JOptionPane.showMessageDialog(null, "Namnet finns redan registrerat vänligen ange ett annat!");
+                                                    break;
+                                                }
+                                            }
+
+                                            if (namnetAnvands == false) {
+
                                                 idb.fetchSingle(insertAgent);
-                                                
+
                                                 JOptionPane.showMessageDialog(null, namn + " registrerades!");
                                                 txtAnstDatum.setText("");
                                                 txtAgentLosen.setText("");
@@ -306,74 +302,61 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
                                                 txtAgentTelefon.setText("");
                                                 jRadioButtonNej.setSelected(true);
                                                 cbPlats.setSelectedIndex(0);
-                                                
+
                                                 slumpId();
 
-                                            
+                                            }
 
+                                        } catch (InfException ie) {
+                                            System.out.println("Något gick fel " + ie);
                                         }
-                                        
-                                    } catch (InfException ie) {
-                                        System.out.println("Något gick fel " + ie);
-                                    }
-                                    
 
-                                }
-                                    else 
-                                    {
+                                    } else {
                                         JOptionPane.showMessageDialog(null, "Lösenordet är för långt! Skriv ett nytt med max 6 tecken!");
                                     }
+                                }
                             }
                         }
                     }
                 }
-                }
             }
         }
-    
-            
-                
+
+
     }//GEN-LAST:event_btnLaggTillAgentActionPerformed
 
- //Ger ett id till alien som är ett högre än det nuvarande max som finns!   
-   public void slumpId(){
-    String maxID = "Select max(agent_ID) from agent";
-   try{ 
-    String hogstaID = idb.fetchSingle(maxID);
-    int nyID = Integer.parseInt(hogstaID);  
-    int nyasteId = nyID +1;
-    lblID.setText(""+ nyasteId +"");
-   }
-   catch(InfException e){
-       JOptionPane.showMessageDialog(null, e);
-   }
-}
-//Fyller "Agent" comboboxen med de agenter man kan ha som kontaktperson.
- 
+    //Ger ett id till alien som är ett högre än det nuvarande max som finns!   
+    public void slumpId() {
+        String maxID = "Select max(agent_ID) from agent";
+        try {
+            String hogstaID = idb.fetchSingle(maxID);
+            int nyID = Integer.parseInt(hogstaID);
+            int nyasteId = nyID + 1;
+            lblID.setText("" + nyasteId + "");
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
-       
-    
 // Fyller "Plats"comboboxen med de platser som finns.
- public static void laggTillOmrade(JComboBox cb) {
+    public static void laggTillOmrade(JComboBox cb) {
         String omradeFraga = "SELECT benamning FROM omrade";
 
         ArrayList<String> omraden;
 
         try {
             omraden = idb.fetchColumn(omradeFraga);
-             for (String a : omraden) {
-            cb.addItem(a);
-        }
-        } 
-        catch (InfException ex) {
-           JOptionPane.showMessageDialog(null, "Något gick fel");
-           System.out.println(ex);
-           
+            for (String a : omraden) {
+                cb.addItem(a);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println(ex);
+
         }
 
-       
     }
- 
+
     private void txtAgentLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgentLosenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAgentLosenActionPerformed
@@ -382,7 +365,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
         HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void jRadioButtonJaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonJaActionPerformed

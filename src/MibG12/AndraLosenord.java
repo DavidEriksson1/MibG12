@@ -179,6 +179,8 @@ public class AndraLosenord extends javax.swing.JFrame {
             {
                 char[] c = nyttLosenord.getPassword();
                 String nyttLosen = new String(c);
+                
+                //Här valideringsmetod som kollar att lösenordet inte är för långt
                 boolean losenordForLangt = Validering.kollaLosenordsLangd(nyttLosen);
 
                 if (losenordForLangt == false) 

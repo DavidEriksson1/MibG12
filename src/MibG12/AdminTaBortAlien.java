@@ -116,11 +116,12 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
             String namn = idb.fetchSingle(namnFraga);
             String id = idb.fetchSingle(idFraga);
             System.out.println(id);
-
+            
+            //Validering som kollar att rutan för den alien man ska radera inte är tom
             boolean textRutaTom = Validering.textRutaArTom(alienAttRadera);
 
             if (textRutaTom == false) {
-
+                //Validering som kollar så att den alien man vill radera faktiskt finns i systemet
                 alienFinns = Validering.stringFinns(namn, alienAttRadera);
 
                 if (alienFinns == true) {

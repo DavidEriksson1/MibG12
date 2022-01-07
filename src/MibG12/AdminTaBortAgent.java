@@ -163,12 +163,14 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
             String svar1 = idb.fetchSingle(fraga1);
             String svar2 = idb.fetchSingle(fraga2);
             
-            
+           //Validering som kollar så agenten man vill radera faktiskt finns i systemet 
            boolean agentFinns = Validering.stringFinns(svar1, agentAttRadera);
+           //Validering som kollar så den ny kontakt agenten finns i systemet
            boolean agentFinns2 = Validering.stringFinns(svar2, nyAgent);
             
-            
+            //Validering som kollar så radera agentrutan inte är tom
             boolean textRutaTom = Validering.textRutaArTom(agentAttRadera);
+            //Validering som kollar så att ny agentrutan inte är tom 
             boolean textRutaTom2 = Validering.textRutaArTom(nyAgent);
             
             
