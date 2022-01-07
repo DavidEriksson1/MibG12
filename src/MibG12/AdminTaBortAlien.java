@@ -102,7 +102,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-// Raderar en den alien man skriver in i textrutan från alien tabellen samt dess tillhörande rastabell
+// Raderar en den alien man skriver in i textrutan från alien tabellen samt dess tillhörande ras-tabell
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
         
         boolean alienFinns = false;

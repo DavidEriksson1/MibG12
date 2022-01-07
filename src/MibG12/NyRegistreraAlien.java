@@ -227,7 +227,7 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
    
-//MEtod för att lägga till/registrera en ny alien             
+//Metod för att lägga till/registrera en ny alien             
     private void btnLaggTillAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAlienActionPerformed
         // Lägg till ny alien med inmatad information
         ArrayList<String> utomjordingar;

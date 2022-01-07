@@ -9,8 +9,8 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
- * @author eriknilsson
+ *  Klass för att kunna ändra lösenord 
+ * @author 
  */
 public class AndraLosenord extends javax.swing.JFrame {
     private static InfDB idb;
@@ -18,7 +18,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     private String nuvarandeAgent;
     private boolean anvandareArUtomjording;
     /**
-     * Creates new form AndraLosenAlien
+     * Konstruktor för ÄndraLösenordsklassen
      */
     public AndraLosenord(InfDB idb, boolean anvandareArUtomjording) {
         initComponents();
@@ -149,7 +149,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     private void nyttLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyttLosenordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nyttLosenordActionPerformed
-
+// Tillbakaknapp som leder till utomjordingsmenyn eller agentmenyn beroende på vem som är inloggad 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
        
        if (anvandareArUtomjording == true)
@@ -183,11 +183,18 @@ public class AndraLosenord extends javax.swing.JFrame {
 
                 if (losenordForLangt == false) 
                 {
-                    
-                    setLosenord(nyttLosen);
+                   if(anvandareArUtomjording == true){ 
+                    setLosenordAlien(nyttLosen);
                     gammaltLosenord1.setText("");
                     gammaltLosenord2.setText("");
                     nyttLosenord.setText("");
+                   }
+                   else{
+                      setLosenordAgent(nyttLosen);
+                    gammaltLosenord1.setText("");
+                    gammaltLosenord2.setText("");
+                    nyttLosenord.setText(""); 
+                   }
                 } 
                 else 
                 {
@@ -206,7 +213,7 @@ public class AndraLosenord extends javax.swing.JFrame {
             
      
     }//GEN-LAST:event_btnAndraLosenActionPerformed
-
+// Visar tecken på nya lösenords textfältet så användaren kan se vad den skrivit in för nytt lösen
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
        
         if (jCheckBox1.isSelected()) 
@@ -219,17 +226,18 @@ public class AndraLosenord extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+    //Sätter vem som är den nuvarande utomjordingen inloggad, förutsatt att det är en utomjording inloggad
     public void setNuvarandeUtomjording(String namn)
     {
         nuvarandeUtomjording = namn;
     }
-    
+    //Sätter vem som är den nuvarande agenten inloggad, förutsatt att det är en agent inloggad
     public void setNuvarandeAgent(String namn)
     {
         nuvarandeAgent = namn;
     }
     
-    
+ //Metod som kollar att båda de gamla lösenord textfälten matchar varandra   
     public boolean losenordKorrekt()
     {
         boolean losenordKorrekt = false;
@@ -251,14 +259,32 @@ public class AndraLosenord extends javax.swing.JFrame {
         
         return losenordKorrekt;
     }
-    
-    public boolean setLosenord (String losenord)
+ // Metod som uppdaterar lösenordet för utomjordingar  
+    public boolean setLosenordAlien (String losenord)
     {
         boolean losenAndrat = false;
         
         try {
             System.out.println(nuvarandeUtomjording);
             String fraga = "UPDATE Alien set Losenord = '" + losenord + "' where Namn = '" + nuvarandeUtomjording + "'";
+            idb.fetchSingle(fraga);
+            JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
+            losenAndrat = true;
+        }
+        catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println(ex + " har inträffat!");
+        }
+        return losenAndrat;
+    }
+  //MEtod som sätter nytt lösenord för agenter  
+    public boolean setLosenordAgent (String losenord)
+    {
+        boolean losenAndrat = false;
+        
+        try {
+            System.out.println(nuvarandeAgent);
+            String fraga = "UPDATE Agent set Losenord = '" + losenord + "' where Namn = '" + nuvarandeAgent + "'";
             idb.fetchSingle(fraga);
             JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
             losenAndrat = true;

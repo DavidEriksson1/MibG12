@@ -179,7 +179,7 @@ public class AdminKontorsChef extends javax.swing.JFrame {
         
         
     }
-
+//Metod för kontrollera om namnet redan finns
     private boolean kontrolleraNamn(String agentNamn) {
         boolean namnFinns = false;
 
@@ -203,7 +203,7 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnOkActionPerformed
-
+// Metod för att komma tillbaka till HuvudMenyAdmin
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // Tillbaka till huvudmeny admin
         HuvudMenyAdmin huvudMenyAdmin = new HuvudMenyAdmin(idb, agent);

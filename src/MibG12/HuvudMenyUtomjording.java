@@ -9,14 +9,14 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
- * @author eriknilsson
+ * Klass för huvudmeny dit utomjordingar kommer när de har loggat in
+ * @author 
  */
 public class HuvudMenyUtomjording extends javax.swing.JFrame {
         private static InfDB idb;
         private String nuvarandeUtomjording;
     /**
-     * Creates new form HuvudMenyUtomjording
+     * Konstruktor för HuvudMenyUtomjording
      */
     public HuvudMenyUtomjording(InfDB idb, String nuvarandeUtomjording) {
         initComponents();
@@ -37,7 +37,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
         btnAndraLosen = new javax.swing.JButton();
         btnVisaChef = new javax.swing.JButton();
         lblVisaChef = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLoggaUt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,10 +59,10 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
 
         lblVisaChef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jButton1.setText("Logga Ut");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLoggaUt.setText("Logga Ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoggaUtActionPerformed(evt);
             }
         });
 
@@ -80,7 +80,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
                         .addComponent(lblVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
                 .addGap(247, 247, 247)
@@ -94,7 +94,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
                 .addComponent(lblValkommen)
                 .addGap(127, 127, 127)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -105,13 +105,14 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+// Metod för att logga ut från HuvudMenyUtomjording och komma till InloggningsTyp
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
         InloggningsTyp iT = new InloggningsTyp(idb);
         iT.setVisible(true);
         dispose();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoggaUtActionPerformed
+// Metod som formar välkomstmeddelande för vilken utomjording som loggat in    
     public void setValkommenUtomjording()
     {
         
@@ -119,9 +120,11 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
     
     
 }
+// Metod som sätter vilken utomjording som har loggat in
     public void setNuvarandeUtomjording(String namn){
         nuvarandeUtomjording = namn;
     }
+//Metod som visar vem områdeschefen är för det område som den nuvarande utomjordingen befinner sig i    
     private void btnVisaChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaChefActionPerformed
         // TODO add your handling code here:
         
@@ -142,7 +145,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
           System.out.println(e);
       }
     }//GEN-LAST:event_btnVisaChefActionPerformed
-
+// Metod som öppnar Andra Lösenords fönsret då man trycker på knappen
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
         
         AndraLosenord aLA = new AndraLosenord(idb, true);
@@ -157,8 +160,8 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
+    private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnVisaChef;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblValkommen;
     private javax.swing.JLabel lblVisaChef;
     // End of variables declaration//GEN-END:variables
