@@ -192,7 +192,10 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
             dispose();
             
         }
-        if (i == 5){
+        if (i == 6){
+            NyRegistreraAlien nRA = new NyRegistreraAlien(idb, nuvarandeAgent, false);
+            nRA.setVisible(true);
+            dispose();
             
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed

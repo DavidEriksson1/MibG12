@@ -247,8 +247,6 @@ public class AndraLosenord extends javax.swing.JFrame {
         }
         else {
             lblStatus.setText("Fel Lösenord");
-            System.out.println(losen1);
-            System.out.println(losen2);
         }
         
         return losenordKorrekt;
@@ -266,7 +264,7 @@ public class AndraLosenord extends javax.swing.JFrame {
             losenAndrat = true;
         }
         catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Lösenordet får max vara 6 tecken!");
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println(ex + " har inträffat!");
         }
         return losenAndrat;

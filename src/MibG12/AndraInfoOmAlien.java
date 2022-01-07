@@ -17,10 +17,10 @@ import oru.inf.InfException;
  */
 public class AndraInfoOmAlien extends javax.swing.JFrame {
 
-    InfDB idb;
-    String nuvarandeAgent;
-    String nuvarandeUtomjording;
-    VisaInfoOmAlien visaInfoOmAlien;
+    private InfDB idb;
+    private String nuvarandeAgent;
+    private String nuvarandeUtomjording;
+    private VisaInfoOmAlien visaInfoOmAlien;
     
     /**
      * Creates new form AndraInfoOmAlien
@@ -30,6 +30,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.nuvarandeUtomjording = nuvarandeUtomjording;
+        
         visaInfoOmAlien = new VisaInfoOmAlien (idb, nuvarandeAgent);
         visaInfoOmAlien.showInfo(nuvarandeAgent);
         txtRasExtra.setVisible(false);
