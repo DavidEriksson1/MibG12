@@ -99,10 +99,11 @@
     <Component class="javax.swing.JComboBox" name="jComboAlien">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Nyregistrera"/>
-            <StringItem index="1" value="&#xc4;ndra info"/>
-            <StringItem index="2" value="Ta bort"/>
+          <StringArray count="4">
+            <StringItem index="0" value="V&#xe4;lj:"/>
+            <StringItem index="1" value="Nyregistrera"/>
+            <StringItem index="2" value="&#xc4;ndra info"/>
+            <StringItem index="3" value="Ta bort"/>
           </StringArray>
         </Property>
       </Properties>

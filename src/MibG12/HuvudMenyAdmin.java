@@ -51,7 +51,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
 
         jLabel4.setText("Hantera utrustning");
 
-        jComboAlien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nyregistrera", "Ändra info", "Ta bort" }));
+        jComboAlien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Nyregistrera", "Ändra info", "Ta bort" }));
         jComboAlien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboAlienActionPerformed(evt);
@@ -130,11 +130,11 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         // Combobox med alternativ över vad admin kan göra med alien-tabellen
         int i = jComboAlien.getSelectedIndex();
         
-        if(i == 0){
+        if(i == 1){
             new NyRegistreraAlien(idb, agent).setVisible(true);
             dispose();
         }
-        else if(i == 2){
+        else if(i == 3){
              new AdminTaBortAlien(idb, agent).setVisible(true); 
              dispose();
                     

@@ -12,7 +12,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author 46737
+ * @author 
  */
 public class NyRegistreraAgent extends javax.swing.JFrame {
 
@@ -377,7 +377,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
     private void txtAgentLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgentLosenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAgentLosenActionPerformed
-
+// Metod för att gå tillbaka till HuvudMenyAdmin
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
         hMA.setVisible(true);

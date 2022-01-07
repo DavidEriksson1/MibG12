@@ -9,14 +9,14 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
- * @author eriknilsson
+ * Klass för att ta bort en agent som administratör
+ * @author 
  */
 public class AdminTaBortAgent extends javax.swing.JFrame {
     private static InfDB idb;
     private static String nuvarandeAgent;
     /**
-     * Creates new form AdminTaBortAgent
+     * Konstruktior för att ta bort agent 
      */
     public AdminTaBortAgent(InfDB idb,String nuvarandeAgent) {
         initComponents();
@@ -124,17 +124,15 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+// Metod för tillbaka knappen som går tillbaka till HuvudMenyAdmin
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
         HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
         
     }//GEN-LAST:event_btnTillbakaActionPerformed
-
+// Metoden för att radera en agent ur systemet
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
-        // TODO add your handling code here:
        
         
         String agentAttRadera = txtAgentNamn.getText();

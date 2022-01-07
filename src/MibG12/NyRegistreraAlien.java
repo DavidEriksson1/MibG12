@@ -11,15 +11,15 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
- * @author 46737
+ * Klass för att registrear en ny alien
+ * @author 
  */
 public class NyRegistreraAlien extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String nuvarandeAgent;
     /**
-     * Creates new form NyRegistreraAlien
+     * Konstruktor
      */
     public NyRegistreraAlien(InfDB idb, String nuvarandeAgent) {
         initComponents();
@@ -226,7 +226,7 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
    
-            
+//MEtod för att lägga till/registrera en ny alien             
     private void btnLaggTillAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAlienActionPerformed
         // Lägg till ny alien med inmatad information
         ArrayList<String> utomjordingar;
