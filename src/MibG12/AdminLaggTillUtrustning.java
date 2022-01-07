@@ -4,7 +4,10 @@
  */
 package MibG12;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -51,6 +54,11 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
         jLabel1.setText("Vänligen mata in angivna uppgifter för att lägga till ny utrustning");
 
         btnLaggTillFordon.setText("Lägg till");
+        btnLaggTillFordon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillFordonActionPerformed(evt);
+            }
+        });
 
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +156,7 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
             hMA.setVisible(true);
             dispose();
         }
-        
+
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void txtFieldUtrustningsNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldUtrustningsNamnActionPerformed
@@ -179,11 +187,94 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
     }//GEN-LAST:event_comboUtrustningsTypActionPerformed
 
-    public void setAgent()
+    private void btnLaggTillFordonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillFordonActionPerformed
+        // Metod för att lägga till ny utrustning i systemet
+
+        boolean utrustningFinns = false;
+
+        try {
+            String utrustningsNamn = txtFieldUtrustningsNamn.getText();
+            String utrustningAnvander = txtFieldKaliber.getText();
+
+            boolean namnetFinns = existerandeUtrustning(utrustningsNamn);
+            int utrustningsID = nyttID();
+
+            boolean textRutaArTom1 = Validering.textRutaArTom(utrustningsNamn);
+            
+            String laggTillUtrustning = "insert into utrustning values (" + utrustningsID + ",'" + utrustningsNamn + "')";
+            
+            String utrustningsTyp = comboUtrustningsTyp.getSelectedItem().toString();
+            
+            String laggTillUtrustningsSort = "insert into " + utrustningsTyp + " values (" + utrustningsID + ",'" + utrustningAnvander + "')";
+            
+
+            if (textRutaArTom1 == false) {
+                boolean textRutaArTom2 = Validering.textRutaArTom(utrustningAnvander);
+                
+                if(textRutaArTom2 == false){
+                    
+                
+
+                if (namnetFinns == false) {
+                    idb.fetchSingle(laggTillUtrustning);
+                    idb.fetchSingle(laggTillUtrustningsSort);
+                    JOptionPane.showMessageDialog(null, "Utrustningen har lagts till!");
+                    
+                }
+                else{
+                JOptionPane.showMessageDialog(null, "Utrustning med namnet " + utrustningsNamn + " finns redan!");
+            }
+                }
+            }
+        } catch (InfException ie) {
+            System.out.println(ie);
+
+        }
+
+
+    }//GEN-LAST:event_btnLaggTillFordonActionPerformed
+
+    public Boolean existerandeUtrustning(String uNamn)
     {
-        anvandareArAdmin = false;
+        boolean namnetFinns = false;
+        try{
+            
+        
+        String existerandeUtrustning = "select benamning from utrustning";
+        ArrayList<String> utrustning = idb.fetchColumn(existerandeUtrustning);
+        
+        for(String namn : utrustning){
+            if(namn.toLowerCase().equals(uNamn.toLowerCase())){
+                namnetFinns = true;
+                break;
+            }
+        }
+        
+        }
+        catch(InfException ie){
+            System.out.println(ie);
+        }
+        return namnetFinns;
     }
     
+    
+    public int nyttID() {
+        String maxID = "select max(Utrustnings_ID) from utrustning";
+        int nyasteID = 0;
+        try {
+            String hogstaID = idb.fetchSingle(maxID);
+            int nyID = Integer.parseInt(hogstaID);
+            nyasteID = nyID + 1;
+        } catch (InfException ie) {
+            JOptionPane.showMessageDialog(null, ie);
+        }
+        return nyasteID;
+    }
+
+    public void setAgent() {
+        anvandareArAdmin = false;
+    }
+
     /**
      * @param args the command line arguments
      */

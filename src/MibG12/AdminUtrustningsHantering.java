@@ -165,9 +165,9 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
                     
 
                     if (valdTyp.equals(hittaTyp)) {
-                        idb.fetchSingle(taBortFraga);
-                        idb.fetchSingle(taBortUtrustning);
+                        idb.fetchSingle(taBortFraga);            
                         idb.fetchSingle(taBortUtrustningsID);
+                        idb.fetchSingle(taBortUtrustning);
                         lblHarTagitsBort.setText(utrustning + " har tagits bort!");
 
                     }
