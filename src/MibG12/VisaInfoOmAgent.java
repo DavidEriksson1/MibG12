@@ -11,8 +11,8 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
- * @author Victo
+ * Klaas för att kunna visa info om en agent 
+ * @author 
  */
 public class VisaInfoOmAgent extends javax.swing.JFrame {
 
@@ -23,7 +23,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
   private boolean anvandareArAlien;
     
     /**
-     * Creates new form AgentInfo
+     * Konstruktor för VisaInfoOmAgent
      */
     public VisaInfoOmAgent(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin, String nuvarandeUtomjording,boolean anvandareArAlien) {
         initComponents();
@@ -196,18 +196,18 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//Metod för att se Om användare är admin, isåfall sätts den till true
     public void setAnvandareArAdmin ()
     {
         anvandareArAdmin = true;
     }
-    
+ //Metod för att se Om användare är admin, ifall det är en utomjording som ser info sätts den till false   
     public void setHuvudMenyUtomjording ()
     {
         
         anvandareArAdmin = false;
     }
-    
+ // Metod för att gå tillbaka till hvudmenyadmin om användaren är admin, annars tillbaka till utomjording   
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if (anvandareArAdmin == true)
@@ -226,24 +226,31 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+//Knapp för att gå tillbaka till huvudmenyadmin eller utomjording beroende på vem som är inloggad
     private void btnTillbakaTillHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaTillHMActionPerformed
+       
+        if(anvandareArAlien == false){
         HuvudMenyAdmin hMA = new HuvudMenyAdmin (idb, nuvarandeAgent);
         hMA.setVisible(true);
-        dispose();
+        dispose();}
+        else
+        {
+            new HuvudMenyUtomjording(idb,nuvarandeUtomjording).setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_btnTillbakaTillHMActionPerformed
-
+//Metod för att sätta nuvarande agent
     public void setNuvarandeAgent (String nuvarandeAgent)
     {
         this.nuvarandeAgent = nuvarandeAgent;
     }
-    
+//Metod för att sätta nuvarande utomjording
     public void setNuvarandeUtomjording (String nuvarandeUtomjording)
     {
         this.nuvarandeUtomjording = nuvarandeUtomjording;
         anvandareArAlien = true;
     }
-          
+//Metod för att visa info, visar olika info beroende på om användaren är utomjording eller admin          
     public void setInfo (String namn)
     {
         
@@ -263,7 +270,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
        lblAdminStatus.setText(visaAdminStatus(namn));   
         }
     }
-    
+//Metod för att visa namn på en viss agent    
     public String visaNamn (String namn)
     {
         String namnet = "";
@@ -281,7 +288,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         
         return namnet;
     }
-    
+ //Metod för att visa anstälningsdatum   
     public String visaAnstallningsDatum (String namn)
     {
         String regDatum = "";
@@ -299,7 +306,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         
         return regDatum;
     }
-    
+//Metod för att visa vilket område en agent är tillsatt    
     public String visaPlats (String namn)
     {
         String plats = "";
@@ -317,7 +324,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         
         return plats;
     }
-    
+//Metod för att visa telefon nummer för en agent    
     public String visaTelefon (String namn)
     {
         String telefon = "";
@@ -335,7 +342,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         
         return telefon;
     }
-    
+//Metod för att visa lösenord för en agent    
     public String visaLosenord (String namn)
     {
         String losenord = "";
@@ -353,7 +360,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         
         return losenord;
     }
-    
+ //Metod för att visa id för en agent   
     public String visaID (String namn)
     {
         String iD = "";
@@ -371,7 +378,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         
         return iD;
     }
-    
+//Metod för att visa ansvarig agent    
     public String visaAnsvarigAgent (String namn)
     {
         String Agent = "";
@@ -389,7 +396,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         
         return Agent;
     }
-    
+//Metod för att visa adminstatus för en agent    
     public String visaAdminStatus (String status)
     {
       String adminStatus = "";
@@ -408,7 +415,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         
         return adminStatus;  
     }
-    
+ //Metod som visar tillbaka till huvudmeny knappen   
     public void visaTillbakaTillHMknapp()
     {
         btnTillbakaTillHM.setVisible(true);
