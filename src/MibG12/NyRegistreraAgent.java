@@ -14,14 +14,14 @@ import oru.inf.InfException;
  *
  * @author 46737
  */
-public class NyRegistreraAlien extends javax.swing.JFrame {
+public class NyRegistreraAgent extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String nuvarandeAgent;
     /**
      * Creates new form NyRegistreraAlien
      */
-    public NyRegistreraAlien(InfDB idb, String nuvarandeAgent) {
+    public NyRegistreraAgent(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
@@ -180,10 +180,11 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
                 .addComponent(lblNyRegistrera)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(cbAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(cbAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

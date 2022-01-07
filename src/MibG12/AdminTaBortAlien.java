@@ -16,6 +16,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
     
     private static InfDB idb;
     private String nuvarandeAgent;
+    private VisaInfoOmAlien vIOA;
     
 
     /**
@@ -26,6 +27,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
+        vIOA = new VisaInfoOmAlien (idb, nuvarandeAgent);
     }
 
     /**
@@ -103,26 +105,49 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean alienFinns = false;
         try{
-            String alienAttRadera = txtAlienNamn.getText();
+            String alienAttRadera = txtAlienNamn.getText().toLowerCase();
             
             
-            String namn = "Select namn from Alien where namn ='" + alienAttRadera + "'";
+            String idFraga = "Select alien_id from Alien where namn ='" + alienAttRadera + "'";
+            String namnFraga = "Select namn from Alien where namn ='" + alienAttRadera + "'";
             String radera = "delete from Alien where namn = '" + alienAttRadera + "'";
             
-            String svar1 = idb.fetchSingle(namn);
-            System.out.println(namn);
+            String namn = idb.fetchSingle(namnFraga);
+            String id = idb.fetchSingle(idFraga);
+            System.out.println(id);
             
-            alienFinns = Validering.stringFinns(svar1, alienAttRadera);
+            
             boolean textRutaTom = Validering.textRutaArTom(alienAttRadera);
              
              if(textRutaTom == false){
                  
-             
+             alienFinns = Validering.stringFinns(namn, alienAttRadera);
             
             if(alienFinns == true){
+                
+                String ras = vIOA.visaRas(alienAttRadera).toLowerCase();
+                
+                if (ras.equals("boglodite"))
+                {
+                    String fraga = "delete from boglodite where alien_id =" + id;
+                    idb.fetchSingle(fraga);
+                }
+                else if (ras.equals("squid"))
+                {
+                    String fraga = "delete from squid where alien_id =" + id;
+                    idb.fetchSingle(fraga);
+                }
+                else if (ras.equals("worm"))
+                {
+                    String fraga = "delete from worm where alien_id =" + id;
+                    idb.fetchSingle(fraga);
+                }
+                
                 String svar2 = idb.fetchSingle(radera);
                 JOptionPane.showMessageDialog(null, alienAttRadera + " raderades ur systemet!");
                 txtAlienNamn.setText("");
+                
+                
             }
             
             else{
