@@ -165,7 +165,7 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
                             aIOA.setVisible(true);
                             dispose();
                         }
-                    else if (visaBaraInfo == false && anvandareArAdmin == false)
+                    else if (visaBaraInfo == true && anvandareArAdmin == false)
                     {
                         VisaInfoOmAlien vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent, false);
                         vIOA.setNuvarandeUtomjording(namn);

@@ -244,7 +244,6 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         }
         else
         {
-        
             AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, false);
             vAFAHM.setVisible(true);
             vAFAHM.visaBaraInfo();

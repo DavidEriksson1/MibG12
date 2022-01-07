@@ -175,7 +175,7 @@ public class AndraLosenord extends javax.swing.JFrame {
 
         if (gammaltLosenKorrekt == true) 
         {
-            if (nyttLosenord != gammaltLosenord2) 
+            if (nyttLosenord!=gammaltLosenord2 && nyttLosenord!=gammaltLosenord1) 
             {
                 char[] c = nyttLosenord.getPassword();
                 String nyttLosen = new String(c);
