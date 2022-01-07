@@ -15,6 +15,9 @@ import oru.inf.InfException;
 /**
  *
  * @author Victo
+ * 
+ * JFrame klass för att visa utomjordingar som finns inom en viss plats.
+ * Klassen tar in ett parametervärde som den plats man vill använda.
  */
 public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
 
@@ -104,37 +107,44 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Actionperfomedmetod som visar alla utomjordingar inom vald plats. 
+     * Validerar så att textrutan har ett värde, är endast av bokstäver samt att platsen finns i databasen.
+     */
+    
+    
     private void btnVisaAlienPaPlatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaAlienPaPlatsActionPerformed
         
         txtAreaVisaInfo.setText("");
         ArrayList<String> utomjordingar;
         String plats = txtValdPlats.getText();
         boolean textRutaArTom = Validering.textRutaArTom(plats);
-        boolean platsFinns = kollaPlats(plats);
-        boolean endastBokstaver = Validering.arStringEndastBokstaver(plats);
 
         if (textRutaArTom == false) {
+            boolean endastBokstaver = Validering.arStringEndastBokstaver(plats);
 
             if (endastBokstaver == true) {
+                boolean platsFinns = kollaPlats(plats);
 
                 if (platsFinns == true) {
                     try {
+                        /**
+                         * Sql fråga för att visa alla utomjordingar på vald
+                         * plats.
+                         */
                         String fraga = "Select namn from alien where plats = (Select plats_id from plats where benamning = '" + plats + "')";
                         System.out.println(fraga);
                         utomjordingar = idb.fetchColumn(fraga);
-                        
-                        if (utomjordingar.isEmpty())
-                        {
+
+                        if (utomjordingar.isEmpty()) {
                             txtAreaVisaInfo.append("Det finns ingen utomjording i" + plats + "! :(");
                             txtValdPlats.setText("");
-                        }
-                        else
-                        {
+                        } else {
                             txtAreaVisaInfo.append("Utomjordingar i: " + plats + "\n");
                             txtAreaVisaInfo.append("\n");
-                        for (String namn : utomjordingar) {
-                            txtAreaVisaInfo.append(namn + "\n");
-                        }
+                            for (String namn : utomjordingar) {
+                                txtAreaVisaInfo.append(namn + "\n");
+                            }
                             txtValdPlats.setText("");
                         }
                     } catch (InfException ex) {
@@ -147,15 +157,12 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                     txtValdPlats.setText("");
                 }
 
-            }
-            else 
-            {
+            } else {
                 txtValdPlats.setText("");
             }
 
         }
-        
-        
+   
     }//GEN-LAST:event_btnVisaAlienPaPlatsActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -165,6 +172,14 @@ public class VisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    /**
+     * Metod som kollar att inkommande plats finns i databasen.
+     * Retunerar true eller false beroende på om platsen finns eller inte.
+     * @param plats
+     * @return platsFinns
+     */
+    
     public boolean kollaPlats (String plats)
     {
         boolean platsFinns = false;

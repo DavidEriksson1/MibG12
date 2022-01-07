@@ -18,16 +18,16 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String nuvarandeAgent;
+    private boolean anvandareArAdmin;
     /**
      * Konstruktor
      */
-    public NyRegistreraAlien(InfDB idb, String nuvarandeAgent) {
+    public NyRegistreraAlien(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        
+        this.anvandareArAdmin = anvandareArAdmin;
         laggTillAgent(cbAgent);
-        
         laggTillPlats(cbPlats);
         txtRasVal.setVisible(false);
         slumpId();
@@ -180,10 +180,11 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
                 .addComponent(lblNyRegistrera)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(cbAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(cbAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -219,7 +220,7 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLaggTillAlien)
                     .addComponent(btnTillbaka))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -401,9 +402,19 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAlienLosenordActionPerformed
  // Går tillbaka till huvudmeny för admin.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
-        hMA.setVisible(true);
-        dispose();
+        
+        if (anvandareArAdmin == true)
+        {
+            HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
+            hMA.setVisible(true);
+            dispose();
+        }
+        else
+        {
+            HuvudMenyAgent hMA = new HuvudMenyAgent(idb, nuvarandeAgent);
+            hMA.setVisible(true);
+            dispose();
+        }
 
     }//GEN-LAST:event_btnTillbakaActionPerformed
 ///Metod som gör så antal armar/boogies bara syns för respektive ras när den ska registreras
