@@ -12,15 +12,15 @@ import javax.swing.JOptionPane;
 import oru.inf.InfException;
 
 /**
- *
- * @author Victo
+ *JFrame som visar information och har möjlighet att ändra information om enskild agent.
+ * 
  */
 public class AndraInfoOmAgent extends javax.swing.JFrame {
 
-    InfDB idb;
-    String nuvarandeAgent;
-    String nuvarandeUtomjording;
-    VisaInfoOmAgent visaInfoOmAgent;
+    private InfDB idb;
+    private String nuvarandeAgent;
+    private String nuvarandeUtomjording;
+    private VisaInfoOmAgent visaInfoOmAgent;
     
     /**
      * Creates new form AndraInfoOmAlien
@@ -338,6 +338,11 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    /**
+     * Metod som ändrar namnet på vald agent.
+     * 
+     */
+    
     private void btnAndraNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraNamnActionPerformed
         
         String nyttNamn = txtNamn.getText();
@@ -392,6 +397,11 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAndraNamnActionPerformed
 
+    /**
+     * Metod som ändrar anställningsdatum på vald agent.
+     * 
+     */
+    
     private void btnAndraRegDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraRegDatumActionPerformed
 
         String gammaltDatum = lblRegDatum.getText();
@@ -425,6 +435,11 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAndraRegDatumActionPerformed
 
+    /**
+     * Metod som ändrar lösenord på vald agent.
+     * 
+     */
+    
     private void btnAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenordActionPerformed
         
         String nyttLosenord = txtLosenord.getText();
@@ -464,6 +479,11 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAndraLosenordActionPerformed
 
+    /**
+     * Metod som ändrar telefonnummer på vald agent.
+     * 
+     */
+    
     private void btnAndraTelefonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraTelefonActionPerformed
         
         String nyttTelefonNummer = txtTelefon.getText();
@@ -505,6 +525,11 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
           
     }//GEN-LAST:event_btnAndraTelefonActionPerformed
 
+    /**
+     * Metod som ändrar plats på vald agent.
+     * 
+     */
+    
     private void btnAndraPlatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraPlatsActionPerformed
         
         String nyPlats = txtPlats.getText();
@@ -550,6 +575,11 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLosenordActionPerformed
 
+    /**
+     * Metod som ändrar adminstatus på vald agent.
+     * 
+     */
+    
     private void btnAndraAdminStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraAdminStatusActionPerformed
         
         String nyAdmin = jComboBoxAndraAdmin.getSelectedItem().toString().substring(0,1).toLowerCase();
@@ -587,21 +617,40 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboBoxAndraAdminActionPerformed
 
+    /**
+     * Metod som ändrar nuvarandeAgent fältet till valt parametervärde på vald agent.
+     * 
+     */
+    
     public void setNuvarandeAgent (String nuvarandeAgent)
     {
         this.nuvarandeAgent = nuvarandeAgent;
     }
+    
+    /**
+     * Metod som ändrar nuvarandeUtomjording fältet till valt parametervärde på vald agent.
+     * 
+     */
     
     public void setNuvarandeUtomjording (String utomjording)
     {
         nuvarandeUtomjording = utomjording;
     }
     
+    /**
+     * Metod som returnerar värdet på nuvarandeAgent fältet.
+     * 
+     */
+    
     public String visaNuvarandeUtomjording()
     {
         return nuvarandeUtomjording;
     }
     
+    /**
+     * Metod som ändrar värdet på samtligalabels hos vald agent fältet.
+     * 
+     */
     
     public void setInfo (String namn)
     {
@@ -613,6 +662,11 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
        lblAdminStatus.setText(visaInfoOmAgent.visaAdminStatus(namn));
        
     }
+    
+    /**
+     * Metod som kollar så att värdet på inkommande parametervärdet inte är detsamma som mågot annat värde i agent databastabellen.
+     * 
+     */
     
     public boolean kollaNamn(String namn)
     {

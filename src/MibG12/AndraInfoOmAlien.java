@@ -32,7 +32,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         this.nuvarandeUtomjording = nuvarandeUtomjording;
         
         visaInfoOmAlien = new VisaInfoOmAlien (idb, nuvarandeAgent);
-        visaInfoOmAlien.showInfo(nuvarandeAgent);
+        visaInfoOmAlien.setInfo(nuvarandeAgent);
         txtRasExtra.setVisible(false);
         
     }

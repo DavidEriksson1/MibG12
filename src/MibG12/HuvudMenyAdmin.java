@@ -157,18 +157,18 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         
         if (i == 2)
         {
-           ValjAgentFromAdminHuvudMeny valjAgentFromAdminHuvudMeny = new ValjAgentFromAdminHuvudMeny(idb);
-           valjAgentFromAdminHuvudMeny.setVisible(true);
-           valjAgentFromAdminHuvudMeny.visaBaraInfo();
-           valjAgentFromAdminHuvudMeny.setVisaInfoText();
+           AdminValjAgentFromHuvudMeny adminValjAgentFromHuvudMeny = new AdminValjAgentFromHuvudMeny(idb);
+           adminValjAgentFromHuvudMeny.setVisible(true);
+           adminValjAgentFromHuvudMeny.visaBaraInfo();
+           adminValjAgentFromHuvudMeny.setVisaInfoText();
            dispose();
         }
         
         if (i == 4)
         {
-           ValjAgentFromAdminHuvudMeny valjAgentFromAdminHuvudMeny = new ValjAgentFromAdminHuvudMeny(idb);
-           valjAgentFromAdminHuvudMeny.setVisible(true);
-           valjAgentFromAdminHuvudMeny.setVisaAndraText();
+           AdminValjAgentFromHuvudMeny adminValjAgentFromHuvudMeny = new AdminValjAgentFromHuvudMeny(idb);
+           adminValjAgentFromHuvudMeny.setVisible(true);
+           adminValjAgentFromHuvudMeny.setVisaAndraText();
            dispose();
         }
         

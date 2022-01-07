@@ -15,13 +15,14 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Victo
+ * Jframe klass som visar områdeschef för valt område.
+ * 
  */
 public class VisaOmradesChef extends javax.swing.JFrame {
 
-    InfDB idb;
-    String nuvarandeAgent;
-    VisaInfoOmAlien visaInfoOmAlien;
+    private InfDB idb;
+    private String nuvarandeAgent;
+    private VisaInfoOmAlien visaInfoOmAlien;
     
     public VisaOmradesChef(InfDB idb, String nuvarandeAgent) {
         initComponents();
@@ -109,6 +110,10 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * Metod som visar vem som är områdeschef för valt område.
+     */
     private void btnVisaOmradesChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaOmradesChefActionPerformed
         
         txtAreaVisaInfo.setText("");
@@ -141,12 +146,22 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnVisaOmradesChefActionPerformed
 
+    /**
+     * 
+     * Metod som går tillbaka till föregående jframe klass.
+     */
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
         hMA.setHuvudText(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    /**
+     * Metod som fyller comboboxen med de områden som just nu finns i databasen.
+     * 
+     */
     
     public void laggTillOmrade(JComboBox cb) {
         String omradesFraga = "Select benamning from omrade";
