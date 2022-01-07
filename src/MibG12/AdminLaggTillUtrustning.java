@@ -188,7 +188,8 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_comboUtrustningsTypActionPerformed
 
     private void btnLaggTillFordonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillFordonActionPerformed
-        // Metod för att lägga till ny utrustning i systemet
+        // Metod för att lägga till ny utrustning i systemet, kontrollerar att textfält är fyllda
+        // och så att utrusting med samma namn inte kan läggas till i systemet
 
         boolean utrustningFinns = false;
 
