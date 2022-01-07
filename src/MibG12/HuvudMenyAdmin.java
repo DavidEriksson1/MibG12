@@ -150,6 +150,10 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
             new AdminTaBortAgent(idb, agent).setVisible(true);
             dispose();
         }
+        if(i == 1){
+            new NyRegistreraAgent(idb, agent).setVisible(true);
+            dispose();
+        }
         
         if (i == 2)
         {

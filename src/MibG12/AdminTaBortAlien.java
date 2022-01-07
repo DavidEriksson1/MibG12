@@ -9,7 +9,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
+ * Klass för att kunna radera en alien ur systemet
  * @author 46737
  */
 public class AdminTaBortAlien extends javax.swing.JFrame {
@@ -20,8 +20,8 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
     
 
     /**
-     * Creates new form AdminAlienHantering
-     * @param idb
+     * Konstruktior för radera alien
+     * @param idb nuvarandeAgent
      */
     public AdminTaBortAlien(InfDB idb, String nuvarandeAgent) {
         initComponents();
@@ -101,70 +101,63 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+// Raderar en den alien man skriver in i textrutan från alien tabellen samt dess tillhörande rastabell
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
-        // TODO add your handling code here:
+        
         boolean alienFinns = false;
-        try{
+        try {
             String alienAttRadera = txtAlienNamn.getText().toLowerCase();
-            
-            
+
             String idFraga = "Select alien_id from Alien where namn ='" + alienAttRadera + "'";
             String namnFraga = "Select namn from Alien where namn ='" + alienAttRadera + "'";
             String radera = "delete from Alien where namn = '" + alienAttRadera + "'";
-            
+
             String namn = idb.fetchSingle(namnFraga);
             String id = idb.fetchSingle(idFraga);
             System.out.println(id);
-            
-            
+
             boolean textRutaTom = Validering.textRutaArTom(alienAttRadera);
-             
-             if(textRutaTom == false){
-                 
-             alienFinns = Validering.stringFinns(namn, alienAttRadera);
-            
-            if(alienFinns == true){
-                
-                String ras = vIOA.visaRas(alienAttRadera).toLowerCase();
-                
-                if (ras.equals("boglodite"))
-                {
-                    String fraga = "delete from boglodite where alien_id =" + id;
-                    idb.fetchSingle(fraga);
+
+            if (textRutaTom == false) {
+
+                alienFinns = Validering.stringFinns(namn, alienAttRadera);
+
+                if (alienFinns == true) {
+
+                    String ras = vIOA.visaRas(alienAttRadera).toLowerCase();
+
+                    if (ras.equals("boglodite")) {
+                        String fraga = "delete from boglodite where alien_id =" + id;
+                        idb.fetchSingle(fraga);
+                    } else if (ras.equals("squid")) {
+                        String fraga = "delete from squid where alien_id =" + id;
+                        idb.fetchSingle(fraga);
+                    } else if (ras.equals("worm")) {
+                        String fraga = "delete from worm where alien_id =" + id;
+                        idb.fetchSingle(fraga);
+                    }
+
+                    String svar2 = idb.fetchSingle(radera);
+                    JOptionPane.showMessageDialog(null, alienAttRadera + " raderades ur systemet!");
+                    txtAlienNamn.setText("");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Det finns ingen Alien med det namnet");
+                    txtAlienNamn.setText("");
                 }
-                else if (ras.equals("squid"))
-                {
-                    String fraga = "delete from squid where alien_id =" + id;
-                    idb.fetchSingle(fraga);
-                }
-                else if (ras.equals("worm"))
-                {
-                    String fraga = "delete from worm where alien_id =" + id;
-                    idb.fetchSingle(fraga);
-                }
-                
-                String svar2 = idb.fetchSingle(radera);
-                JOptionPane.showMessageDialog(null, alienAttRadera + " raderades ur systemet!");
-                txtAlienNamn.setText("");
-                
-                
             }
-            
-            else{
-                JOptionPane.showMessageDialog(null,"Det finns ingen Alien med det namnet");
-                txtAlienNamn.setText("");
-            }
-        }
-        }
-        catch (InfException e){
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något fick fel");
             System.out.println(e);
         }
-        
+
     }//GEN-LAST:event_btnRaderaActionPerformed
 
+    
+// Går tillbaka till huvudmeny för admin.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
+        // Går tillbaka till huvudmeny för admin.
         HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();

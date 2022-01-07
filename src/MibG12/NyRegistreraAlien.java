@@ -241,8 +241,7 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
         String id = lblID.getText();
         String armar = txtRasVal.getText();
 
-        //int iD = Integer.parseInt(id);
-        //int arm = Integer.parseInt(armar);
+        
         boolean textRutaTom2 = Validering.textRutaArTom(regDatum);
         boolean namnetAnvands = false;
 
@@ -346,95 +345,91 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
                           
     }//GEN-LAST:event_btnLaggTillAlienActionPerformed
 
- //Ger ett id till alien som är ett högre än det nuvarande max som finns!   
-    public void slumpId(){
-    String maxID = "Select max(alien_ID) from alien";
-   try{ 
-    String hogstaID = idb.fetchSingle(maxID);
-    int nyID = Integer.parseInt(hogstaID);  
-    int nyasteId = nyID +1;
-    lblID.setText(""+ nyasteId +"");
-   }
-   catch(InfException e){
-       JOptionPane.showMessageDialog(null, e);
-   }
-}
+ //Ger ett id till alien som är ett högre än det nuvarande max som finns   
+    public void slumpId() {
+        String maxID = "Select max(alien_ID) from alien";
+        try {
+            String hogstaID = idb.fetchSingle(maxID);
+            int nyID = Integer.parseInt(hogstaID);
+            int nyasteId = nyID + 1;
+            lblID.setText("" + nyasteId + "");
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 //Fyller "Agent" comboboxen med de agenter man kan ha som kontaktperson.
- public static void laggTillAgent(JComboBox cb) {
+
+    public static void laggTillAgent(JComboBox cb) {
         String agentFraga = "SELECT namn FROM agent";
 
         ArrayList<String> allaAgenter;
 
         try {
             allaAgenter = idb.fetchColumn(agentFraga);
-             for (String a : allaAgenter) {
-            cb.addItem(a);
-        }
-        } 
-        catch (InfException ex) {
-           JOptionPane.showMessageDialog(null, "Något gick fel");
-           System.out.println(ex);
-           
+            for (String a : allaAgenter) {
+                cb.addItem(a);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println(ex);
+
         }
 
-       
     }
 // Fyller "Plats"comboboxen med de platser som finns.
- public static void laggTillPlats(JComboBox cb) {
+
+    public static void laggTillPlats(JComboBox cb) {
         String platsFraga = "SELECT benamning FROM plats";
 
         ArrayList<String> platser;
 
         try {
             platser = idb.fetchColumn(platsFraga);
-             for (String a : platser) {
-            cb.addItem(a);
-        }
-        } 
-        catch (InfException ex) {
-           JOptionPane.showMessageDialog(null, "Något gick fel");
-           System.out.println(ex);
-           
+            for (String a : platser) {
+                cb.addItem(a);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println(ex);
+
         }
 
-       
     }
- 
+
     private void txtAlienLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlienLosenordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlienLosenordActionPerformed
-
+ // Går tillbaka till huvudmeny för admin.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
-        
-    }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+///Metod som gör så antal armar/boogies bara syns för respektive ras när den ska registreras
     private void cbRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRasActionPerformed
-       int i = cbRas.getSelectedIndex();
-       
-       
-        if(i == 0){
+        int i = cbRas.getSelectedIndex();
+
+        if (i == 0) {
             lblRasVal.setText("");
             txtRasVal.setVisible(false);
             txtRasVal.setText("");
         }
-        if ( i == 1){
-           lblRasVal.setText("Antal Boogies");
-           txtRasVal.setVisible(true);
-           txtRasVal.setText("");
-           
+        if (i == 1) {
+            lblRasVal.setText("Antal Boogies");
+            txtRasVal.setVisible(true);
+            txtRasVal.setText("");
+
         }
-        if(i == 2){
+        if (i == 2) {
             lblRasVal.setText("Antal Armar");
-           txtRasVal.setVisible(true);
-           txtRasVal.setText("");
+            txtRasVal.setVisible(true);
+            txtRasVal.setText("");
         }
-        if(i == 3){
-            
+        if (i == 3) {
+
             txtRasVal.setVisible(false);
-            
+
         }
     }//GEN-LAST:event_cbRasActionPerformed
 
