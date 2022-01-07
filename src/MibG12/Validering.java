@@ -119,6 +119,12 @@ public class Validering {
         return svar1;
     }
     
+    /**
+     * 
+     * Metod som jämför två stringar med varandra om dom är lika. 
+     * Returnerar true om stringarna är lika.
+     */
+    
     public static boolean stringFinns (String namn1, String namn2)
     {
         boolean stringFinns = false;
@@ -139,6 +145,13 @@ public class Validering {
         }
         return stringFinns;
     }
+    
+    /**
+     * 
+     * Metod som jämför två stringar med varandra om dom är lika. 
+     * Returnerar true om stringarna är lika.
+     * Används för att kontrollera utrustning.
+     */
     
     public static boolean kontrolleraUtrustning(String svar1, String utrustning)
     {
@@ -162,6 +175,11 @@ public class Validering {
         return utrustningFinns;
     }
     
+    /**
+     * Metod som används för att kontrollera så att datumet inte är tomt.
+     * 
+     */
+    
     public static boolean kontrolleraDatum(String datum)
     {
         boolean datumKorrekt = false;
@@ -178,6 +196,11 @@ public class Validering {
         return datumKorrekt;
     }
     
+    /**
+     * Metod som kollar om en textRuta är tom.
+     * 
+     */
+    
     public static boolean textRutaArTom(String string)
     {
         boolean textRutaArTom = string.trim().isEmpty();
@@ -190,6 +213,11 @@ public class Validering {
         
         return textRutaArTom;
     }
+    
+    /**
+     * Metod som kollar om string är av endast bokstäver.
+     * 
+     */
     
     public static boolean arStringEndastBokstaver(String str)
     {
@@ -209,6 +237,11 @@ public class Validering {
         return stringEndastBokstaver;
     }
     
+    /**
+     * Metod som kollar om string är av endast av siffror.
+     * 
+     */
+    
     public static boolean endastSiffror (String str)
     {
         String regex = "[0-9-]+";
@@ -226,6 +259,11 @@ public class Validering {
     
     }
     
+    /**
+     * Metod som kollar längden på en sträng.
+     * 
+     */
+    
     public static boolean kollaLosenordsLangd (String losen)
     {
         int langd = losen.length();
@@ -238,6 +276,11 @@ public class Validering {
             
         return losenForLangt;    
     }
+    
+    /**
+     * Metod som kollar om strängen är av datumformat.
+     * 
+     */
     
     public static boolean kollaDatumFormat (String datum)        
     {
