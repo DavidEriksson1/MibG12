@@ -16,12 +16,12 @@ import oru.inf.InfException;
  *
  * @author Victo
  */
-public class VisaAllaUtomjordingarMellanTvaDatum extends javax.swing.JFrame {
+public class AgentVisaAllaUtomjordingarMellanTvaDatum extends javax.swing.JFrame {
 
     InfDB idb;
     String nuvarandeAgent;
     Validering validering;
-    public VisaAllaUtomjordingarMellanTvaDatum(InfDB idb, String nuvarandeAgent) {
+    public AgentVisaAllaUtomjordingarMellanTvaDatum(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;  

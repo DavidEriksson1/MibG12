@@ -332,7 +332,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTillbakaTillHMActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        ValjAgentFromAdminHuvudMeny vAFAHM = new ValjAgentFromAdminHuvudMeny(idb);
+        AdminValjAgentFromHuvudMeny vAFAHM = new AdminValjAgentFromHuvudMeny(idb);
         vAFAHM.setVisible(true);
         vAFAHM.setVisaAndraText();
         dispose();

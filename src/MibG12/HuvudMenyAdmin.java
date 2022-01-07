@@ -131,7 +131,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         int i = jComboAlien.getSelectedIndex();
         
         if(i == 1){
-            new NyRegistreraAlien(idb, agent).setVisible(true);
+            new NyRegistreraAlien(idb, agent, true).setVisible(true);
             dispose();
         }
         else if(i == 3){
@@ -157,7 +157,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         
         if (i == 2)
         {
-           ValjAgentFromAdminHuvudMeny valjAgentFromAdminHuvudMeny = new ValjAgentFromAdminHuvudMeny(idb);
+           AdminValjAgentFromHuvudMeny valjAgentFromAdminHuvudMeny = new AdminValjAgentFromHuvudMeny(idb);
            valjAgentFromAdminHuvudMeny.setVisible(true);
            valjAgentFromAdminHuvudMeny.visaBaraInfo();
            valjAgentFromAdminHuvudMeny.setVisaInfoText();
@@ -166,7 +166,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         
         if (i == 4)
         {
-           ValjAgentFromAdminHuvudMeny valjAgentFromAdminHuvudMeny = new ValjAgentFromAdminHuvudMeny(idb);
+           AdminValjAgentFromHuvudMeny valjAgentFromAdminHuvudMeny = new AdminValjAgentFromHuvudMeny(idb);
            valjAgentFromAdminHuvudMeny.setVisible(true);
            valjAgentFromAdminHuvudMeny.setVisaAndraText();
            dispose();

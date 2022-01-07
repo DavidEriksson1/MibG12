@@ -45,6 +45,7 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnRegNyUtrustning = new javax.swing.JButton();
         btnAndraLosen2 = new javax.swing.JButton();
+        btnAndraLosen3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +90,13 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
             }
         });
 
+        btnAndraLosen3.setText("Visa min utkivitterade utrustning");
+        btnAndraLosen3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndraLosen3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +111,8 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
                                 .addGap(11, 11, 11)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnRegNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAndraLosen2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAndraLosen2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAndraLosen3, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(216, 216, 216)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -128,13 +137,15 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
                 .addComponent(lblHuvudText)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAndraLosen)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegNyUtrustning)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(btnAndraLosen2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAndraLosen3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,31 +174,31 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         
         if(i == 1){
             
-            ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent);
             vAFAHM.setVisaInfoText();
             vAFAHM.visaBaraInfo();
             vAFAHM.setVisible(true);
             dispose();
         }
         if(i == 2){
-            ValjAlienFromAgentHuvudMeny vAFAHM = new ValjAlienFromAgentHuvudMeny(idb, nuvarandeAgent);
+            AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent);
             vAFAHM.setVisaAndraText();
             vAFAHM.setVisible(true);
             dispose();
         }
         if(i == 3){
             
-            VisaAllaUtomjordingarPaEnPlats vAUPEP = new VisaAllaUtomjordingarPaEnPlats (idb, nuvarandeAgent);
+            AgentVisaAllaUtomjordingarPaEnPlats vAUPEP = new AgentVisaAllaUtomjordingarPaEnPlats (idb, nuvarandeAgent);
             vAUPEP.setVisible(true);
             dispose();
         }
         if (i == 4){
-            VisaAllaUtomjordingarInomEnRas vAUIER = new VisaAllaUtomjordingarInomEnRas (idb, nuvarandeAgent);
+            AgentVisaAllaUtomjordingarInomEnRas vAUIER = new AgentVisaAllaUtomjordingarInomEnRas (idb, nuvarandeAgent);
             vAUIER.setVisible(true);
             dispose();
         }
         if (i == 5){
-            VisaAllaUtomjordingarMellanTvaDatum vAUMTD = new VisaAllaUtomjordingarMellanTvaDatum (idb, nuvarandeAgent);
+            AgentVisaAllaUtomjordingarMellanTvaDatum vAUMTD = new AgentVisaAllaUtomjordingarMellanTvaDatum (idb, nuvarandeAgent);
             vAUMTD.setVisible(true);
             dispose();
             
@@ -221,10 +232,17 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnAndraLosen2ActionPerformed
 
+    private void btnAndraLosen3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosen3ActionPerformed
+        AgentVisaUtkviteradUtrustning aVUU = new AgentVisaUtkviteradUtrustning (idb, nuvarandeAgent);
+        aVUU.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAndraLosen3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
     private javax.swing.JButton btnAndraLosen2;
+    private javax.swing.JButton btnAndraLosen3;
     private javax.swing.JButton btnRegNyUtrustning;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
