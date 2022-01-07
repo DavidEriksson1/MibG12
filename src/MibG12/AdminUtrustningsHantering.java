@@ -131,6 +131,8 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
 
         try {
             String utrustning = txtTaBortUtrustning.getText();
+            String hittaTyp = visaTyp(utrustning).toLowerCase();
+            
 
             boolean textRutaArTom = Validering.textRutaArTom(utrustning);
 
@@ -143,9 +145,6 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
 
             String svarUtrustningsID = idb.fetchSingle(utrustningsID);
 
-            System.out.println(svarUtrustningsNamn);
-            System.out.println(svarUtrustningsID);
-
             String taBortUtrustning = "delete from utrustning where Benamning ='" + svarUtrustningsNamn + "'";
 
             String taBortUtrustningsID = "delete from innehar_utrustning where Utrustnings_ID = " + svarUtrustningsID;
@@ -153,100 +152,97 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             String taBortTeknikID = " delete from teknik where Utrustnings_ID = " + svarUtrustningsID;
             String taBortVapenID = " delete from vapen where Utrustnings_ID = " + svarUtrustningsID;
 
-            String valdTyp = ComboUtrustningsTyp.getSelectedItem().toString();
-
-            System.out.println(namn);
+            String valdTyp = ComboUtrustningsTyp.getSelectedItem().toString().toLowerCase();
+            
+            String taBortFraga = "delete from " + valdTyp + " where Utrustnings_ID = " + svarUtrustningsID;
 
             utrustningFinns = Validering.stringFinns(svarUtrustningsNamn, utrustning);
 
             if (textRutaArTom == false) {
+                
 
                 if (utrustningFinns == true) {
+                    
 
-                    if (valdTyp.equals("Vapen")) {
-                        
-                        idb.fetchSingle(taBortVapenID);
-                        lblHarTagitsBort.setText(utrustning + " har tagits bort!");
-                        
-                    } else if (valdTyp.equals("Kommunikation")) {
-                        
-                        idb.fetchSingle(taBortKommunikationsID);
+                    if (valdTyp.equals(hittaTyp)) {
+                        idb.fetchSingle(taBortFraga);
                         idb.fetchSingle(taBortUtrustning);
                         idb.fetchSingle(taBortUtrustningsID);
                         lblHarTagitsBort.setText(utrustning + " har tagits bort!");
-                        
-                    } else if (valdTyp.equals("Teknik")) {
-                        
-                        idb.fetchSingle(taBortTeknikID);
-                        idb.fetchSingle(taBortUtrustning);
-                        idb.fetchSingle(taBortUtrustningsID);
-                        lblHarTagitsBort.setText(utrustning + " har tagits bort!");
+
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
+                    }
+                else {
+                        JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
                 }
             }
         } catch (InfException ie) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
+        } catch (NullPointerException npe) {
+            JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet det namnet");
         }
 
 
     }//GEN-LAST:event_btnTaBortUtrustningActionPerformed
 
-    public String visaTyp(String Typ)
-    {
+    public String visaTyp(String utrustningsTyp) {
         boolean isVapen = false;
         boolean isKommunikation = false;
         boolean isTeknik = false;
         String typ = "";
-        
-        try{
-            String utrustningsID = "select Utrustnings_ID from utrustning where Benamning ='" + Typ + "'";
+
+        try {
+            String utrustningsID = "select Utrustnings_ID from utrustning where Benamning ='" + utrustningsTyp + "'";
             String svarID = idb.fetchSingle(utrustningsID);
-            
+
             String fragaVapen = "select Utrustnings_ID from vapen";
             ArrayList<String> vapen = idb.fetchColumn(fragaVapen);
-            
+
             String fragaKommunikation = "select Utrustnings_ID from kommunikation";
             ArrayList<String> kommunikation = idb.fetchColumn(fragaKommunikation);
-            
+
             String fragaTeknik = "select Utrustnings_ID from teknik";
             ArrayList<String> teknik = idb.fetchColumn(fragaTeknik);
-            
-            for(String id : vapen) {
-                System.out.print(id);
-                if(id.equals(svarID)){
+
+            for (String id : vapen) {
+                if (id.equals(svarID)) {
                     isVapen = true;
                     break;
                 }
             }
-            if(isVapen == false){
-                for(String id : kommunikation) {
-                    System.out.print(id);
-                    if(id.equals(svarID)){
+            if (isVapen == false) {
+                for (String id : kommunikation) {
+                    if (id.equals(svarID)) {
                         isKommunikation = true;
                         break;
                     }
                 }
             }
-            if(isVapen == false && isKommunikation == false){
-                for(String id : teknik) {
-                    System.out.print(id);
-                    if(id.equals(svarID)){
+            if (isVapen == false && isKommunikation == false) {
+                for (String id : teknik) {
+                    if (id.equals(svarID)) {
                         isTeknik = true;
                         break;
                     }
                 }
             }
-            
+            if (isVapen == true) {
+                typ = "Vapen";
+            }
+            else if (isKommunikation == true) {
+                typ = "Kommunikation";
+            }
+            else if (isTeknik == true) {
+                typ = "Teknik";
+            }
+
+        } catch (InfException ie) {
+
         }
-        catch(InfException ie){
-            
-        }
-        return Typ;
+        return typ;
     }
-            
-    
+
+
     private void ComboUtrustningsTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboUtrustningsTypActionPerformed
         // Combobox för att välja utrustningstyp
         int i = ComboUtrustningsTyp.getSelectedIndex();
