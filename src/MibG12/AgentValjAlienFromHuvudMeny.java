@@ -113,6 +113,16 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setAdmin()
+    {
+        anvandareArAdmin = true;
+    }
+    
+    public void setAgent()
+    {
+        anvandareArAdmin = false;
+    }
+    
     private void txtValjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjAlienActionPerformed
         
         

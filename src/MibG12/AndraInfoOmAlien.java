@@ -26,7 +26,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     /**
      * Creates new form AndraInfoOmAlien
      */
-    public AndraInfoOmAlien(InfDB idb, String nuvarandeAgent, String nuvarandeUtomjording, boolean anvandareArAlien) {
+    public AndraInfoOmAlien(InfDB idb, String nuvarandeAgent, String nuvarandeUtomjording, boolean anvandareArAdmin) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
@@ -387,17 +387,39 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAnsvarigAgentActionPerformed
 
     private void btnTillbakaTillHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaTillHMActionPerformed
-        HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
-        hMA.setHuvudText(nuvarandeAgent);
-        hMA.setVisible(true);
-        dispose();
+        
+        if (anvandareArAdmin == true)
+        {
+            HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
+            hMA.setVisible(true);
+            dispose();
+        }
+        else
+        {
+        
+            HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
+            hMA.setHuvudText(nuvarandeAgent);
+            hMA.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_btnTillbakaTillHMActionPerformed
 
+    public void setAdmin()
+    {
+        anvandareArAdmin = true;
+    }
+    
+    public void setAgent()
+    {
+        anvandareArAdmin = false;
+    }
+    
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         
         if (anvandareArAdmin == true)
         {
             AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, true);
+            vAFAHM.setAdmin();
             vAFAHM.setVisible(true);
             vAFAHM.setVisaAndraText();
             dispose(); 
@@ -406,6 +428,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         else 
         {
             AgentValjAlienFromHuvudMeny vAFAHM = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, false);
+            vAFAHM.setAgent();
             vAFAHM.setVisible(true);
             vAFAHM.setVisaAndraText();
             dispose();

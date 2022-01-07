@@ -138,6 +138,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         if (i == 2)
         {
             AgentValjAlienFromHuvudMeny aVAFH = new AgentValjAlienFromHuvudMeny (idb, agent, true);
+            aVAFH.setAdmin();
             aVAFH.setVisible(true);
             aVAFH.setVisaAndraText();
             dispose();  
