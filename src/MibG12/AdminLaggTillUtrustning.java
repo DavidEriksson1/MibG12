@@ -160,11 +160,11 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void txtFieldUtrustningsNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldUtrustningsNamnActionPerformed
-        // TODO add your handling code here:
+        // Textfält där utrustningens namn matas in så att det kan hämtas för andra metoder
     }//GEN-LAST:event_txtFieldUtrustningsNamnActionPerformed
 
     private void txtFieldKaliberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldKaliberActionPerformed
-        // TODO add your handling code here:
+        // textfält där kaliber, bränsle och överföringsteknik matas in för användning i andra metoder
     }//GEN-LAST:event_txtFieldKaliberActionPerformed
 
     private void comboUtrustningsTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboUtrustningsTypActionPerformed
@@ -236,6 +236,7 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLaggTillFordonActionPerformed
 
     public Boolean existerandeUtrustning(String uNamn)
+            //metod som kontrollerar om utrustningen redan finns i systemet
     {
         boolean namnetFinns = false;
         try{
@@ -260,6 +261,7 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
     
     
     public int nyttID() {
+        //Metod som skapar ett nytt ID för varje ny utrustning som läggs till i systemet
         String maxID = "select max(Utrustnings_ID) from utrustning";
         int nyasteID = 0;
         try {

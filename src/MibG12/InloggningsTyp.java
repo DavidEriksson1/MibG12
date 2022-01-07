@@ -72,7 +72,7 @@ public class InloggningsTyp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // Välj inloggningstyp
+        // Metod för att välja vilket inloggningsfönster användaren ska skickas till
         int i = jComboBox1.getSelectedIndex();
         
         if(i == 1){

@@ -129,7 +129,7 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Verkställ ändring av områdeschef
+        // Metod för att verkställa valet av områdeschef
 
         try {
 
@@ -181,6 +181,7 @@ catch (InfException ie) {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public boolean kontrolleraOmrade(String omrade) {
+        //Metod som kontrollerar så att inmatat område existerar i systemet
         boolean omradeFinns = false;
 
         try {
@@ -200,6 +201,7 @@ catch (InfException ie) {
     }
 
     public boolean kontrolleraNamn(String agentNamn) {
+        //metod som kontrollerar så att agent med visst namn inte redan är områdeschef
         boolean namnFinns = false;
 
         try {

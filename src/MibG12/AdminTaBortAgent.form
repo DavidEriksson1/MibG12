@@ -38,17 +38,12 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="lblRaderaAgent" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                              <Component id="lblNyAgent" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblRaderaAgent" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNyAgent" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtAgentNamn" max="32767" attributes="0"/>
                           <Component id="txtNyAgent" pref="118" max="32767" attributes="0"/>
@@ -121,7 +116,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblNyAgent">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ny Agent"/>
+        <Property name="text" type="java.lang.String" value="Ny Kontaktperson"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNyAgent">

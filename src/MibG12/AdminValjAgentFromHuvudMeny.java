@@ -47,7 +47,7 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblHuvudText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblHuvudText.setText("Välj utomjording att visa info om:");
+        lblHuvudText.setText("Välj agent att visa info om:");
 
         txtValjAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
 
                     }
                 } else {
-                    lblFelAlienNamn.setText("Det finns ingen utomjording med namnet: " + namn);
+                    lblFelAlienNamn.setText("Det finns ingen agent med namnet: " + namn);
                 }
             }
 

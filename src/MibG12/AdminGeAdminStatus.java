@@ -175,6 +175,7 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
     }
 
     public boolean kontrolleraNamn(String agentNamn) {
+        //metod som kontrollerar om namnet redan finns i systemet som administratör
         boolean namnFinns = false;
 
         try {

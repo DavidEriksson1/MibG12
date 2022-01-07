@@ -64,7 +64,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
 
         lblRaderaAgent.setText("Agent Namn");
 
-        lblNyAgent.setText("Ny Agent");
+        lblNyAgent.setText("Ny Kontaktperson");
 
         txtNyAgent.setColumns(5);
         txtNyAgent.addActionListener(new java.awt.event.ActionListener() {
@@ -89,14 +89,11 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
                             .addGap(67, 67, 67)
                             .addComponent(lblTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(lblRaderaAgent))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(lblNyAgent)))
-                        .addGap(39, 39, 39)
+                            .addComponent(lblRaderaAgent)
+                            .addComponent(lblNyAgent))
+                        .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtAgentNamn)
                             .addComponent(txtNyAgent, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))

@@ -203,9 +203,9 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnOkActionPerformed
-// Metod för att komma tillbaka till HuvudMenyAdmin
+
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // Tillbaka till huvudmeny admin
+        // Metod för att komma tillbaka till HuvudMenyAdmin
         HuvudMenyAdmin huvudMenyAdmin = new HuvudMenyAdmin(idb, agent);
         huvudMenyAdmin.setVisible(true);
         dispose();
