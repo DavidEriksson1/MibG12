@@ -113,7 +113,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
 
         boolean alienFinns = false;
         try {
-            String alienAttRadera = txtAlienNamn.getText().toLowerCase();
+            String alienAttRadera = cbAlien.getSelectedItem().toString();
 
             String idFraga = "Select alien_id from Alien where namn ='" + alienAttRadera + "'";
             String namnFraga = "Select namn from Alien where namn ='" + alienAttRadera + "'";
@@ -124,9 +124,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
             System.out.println(id);
 
             //Validering som kollar att rutan för den alien man ska radera inte är tom
-            boolean textRutaTom = Validering.textRutaArTom(alienAttRadera);
-
-            if (textRutaTom == false) {
+          
                 //Validering som kollar så att den alien man vill radera faktiskt finns i systemet
                 alienFinns = Validering.stringFinns(namn, alienAttRadera);
 
@@ -147,14 +145,12 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
 
                     String svar2 = idb.fetchSingle(radera);
                     JOptionPane.showMessageDialog(null, alienAttRadera + " raderades ur systemet!");
-                    txtAlienNamn.setText("");
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Det finns ingen Alien med det namnet");
-                    txtAlienNamn.setText("");
                 }
             }
-        } catch (InfException e) {
+         catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något fick fel");
             System.out.println(e);
         }

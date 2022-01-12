@@ -5,6 +5,7 @@
 package MibG12;
 
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -25,6 +26,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.agent = agent;
+        laggTillUtrustning(cbUtr);
     }
 
     /**
@@ -44,6 +46,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         ComboUtrustningsTyp = new javax.swing.JComboBox<>();
         btnTillbaka = new javax.swing.JButton();
         lblHarTagitsBort = new javax.swing.JLabel();
+        cbUtr = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +77,8 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             }
         });
 
+        cbUtr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,6 +102,8 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
                                     .addComponent(ComboUtrustningsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                                     .addComponent(lblHarTagitsBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(38, 38, 38)
+                                .addComponent(cbUtr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -108,13 +115,14 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbUtr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(ComboUtrustningsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblHarTagitsBort, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
+                .addComponent(lblHarTagitsBort, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTillbaka)
@@ -133,7 +141,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             String utrustning = txtTaBortUtrustning.getText();
             String hittaTyp = visaTyp(utrustning).toLowerCase();
 
-            boolean textRutaArTom = Validering.textRutaArTom(utrustning);
+           
 
             //SQL frågor för att hämta utrustningsnamn och ID för att ta bort dem ur systemet
             String namn = "select Benamning from utrustning where Benamning ='" + utrustning + "'";
@@ -157,7 +165,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
 
             utrustningFinns = Validering.stringFinns(svarUtrustningsNamn, utrustning);
 
-            if (textRutaArTom == false) {
+            
 
                 if (utrustningFinns == true) {
 
@@ -172,7 +180,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
                 }
             }
-        } catch (InfException ie) {
+         catch (InfException ie) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         } catch (NullPointerException npe) {
             JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet det namnet");
@@ -252,6 +260,24 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    public static void laggTillUtrustning(JComboBox cb) {
+        String utrFraga = "SELECT benamning FROM utrustning";
+
+        ArrayList<String> utrustning;
+
+        try {
+            utrustning = idb.fetchColumn(utrFraga);
+            for (String a : utrustning) {
+                cb.addItem(a);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println(ex);
+
+        }
+
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -260,6 +286,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboUtrustningsTyp;
     private javax.swing.JButton btnTaBortUtrustning;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JComboBox<String> cbUtr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

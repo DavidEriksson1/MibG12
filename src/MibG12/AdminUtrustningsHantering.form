@@ -45,6 +45,8 @@
                                   <Component id="txtTaBortUtrustning" alignment="0" pref="181" max="32767" attributes="0"/>
                                   <Component id="lblHarTagitsBort" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="cbUtr" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -63,6 +65,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTaBortUtrustning" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbUtr" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -70,7 +73,7 @@
                   <Component id="ComboUtrustningsTyp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblHarTagitsBort" pref="16" max="32767" attributes="0"/>
+              <Component id="lblHarTagitsBort" pref="14" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTillbaka" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -133,6 +136,18 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblHarTagitsBort">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbUtr">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="V&#xe4;lj:"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
