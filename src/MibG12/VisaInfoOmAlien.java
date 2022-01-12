@@ -521,7 +521,6 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
             ras = "Boglodite";
             String fraga1 = "Select antal_boogies from boglodite where alien_id = " + svarID;
             String svar1 = idb.fetchSingle(fraga1);
-            System.out.println(svar1);
             lblRasExtra.setText(svar1);
             lblRasExtraRubrik.setText("Antal boogies:");
             
@@ -533,7 +532,6 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
             ras = "Squid";
             String fraga1 = "Select Antal_Armar from squid where alien_id = " + svarID;
             String svar1 = idb.fetchSingle(fraga1);
-            System.out.println(svar1);
             lblRasExtra.setText(svar1);
             lblRasExtraRubrik.setText("Antal armar:");
         } else {

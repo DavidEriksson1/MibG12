@@ -26,6 +26,7 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.agent = agent;
+        laggTillOmrade(jComboBox1);
     }
 
     /**
@@ -39,7 +40,6 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         TextFieldAgent = new javax.swing.JTextField();
-        TextFieldOmrade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -59,12 +59,6 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
         TextFieldAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextFieldAgentActionPerformed(evt);
-            }
-        });
-
-        TextFieldOmrade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldOmradeActionPerformed(evt);
             }
         });
 
@@ -106,10 +100,9 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextFieldOmrade, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .addComponent(TextFieldAgent)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, 0, 81, Short.MAX_VALUE)
+                            .addComponent(TextFieldAgent))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -122,9 +115,7 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextFieldAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextFieldOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,30 +146,26 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
             String omradesID = "select Omrades_ID from Omrade where Benamning = '" + omrade + "'";
             String svar1 = idb.fetchSingle(namnID);
             String svar2 = idb.fetchSingle(omradesID);
-            String nuvOmradeschef = "Select namn from agent where agent_id = (select agent_id omradeschef where omrades_id =" + svar2 +  ")";
-            String svar3 = idb.fetchSingle(nuvOmradeschef);
             String taBort = "delete from omradeschef where Agent_ID = '" + svar1 + "'";
+            String taBortNuvarande = "delete from omradeschef where omrade = " + svar2;
             String nyChef = "insert into omradeschef values (" + svar1 + "," + svar2 + ")";
+            String nyttOmrade = "update agent set omrade = " + svar2 + " where agent_id = " + svar1;
+            System.out.println(nyttOmrade);
 
             boolean tomTextRuta1 = Validering.textRutaArTom(agentNamn);
-            boolean agentRedanOmradeschef = Validering.stringFinns(agentNamn, svar3);
 
             if (tomTextRuta1 == false) {
-                boolean tomTextRuta2 = Validering.textRutaArTom(omrade);
-
-                if (tomTextRuta2 == false) {
 
                     if (omradeFinns == true) {
                         
-                        if (agentRedanOmradeschef)
-                        {
-
                         if (namnFinns == true) {
                             idb.fetchSingle(taBort);
+                            idb.fetchSingle(taBortNuvarande);
                             idb.fetchSingle(nyChef);
-                            jLabel3.setText("Områdeschefen har ändrats!");
+                            idb.fetchSingle(nyttOmrade);
+                            JOptionPane.showMessageDialog(null, "Områdeschefen har ändrats!");
                             TextFieldAgent.setText("");
-                            TextFieldOmrade.setText("");
+                            jComboBox1.setSelectedIndex(0);
                         } else {
                             JOptionPane.showMessageDialog(null, "Det finns ingen agent med det namnet!");
                         }
@@ -186,22 +173,21 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
                         else {
                         JOptionPane.showMessageDialog(null, "Det finns inget område med det namnet!");
                     }
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(null, "Denna agent är redan områdeschef för detta område!");
-                    }
+                    
                         
                         
-                }
             }
+            
         }
     
 
 
 catch (InfException ie) {
-
+            JOptionPane.showMessageDialog(null, "Databasfel");
+            System.out.println(ie);
         }
-
+            
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public boolean kontrolleraOmrade(String omrade) {
@@ -252,7 +238,7 @@ catch (InfException ie) {
         boolean namnFinns = false;
 
         try {
-            String namn = "select  from Agent";
+            String namn = "select agent_id from from omradeschef";
             ArrayList<String> agenter = idb.fetchColumn(namn);
 
             for (String agent : agenter) {
@@ -275,10 +261,6 @@ catch (InfException ie) {
         // Textfält där agent som skall bli områdeschef matas in
 
     }//GEN-LAST:event_TextFieldAgentActionPerformed
-
-    private void TextFieldOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldOmradeActionPerformed
-        // Textfält för området som vald agent ska bli chef över
-    }//GEN-LAST:event_TextFieldOmradeActionPerformed
 
     private void ButtonTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTillbakaActionPerformed
         // Tillbaka till huvudmeny admin
@@ -320,7 +302,6 @@ catch (InfException ie) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonTillbaka;
     private javax.swing.JTextField TextFieldAgent;
-    private javax.swing.JTextField TextFieldOmrade;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
