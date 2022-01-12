@@ -50,10 +50,8 @@
                                   <Component id="lblTelefon" min="-2" pref="87" max="-2" attributes="0"/>
                                   <Component id="lblNamn" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
                                   <Component id="lblRegDatum" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="lblPlats" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
-                                      <Component id="lblAnsvarigAgent" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblPlats" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <Component id="lblAnsvarigAgent" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -98,6 +96,7 @@
                                               <Component id="txtLosenord" alignment="0" pref="113" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBoxPlats" alignment="1" max="32767" attributes="0"/>
                                               <Component id="txtTelefon" alignment="1" pref="113" max="32767" attributes="0"/>
                                           </Group>
@@ -171,7 +170,9 @@
                   <Component id="txtRegDatum" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAndraRegDatum" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="10" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTelefonRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -469,6 +470,11 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="YYYY-MM-DD"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

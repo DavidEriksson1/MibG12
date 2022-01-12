@@ -28,6 +28,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         this.nuvarandeAgent = nuvarandeAgent;
         nRA = new NyRegistreraAlien (idb, nuvarandeAgent, true);
         nRA.laggTillAgent(jComboBox1);
+        nRA.laggTillAgent(cbTaBort);
     }
 
     /**
@@ -40,19 +41,17 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTaBort = new javax.swing.JLabel();
-        txtAgentNamn = new javax.swing.JTextField();
         btnRadera = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
         lblRaderaAgent = new javax.swing.JLabel();
         lblNyAgent = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        cbTaBort = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTaBort.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblTaBort.setText("Ta bort en agent ur systemet");
-
-        txtAgentNamn.setColumns(4);
 
         btnRadera.setText("Radera");
         btnRadera.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +73,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
 
+        cbTaBort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,9 +92,9 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
                             .addComponent(btnTillbaka))
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtAgentNamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                             .addComponent(btnRadera)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 118, Short.MAX_VALUE)
+                            .addComponent(cbTaBort, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -103,8 +104,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
                 .addComponent(lblTaBort)
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAgentNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRaderaAgent))
+                    .addComponent(lblRaderaAgent)
+                    .addComponent(cbTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNyAgent)
@@ -128,7 +129,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
 // Metoden för att radera en agent ur systemet
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
 
-        String agentAttRadera = txtAgentNamn.getText();
+        String agentAttRadera = cbTaBort.getSelectedItem().toString();
         String nyAgent = jComboBox1.getSelectedItem().toString();
 
         try {
@@ -172,16 +173,16 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
                             idb.fetchSingle(update1);
                             idb.fetchSingle(radera1);
                             JOptionPane.showMessageDialog(null, agentAttRadera + " raderades ur systemet!");
-                            txtAgentNamn.setText("");
+                            cbTaBort.setSelectedIndex(0);
                             jComboBox1.setSelectedIndex(0);
                         } else {
                             JOptionPane.showMessageDialog(null, "Det fanns ingen agent att radera med namnet " + nyAgent + "!");
-                            txtAgentNamn.setText("");
+                            cbTaBort.setSelectedIndex(0);
                             jComboBox1.setSelectedIndex(0);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Det fanns ingen agent att ersätta med namnet " + agentAttRadera + "!");
-                        txtAgentNamn.setText("");
+                        cbTaBort.setSelectedIndex(0);
                         jComboBox1.setSelectedIndex(0);
                     }
                 }
@@ -190,7 +191,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println(e);
-            txtAgentNamn.setText("");
+            cbTaBort.setSelectedIndex(0);
+            jComboBox1.setSelectedIndex(0);
         }
 
     }//GEN-LAST:event_btnRaderaActionPerformed
@@ -202,10 +204,10 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRadera;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JComboBox<String> cbTaBort;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblNyAgent;
     private javax.swing.JLabel lblRaderaAgent;
     private javax.swing.JLabel lblTaBort;
-    private javax.swing.JTextField txtAgentNamn;
     // End of variables declaration//GEN-END:variables
 }

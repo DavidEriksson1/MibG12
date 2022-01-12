@@ -59,14 +59,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="txtNamn" min="-2" pref="115" max="-2" attributes="0"/>
-                                                  <Component id="txtRegDatum" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                                      <Component id="lblRasExtraAndra" min="-2" pref="81" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
+                                              <Component id="lblRasExtraAndra" min="-2" pref="81" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -85,8 +78,11 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtTelefon" min="-2" pref="113" max="-2" attributes="0"/>
                                           <Component id="jComboBoxAndraAdmin" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                                          <Component id="jLabel1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                          <Component id="txtRegDatum" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                                          <Component id="txtNamn" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="27" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -142,16 +138,32 @@
                   <Component id="txtNamn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAndraNamn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblRegDatumRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblRegDatum" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtRegDatum" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAndraRegDatum" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblRegDatumRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRegDatum" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAndraRegDatum" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtRegDatum" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-              <Component id="lblRasExtraAndra" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="lblRasExtraAndra" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTelefonRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -395,6 +407,11 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="YYYY-MM-DD"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
