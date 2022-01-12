@@ -18,6 +18,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
     private static InfDB idb;
     private String nuvarandeAgent;
     private VisaInfoOmAlien vIOA;
+    private AgentValjAlienFromHuvudMeny aVA;
 
     /**
      * Konstruktior för radera alien
@@ -29,6 +30,9 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent, true);
+        aVA = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, true);
+        aVA.laggTillAlien(cbAlien);
+        
     }
 
     /**
@@ -41,9 +45,9 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTaBort = new javax.swing.JLabel();
-        txtAlienNamn = new javax.swing.JTextField();
         btnRadera = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
+        cbAlien = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +69,8 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
             }
         });
 
+        cbAlien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,8 +87,8 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(txtAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(120, 120, 120)
+                        .addComponent(cbAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,9 +96,9 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(lblTaBort)
-                .addGap(45, 45, 45)
-                .addComponent(txtAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
+                .addGap(46, 46, 46)
+                .addComponent(cbAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRadera)
                     .addComponent(btnTillbaka))
@@ -170,7 +176,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRadera;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JComboBox<String> cbAlien;
     private javax.swing.JLabel lblTaBort;
-    private javax.swing.JTextField txtAlienNamn;
     // End of variables declaration//GEN-END:variables
 }
