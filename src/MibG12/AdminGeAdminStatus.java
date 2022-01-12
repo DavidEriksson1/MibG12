@@ -17,15 +17,20 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
+    private NyRegistreraAlien nRA;
 
     /**
      * Creates new form AdminGeAdminStatus
      */
     public AdminGeAdminStatus(InfDB idb, String agent) {
+        initComponents();
         this.idb = idb;
         this.agent = agent;
+        nRA = new NyRegistreraAlien(idb, agent, true);
+        nRA.laggTillAgent(cbGeAdmin);
+        nRA.laggTillAgent(cbTaBort);
 
-        initComponents();
+        
     }
 
     /**
@@ -41,11 +46,11 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JButton();
         jLabelAndradStatus = new javax.swing.JLabel();
-        txtFieldAgent = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtFieldTaBortAdminStatus = new javax.swing.JTextField();
         btnTaBortAdmin = new javax.swing.JButton();
+        cbGeAdmin = new javax.swing.JComboBox<>();
+        cbTaBort = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,21 +71,9 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
             }
         });
 
-        txtFieldAgent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldAgentActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Ge adminstatus");
 
         jLabel4.setText("Ta bort adminstatus");
-
-        txtFieldTaBortAdminStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldTaBortAdminStatusActionPerformed(evt);
-            }
-        });
 
         btnTaBortAdmin.setText("Verkställ");
         btnTaBortAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +81,10 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
                 btnTaBortAdminActionPerformed(evt);
             }
         });
+
+        cbGeAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
+        cbTaBort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,13 +99,13 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(65, 65, 65)
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFieldAgent, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                            .addComponent(txtFieldTaBortAdminStatus))
+                            .addComponent(cbTaBort, 0, 127, Short.MAX_VALUE)
+                            .addComponent(cbGeAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                            .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnTaBortAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnTillbaka)
@@ -122,14 +119,14 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFieldAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(btnOk))
+                    .addComponent(btnOk)
+                    .addComponent(cbGeAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtFieldTaBortAdminStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTaBortAdmin))
+                    .addComponent(btnTaBortAdmin)
+                    .addComponent(cbTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jLabelAndradStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -145,7 +142,7 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
         // möjlighet att ta bort adminstatus då vi anser att det kan vara användbart
 
         try {
-            String agentNamn = txtFieldAgent.getText();
+            String agentNamn = cbGeAdmin.getSelectedItem().toString();
 
             boolean namnFinns = kontrolleraNamn(agentNamn);
 
@@ -207,19 +204,11 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
-    private void txtFieldAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldAgentActionPerformed
-        // Textfält där agent som skall få adminstatus matas in
-    }//GEN-LAST:event_txtFieldAgentActionPerformed
-
-    private void txtFieldTaBortAdminStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldTaBortAdminStatusActionPerformed
-        // Textfält där agent som inte längre skall ha adminstatus matas in
-    }//GEN-LAST:event_txtFieldTaBortAdminStatusActionPerformed
-
     private void btnTaBortAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortAdminActionPerformed
         // Knapp för att ta bort adminstatus från en agent
         try {
 
-            String agentNamnInteAdmin = txtFieldTaBortAdminStatus.getText();
+            String agentNamnInteAdmin = cbTaBort.getSelectedItem().toString();
 
             String adminStatus = "select Administrator from Agent where namn = '" + agentNamnInteAdmin + "'";
 
@@ -227,9 +216,7 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
 
             String AdminStatusNej = "update agent set administrator = 'N' where namn = '" + agentNamnInteAdmin + "'";
 
-            boolean tomTextRuta = Validering.textRutaArTom(agentNamnInteAdmin);
-
-            if (tomTextRuta == false) {
+            
                 boolean namnFinns = kontrolleraNamn(agentNamnInteAdmin);
 
                 if (namnFinns == true) {
@@ -242,7 +229,8 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
                     }
                 }
             }
-        } catch (InfException ie) {
+         catch (InfException ie) {
+             JOptionPane.showMessageDialog(null,"Databasfel");
         }
 
 
@@ -256,11 +244,11 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
     private javax.swing.JButton btnOk;
     private javax.swing.JButton btnTaBortAdmin;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JComboBox<String> cbGeAdmin;
+    private javax.swing.JComboBox<String> cbTaBort;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelAndradStatus;
-    private javax.swing.JTextField txtFieldAgent;
-    private javax.swing.JTextField txtFieldTaBortAdminStatus;
     // End of variables declaration//GEN-END:variables
 }

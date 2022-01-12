@@ -66,7 +66,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
             }
         });
 
-        ComboHanteraUtrustning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till utrustning", "Ta bort utrustning" }));
+        ComboHanteraUtrustning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Lägg till utrustning", "Ta bort utrustning" }));
         ComboHanteraUtrustning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboHanteraUtrustningActionPerformed(evt);
@@ -202,11 +202,11 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         int i = ComboHanteraUtrustning.getSelectedIndex();
 
-        if (i == 0) {
+        if (i == 1) {
             new AdminLaggTillUtrustning(idb, agent, true).setVisible(true);
             dispose();
         }
-        if (i == 1) {
+        if (i == 2) {
             new AdminUtrustningsHantering(idb, agent).setVisible(true);
             dispose();
         }

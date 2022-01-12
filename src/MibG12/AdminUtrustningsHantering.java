@@ -39,7 +39,6 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtTaBortUtrustning = new javax.swing.JTextField();
         btnTaBortUtrustning = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -63,7 +62,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
 
         jLabel3.setText("Utrustningstyp");
 
-        ComboUtrustningsTyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vapen", "Kommunikation", "Teknik" }));
+        ComboUtrustningsTyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Vapen", "Kommunikation", "Teknik" }));
         ComboUtrustningsTyp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboUtrustningsTypActionPerformed(evt);
@@ -98,12 +97,11 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
                                 .addComponent(btnTaBortUtrustning))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ComboUtrustningsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                                    .addComponent(lblHarTagitsBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(38, 38, 38)
-                                .addComponent(cbUtr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblHarTagitsBort, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(ComboUtrustningsTyp, javax.swing.GroupLayout.Alignment.LEADING, 0, 158, Short.MAX_VALUE)
+                                        .addComponent(cbUtr, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -112,10 +110,9 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(49, 49, 49)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtTaBortUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbUtr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -138,7 +135,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         boolean utrustningFinns = false;
 
         try {
-            String utrustning = txtTaBortUtrustning.getText();
+            String utrustning = cbUtr.getSelectedItem().toString();
             String hittaTyp = visaTyp(utrustning).toLowerCase();
 
            
@@ -155,10 +152,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             String taBortUtrustning = "delete from utrustning where Benamning ='" + svarUtrustningsNamn + "'";
 
             String taBortUtrustningsID = "delete from innehar_utrustning where Utrustnings_ID = " + svarUtrustningsID;
-            String taBortKommunikationsID = "delete from kommunikation where Utrustnings_ID = " + svarUtrustningsID;
-            String taBortTeknikID = " delete from teknik where Utrustnings_ID = " + svarUtrustningsID;
-            String taBortVapenID = " delete from vapen where Utrustnings_ID = " + svarUtrustningsID;
-
+            
             String valdTyp = ComboUtrustningsTyp.getSelectedItem().toString().toLowerCase();
 
             String taBortFraga = "delete from " + valdTyp + " where Utrustnings_ID = " + svarUtrustningsID;
@@ -291,6 +285,5 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblHarTagitsBort;
-    private javax.swing.JTextField txtTaBortUtrustning;
     // End of variables declaration//GEN-END:variables
 }

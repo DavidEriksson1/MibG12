@@ -139,9 +139,10 @@
     <Component class="javax.swing.JComboBox" name="ComboHanteraUtrustning">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="L&#xe4;gg till utrustning"/>
-            <StringItem index="1" value="Ta bort utrustning"/>
+          <StringArray count="3">
+            <StringItem index="0" value="V&#xe4;lj:"/>
+            <StringItem index="1" value="L&#xe4;gg till utrustning"/>
+            <StringItem index="2" value="Ta bort utrustning"/>
           </StringArray>
         </Property>
       </Properties>

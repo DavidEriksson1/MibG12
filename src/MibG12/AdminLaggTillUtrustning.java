@@ -23,10 +23,12 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
      * Creates new form AdminLaggTillFordon
      */
     public AdminLaggTillUtrustning(InfDB idb, String agent, boolean anvandareArAdmin) {
+        initComponents();
         this.idb = idb;
         this.agent = agent;
         this.anvandareArAdmin = anvandareArAdmin;
-        initComponents();
+        txtFieldKaliber.setVisible(false);
+        
 
     }
 
@@ -173,16 +175,20 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
         if (i == 0) {
             lblUtrustning.setText("");
+            txtFieldKaliber.setVisible(false);
         }
 
         if (i == 1) {
             lblUtrustning.setText("Kaliber");
+            txtFieldKaliber.setVisible(true);
         }
         if (i == 2) {
             lblUtrustning.setText("Överföringsteknik");
+            txtFieldKaliber.setVisible(true);
         }
         if (i == 3) {
             lblUtrustning.setText("Kraftkälla");
+            txtFieldKaliber.setVisible(true);
         }
 
     }//GEN-LAST:event_comboUtrustningsTypActionPerformed
