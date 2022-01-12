@@ -129,7 +129,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try{  
-          String fraga = "select Namn from Agent where Agent_ID=(select Agent_ID from Omradeschef where Omradeschef.Omrade =(select Omrades_ID from Omrade where Omrades_ID=(select Plats from Alien where Alien.Namn='" + nuvarandeUtomjording + "')))";
+          String fraga = "select Namn from Agent where Agent_ID=(select Agent_ID from Omradeschef where Omradeschef.Omrade =(select Omrades_ID from Omrade where Omrades_ID=(select finns_i from plats where plats_id=(select Plats from Alien where Alien.Namn='" + nuvarandeUtomjording + "'))))";
       
         String svar = idb.fetchSingle(fraga);        
         
