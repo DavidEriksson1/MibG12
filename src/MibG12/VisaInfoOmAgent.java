@@ -260,6 +260,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
        lblOmrade.setText(visaPlats(namn));
        lblAgentTelefon.setText(visaTelefon(namn));
        lblAdminStatus.setText(visaAdminStatus(namn));
+       lblLosenordRubrik.setVisible(false);
         }
         else{
        lblAgentNamn.setText(visaNamn(namn));
@@ -278,7 +279,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         try {
         String fraga = "Select namn from agent where namn = '" + namn + "'";
         String svar = idb.fetchSingle(fraga);
-        namnet = Validering.storForstaOchSistaBokstav(svar);
+        namnet = svar;
         }
         
         catch (InfException ex) {
@@ -314,7 +315,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         try {
         String fraga = "Select benamning from omrade where omrades_id = (Select omrade from agent where namn = '" + namn + "')";
         String svar = idb.fetchSingle(fraga);
-        plats = Validering.storForstaBokstav(svar);
+        plats = svar;
         }
         
         catch (InfException ex) {
@@ -386,7 +387,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         try {
         String fraga = "Select namn from agent where agent_id = (Select Ansvarig_Agent from alien where namn = '" + namn + "')";
         String svar = idb.fetchSingle(fraga);
-        agent = Validering.storForstaOchSistaBokstav(svar);
+        agent = svar;
         }
         
         catch (InfException ex) {
