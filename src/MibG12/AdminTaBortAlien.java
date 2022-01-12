@@ -10,24 +10,25 @@ import oru.inf.InfException;
 
 /**
  * Klass för att kunna radera en alien ur systemet
+ *
  * @author 46737
  */
 public class AdminTaBortAlien extends javax.swing.JFrame {
-    
+
     private static InfDB idb;
     private String nuvarandeAgent;
     private VisaInfoOmAlien vIOA;
-    
 
     /**
      * Konstruktior för radera alien
+     *
      * @param idb nuvarandeAgent
      */
     public AdminTaBortAlien(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        vIOA = new VisaInfoOmAlien (idb, nuvarandeAgent, true);
+        vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent, true);
     }
 
     /**
@@ -101,10 +102,9 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
 // Raderar en den alien man skriver in i textrutan från alien tabellen samt dess tillhörande ras-tabell
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
-        
+
         boolean alienFinns = false;
         try {
             String alienAttRadera = txtAlienNamn.getText().toLowerCase();
@@ -116,7 +116,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
             String namn = idb.fetchSingle(namnFraga);
             String id = idb.fetchSingle(idFraga);
             System.out.println(id);
-            
+
             //Validering som kollar att rutan för den alien man ska radera inte är tom
             boolean textRutaTom = Validering.textRutaArTom(alienAttRadera);
 
@@ -155,7 +155,6 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRaderaActionPerformed
 
-    
 // Går tillbaka till huvudmeny för admin.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // Går tillbaka till huvudmeny för admin.
@@ -167,8 +166,6 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRadera;

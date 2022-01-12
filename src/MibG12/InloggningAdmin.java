@@ -140,7 +140,6 @@ public class InloggningAdmin extends javax.swing.JFrame {
             char[] c = lblLosenAdmin.getPassword();
             String losen = new String(c);
 
-           
             boolean textRutaArTom = false;
 
             String fraga1 = "SELECT Namn from agent where Namn='" + aNamn + "'";
@@ -155,27 +154,23 @@ public class InloggningAdmin extends javax.swing.JFrame {
             String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]", "");
 
             textRutaArTom = Validering.textRutaArTom(aNamn);
-           
-            
 
             if (textRutaArTom == false) {
                 boolean textRutaArTom2 = Validering.textRutaArTom(losen);
-                
+
                 if (textRutaArTom2 == false) {
-                    
-                     inloggningKorrekt = Validering.kollaInloggningsUppgifter(aNamn, anvNamn, losen, losOrd);
-                         
+
+                    inloggningKorrekt = Validering.kollaInloggningsUppgifter(aNamn, anvNamn, losen, losOrd);
+
                     if (inloggningKorrekt == true) {
-                         boolean adminStatus = checkAdmin(aNamn);
-                        
+                        boolean adminStatus = checkAdmin(aNamn);
+
                         if (adminStatus == true) {
-                        HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, aNamn);
-                        hMA.setVisible(true);
-                        dispose();
-                       
-                        
-                        
-                             } else if (inloggningKorrekt == false) {
+                            HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, aNamn);
+                            hMA.setVisible(true);
+                            dispose();
+
+                        } else if (inloggningKorrekt == false) {
                         }
                     }
                 }

@@ -132,7 +132,6 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         try {
             String utrustning = txtTaBortUtrustning.getText();
             String hittaTyp = visaTyp(utrustning).toLowerCase();
-            
 
             boolean textRutaArTom = Validering.textRutaArTom(utrustning);
 
@@ -153,27 +152,24 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             String taBortVapenID = " delete from vapen where Utrustnings_ID = " + svarUtrustningsID;
 
             String valdTyp = ComboUtrustningsTyp.getSelectedItem().toString().toLowerCase();
-            
+
             String taBortFraga = "delete from " + valdTyp + " where Utrustnings_ID = " + svarUtrustningsID;
 
             utrustningFinns = Validering.stringFinns(svarUtrustningsNamn, utrustning);
 
             if (textRutaArTom == false) {
-                
 
                 if (utrustningFinns == true) {
-                    
 
                     if (valdTyp.equals(hittaTyp)) {
-                        idb.fetchSingle(taBortFraga);            
+                        idb.fetchSingle(taBortFraga);
                         idb.fetchSingle(taBortUtrustningsID);
                         idb.fetchSingle(taBortUtrustning);
                         lblHarTagitsBort.setText(utrustning + " har tagits bort!");
 
                     }
-                    }
-                else {
-                        JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
                 }
             }
         } catch (InfException ie) {
@@ -228,11 +224,9 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             }
             if (isVapen == true) {
                 typ = "Vapen";
-            }
-            else if (isKommunikation == true) {
+            } else if (isKommunikation == true) {
                 typ = "Kommunikation";
-            }
-            else if (isTeknik == true) {
+            } else if (isTeknik == true) {
                 typ = "Teknik";
             }
 

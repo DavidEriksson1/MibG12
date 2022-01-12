@@ -212,7 +212,6 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
                 boolean endastSiffror = Validering.endastSiffror(utrustningAnvander);
 
                 if (endastSiffror == true) {
-                    
 
                     if (textRutaArTom1 == false) {
                         boolean textRutaArTom2 = Validering.textRutaArTom(utrustningAnvander);

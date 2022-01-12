@@ -10,15 +10,18 @@ import oru.inf.InfException;
 
 /**
  * Klass för att ta bort en agent som administratör
- * @author 
+ *
+ * @author
  */
 public class AdminTaBortAgent extends javax.swing.JFrame {
+
     private static InfDB idb;
     private static String nuvarandeAgent;
+
     /**
-     * Konstruktior för att ta bort agent 
+     * Konstruktior för att ta bort agent
      */
-    public AdminTaBortAgent(InfDB idb,String nuvarandeAgent) {
+    public AdminTaBortAgent(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
@@ -123,92 +126,83 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_btnTillbakaActionPerformed
 // Metoden för att radera en agent ur systemet
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
-       
-        
+
         String agentAttRadera = txtAgentNamn.getText();
         String nyAgent = txtNyAgent.getText();
-        
-        try{
-            
+
+        try {
+
             String fraga1 = "Select Namn from Agent where Namn ='" + agentAttRadera + "'";
             String fraga2 = "Select Namn from Agent where Namn ='" + nyAgent + "'";
-            String idRadera = "Select Agent_ID from Agent where Namn ='" + agentAttRadera + "'"; 
+            String idRadera = "Select Agent_ID from Agent where Namn ='" + agentAttRadera + "'";
             String nyaAgenten = "Select agent_id from agent where namn='" + nyAgent + "'";
-            
-            
+
             String svarId = idb.fetchSingle(idRadera);
             String nyId = idb.fetchSingle(nyaAgenten);
-            
+
             int raderatId = Integer.parseInt(svarId);
             int nyttId = Integer.parseInt(nyId);
-            
+
             String radera1 = "Delete from Agent where Agent_ID= " + raderatId;
-            String radera2 = "Delete from Faltagent where Agent_ID = " + raderatId;                       
-            String radera3 = "Delete from Kontorschef where Agent_ID = " + raderatId;            
-            String radera4 = "Delete from Omradeschef where Agent_ID = " + raderatId;           
-            String radera5 = "Delete from Innehar_Fordon where Agent_ID = " + raderatId;           
-            String radera6 = "Delete from Innehar_Utrustning where Agent_ID = " + raderatId;            
-            String update1 = "Update Alien set Ansvarig_agent = " + nyttId +  " where ansvarig_agent = " + raderatId;
-            
+            String radera2 = "Delete from Faltagent where Agent_ID = " + raderatId;
+            String radera3 = "Delete from Kontorschef where Agent_ID = " + raderatId;
+            String radera4 = "Delete from Omradeschef where Agent_ID = " + raderatId;
+            String radera5 = "Delete from Innehar_Fordon where Agent_ID = " + raderatId;
+            String radera6 = "Delete from Innehar_Utrustning where Agent_ID = " + raderatId;
+            String update1 = "Update Alien set Ansvarig_agent = " + nyttId + " where ansvarig_agent = " + raderatId;
+
             String svar1 = idb.fetchSingle(fraga1);
             String svar2 = idb.fetchSingle(fraga2);
-            
-           //Validering som kollar så agenten man vill radera faktiskt finns i systemet 
-           boolean agentFinns = Validering.stringFinns(svar1, agentAttRadera);
-           //Validering som kollar så den ny kontakt agenten finns i systemet
-           boolean agentFinns2 = Validering.stringFinns(svar2, nyAgent);
-            
+
+            //Validering som kollar så agenten man vill radera faktiskt finns i systemet 
+            boolean agentFinns = Validering.stringFinns(svar1, agentAttRadera);
+            //Validering som kollar så den ny kontakt agenten finns i systemet
+            boolean agentFinns2 = Validering.stringFinns(svar2, nyAgent);
+
             //Validering som kollar så radera agentrutan inte är tom
             boolean textRutaTom = Validering.textRutaArTom(agentAttRadera);
             //Validering som kollar så att ny agentrutan inte är tom 
             boolean textRutaTom2 = Validering.textRutaArTom(nyAgent);
-            
-            
-            if(textRutaTom == false){
-                if(textRutaTom2 == false){
-                
-            if(agentFinns == true ){
-                if (agentFinns2 == true){
-                idb.fetchSingle(radera2);
-                idb.fetchSingle(radera4);
-                idb.fetchSingle(radera3);
-                idb.fetchSingle(radera6);
-                idb.fetchSingle(radera5);
-                idb.fetchSingle(update1);
-                idb.fetchSingle(radera1);
-                
-                JOptionPane.showMessageDialog(null, agentAttRadera +" raderades ur systemet!");
-                txtAgentNamn.setText("");
-                txtNyAgent.setText("");
+
+            if (textRutaTom == false) {
+                if (textRutaTom2 == false) {
+
+                    if (agentFinns == true) {
+                        if (agentFinns2 == true) {
+                            idb.fetchSingle(radera2);
+                            idb.fetchSingle(radera4);
+                            idb.fetchSingle(radera3);
+                            idb.fetchSingle(radera6);
+                            idb.fetchSingle(radera5);
+                            idb.fetchSingle(update1);
+                            idb.fetchSingle(radera1);
+
+                            JOptionPane.showMessageDialog(null, agentAttRadera + " raderades ur systemet!");
+                            txtAgentNamn.setText("");
+                            txtNyAgent.setText("");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Det fanns ingen agent att radera med namnet " + svar1 + "!");
+                            txtAgentNamn.setText("");
+                            txtNyAgent.setText("");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Det fanns ingen agent att ersätta med namnet " + svar2 + "!");
+                        txtAgentNamn.setText("");
+                        txtNyAgent.setText("");
+                    }
+                }
             }
-                
-             else{
-                JOptionPane.showMessageDialog(null, "Det fanns ingen agent att radera med namnet " + svar1 +"!");
-                txtAgentNamn.setText("");
-                    txtNyAgent.setText("");
-            }   
-             }
-            else{
-                JOptionPane.showMessageDialog(null, "Det fanns ingen agent att ersätta med namnet " + svar2 + "!");
-                txtAgentNamn.setText("");
-                txtNyAgent.setText("");
-            }
-            }
-            }
-        
-        }
-        
-        catch(InfException e)
-        {
-            JOptionPane.showMessageDialog(null,"Något gick fel");
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println(e);
             txtAgentNamn.setText("");
         }
-    
+
     }//GEN-LAST:event_btnRaderaActionPerformed
 
     private void txtNyAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNyAgentActionPerformed
@@ -218,8 +212,6 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRadera;

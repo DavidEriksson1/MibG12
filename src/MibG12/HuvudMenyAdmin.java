@@ -14,6 +14,7 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
+
     /**
      * Creates new form HuvudMenyAdmin
      */
@@ -129,91 +130,87 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
     private void jComboAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAlienActionPerformed
         // Combobox med alternativ över vad admin kan göra med alien-tabellen
         int i = jComboAlien.getSelectedIndex();
-        
-        if(i == 1){
-            new NyRegistreraAlien(idb, agent,true).setVisible(true);
+
+        if (i == 1) {
+            new NyRegistreraAlien(idb, agent, true).setVisible(true);
             dispose();
         }
-        
-        if (i == 2)
-        {
-            AgentValjAlienFromHuvudMeny aVAFH = new AgentValjAlienFromHuvudMeny (idb, agent, true);
+
+        if (i == 2) {
+            AgentValjAlienFromHuvudMeny aVAFH = new AgentValjAlienFromHuvudMeny(idb, agent, true);
             aVAFH.setAdmin();
             aVAFH.setVisible(true);
             aVAFH.setVisaAndraText();
-            dispose();  
+            dispose();
+        } else if (i == 3) {
+            new AdminTaBortAlien(idb, agent).setVisible(true);
+            dispose();
+
         }
-        else if(i == 3){
-             new AdminTaBortAlien(idb, agent).setVisible(true); 
-             dispose();
-                    
-        }
-        
+
     }//GEN-LAST:event_jComboAlienActionPerformed
 
     private void jComboAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAgentActionPerformed
- // Combobox för att visa alternativ för hantering gällande agenter
+        // Combobox för att visa alternativ för hantering gällande agenter
         int i = jComboAgent.getSelectedIndex();
-        
-        if(i == 5){
+
+        if (i == 5) {
             new AdminTaBortAgent(idb, agent).setVisible(true);
             dispose();
         }
-        if(i == 1){
+        if (i == 1) {
             new NyRegistreraAgent(idb, agent).setVisible(true);
             dispose();
         }
-        
-        if (i == 2)
-        {
-           AdminValjAgentFromHuvudMeny adminValjAgentFromHuvudMeny = new AdminValjAgentFromHuvudMeny(idb);
-           adminValjAgentFromHuvudMeny.setVisible(true);
-           adminValjAgentFromHuvudMeny.visaBaraInfo();
-           adminValjAgentFromHuvudMeny.setVisaInfoText();
-           dispose();
+
+        if (i == 2) {
+            AdminValjAgentFromHuvudMeny adminValjAgentFromHuvudMeny = new AdminValjAgentFromHuvudMeny(idb);
+            adminValjAgentFromHuvudMeny.setVisible(true);
+            adminValjAgentFromHuvudMeny.visaBaraInfo();
+            adminValjAgentFromHuvudMeny.setVisaInfoText();
+            dispose();
         }
-        
-        if (i == 4)
-        {
-           AdminValjAgentFromHuvudMeny adminValjAgentFromHuvudMeny = new AdminValjAgentFromHuvudMeny(idb);
-           adminValjAgentFromHuvudMeny.setVisible(true);
-           adminValjAgentFromHuvudMeny.setVisaAndraText();
-           dispose();
+
+        if (i == 4) {
+            AdminValjAgentFromHuvudMeny adminValjAgentFromHuvudMeny = new AdminValjAgentFromHuvudMeny(idb);
+            adminValjAgentFromHuvudMeny.setVisible(true);
+            adminValjAgentFromHuvudMeny.setVisaAndraText();
+            dispose();
         }
-        
-        if(i == 3){
+
+        if (i == 3) {
             AdminGeAdminStatus adminGeAdminStatus = new AdminGeAdminStatus(idb, agent);
             adminGeAdminStatus.setVisible(true);
             dispose();
         }
-        
-        if(i == 6){
+
+        if (i == 6) {
             AdminOmrådesChef adminOmrådesChef = new AdminOmrådesChef(idb, agent);
             adminOmrådesChef.setVisible(true);
             dispose();
         }
-        if(i == 7){
+        if (i == 7) {
             AdminKontorsChef adminKontorsChef = new AdminKontorsChef(idb, agent);
             adminKontorsChef.setVisible(true);
             dispose();
         }
-        
+
 
     }//GEN-LAST:event_jComboAgentActionPerformed
 
     private void ComboHanteraUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboHanteraUtrustningActionPerformed
         // TODO add your handling code here:
         int i = ComboHanteraUtrustning.getSelectedIndex();
-        
-        if(i == 0){
+
+        if (i == 0) {
             new AdminLaggTillUtrustning(idb, agent, true).setVisible(true);
             dispose();
         }
-        if(i == 1){
+        if (i == 1) {
             new AdminUtrustningsHantering(idb, agent).setVisible(true);
             dispose();
         }
-        
+
     }//GEN-LAST:event_ComboHanteraUtrustningActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -225,7 +222,6 @@ public class HuvudMenyAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboHanteraUtrustning;

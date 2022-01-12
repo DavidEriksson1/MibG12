@@ -137,13 +137,13 @@ public class AdminKontorsChef extends javax.swing.JFrame {
         try {
 
             String agentNamn = txtFieldAgent.getText();
-          
+
             String namnID = "select Agent_ID from agent where Namn = '" + agentNamn + "'";
             String agentAttTaBort = "select Agent_ID from kontorschef";
-            
+
             String svar1 = idb.fetchSingle(namnID);
             String svar2 = idb.fetchSingle(agentAttTaBort);
-                        
+
             String taBort = "delete from kontorschef where Agent_ID = '" + svar2 + "'";
             String nyChef = "insert into kontorschef values(" + svar1 + "," + "'Örebrokontoret')";
 
@@ -151,35 +151,29 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
             if (tomTextRuta == false) {
                 boolean namnFinns = kontrolleraNamn(agentNamn);
-            
-            
-            
 
-            if (namnFinns == true) {
+                if (namnFinns == true) {
 
-            }
-            
-            else {
-                JOptionPane.showMessageDialog(null, "Det finns ingen agent med det namnet!");
-            }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Det finns ingen agent med det namnet!");
+                }
 
-            if (!svar2.isEmpty()) {
-                idb.fetchSingle(nyChef);
-                jLabelHarAndrats.setText("Kontorschefen har ändrats till " + agentNamn + "!");
-                txtFieldAgent.setText("");
-                idb.fetchSingle(taBort);
-            } 
-            else{
-                txtFieldAgent.setText("");
+                if (!svar2.isEmpty()) {
+                    idb.fetchSingle(nyChef);
+                    jLabelHarAndrats.setText("Kontorschefen har ändrats till " + agentNamn + "!");
+                    txtFieldAgent.setText("");
+                    idb.fetchSingle(taBort);
+                } else {
+                    txtFieldAgent.setText("");
+                }
             }
-            }  
         } catch (InfException ie) {
 
         }
-        
-        
+
     }
 //Metod för kontrollera om namnet redan finns
+
     private boolean kontrolleraNamn(String agentNamn) {
         boolean namnFinns = false;
 

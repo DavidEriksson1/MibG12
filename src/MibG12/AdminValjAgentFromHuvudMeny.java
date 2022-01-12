@@ -18,11 +18,11 @@ import oru.inf.InfException;
 public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
 
     InfDB idb;
-    
+
     private String nuvarandeUtomjording;
     private String nuvarandeAgent;
-    private boolean visaBaraInfo; 
-    
+    private boolean visaBaraInfo;
+
     public AdminValjAgentFromHuvudMeny(InfDB idb) {
         initComponents();
         this.idb = idb;
@@ -112,12 +112,12 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtValjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjAgentActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_txtValjAgentActionPerformed
 
     private void btnValjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValjActionPerformed
-        
+
         try {
             String namn = txtValjAgent.getText();
 
@@ -138,7 +138,7 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
                         aIOA.setVisible(true);
                         dispose();
                     } else {
-                        VisaInfoOmAgent vIOA = new VisaInfoOmAgent(idb, namn, true,nuvarandeUtomjording,false);
+                        VisaInfoOmAgent vIOA = new VisaInfoOmAgent(idb, namn, true, nuvarandeUtomjording, false);
                         vIOA.visaTillbakaTillHMknapp();
                         vIOA.setNuvarandeAgent(namn);
                         vIOA.setInfo(namn);
@@ -155,40 +155,35 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Ett fel har uppstått " + ex);
         }
-        
+
     }//GEN-LAST:event_btnValjActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        HuvudMenyAdmin hMA = new HuvudMenyAdmin (idb, nuvarandeAgent);
+        HuvudMenyAdmin hMA = new HuvudMenyAdmin(idb, nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void setUtomjording (String namn)
-    {
+    public void setUtomjording(String namn) {
         nuvarandeUtomjording = namn;
     }
-    
-    public void setagent (String namn)
-    {
+
+    public void setagent(String namn) {
         nuvarandeAgent = namn;
     }
-    
-    public void setVisaInfoText()
-    {
+
+    public void setVisaInfoText() {
         lblHuvudText.setText("Välj agent att visa information om:");
     }
 
-    public void setVisaAndraText()
-    {
+    public void setVisaAndraText() {
         lblHuvudText.setText("Välj agent att ändra information om:");
     }
-    
-    public void visaBaraInfo()
-    {
+
+    public void visaBaraInfo() {
         visaBaraInfo = true;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnValj;
     private javax.swing.JButton jButton1;
