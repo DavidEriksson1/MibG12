@@ -165,7 +165,7 @@ public class AgentVisaAllaUtomjordingarMellanTvaDatum extends javax.swing.JFrame
                                     txtAreaVisaInfo.append("Registrerade utomjordingar mellan " + datum1 + " - " + datum2 + ":" + "\n");
                                     txtAreaVisaInfo.append("\n");
                                 for (String namn : utomjordingar) {
-                                    txtAreaVisaInfo.append(namn + "\n");
+                                    txtAreaVisaInfo.append(Validering.storForstaBokstav(namn) + "\n");
                                 }
                                 txtDatum1.setText("");
                                 txtDatum2.setText("");

@@ -138,6 +138,7 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
 
             boolean namnKorrekt = Validering.stringFinns(namn, svar1);
             boolean textRutaArTom = Validering.textRutaArTom(namn);
+            System.out.println(namn);
 
             if (textRutaArTom == false) {
 

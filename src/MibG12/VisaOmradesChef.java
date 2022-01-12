@@ -132,7 +132,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                         else
                         {
                          
-                            txtAreaVisaInfo.append(agent + "\n");
+                            txtAreaVisaInfo.append(Validering.storForstaOchSistaBokstav(agent) + "\n");
                         
                         }
                     } catch (InfException ex) {

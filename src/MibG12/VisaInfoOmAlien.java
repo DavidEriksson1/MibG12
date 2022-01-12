@@ -360,6 +360,7 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
         try {
         String fraga = "Select benamning from plats where plats_id = (Select Plats from alien where namn = '" + namn + "')";
         String svar = idb.fetchSingle(fraga);
+        //plats = Validering.storForstaBokstav(svar);
         plats = svar;
         }
         
@@ -447,12 +448,13 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
     
     public String visaAnsvarigAgent (String namn)
     {
-        String Agent = "";
+        String agent = "";
         
         try {
         String fraga = "Select namn from agent where agent_id = (Select Ansvarig_Agent from alien where namn = '" + namn + "')";
         String svar = idb.fetchSingle(fraga);
-        Agent = svar;
+        //agent = Validering.storForstaOchSistaBokstav(svar);
+        agent = svar;
         }
         
         catch (InfException ex) {
@@ -460,7 +462,7 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
             System.out.println("Ett fel har uppstått " + ex);
         }
         
-        return Agent;
+        return agent;
     }
     
     /**
@@ -490,7 +492,6 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
             ArrayList<String> squid = idb.fetchColumn(fragaSquid);
 
             for (String id : boglodite) {
-                System.out.print(id);
                 if (id.equals(svarID)) {
                     isBoglodite = true;
                     break;
@@ -499,7 +500,6 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
 
             if (isBoglodite == false) {
                 for (String id : worm) {
-                    System.out.print(id);
                     if (id.equals(svarID)) {
                         isWorm = true;
                         break;
@@ -509,7 +509,6 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
 
             if (isWorm == false && isBoglodite == false) {
                 for (String id : squid) {
-                    System.out.print(id);
                     if (id.equals(svarID)) {
                         isSquid = true;
                         break;
@@ -520,8 +519,9 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
             
             if (isBoglodite == true) {
             ras = "Boglodite";
-            String fraga1 = "Select antal_boogies from boglodite";
+            String fraga1 = "Select antal_boogies from boglodite where alien_id = " + svarID;
             String svar1 = idb.fetchSingle(fraga1);
+            System.out.println(svar1);
             lblRasExtra.setText(svar1);
             lblRasExtraRubrik.setText("Antal boogies:");
             
@@ -531,8 +531,9 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
             lblRasExtraRubrik.setText("");
         } else if (isSquid == true) {
             ras = "Squid";
-            String fraga1 = "Select Antal_armar from squid";
+            String fraga1 = "Select Antal_Armar from squid where alien_id = " + svarID;
             String svar1 = idb.fetchSingle(fraga1);
+            System.out.println(svar1);
             lblRasExtra.setText(svar1);
             lblRasExtraRubrik.setText("Antal armar:");
         } else {

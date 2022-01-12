@@ -132,18 +132,18 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                          * Sql fråga för att visa alla utomjordingar på vald
                          * plats.
                          */
-                        String fraga = "Select namn from alien where plats = (Select plats_id from plats where benamning = '" + plats + "')";
+                        String fraga = "Select namn from alien where plats = (Select plats_id from plats where benamning = '" + Validering.storForstaBokstav(plats) + "')";
                         System.out.println(fraga);
                         utomjordingar = idb.fetchColumn(fraga);
 
                         if (utomjordingar.isEmpty()) {
-                            txtAreaVisaInfo.append("Det finns ingen utomjording i" + plats + "! :(");
+                            txtAreaVisaInfo.append("Det finns ingen utomjording i " + Validering.storForstaBokstav(plats) + "! :(");
                             txtValdPlats.setText("");
                         } else {
-                            txtAreaVisaInfo.append("Utomjordingar i: " + plats + "\n");
+                            txtAreaVisaInfo.append("Utomjordingar i " + Validering.storForstaBokstav(plats) + "\n");
                             txtAreaVisaInfo.append("\n");
                             for (String namn : utomjordingar) {
-                                txtAreaVisaInfo.append(namn + "\n");
+                                txtAreaVisaInfo.append(Validering.storForstaBokstav(namn) + "\n");
                             }
                             txtValdPlats.setText("");
                         }
@@ -153,7 +153,7 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Ett fel har uppstått¨" + ex);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Det finns ingen plats med namnet: " + plats + ".");
+                    JOptionPane.showMessageDialog(null, "Det finns ingen plats med namnet " + Validering.storForstaBokstav(plats) + ".");
                     txtValdPlats.setText("");
                 }
 

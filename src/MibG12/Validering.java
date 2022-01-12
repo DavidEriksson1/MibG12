@@ -298,6 +298,24 @@ public class Validering {
             
             return datumFormatKorrekt;
     }
+    
+    public static String storForstaOchSistaBokstav (String ord)
+    {
+        int ordLangd = ord.length();
+        String forstaB = ord.substring(0,1);
+        String sistaB = ord.substring ((ordLangd-1),(ordLangd));
+        String nyttOrd = forstaB.toUpperCase() + ord.substring(1, ord.length() - 1).toLowerCase() + sistaB.toUpperCase();
+        
+        return nyttOrd;
+    }
+    
+    public static String storForstaBokstav (String ord)
+    {
+        String forstaB = ord.substring(0,1);
+        String nyttOrd = forstaB.toUpperCase() + ord.substring(1, ord.length()).toLowerCase();
+        
+        return nyttOrd;
+    }
 
     
     

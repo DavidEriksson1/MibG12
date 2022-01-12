@@ -278,7 +278,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         try {
         String fraga = "Select namn from agent where namn = '" + namn + "'";
         String svar = idb.fetchSingle(fraga);
-        namnet = svar;
+        namnet = Validering.storForstaOchSistaBokstav(svar);
         }
         
         catch (InfException ex) {
@@ -314,7 +314,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
         try {
         String fraga = "Select benamning from omrade where omrades_id = (Select omrade from agent where namn = '" + namn + "')";
         String svar = idb.fetchSingle(fraga);
-        plats = svar;
+        plats = Validering.storForstaBokstav(svar);
         }
         
         catch (InfException ex) {
@@ -381,12 +381,12 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
 //Metod för att visa ansvarig agent    
     public String visaAnsvarigAgent (String namn)
     {
-        String Agent = "";
+        String agent = "";
         
         try {
         String fraga = "Select namn from agent where agent_id = (Select Ansvarig_Agent from alien where namn = '" + namn + "')";
         String svar = idb.fetchSingle(fraga);
-        Agent = svar;
+        agent = Validering.storForstaOchSistaBokstav(svar);
         }
         
         catch (InfException ex) {
@@ -394,7 +394,7 @@ public class VisaInfoOmAgent extends javax.swing.JFrame {
             System.out.println("Ett fel har uppstått " + ex);
         }
         
-        return Agent;
+        return agent;
     }
 //Metod för att visa adminstatus för en agent    
     public String visaAdminStatus (String status)

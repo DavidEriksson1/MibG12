@@ -35,6 +35,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         
         visaInfoOmAlien = new VisaInfoOmAlien (idb, nuvarandeAgent, true);
         visaInfoOmAlien.setInfo(nuvarandeAgent);
+        //setInfo(nuvarandeUtomjording);
         txtRasExtra.setVisible(false);
         
     }
@@ -685,9 +686,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         String gammalRas = lblRas.getText();
         boolean textRutaArTom = Validering.textRutaArTom(nyRas);
         String alienID = visaInfoOmAlien.visaID(nuvarandeUtomjording);
-        System.out.println(alienID);
-        System.out.println(nyRas);
-        System.out.println(gammalRas);
+        String antalExtra = txtRasExtra.getText();
         
         if (textRutaArTom == false)
         {
@@ -700,7 +699,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         if (nyRas.equals(boglodite))
         {
             
-            String fraga1 = "insert into boglodite values (" + alienID + "," + txtRasExtra.getText() +")";
+            String fraga1 = "insert into boglodite values (" + alienID + "," + antalExtra +")";
             idb.fetchSingle(fraga1);
             JOptionPane.showMessageDialog(null, "Rasen har ändrats!");
             
@@ -735,7 +734,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         }
         else if (nyRas.equals(squid))
         {
-            String fraga1 = "insert into squid values (" + alienID + "," + txtRasExtra.getText() +")";
+            String fraga1 = "insert into squid values (" + alienID + "," + antalExtra +")";
             idb.fetchSingle(fraga1);
             JOptionPane.showMessageDialog(null, "Rasen har ändrats!");
             if (!gammalRas.isEmpty())
@@ -922,7 +921,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
        
            if (lblRas.getText().toLowerCase().equals("boglodite"))
        {
-           String fraga1 = "Select Antal_boogies from boglodite";
+           String fraga1 = "Select Antal_boogies from boglodite where alien_id = " + visaInfoOmAlien.visaID(namn);
            String svar1 = idb.fetchSingle(fraga1);
            lblRasExtra.setText(svar1);
            lblRasExtraRubrik.setText("Antal boogies:");
@@ -930,7 +929,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
        
        else if (lblRas.getText().toLowerCase().equals("squid"))
        {
-           String fraga1 = "Select Antal_armar from squid";
+           String fraga1 = "Select Antal_armar from squid where alien_id = " + visaInfoOmAlien.visaID(namn);
            String svar1 = idb.fetchSingle(fraga1);
            lblRasExtra.setText(svar1);
            lblRasExtraRubrik.setText("Antal armar:");

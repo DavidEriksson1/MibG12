@@ -140,7 +140,7 @@ public class AgentVisaAllaUtomjordingarInomEnRas extends javax.swing.JFrame {
                             
                             String fraga2 = "Select namn from alien where alien_id = " + id;
                             String svar = idb.fetchSingle(fraga2);
-                            txtAreaVisaInfo.append(svar + "\n");
+                            txtAreaVisaInfo.append(Validering.storForstaBokstav(svar) + "\n");
                         }
                         }
                     } catch (InfException ex) {
