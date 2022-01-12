@@ -582,8 +582,8 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     
     private void btnAndraAdminStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraAdminStatusActionPerformed
         
-        String nyAdmin = jComboBoxAndraAdmin.getSelectedItem().toString().substring(0,1).toLowerCase();
-        String gammalAdmin = lblAdminStatus.getText().toLowerCase();
+        String nyAdmin = jComboBoxAndraAdmin.getSelectedItem().toString().substring(0,1);
+        String gammalAdmin = lblAdminStatus.getText();
         System.out.println(nyAdmin);
         System.out.println(gammalAdmin);
 
