@@ -62,7 +62,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
             }
         });
 
-        lblRaderaAgent.setText("Agent Namn");
+        lblRaderaAgent.setText("Beteckning");
 
         lblNyAgent.setText("Ny Kontaktperson");
 

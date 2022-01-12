@@ -201,30 +201,34 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
             int utrustningsID = nyttID();
 
             boolean textRutaArTom1 = Validering.textRutaArTom(utrustningsNamn);
-            
+
             String laggTillUtrustning = "insert into utrustning values (" + utrustningsID + ",'" + utrustningsNamn + "')";
-            
+
             String utrustningsTyp = comboUtrustningsTyp.getSelectedItem().toString();
-            
+
             String laggTillUtrustningsSort = "insert into " + utrustningsTyp + " values (" + utrustningsID + ",'" + utrustningAnvander + "')";
-            
 
-            if (textRutaArTom1 == false) {
-                boolean textRutaArTom2 = Validering.textRutaArTom(utrustningAnvander);
-                
-                if(textRutaArTom2 == false){
-                    
-                
+            if (utrustningsTyp.equals("Vapen")) {
+                boolean endastSiffror = Validering.endastSiffror(utrustningAnvander);
 
-                if (namnetFinns == false) {
-                    idb.fetchSingle(laggTillUtrustning);
-                    idb.fetchSingle(laggTillUtrustningsSort);
-                    JOptionPane.showMessageDialog(null, "Utrustningen har lagts till!");
+                if (endastSiffror == true) {
                     
-                }
-                else{
-                JOptionPane.showMessageDialog(null, "Utrustning med namnet " + utrustningsNamn + " finns redan!");
-            }
+
+                    if (textRutaArTom1 == false) {
+                        boolean textRutaArTom2 = Validering.textRutaArTom(utrustningAnvander);
+
+                        if (textRutaArTom2 == false) {
+
+                            if (namnetFinns == false) {
+                                idb.fetchSingle(laggTillUtrustning);
+                                idb.fetchSingle(laggTillUtrustningsSort);
+                                JOptionPane.showMessageDialog(null, "Utrustningen har lagts till!");
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Utrustning med namnet " + utrustningsNamn + " finns redan!");
+                            }
+                        }
+                    }
                 }
             }
         } catch (InfException ie) {
@@ -235,31 +239,27 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLaggTillFordonActionPerformed
 
-    public Boolean existerandeUtrustning(String uNamn)
-            //metod som kontrollerar om utrustningen redan finns i systemet
+    public Boolean existerandeUtrustning(String uNamn) //metod som kontrollerar om utrustningen redan finns i systemet
     {
         boolean namnetFinns = false;
-        try{
-            
-        
-        String existerandeUtrustning = "select benamning from utrustning";
-        ArrayList<String> utrustning = idb.fetchColumn(existerandeUtrustning);
-        
-        for(String namn : utrustning){
-            if(namn.toLowerCase().equals(uNamn.toLowerCase())){
-                namnetFinns = true;
-                break;
+        try {
+
+            String existerandeUtrustning = "select benamning from utrustning";
+            ArrayList<String> utrustning = idb.fetchColumn(existerandeUtrustning);
+
+            for (String namn : utrustning) {
+                if (namn.toLowerCase().equals(uNamn.toLowerCase())) {
+                    namnetFinns = true;
+                    break;
+                }
             }
-        }
-        
-        }
-        catch(InfException ie){
+
+        } catch (InfException ie) {
             System.out.println(ie);
         }
         return namnetFinns;
     }
-    
-    
+
     public int nyttID() {
         //Metod som skapar ett nytt ID för varje ny utrustning som läggs till i systemet
         String maxID = "select max(Utrustnings_ID) from utrustning";
