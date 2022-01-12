@@ -317,6 +317,16 @@ public class Validering {
         return nyttOrd;
     }
 
+    public static boolean indexInteNoll (int i)
+    {
+        boolean indexInteNoll = false;
+        if (i > 0)
+        {
+            indexInteNoll = true;
+        }
+        
+        return indexInteNoll;
+    }
     
     
 }

@@ -1,5 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/Sy
+stemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package MibG12;
@@ -17,6 +18,7 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
+    private NyRegistreraAlien nRA;
 
     /**
      * Creates new form AdminKontorsChef
@@ -25,6 +27,9 @@ public class AdminKontorsChef extends javax.swing.JFrame {
         this.idb = idb;
         this.agent = agent;
         initComponents();
+        nRA = new NyRegistreraAlien (idb, agent, true);
+        nRA.laggTillAgent(cbAgenter);
+        visaNuvarandeChef();
     }
 
     /**
@@ -38,16 +43,18 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
         btnOk = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
-        txtFieldAgent = new javax.swing.JTextField();
         jLabelAgent = new javax.swing.JLabel();
         jLabelOmrade = new javax.swing.JLabel();
         jLabelHarAndrats = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        cbAgenter = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        lblNuvChef = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnOk.setText("OK");
+        btnOk.setText("Ändra");
         btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOkActionPerformed(evt);
@@ -61,12 +68,6 @@ public class AdminKontorsChef extends javax.swing.JFrame {
             }
         });
 
-        txtFieldAgent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldAgentActionPerformed(evt);
-            }
-        });
-
         jLabelAgent.setText("Namn");
 
         jLabelOmrade.setText("Kontorsbeteckning:");
@@ -75,36 +76,41 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
         jLabel2.setText("Vänligen mata in namnet på den nya kontorschefen nedan");
 
+        cbAgenter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
+        jLabel3.setText("Nuvarande kontorschef:");
+
+        lblNuvChef.setText("agent");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(59, 59, 59)
+                            .addComponent(btnTillbaka)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabelAgent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelOmrade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelHarAndrats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1)
+                                .addComponent(cbAgenter, 0, 92, Short.MAX_VALUE)
+                                .addComponent(lblNuvChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelAgent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelOmrade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(181, 181, 181)
-                                .addComponent(btnTillbaka))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFieldAgent)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabelHarAndrats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,18 +120,24 @@ public class AdminKontorsChef extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAgent)
-                    .addComponent(txtFieldAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelOmrade)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelHarAndrats, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelHarAndrats, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(lblNuvChef))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTillbaka)
                     .addComponent(btnOk))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -136,7 +148,7 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
         try {
 
-            String agentNamn = txtFieldAgent.getText();
+            String agentNamn = cbAgenter.getSelectedItem().toString();
 
             String namnID = "select Agent_ID from agent where Namn = '" + agentNamn + "'";
             String agentAttTaBort = "select Agent_ID from kontorschef";
@@ -147,54 +159,19 @@ public class AdminKontorsChef extends javax.swing.JFrame {
             String taBort = "delete from kontorschef where Agent_ID = '" + svar2 + "'";
             String nyChef = "insert into kontorschef values(" + svar1 + "," + "'Örebrokontoret')";
 
-            boolean tomTextRuta = Validering.textRutaArTom(agentNamn);
+            if (svar1.equals(svar2)) {
 
-            if (tomTextRuta == false) {
-                boolean namnFinns = kontrolleraNamn(agentNamn);
+                JOptionPane.showMessageDialog(null, "Den valda agenter är redan kontorschef! Vänligen välj en annan agent!");
 
-                if (namnFinns == true) {
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Det finns ingen agent med det namnet!");
-                }
-
-                if (!svar2.isEmpty()) {
-                    idb.fetchSingle(nyChef);
-                    jLabelHarAndrats.setText("Kontorschefen har ändrats till " + agentNamn + "!");
-                    txtFieldAgent.setText("");
-                    idb.fetchSingle(taBort);
-                } else {
-                    txtFieldAgent.setText("");
-                }
+            } else {
+                idb.fetchSingle(taBort);
+                idb.fetchSingle(nyChef);
+                jLabelHarAndrats.setText("Kontorschefen har ändrats till " + agentNamn + "!");
+                cbAgenter.setSelectedIndex(0);  
             }
         } catch (InfException ie) {
-
+            JOptionPane.showMessageDialog(null, "Databasfel");
         }
-
-    }
-//Metod för kontrollera om namnet redan finns
-
-    private boolean kontrolleraNamn(String agentNamn) {
-        boolean namnFinns = false;
-
-        try {
-            String namn = "select namn from Agent";
-            ArrayList<String> agenter = idb.fetchColumn(namn);
-
-            for (String agent : agenter) {
-                if (agent.toLowerCase().equals(agentNamn.toLowerCase())) {
-                    namnFinns = true;
-                    break;
-                }
-            }
-
-            return namnFinns;
-
-        } catch (InfException ie) {
-
-        }
-        return namnFinns;
-
 
     }//GEN-LAST:event_btnOkActionPerformed
 
@@ -206,22 +183,29 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
-    private void txtFieldAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldAgentActionPerformed
-        // Textfält där agent som skall bli kontorschef matas in
-    }//GEN-LAST:event_txtFieldAgentActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    public void visaNuvarandeChef ()
+    {
+        try {
+                String fraga = "Select namn from agent where agent_id = (Select agent_id from kontorschef)";
+                String svar = idb.fetchSingle(fraga);
+                lblNuvChef.setText(svar);
+                }
+        catch (InfException e)
+        {
+            JOptionPane.showMessageDialog(null, "Databasfel");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JComboBox<String> cbAgenter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelAgent;
     private javax.swing.JLabel jLabelHarAndrats;
     private javax.swing.JLabel jLabelOmrade;
-    private javax.swing.JTextField txtFieldAgent;
+    private javax.swing.JLabel lblNuvChef;
     // End of variables declaration//GEN-END:variables
 }
