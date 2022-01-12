@@ -153,8 +153,13 @@ public class InloggningUtomjording extends javax.swing.JFrame {
             String lSvar = svar2.toString();
             String losOrd = lSvar.replaceAll("[\\p{Ps}\\p{Pe}]","");
             
-            inloggningKorrekt = Validering.kollaInloggningsUppgifter(aNamn, anvNamn, losen, losOrd);
+            boolean textRutaTom1 = Validering.textRutaArTom(aNamn);
+            if(textRutaTom1 == false){
+                
             
+                boolean textRutaTom2 = Validering.textRutaArTom(losen);
+                  if(textRutaTom2 == false){
+                      inloggningKorrekt = Validering.kollaInloggningsUppgifter(aNamn, anvNamn, losen, losOrd);
             if(inloggningKorrekt == true){
                 HuvudMenyUtomjording hMU = new HuvudMenyUtomjording(idb, aNamn);
                 hMU.setVisible(true);
@@ -162,7 +167,8 @@ public class InloggningUtomjording extends javax.swing.JFrame {
                 hMU.setNuvarandeUtomjording(anvNamn);
                 hMU.setValkommenUtomjording(); 
             }
- 
+            }
+            }
         }
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel");
