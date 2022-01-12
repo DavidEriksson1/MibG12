@@ -77,7 +77,7 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
         jLabel2.setText("Utrustningstyp");
 
-        comboUtrustningsTyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------", "Vapen", "Kommunikation", "Teknik" }));
+        comboUtrustningsTyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Vapen", "Kommunikation", "Teknik" }));
         comboUtrustningsTyp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboUtrustningsTypActionPerformed(evt);

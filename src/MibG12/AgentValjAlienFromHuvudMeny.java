@@ -8,6 +8,7 @@ import oru.inf.InfDB;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import oru.inf.InfException;
 
@@ -17,8 +18,7 @@ import oru.inf.InfException;
  */
 public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
 
-    InfDB idb;
-    
+    private static InfDB idb;
     private String nuvarandeUtomjording;
     private String nuvarandeAgent;
     private boolean visaBaraInfo;
@@ -29,6 +29,8 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.anvandareArAdmin = anvandareArAdmin;
+        laggTillAlien(cbAliens);
+        cbAliens.setSelectedIndex(0);
     }
 
     /**
@@ -41,21 +43,15 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
     private void initComponents() {
 
         lblHuvudText = new javax.swing.JLabel();
-        txtValjAlien = new javax.swing.JTextField();
         btnValj = new javax.swing.JButton();
         lblFelAlienNamn = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cbAliens = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblHuvudText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblHuvudText.setText("Välj utomjording att visa info om:");
-
-        txtValjAlien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValjAlienActionPerformed(evt);
-            }
-        });
 
         btnValj.setText("Välj");
         btnValj.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +67,8 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
             }
         });
 
+        cbAliens.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,8 +78,8 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHuvudText, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtValjAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
+                        .addComponent(cbAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
                         .addComponent(btnValj, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
@@ -101,8 +99,8 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
                 .addComponent(lblHuvudText)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValjAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnValj))
+                    .addComponent(btnValj)
+                    .addComponent(cbAliens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(lblFelAlienNamn)
                 .addGap(35, 35, 35)
@@ -123,22 +121,16 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
         anvandareArAdmin = false;
     }
     
-    private void txtValjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjAlienActionPerformed
-        
-        
-    }//GEN-LAST:event_txtValjAlienActionPerformed
-
     private void btnValjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValjActionPerformed
         
         try {
-            String namn = txtValjAlien.getText();
+            String namn = cbAliens.getSelectedItem().toString();
 
             String fraga1 = "SELECT namn FROM alien where namn =  '" + namn + "'";
             String svar1 = idb.fetchSingle(fraga1);
 
             boolean namnKorrekt = Validering.stringFinns(namn, svar1);
             boolean textRutaArTom = Validering.textRutaArTom(namn);
-            System.out.println(namn);
 
             if (textRutaArTom == false) {
 
@@ -227,11 +219,29 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
         visaBaraInfo = true;
     }
     
+    public static void laggTillAlien(JComboBox cb) {
+        String alienFraga = "SELECT namn FROM alien";
+
+        ArrayList<String> aliens;
+
+        try {
+            aliens = idb.fetchColumn(alienFraga);
+            for (String a : aliens) {
+                cb.addItem(a);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+            System.out.println(ex);
+
+        }
+
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnValj;
+    private javax.swing.JComboBox<String> cbAliens;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblFelAlienNamn;
     private javax.swing.JLabel lblHuvudText;
-    private javax.swing.JTextField txtValjAlien;
     // End of variables declaration//GEN-END:variables
 }

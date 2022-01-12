@@ -534,9 +534,7 @@ public class VisaInfoOmAlien extends javax.swing.JFrame {
             String svar1 = idb.fetchSingle(fraga1);
             lblRasExtra.setText(svar1);
             lblRasExtraRubrik.setText("Antal armar:");
-        } else {
-            System.out.println("Ingen ras hittad");
-        }
+        } 
         } catch (InfException ex) {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Ett fel har uppstått " + ex);

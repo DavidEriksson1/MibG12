@@ -21,6 +21,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     private String nuvarandeAgent;
     private String nuvarandeUtomjording;
     private VisaInfoOmAgent visaInfoOmAgent;
+    private NyRegistreraAgent nRA;
     
     /**
      * Creates new form AndraInfoOmAlien
@@ -29,9 +30,11 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        this.visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent, true,nuvarandeUtomjording,false);
+        this.visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent, true, nuvarandeUtomjording, false);
         visaInfoOmAgent.setNuvarandeAgent(nuvarandeAgent);
         visaInfoOmAgent.setInfo(nuvarandeAgent);
+        nRA = new NyRegistreraAgent(idb, nuvarandeAgent);
+        nRA.laggTillOmrade(jComboBoxOmrade);
     }
 
     /**
@@ -57,7 +60,6 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         txtNamn = new javax.swing.JTextField();
         txtTelefon = new javax.swing.JTextField();
         txtRegDatum = new javax.swing.JTextField();
-        txtPlats = new javax.swing.JTextField();
         btnAndraNamn = new javax.swing.JButton();
         btnAndraRegDatum = new javax.swing.JButton();
         btnAndraPlats = new javax.swing.JButton();
@@ -72,6 +74,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         txtLosenord = new javax.swing.JTextField();
         btnAndraAdminStatus = new javax.swing.JButton();
         jComboBoxAndraAdmin = new javax.swing.JComboBox<>();
+        jComboBoxOmrade = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -187,6 +190,8 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,13 +235,14 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
                                                 .addGap(3, 3, 3))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(92, 92, 92)
-                                                .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtLosenord, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                                    .addComponent(jComboBoxOmrade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(92, 92, 92)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jComboBoxAndraAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -297,8 +303,8 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPlatsRubrik)
                     .addComponent(lblPlats)
-                    .addComponent(txtPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAndraPlats))
+                    .addComponent(btnAndraPlats)
+                    .addComponent(jComboBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,7 +387,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
                     txtNamn.setText("");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Namnet används redan av en annan utomjording. Vänligen skriv ett annat namn!");
+                JOptionPane.showMessageDialog(null, "Namnet används redan av en annan agent. Vänligen skriv ett annat namn!");
                 txtNamn.setText("");
             }
             }
@@ -532,43 +538,34 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     
     private void btnAndraPlatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraPlatsActionPerformed
         
-        String nyPlats = txtPlats.getText();
+        String nyPlats = jComboBoxOmrade.getSelectedItem().toString();
         String gammalPlats = lblPlats.getText();
-        boolean textRutaArTom = Validering.textRutaArTom(nyPlats);
-
-        if (textRutaArTom == false) {
-            
-            boolean platsFinns = Validering.stringFinns(nyPlats, gammalPlats);
+        boolean platsFinns = Validering.stringFinns(nyPlats, gammalPlats);
 
             if (platsFinns == false) {
 
                 try {
-                    String fraga = "Select benamning from omrade where omrades_id = (Select omrade from agent where namn = '" + nuvarandeAgent + "')";
-                    String svar = idb.fetchSingle(fraga);
+                        String fraga = "Select benamning from omrade where omrades_id = (Select omrade from agent where namn = '" + nuvarandeAgent + "')";
+                        String svar = idb.fetchSingle(fraga);
 
-                    String fraga1 = "select omrades_id from omrade where Benamning = '" + nyPlats + "'";
-                    String svar1 = idb.fetchSingle(fraga1);
+                        String fraga1 = "select omrades_id from omrade where Benamning = '" + nyPlats + "'";
+                        String svar1 = idb.fetchSingle(fraga1);
 
-                    if (svar1 != null) {
                         String fraga2 = "update agent set omrade = '" + svar1 + "' where namn = '" + nuvarandeAgent + "'";
                         idb.fetchSingle(fraga2);
                         JOptionPane.showMessageDialog(null, "Platsen har ändrats!");
-                        txtPlats.setText("");
+                        jComboBoxOmrade.setSelectedIndex(0);
                         setInfo(nuvarandeAgent);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Det finns inget område med namnet " + nyPlats + "! Vänligen skriv in ett annat område!");
-                        txtPlats.setText("");
-                    }
-                } catch (InfException ex) {
+                    } 
+                 catch (InfException ex) {
                     JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
-                    txtPlats.setText("");
+                    jComboBoxOmrade.setSelectedIndex(0);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Den nya platsen är samma som den gamla. Vänligen skriv en ny plats!");
-                txtPlats.setText("");
+                JOptionPane.showMessageDialog(null, "Den nya platsen är samma som den gamla. Vänligen välj en ny plats!");
+                jComboBoxOmrade.setSelectedItem(0);
             }
-
-        }     
+    
     }//GEN-LAST:event_btnAndraPlatsActionPerformed
 
     private void txtLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLosenordActionPerformed
@@ -599,7 +596,6 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
             }
             catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
-                txtPlats.setText("");
             }
 
         }
@@ -702,6 +698,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton btnTillbakaTillHM;
     private javax.swing.JComboBox<String> jComboBoxAndraAdmin;
+    private javax.swing.JComboBox<String> jComboBoxOmrade;
     private javax.swing.JLabel lblAdminStatus;
     private javax.swing.JLabel lblIdAdminStatusRubrik;
     private javax.swing.JLabel lblInfoRubrik;
@@ -718,7 +715,6 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefonRubrik;
     private javax.swing.JTextField txtLosenord;
     private javax.swing.JTextField txtNamn;
-    private javax.swing.JTextField txtPlats;
     private javax.swing.JTextField txtRegDatum;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables

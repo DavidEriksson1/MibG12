@@ -17,16 +17,20 @@ import oru.inf.InfException;
  */
 public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
 
-    InfDB idb;
-
+    private static InfDB idb;
     private String nuvarandeUtomjording;
     private String nuvarandeAgent;
     private boolean visaBaraInfo;
+    private NyRegistreraAlien nRA;
+    
 
     public AdminValjAgentFromHuvudMeny(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
+        nRA = new NyRegistreraAlien (idb, nuvarandeAgent, true);
+        nRA.laggTillAgent(cbAgenter);
+        cbAgenter.setSelectedIndex(0);
     }
 
     /**
@@ -39,21 +43,15 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
     private void initComponents() {
 
         lblHuvudText = new javax.swing.JLabel();
-        txtValjAgent = new javax.swing.JTextField();
         btnValj = new javax.swing.JButton();
         lblFelAlienNamn = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cbAgenter = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblHuvudText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblHuvudText.setText("Välj agent att visa info om:");
-
-        txtValjAgent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValjAgentActionPerformed(evt);
-            }
-        });
 
         btnValj.setText("Välj");
         btnValj.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +67,8 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
             }
         });
 
+        cbAgenter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,8 +78,8 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHuvudText, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtValjAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
+                        .addComponent(cbAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
                         .addComponent(btnValj, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
@@ -98,9 +98,9 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(lblHuvudText)
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValjAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnValj))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnValj)
+                    .addComponent(cbAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(lblFelAlienNamn)
                 .addGap(37, 37, 37)
@@ -111,19 +111,13 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtValjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjAgentActionPerformed
-
-
-    }//GEN-LAST:event_txtValjAgentActionPerformed
-
     private void btnValjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValjActionPerformed
 
         try {
-            String namn = txtValjAgent.getText();
+            String namn = cbAgenter.getSelectedItem().toString();
 
             String fraga1 = "SELECT namn FROM agent where namn = '" + namn + "'";
             String svar1 = idb.fetchSingle(fraga1);
-            System.out.println(namn);
 
             boolean namnKorrekt = Validering.stringFinns(namn, svar1);
             boolean textRutaArTom = Validering.textRutaArTom(namn);
@@ -186,9 +180,9 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnValj;
+    private javax.swing.JComboBox<String> cbAgenter;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblFelAlienNamn;
     private javax.swing.JLabel lblHuvudText;
-    private javax.swing.JTextField txtValjAgent;
     // End of variables declaration//GEN-END:variables
 }

@@ -161,48 +161,53 @@ public class AndraLosenord extends javax.swing.JFrame {
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
         
         char[] c1 = nyttLosenord.getPassword();
-                String nyttLosen = new String(c1);
-                
+        String nyttLosen = new String(c1);
+
         char[] c = gammaltLosenord1.getPassword();
-                String gammaltLosen = new String(c);
+        String gammaltLosen = new String(c);
 
-        boolean gammaltLosenKorrekt = losenordKorrekt();
+        boolean textRutaArTom1 = Validering.textRutaArTom(nyttLosen);
+        if (textRutaArTom1 == false) {
+            boolean textRutaArTom2 = Validering.textRutaArTom(nyttLosen);
+            if (textRutaArTom2 == false) {
 
-        if (gammaltLosenKorrekt == true){
-            
-            if (!nyttLosen.equals(gammaltLosen)) {
-            
-                //Här valideringsmetod som kollar att lösenordet inte är för långt
-                boolean losenordForLangt = Validering.kollaLosenordsLangd(nyttLosen);
+                boolean gammaltLosenKorrekt = losenordKorrekt();
 
-                if (losenordForLangt == false) {
-                    if (anvandareArUtomjording == true) {
-                        setLosenordAlien(nyttLosen);
-                        gammaltLosenord1.setText("");
-                        nyttLosenord.setText("");
-                        lblStatus.setText("");
+                if (gammaltLosenKorrekt == true) {
+
+                    if (!nyttLosen.equals(gammaltLosen)) {
+
+                        //Här valideringsmetod som kollar att lösenordet inte är för långt
+                        boolean losenordForLangt = Validering.kollaLosenordsLangd(nyttLosen);
+
+                        if (losenordForLangt == false) {
+                            if (anvandareArUtomjording == true) {
+                                setLosenordAlien(nyttLosen);
+                                gammaltLosenord1.setText("");
+                                nyttLosenord.setText("");
+                                lblStatus.setText("");
+                            } else {
+                                setLosenordAgent(nyttLosen);
+                                gammaltLosenord1.setText("");
+                                nyttLosenord.setText("");
+                                lblStatus.setText("");
+                            }
+                        }
                     } else {
-                        setLosenordAgent(nyttLosen);
+                        JOptionPane.showMessageDialog(null, "Det nya lösenordet är samma som det tidigare, vänligen välj ett annat lösenord!");
                         gammaltLosenord1.setText("");
                         nyttLosenord.setText("");
-                        lblStatus.setText("");
                     }
-                } 
-            }
-            else {
-                    JOptionPane.showMessageDialog(null, "Det nya lösenordet är samma som det tidigate, vänligen välj ett annat lösenord!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gamla lösenordet är fel, vänligen prova igen!");
                     gammaltLosenord1.setText("");
                     nyttLosenord.setText("");
                 }
-        }
-            else {
-                JOptionPane.showMessageDialog(null, "Gamla lösenordet är fel, vänligen prova igen!");
-                gammaltLosenord1.setText("");
-                nyttLosenord.setText("");
+
             }
-       
-            
-     
+
+        }
+
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 // Visar tecken på nya lösenords textfältet så användaren kan se vad den skrivit in för nytt lösen
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -264,7 +269,6 @@ public class AndraLosenord extends javax.swing.JFrame {
         boolean losenAndrat = false;
         
         try {
-            System.out.println(nuvarandeUtomjording);
             String fraga = "UPDATE Alien set Losenord = '" + losenord + "' where Namn = '" + nuvarandeUtomjording + "'";
             idb.fetchSingle(fraga);
             JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
@@ -282,7 +286,6 @@ public class AndraLosenord extends javax.swing.JFrame {
         boolean losenAndrat = false;
         
         try {
-            System.out.println(nuvarandeAgent);
             String fraga = "UPDATE Agent set Losenord = '" + losenord + "' where Namn = '" + nuvarandeAgent + "'";
             idb.fetchSingle(fraga);
             JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");

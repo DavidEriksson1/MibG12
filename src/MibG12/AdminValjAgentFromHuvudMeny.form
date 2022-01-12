@@ -28,8 +28,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblHuvudText" min="-2" pref="330" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="txtValjAgent" min="-2" pref="104" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <Component id="cbAgenter" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       <Component id="btnValj" min="-2" pref="102" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -56,9 +56,9 @@
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="lblHuvudText" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtValjAgent" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnValj" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnValj" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbAgenter" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="lblFelAlienNamn" min="-2" max="-2" attributes="0"/>
@@ -78,11 +78,6 @@
         <Property name="text" type="java.lang.String" value="V&#xe4;lj agent att visa info om:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtValjAgent">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtValjAgentActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnValj">
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj"/>
@@ -100,6 +95,18 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbAgenter">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="V&#xe4;lj:"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

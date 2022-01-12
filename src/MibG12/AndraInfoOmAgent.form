@@ -71,7 +71,10 @@
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                                              <Component id="txtLosenord" min="-2" pref="113" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="txtLosenord" pref="113" max="32767" attributes="0"/>
+                                                  <Component id="jComboBoxOmrade" max="32767" attributes="0"/>
+                                              </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -80,7 +83,6 @@
                                       <Component id="lblTelefon" min="-2" pref="87" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtPlats" min="-2" pref="113" max="-2" attributes="0"/>
                                           <Component id="txtTelefon" min="-2" pref="113" max="-2" attributes="0"/>
                                           <Component id="jComboBoxAndraAdmin" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                                       </Group>
@@ -160,8 +162,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPlatsRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPlats" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPlats" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAndraPlats" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -269,8 +271,6 @@
     <Component class="javax.swing.JTextField" name="txtTelefon">
     </Component>
     <Component class="javax.swing.JTextField" name="txtRegDatum">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtPlats">
     </Component>
     <Component class="javax.swing.JButton" name="btnAndraNamn">
       <Properties>
@@ -380,6 +380,18 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxAndraAdminActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxOmrade">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="V&#xe4;lj:"/>
+          </StringArray>
+        </Property>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

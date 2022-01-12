@@ -121,7 +121,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         
                     try {
                         String fraga = "Select namn from agent where agent_id = (Select agent_id from omradeschef where omrade = (Select omrades_id from omrade where benamning ='" + omrade + "'))";
-                        System.out.println(fraga);
                         String agent = idb.fetchSingle(fraga);
                        
                         if (agent.isEmpty())

@@ -22,6 +22,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private String nuvarandeUtomjording;
     private VisaInfoOmAlien visaInfoOmAlien;
     private boolean anvandareArAdmin;
+    private NyRegistreraAlien nRA;
     
     /**
      * Creates new form AndraInfoOmAlien
@@ -32,11 +33,15 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         this.nuvarandeAgent = nuvarandeAgent;
         this.nuvarandeUtomjording = nuvarandeUtomjording;
         this.anvandareArAdmin = anvandareArAdmin;
+        nRA = new NyRegistreraAlien (idb, nuvarandeAgent, true);
         
         visaInfoOmAlien = new VisaInfoOmAlien (idb, nuvarandeAgent, true);
         visaInfoOmAlien.setInfo(nuvarandeAgent);
         //setInfo(nuvarandeUtomjording);
         txtRasExtra.setVisible(false);
+        nRA.laggTillPlats(jComboBoxPlats);
+        nRA.laggTillAgent(jComboBoxAnsvAgent);
+        
         
     }
 
@@ -60,9 +65,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         txtNamn = new javax.swing.JTextField();
         txtTelefon = new javax.swing.JTextField();
         txtRegDatum = new javax.swing.JTextField();
-        txtPlats = new javax.swing.JTextField();
         lblRasRubrik = new javax.swing.JLabel();
-        txtAnsvarigAgent = new javax.swing.JTextField();
         btnAndraRas = new javax.swing.JButton();
         btnAndraNamn = new javax.swing.JButton();
         btnAndraRegDatum = new javax.swing.JButton();
@@ -81,6 +84,8 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         lblRasExtraRubrik = new javax.swing.JLabel();
         lblRasExtra = new javax.swing.JLabel();
         txtLosenord = new javax.swing.JTextField();
+        jComboBoxAnsvAgent = new javax.swing.JComboBox<>();
+        jComboBoxPlats = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,12 +127,6 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
 
         lblRasRubrik.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblRasRubrik.setText("Ras");
-
-        txtAnsvarigAgent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAnsvarigAgentActionPerformed(evt);
-            }
-        });
 
         btnAndraRas.setText("Ändra");
         btnAndraRas.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +200,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "Boglodite", "Worm", "Squid" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Boglodite", "Worm", "Squid" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -224,6 +223,10 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                 txtLosenordActionPerformed(evt);
             }
         });
+
+        jComboBoxAnsvAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
+        jComboBoxPlats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,17 +252,18 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblRas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRegDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblRegDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblPlats, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblAnsvarigAgent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(HuvudText, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                         .addComponent(lblInfoRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(289, Short.MAX_VALUE))
+                        .addContainerGap(178, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -268,7 +272,8 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                                         .addGap(106, 106, 106)
                                         .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(72, 72, 72)
-                                        .addComponent(btnTillbakaTillHM))
+                                        .addComponent(btnTillbakaTillHM)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblNamnRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,14 +285,16 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtRegDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(txtRasExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(32, 32, 32)
                                                 .addComponent(lblRasExtraAndra, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jComboBoxAnsvAgent, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtLosenord, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jComboBoxPlats, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtTelefon, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
                                         .addGap(3, 3, 3)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnAndraRegDatum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,8 +355,8 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPlatsRubrik)
                     .addComponent(lblPlats)
-                    .addComponent(txtPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAndraPlats))
+                    .addComponent(btnAndraPlats)
+                    .addComponent(jComboBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLosenordRubrik)
@@ -360,10 +367,9 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(iblAnsvarigAgentRubrik)
-                        .addComponent(lblAnsvarigAgent))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAndraAnsvarigAgent)))
+                        .addComponent(lblAnsvarigAgent)
+                        .addComponent(jComboBoxAnsvAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAndraAnsvarigAgent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnTillbakaTillHM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -377,11 +383,6 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private void txtNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamnActionPerformed
-
-    private void txtAnsvarigAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnsvarigAgentActionPerformed
-        
-        
-    }//GEN-LAST:event_txtAnsvarigAgentActionPerformed
 
     /**
  * Metod som går tillbaka till föregående Jframeklass.
@@ -632,43 +633,35 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     
     private void btnAndraPlatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraPlatsActionPerformed
         
-        String nyPlats = txtPlats.getText();
+        String nyPlats = jComboBoxPlats.getSelectedItem().toString();
         String gammalPlats = lblPlats.getText();
-        boolean textRutaArTom = Validering.textRutaArTom(nyPlats);
-
-        if (textRutaArTom == false) {
-            
-            boolean platsFinns = Validering.stringFinns(nyPlats, gammalPlats);
+        boolean platsFinns = Validering.stringFinns(nyPlats, gammalPlats);
 
             if (platsFinns == false) {
 
                 try {
-                    String fraga = "Select benamning from omrade where omrades_id = (Select Plats from alien where namn = '" + nuvarandeUtomjording + "')";
-                    String svar = idb.fetchSingle(fraga);
+                        String fraga = "Select benamning from omrade where omrades_id = (Select Plats from alien where namn = '" + nuvarandeUtomjording + "')";
+                        String svar = idb.fetchSingle(fraga);
 
-                    String fraga1 = "select plats_ID from plats where Benamning = '" + nyPlats + "'";
-                    String svar1 = idb.fetchSingle(fraga1);
-
-                    if (svar1 != null) {
+                        String fraga1 = "select plats_ID from plats where Benamning = '" + nyPlats + "'";
+                        String svar1 = idb.fetchSingle(fraga1);
+                    
                         String fraga2 = "update alien set plats = '" + svar1 + "' where namn = '" + nuvarandeUtomjording + "'";
                         String svar2 = idb.fetchSingle(fraga2);
                         JOptionPane.showMessageDialog(null, "Platsen har ändrats!");
-                        txtPlats.setText("");
+                        jComboBoxPlats.setSelectedIndex(0);
                         setInfo(nuvarandeUtomjording);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Det finns ingen plats med namnet " + nyPlats + "! Vänligen skriv in en annan plats!");
-                        txtPlats.setText("");
-                    }
-                } catch (InfException ex) {
+                    } 
+                 catch (InfException ex) {
                     JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
-                    txtPlats.setText("");
+                    jComboBoxPlats.setSelectedIndex(0);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Den nya platsen är samma som den gamla. Vänligen skriv en ny plats!");
-                txtPlats.setText("");
+                JOptionPane.showMessageDialog(null, "Den nya platsen är samma som den gamla. Vänligen välj en ny plats!");
+                jComboBoxPlats.setSelectedIndex(0);
             }
 
-        }     
+            
     }//GEN-LAST:event_btnAndraPlatsActionPerformed
 
     /**
@@ -781,54 +774,31 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     
     private void btnAndraAnsvarigAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraAnsvarigAgentActionPerformed
         
-        String nyAnsvarigAgent = txtAnsvarigAgent.getText();
+        String nyAnsvarigAgent = jComboBoxAnsvAgent.getSelectedItem().toString();
         String gammalAnsvarigAgent = lblAnsvarigAgent.getText();
         
-        boolean textRutaArTom = Validering.textRutaArTom(nyAnsvarigAgent);
-        boolean agentFinns = false;
-
-        if (textRutaArTom == false) {
-            
-            boolean agentAnvands = Validering.stringFinns(nyAnsvarigAgent, gammalAnsvarigAgent);
+        boolean agentAnvands = Validering.stringFinns(nyAnsvarigAgent, gammalAnsvarigAgent);
 
             if (agentAnvands == false) {
 
-                try {
-                    String fraga = "Select namn from agent";
-                    ArrayList<String> agentNamnlista = idb.fetchColumn(fraga);
-
-                    for (String agentNamn : agentNamnlista)
-                    {
-                        if (agentNamn.toLowerCase().equals(nyAnsvarigAgent.toLowerCase()))
-                        {
-                            agentFinns = true;
-                            break;
-                        }
-                    }
-
-                    if (agentFinns == true) {
+                    try {
                         String fraga1 = "select agent_id from agent where namn = '" + nyAnsvarigAgent + "'";
                         String svar1 = idb.fetchSingle(fraga1);
                         String fraga2 = "update alien set ansvarig_Agent = '" + svar1 + "' where namn = '" + nuvarandeUtomjording + "'";
                         String svar2 = idb.fetchSingle(fraga2);
                         JOptionPane.showMessageDialog(null, "Ansvarig agent har ändrats!");
-                        txtAnsvarigAgent.setText("");
+                        jComboBoxAnsvAgent.setSelectedIndex(0);
                         setInfo(nuvarandeUtomjording);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Det finns ingen agent med namnet " + nyAnsvarigAgent + "! Vänligen skriv in en annan agent!");
-                        txtAnsvarigAgent.setText("");
-                    }
-                } catch (InfException ex) {
+                    } catch (InfException ex) {
                     JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
-                    txtAnsvarigAgent.setText("");
+                    jComboBoxAnsvAgent.setSelectedIndex(0);
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Den nya agenten är samma som den gamla. Vänligen skriv en ny agent!");
-                txtAnsvarigAgent.setText("");
             }
-
-        }   
-        
+             else {
+                JOptionPane.showMessageDialog(null, "Den nya agenten är samma som den gamla. Vänligen välj en ny agent!");
+                jComboBoxAnsvAgent.setSelectedIndex(0);
+            }
+     
     }//GEN-LAST:event_btnAndraAnsvarigAgentActionPerformed
 
     /**
@@ -989,6 +959,8 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private javax.swing.JButton btnTillbakaTillHM;
     private javax.swing.JLabel iblAnsvarigAgentRubrik;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxAnsvAgent;
+    private javax.swing.JComboBox<String> jComboBoxPlats;
     private javax.swing.JLabel lblAnsvarigAgent;
     private javax.swing.JLabel lblInfoRubrik;
     private javax.swing.JLabel lblLosen;
@@ -1006,10 +978,8 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblRegDatumRubrik;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTelefonRubrik;
-    private javax.swing.JTextField txtAnsvarigAgent;
     private javax.swing.JTextField txtLosenord;
     private javax.swing.JTextField txtNamn;
-    private javax.swing.JTextField txtPlats;
     private javax.swing.JTextField txtRasExtra;
     private javax.swing.JTextField txtRegDatum;
     private javax.swing.JTextField txtTelefon;
