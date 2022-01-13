@@ -43,8 +43,9 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        btnRegNyUtrustning = new javax.swing.JButton();
-        btnAndraLosen2 = new javax.swing.JButton();
+        btnVisaOmradeschef = new javax.swing.JButton();
+        cbUtrustning = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,72 +76,75 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
             }
         });
 
-        btnRegNyUtrustning.setText("Registrera ny utrustning");
-        btnRegNyUtrustning.addActionListener(new java.awt.event.ActionListener() {
+        btnVisaOmradeschef.setText("Visa områdeschef för enskilt område");
+        btnVisaOmradeschef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegNyUtrustningActionPerformed(evt);
+                btnVisaOmradeschefActionPerformed(evt);
             }
         });
 
-        btnAndraLosen2.setText("Visa områdeschef för enskilt område");
-        btnAndraLosen2.addActionListener(new java.awt.event.ActionListener() {
+        cbUtrustning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:", "Visa min utkvitterade utrustning", "Kvittera ut ny utrustning", "Lämna tillbaka utrustning", "Lägg till ny utrustning" }));
+        cbUtrustning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAndraLosen2ActionPerformed(evt);
+                cbUtrustningActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("Valmöjligheter om utrustning");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnRegNyUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAndraLosen2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblHuvudText, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(163, 163, 163))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(161, 161, 161))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisaOmradeschef, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(196, 196, 196)
+                            .addComponent(lblHuvudText, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(115, 115, 115)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(107, 107, 107)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(107, 107, 107)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(72, 72, 72)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(179, 179, 179)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(27, 27, 27)
                 .addComponent(lblHuvudText)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnAndraLosen)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegNyUtrustning)
+                .addComponent(btnVisaOmradeschef)
                 .addGap(30, 30, 30)
-                .addComponent(btnAndraLosen2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(27, 27, 27)
+                .addComponent(cbUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(32, 32, 32))
+                .addGap(93, 93, 93))
         );
 
         pack();
@@ -208,30 +212,58 @@ public class HuvudMenyAgent extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnRegNyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegNyUtrustningActionPerformed
-        
-        AdminLaggTillUtrustning aLTU = new AdminLaggTillUtrustning(idb, nuvarandeAgent, false);
-        aLTU.setVisible(true);
-        aLTU.setAgent();
-        dispose();
-        
-    }//GEN-LAST:event_btnRegNyUtrustningActionPerformed
-
-    private void btnAndraLosen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosen2ActionPerformed
+    private void btnVisaOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaOmradeschefActionPerformed
         VisaOmradesChef vOC = new VisaOmradesChef (idb, nuvarandeAgent);
         vOC.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnAndraLosen2ActionPerformed
+    }//GEN-LAST:event_btnVisaOmradeschefActionPerformed
+
+    private void cbUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUtrustningActionPerformed
+        
+         int i = cbUtrustning.getSelectedIndex();    
+         
+         if (i == 1)
+         {
+            AgentVisaUtkviteradUtrustning aVUU = new AgentVisaUtkviteradUtrustning(idb, nuvarandeAgent);
+            aVUU.setVisible(true);
+            dispose();
+             
+         }
+         
+         if (i == 2)
+         {
+            AgentKvitteraUtrustning aKU = new AgentKvitteraUtrustning(idb, nuvarandeAgent);
+            aKU.setVisible(true);
+            dispose();
+         }
+         
+         if (i == 3)
+         {
+            AgentLamnaTillbakaUtrustning aLTU = new AgentLamnaTillbakaUtrustning (idb, nuvarandeAgent);
+            aLTU.setVisible(true);
+            dispose();
+         }
+         
+         if (i == 4)
+         {
+             AdminLaggTillUtrustning aLTU = new AdminLaggTillUtrustning(idb, nuvarandeAgent, false);
+            aLTU.setVisible(true);
+            aLTU.setAgent();
+            dispose();
+         }
+                
+    }//GEN-LAST:event_cbUtrustningActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
-    private javax.swing.JButton btnAndraLosen2;
-    private javax.swing.JButton btnRegNyUtrustning;
+    private javax.swing.JButton btnVisaOmradeschef;
+    private javax.swing.JComboBox<String> cbUtrustning;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblHuvudText;
     // End of variables declaration//GEN-END:variables
 }

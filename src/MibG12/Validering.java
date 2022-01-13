@@ -174,28 +174,7 @@ public class Validering {
         
         return utrustningFinns;
     }
-    
-    /**
-     * Metod som används för att kontrollera så att datumet inte är tomt.
-     * 
-     */
-    
-    public static boolean kontrolleraDatum(String datum)
-    {
-        boolean datumKorrekt = false;
-        
-        if (datum != null)
-        {
-            datumKorrekt = true;
-        }
-        
-        else 
-        {
-            JOptionPane.showMessageDialog(null, "Fel datumformat, vänligen ange enligt 'YYYY-MM-DDä'");
-        }
-        return datumKorrekt;
-    }
-    
+ 
     /**
      * Metod som kollar om en textRuta är tom.
      * 
@@ -320,6 +299,7 @@ public class Validering {
     public static boolean indexInteNoll (int i)
     {
         boolean indexInteNoll = false;
+        
         if (i > 0)
         {
             indexInteNoll = true;

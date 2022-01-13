@@ -28,6 +28,7 @@ public class AgentVisaUtkviteradUtrustning extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;  
         visaUtrustning();
+        txtAreaVisaInfo.setEditable(false);
         
         
     }
@@ -138,21 +139,25 @@ public class AgentVisaUtkviteradUtrustning extends javax.swing.JFrame {
         ArrayList<HashMap<String, String>> utrustning;
         String fraga1 = "Select * from innehar_utrustning where agent_id in (Select agent_id from agent where namn = '" + nuvarandeAgent + "')";
         utrustning = idb.fetchRows(fraga1);
-        txtAreaVisaInfo.append("Utrustningsnamn" + "\t");
-        txtAreaVisaInfo.append("Utkvitteringsdatum" + "\t");
+        txtAreaVisaInfo.append("Utrustningsnamn:" + "\t");
+        txtAreaVisaInfo.append("Utkvitteringsdatum:" + "\t");
         
         for (HashMap<String, String> saker : utrustning)
         {
             txtAreaVisaInfo.append("\n");
             String fragaVapenNamn = "Select benamning from utrustning where Utrustnings_ID =" + saker.get("Utrustnings_ID");
             System.out.println(saker.get("Utrustnings_ID"));
-            txtAreaVisaInfo.append(saker.get(idb.fetchSingle(fragaVapenNamn)) + "\t");
-            txtAreaVisaInfo.append(saker.get("Utkvitteringsdatum") + "\t");
+            String svar = idb.fetchSingle(fragaVapenNamn);
+            txtAreaVisaInfo.append(svar + "\t");
+            txtAreaVisaInfo.append("\t" + saker.get("Utkvitteringsdatum") + "\t");
         }
         
         if (utrustning.isEmpty())
         {
+            txtAreaVisaInfo.setText("");
             txtAreaVisaInfo.append("Denna agent har ingen utrustning utkvitterad.");
+              
+            
         }
         
         

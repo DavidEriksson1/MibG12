@@ -38,9 +38,11 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
         btnVisaChef = new javax.swing.JButton();
         lblVisaChef = new javax.swing.JLabel();
         btnLoggaUt = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lblValkommen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblValkommen.setText("jLabel1");
 
         btnAndraLosen.setText("Ändra mitt lösenord");
@@ -50,7 +52,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
             }
         });
 
-        btnVisaChef.setText("Visa områdeschef");
+        btnVisaChef.setText("Visa områdeschef över mitt område");
         btnVisaChef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisaChefActionPerformed(evt);
@@ -66,41 +68,49 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Välj någon utav de operationer du vill utföra");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnAndraLosen)
-                .addGap(35, 35, 35)
+                .addGap(128, 128, 128)
+                .addComponent(lblValkommen, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addComponent(lblValkommen)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnLoggaUt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAndraLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVisaChef, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(lblValkommen)
-                .addGap(127, 127, 127)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addGap(33, 33, 33)
+                .addComponent(btnAndraLosen)
+                .addGap(26, 26, 26)
+                .addComponent(btnVisaChef)
+                .addGap(26, 26, 26)
+                .addComponent(btnLoggaUt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(lblVisaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addContainerGap())
         );
 
         pack();
@@ -116,7 +126,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
     public void setValkommenUtomjording()
     {
         
-        lblValkommen.setText("Välkommen " + nuvarandeUtomjording +"!");
+        lblValkommen.setText("Välkommen " + Validering.storForstaBokstav(nuvarandeUtomjording) +"!");
     
     
 }
@@ -162,6 +172,7 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
     private javax.swing.JButton btnAndraLosen;
     private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnVisaChef;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblValkommen;
     private javax.swing.JLabel lblVisaChef;
     // End of variables declaration//GEN-END:variables
