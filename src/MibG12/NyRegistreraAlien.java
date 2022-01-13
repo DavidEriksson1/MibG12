@@ -100,6 +100,11 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
         lblNyRegistrera.setText("Nyregistrera Alien");
 
         cbAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+        cbAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAgentActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Ras");
 
@@ -286,91 +291,110 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
                                     //VAlidering som kollar att lösenordet är rätt längd, max 6 tecken
                                     boolean losenordKorrekt = Validering.kollaLosenordsLangd(losenord);
                                     if (losenordKorrekt == false) {
+                                        //Validering som kollar så en ansvarig agent är vald.
+                                        boolean agentEjVald = Validering.indexInteNoll(cbAgent.getSelectedIndex());
+                                        if (agentEjVald == true) {
+                                            //Validering som kollar så en plats är vald.
+                                            boolean platsEjVald = Validering.indexInteNoll(cbPlats.getSelectedIndex());
+                                            if (platsEjVald == true) {
+                                                //Validering som kollar så en ras är vald.
+                                                boolean rasEjVald = Validering.indexInteNoll(cbRas.getSelectedIndex());
+                                                if (rasEjVald == true) {
 
-                                    String agenten = cbAgent.getSelectedItem().toString().toLowerCase();
-                                    String platsen = cbPlats.getSelectedItem().toString().toLowerCase();
+                                                    String agenten = cbAgent.getSelectedItem().toString().toLowerCase();
+                                                    String platsen = cbPlats.getSelectedItem().toString().toLowerCase();
 
-                                    String jamforNamn = "select namn from alien";
-                                    String ansAgent = "Select Agent_id from agent where namn ='" + agenten + "'";
-                                    String platsId = "Select plats_id from plats where benamning='" + platsen + "'";
+                                                    String jamforNamn = "select namn from alien";
+                                                    String ansAgent = "Select Agent_id from agent where namn ='" + agenten + "'";
+                                                    String platsId = "Select plats_id from plats where benamning='" + platsen + "'";
 
-                                    try {
+                                                    try {
 
-                                        utomjordingar = idb.fetchColumn(jamforNamn);
-                                        String agentID = idb.fetchSingle(ansAgent);
-                                        String platsID = idb.fetchSingle(platsId);
+                                                        utomjordingar = idb.fetchColumn(jamforNamn);
+                                                        String agentID = idb.fetchSingle(ansAgent);
+                                                        String platsID = idb.fetchSingle(platsId);
 
-                                        String insertAlien = "insert into alien values (" + id + ",'" + regDatum + "','" + losenord + "','" + namn + "','" + telefon + "'," + platsID + "," + agentID + ")";
-                                        String insertBog = "insert into Boglodite values(" + id + "," + armar + ")";
-                                        String insertSquid = "insert into Squid values(" + id + "," + armar + ")";
-                                        String insertWorm = "insert into Worm values(" + id + ")";
+                                                        String insertAlien = "insert into alien values (" + id + ",'" + regDatum + "','" + losenord + "','" + namn + "','" + telefon + "'," + platsID + "," + agentID + ")";
+                                                        String insertBog = "insert into Boglodite values(" + id + "," + armar + ")";
+                                                        String insertSquid = "insert into Squid values(" + id + "," + armar + ")";
+                                                        String insertWorm = "insert into Worm values(" + id + ")";
 
-                                        for (String namnet : utomjordingar) {
+                                                        for (String namnet : utomjordingar) {
 
-                                            if (namnet.toLowerCase().equals(namn.toLowerCase())) {
-                                                namnetAnvands = true;
-                                                JOptionPane.showMessageDialog(null, "Namnet finns redan registrerat vänligen ange ett annat!");
-                                                break;
+                                                            if (namnet.toLowerCase().equals(namn.toLowerCase())) {
+                                                                namnetAnvands = true;
+                                                                JOptionPane.showMessageDialog(null, "Namnet finns redan registrerat vänligen ange ett annat!");
+                                                                break;
+                                                            }
+                                                        }
+
+                                                        if (namnetAnvands == false) {
+
+                                                            if (i == 1) {
+                                                                idb.fetchSingle(insertAlien);
+                                                                idb.fetchSingle(insertBog);
+                                                                JOptionPane.showMessageDialog(null, namn + " registrerades!");
+                                                                txtAlienDatum.setText("");
+                                                                txtAlienLosenord.setText("");
+                                                                txtAlienNamn.setText("");
+                                                                txtAlienTelefon.setText("");
+                                                                cbAgent.setSelectedIndex(0);
+                                                                cbPlats.setSelectedIndex(0);
+                                                                cbRas.setSelectedIndex(0);
+                                                                slumpId();
+
+                                                            }
+                                                            if (i == 2) {
+                                                                idb.fetchSingle(insertAlien);
+                                                                idb.fetchSingle(insertSquid);
+                                                                JOptionPane.showMessageDialog(null, namn + " registrerades!");
+                                                                txtAlienDatum.setText("");
+                                                                txtAlienLosenord.setText("");
+                                                                txtAlienNamn.setText("");
+                                                                txtAlienTelefon.setText("");
+                                                                cbAgent.setSelectedIndex(0);
+                                                                cbPlats.setSelectedIndex(0);
+                                                                cbRas.setSelectedIndex(0);
+                                                                slumpId();
+
+                                                            }
+                                                            if (i == 3) {
+                                                                idb.fetchSingle(insertAlien);
+                                                                idb.fetchSingle(insertWorm);
+                                                                JOptionPane.showMessageDialog(null, namn + " registrerades!");
+                                                                txtAlienDatum.setText("");
+                                                                txtAlienLosenord.setText("");
+                                                                txtAlienNamn.setText("");
+                                                                txtAlienTelefon.setText("");
+                                                                cbAgent.setSelectedIndex(0);
+                                                                cbPlats.setSelectedIndex(0);
+                                                                cbRas.setSelectedIndex(0);
+                                                                slumpId();
+                                                            }
+
+                                                        }
+                                                    } catch (InfException ie) {
+                                                        System.out.println("Något gick fel " + ie);
+                                                    }
+                                                } else {
+                                                    JOptionPane.showMessageDialog(null, "Vänligen välj en ras!");
+                                                }
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Vänligen välj en plats!");
                                             }
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Vänligen välj ansvarig agent!");
                                         }
-
-                                        if (namnetAnvands == false) {
-
-                                            if (i == 1) {
-                                                idb.fetchSingle(insertAlien);
-                                                idb.fetchSingle(insertBog);
-                                                JOptionPane.showMessageDialog(null, namn + " registrerades!");
-                                                txtAlienDatum.setText("");
-                                                txtAlienLosenord.setText("");
-                                                txtAlienNamn.setText("");
-                                                txtAlienTelefon.setText("");
-                                                cbAgent.setSelectedIndex(0);
-                                                cbPlats.setSelectedIndex(0);
-                                                cbRas.setSelectedIndex(0);
-                                                slumpId();
-
-                                            }
-                                            if (i == 2) {
-                                                idb.fetchSingle(insertAlien);
-                                                idb.fetchSingle(insertSquid);
-                                                JOptionPane.showMessageDialog(null, namn + " registrerades!");
-                                                txtAlienDatum.setText("");
-                                                txtAlienLosenord.setText("");
-                                                txtAlienNamn.setText("");
-                                                txtAlienTelefon.setText("");
-                                                cbAgent.setSelectedIndex(0);
-                                                cbPlats.setSelectedIndex(0);
-                                                cbRas.setSelectedIndex(0);
-                                                slumpId();
-
-                                            }
-                                            if (i == 3) {
-                                                idb.fetchSingle(insertAlien);
-                                                idb.fetchSingle(insertWorm);
-                                                JOptionPane.showMessageDialog(null, namn + " registrerades!");
-                                                txtAlienDatum.setText("");
-                                                txtAlienLosenord.setText("");
-                                                txtAlienNamn.setText("");
-                                                txtAlienTelefon.setText("");
-                                                cbAgent.setSelectedIndex(0);
-                                                cbPlats.setSelectedIndex(0);
-                                                cbRas.setSelectedIndex(0);
-                                                slumpId();
-                                            }
-
-                                        }
-                                    } catch (InfException ie) {
-                                        System.out.println("Något gick fel " + ie);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Lösenordet är för långt, vänligen välj ett nytt med max 6 tecken");
                                     }
-
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-      }                   
+        }                   
     }//GEN-LAST:event_btnLaggTillAlienActionPerformed
 
  //Ger ett id till alien som är ett högre än det nuvarande max som finns   
@@ -431,6 +455,10 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_cbRasActionPerformed
+
+    private void cbAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAgentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAgentActionPerformed
 
     /**
      * @param args the command line arguments

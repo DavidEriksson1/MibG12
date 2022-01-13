@@ -218,6 +218,9 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
                 boolean textRutaArTom2 = Validering.textRutaArTom(utrustningAnvander);
 
                 if (textRutaArTom2 == false) {
+                    boolean typVald = Validering.indexInteNoll(comboUtrustningsTyp.getSelectedIndex());
+                    if (typVald == true)
+                    {
 
                     if (namnetFinns == false) {
 
@@ -246,6 +249,10 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
                         txtFieldUtrustningsNamn.setText("");
                     }
 
+                }
+                    else {
+                        JOptionPane.showMessageDialog(null, "Välj en utrustningstyp!");
+                    }
                 }
             }
 

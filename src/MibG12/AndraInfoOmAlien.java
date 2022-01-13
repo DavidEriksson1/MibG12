@@ -465,52 +465,48 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         
         String nyttNamn = txtNamn.getText();
         String gammaltNamn = lblNamn.getText();
-        
+
         boolean textRutaArTom = Validering.textRutaArTom(nyttNamn);
-        
+
         if (textRutaArTom == false) {
-            
+
             boolean endastBokstaver = Validering.arStringEndastBokstaver(nyttNamn);
-            
-            if (endastBokstaver == true)
-            {
+
+            if (endastBokstaver == true) {
                 boolean namnetEjAnvant = kollaNamn(nyttNamn);
-            
-            if (namnetEjAnvant == false) {
-                
-                boolean namnetSamma = Validering.stringFinns(nyttNamn, gammaltNamn);
-                
-                if (namnetSamma == false) {
-                    
-                    try {
-                        String fraga = "Update Alien set namn = '" + nyttNamn + "' where namn = '" + nuvarandeUtomjording + "'";
-                        String svar = idb.fetchSingle(fraga);
-                        JOptionPane.showMessageDialog(null, "Namnet har ändrats!");
-                        setNuvarandeUtomjording(nyttNamn);
-                        setInfo(nuvarandeUtomjording);
-                        txtNamn.setText("");
-                    } catch (InfException ex) {
-                        JOptionPane.showMessageDialog(null, "Någonting gick fel, vänligen prova igen");
+
+                if (namnetEjAnvant == false) {
+
+                    boolean namnetSamma = Validering.stringFinns(nyttNamn, gammaltNamn);
+
+                    if (namnetSamma == false) {
+
+                        try {
+                            String fraga = "Update Alien set namn = '" + nyttNamn + "' where namn = '" + nuvarandeUtomjording + "'";
+                            String svar = idb.fetchSingle(fraga);
+                            JOptionPane.showMessageDialog(null, "Namnet har ändrats!");
+                            setNuvarandeUtomjording(nyttNamn);
+                            setInfo(nuvarandeUtomjording);
+                            txtNamn.setText("");
+                        } catch (InfException ex) {
+                            JOptionPane.showMessageDialog(null, "Någonting gick fel, vänligen prova igen");
+                            txtNamn.setText("");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Namnet har inte ändrats, Vänligen skriv in ett annat namn!");
                         txtNamn.setText("");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Namnet har inte ändrats, Vänligen skriv in ett annat namn!");
+                    JOptionPane.showMessageDialog(null, "Namnet används redan av en annan utomjording. Vänligen skriv ett annat namn!");
                     txtNamn.setText("");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Namnet används redan av en annan utomjording. Vänligen skriv ett annat namn!");
                 txtNamn.setText("");
             }
-            }
-            else
-            {
-                txtNamn.setText("");
-            }
-            
+
         } else {
             txtNamn.setText("");
         }
-
 
     }//GEN-LAST:event_btnAndraNamnActionPerformed
 
@@ -523,29 +519,34 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
 
         String gammaltDatum = lblRegDatum.getText();
         String nyttDatum = txtRegDatum.getText();
-        boolean textRutaArTom = Validering.textRutaArTom(gammaltDatum);
+        boolean textRutaArTom = Validering.textRutaArTom(nyttDatum);
 
-        if (textRutaArTom == false)
-        {
-            boolean datumKorrekt = Validering.stringFinns(gammaltDatum, nyttDatum);
-        
-        if (datumKorrekt == false) {
+        if (textRutaArTom == false) {
+            boolean korrektDatumFormat = Validering.kollaDatumFormat(nyttDatum);
 
-            try {
-                String fraga = "Update Alien set registreringsdatum = '" + nyttDatum + "' where namn = '" + nuvarandeUtomjording + "'";
-                String svar = idb.fetchSingle(fraga);
-                JOptionPane.showMessageDialog(null, "Registreingsdatumet har ändrats!");
-                txtRegDatum.setText("");
-                setInfo(nuvarandeUtomjording);
-            } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Fel datumformat, vänligen ange ett nytt datum enligt 'YYYY-MM-DD'");
+            if (korrektDatumFormat == true) {
+                boolean datumKorrekt = Validering.stringFinns(gammaltDatum, nyttDatum);
+
+                if (datumKorrekt == false) {
+
+                    try {
+                        String fraga = "Update Alien set registreringsdatum = '" + nyttDatum + "' where namn = '" + nuvarandeUtomjording + "'";
+                        String svar = idb.fetchSingle(fraga);
+                        JOptionPane.showMessageDialog(null, "Registreingsdatumet har ändrats!");
+                        txtRegDatum.setText("");
+                        setInfo(nuvarandeUtomjording);
+                    } catch (InfException ex) {
+                        JOptionPane.showMessageDialog(null, "Fel datumformat, vänligen ange ett nytt datum enligt 'YYYY-MM-DD'");
+                        txtRegDatum.setText("");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Vänligen skriv ett annat datum!");
+                    txtRegDatum.setText("");
+                }
+            } else {
                 txtRegDatum.setText("");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vänligen skriv ett annat datum!");
-            txtRegDatum.setText("");
-        }
-        }
+        }      
     }//GEN-LAST:event_btnAndraRegDatumActionPerformed
 
        /**
@@ -559,27 +560,26 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         String gammaltLosenord = lblLosen.getText();
         boolean textRutaArTom = Validering.textRutaArTom(nyttLosenord);
 
-        if (textRutaArTom == false)
-        {
-        
-            boolean losenFinns = Validering.stringFinns(nyttLosenord, gammaltLosenord);
-            
-        if (losenFinns == false) {
+        if (textRutaArTom == false) {
 
-            try {
-                String fraga = "Update Alien set losenord = '" + nyttLosenord + "' where namn = '" + nuvarandeUtomjording + "'";
-                String svar = idb.fetchSingle(fraga);
-                JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
-                txtLosenord.setText("");
-                setInfo(nuvarandeUtomjording);
-            } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Det nya lösenordet är för långt, vänligen skriv ett nytt med max 6 tecken!");
+            boolean losenFinns = Validering.stringFinns(nyttLosenord, gammaltLosenord);
+
+            if (losenFinns == false) {
+
+                try {
+                    String fraga = "Update Alien set losenord = '" + nyttLosenord + "' where namn = '" + nuvarandeUtomjording + "'";
+                    String svar = idb.fetchSingle(fraga);
+                    JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
+                    txtLosenord.setText("");
+                    setInfo(nuvarandeUtomjording);
+                } catch (InfException ex) {
+                    JOptionPane.showMessageDialog(null, "Det nya lösenordet är för långt, vänligen skriv ett nytt med max 6 tecken!");
+                    txtLosenord.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats, Vänligen skriv in ett annat löseord!");
                 txtLosenord.setText("");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats, Vänligen skriv in ett annat löseord!");
-            txtLosenord.setText("");
-        } 
         }
     }//GEN-LAST:event_btnAndraLosenordActionPerformed
 
@@ -593,15 +593,15 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         String nyttTelefonNummer = txtTelefon.getText();
         String gammaltTelefonNummer = lblTelefon.getText();
         boolean textRutaArTom = Validering.textRutaArTom(nyttTelefonNummer);
-        
+
         if (textRutaArTom == false) {
 
             boolean endastSiffror = Validering.endastSiffror(nyttTelefonNummer);
-            
+
             if (endastSiffror == true) {
-                
+
                 boolean TelefonFinns = Validering.stringFinns(nyttTelefonNummer, gammaltTelefonNummer);
-                
+
                 if (TelefonFinns == false) {
 
                     try {
@@ -618,15 +618,12 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Telefonnumret har inte ändrats, Vänligen skriv in ett annat nummer!");
                     txtTelefon.setText("");
                 }
-            }
-            else
-            {
+            } else {
                 txtTelefon.setText("");
             }
 
         }
-
-          
+     
     }//GEN-LAST:event_btnAndraTelefonActionPerformed
 
 /**
@@ -638,24 +635,25 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         
         String nyPlats = jComboBoxPlats.getSelectedItem().toString();
         String gammalPlats = lblPlats.getText();
-        boolean platsFinns = Validering.stringFinns(nyPlats, gammalPlats);
+        boolean platsVald = Validering.indexInteNoll(jComboBoxPlats.getSelectedIndex());
+        if (platsVald == true) {
 
+            boolean platsFinns = Validering.stringFinns(nyPlats, gammalPlats);
             if (platsFinns == false) {
 
                 try {
-                        String fraga = "Select benamning from omrade where omrades_id = (Select Plats from alien where namn = '" + nuvarandeUtomjording + "')";
-                        String svar = idb.fetchSingle(fraga);
+                    String fraga = "Select benamning from omrade where omrades_id = (Select Plats from alien where namn = '" + nuvarandeUtomjording + "')";
+                    String svar = idb.fetchSingle(fraga);
 
-                        String fraga1 = "select plats_ID from plats where Benamning = '" + nyPlats + "'";
-                        String svar1 = idb.fetchSingle(fraga1);
-                    
-                        String fraga2 = "update alien set plats = '" + svar1 + "' where namn = '" + nuvarandeUtomjording + "'";
-                        String svar2 = idb.fetchSingle(fraga2);
-                        JOptionPane.showMessageDialog(null, "Platsen har ändrats!");
-                        jComboBoxPlats.setSelectedIndex(0);
-                        setInfo(nuvarandeUtomjording);
-                    } 
-                 catch (InfException ex) {
+                    String fraga1 = "select plats_ID from plats where Benamning = '" + nyPlats + "'";
+                    String svar1 = idb.fetchSingle(fraga1);
+
+                    String fraga2 = "update alien set plats = '" + svar1 + "' where namn = '" + nuvarandeUtomjording + "'";
+                    String svar2 = idb.fetchSingle(fraga2);
+                    JOptionPane.showMessageDialog(null, "Platsen har ändrats!");
+                    jComboBoxPlats.setSelectedIndex(0);
+                    setInfo(nuvarandeUtomjording);
+                } catch (InfException ex) {
                     JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
                     jComboBoxPlats.setSelectedIndex(0);
                 }
@@ -663,8 +661,11 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Den nya platsen är samma som den gamla. Vänligen välj en ny plats!");
                 jComboBoxPlats.setSelectedIndex(0);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Vänligen välj en plats!");
 
-            
+        }
+      
     }//GEN-LAST:event_btnAndraPlatsActionPerformed
 
     /**
@@ -677,97 +678,83 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         String boglodite = "boglodite";
         String squid = "squid";
         String worm = "worm";
-        
+
         String nyRas = jComboBox1.getSelectedItem().toString().toLowerCase();
         String gammalRas = lblRas.getText();
-        boolean textRutaArTom = Validering.textRutaArTom(nyRas);
+        boolean rasVald = Validering.indexInteNoll(jComboBox1.getSelectedIndex());
         String alienID = visaInfoOmAlien.visaID(nuvarandeUtomjording);
         String antalExtra = txtRasExtra.getText();
-        
-        if (textRutaArTom == false)
-        {
-        
+
+        if (rasVald == true) {
+
             boolean rasAnvands = Validering.stringFinns(nyRas, gammalRas);
-            
-        if (rasAnvands == false )
-        {
-        try {
-        if (nyRas.equals(boglodite))
-        {
-            
-            String fraga1 = "insert into boglodite values (" + alienID + "," + antalExtra +")";
-            idb.fetchSingle(fraga1);
-            JOptionPane.showMessageDialog(null, "Rasen har ändrats!");
-            
-            if (!gammalRas.isEmpty())
-            {
-                String fraga2 = "delete from " + gammalRas + " where alien_id = " + alienID;
-                idb.fetchSingle(fraga2);
-            }
-        
-            setInfo(nuvarandeUtomjording);
-            txtRasExtra.setVisible(false);
-            lblRasExtraAndra.setText("");
-            jComboBox1.setSelectedIndex(0);
-        }
-            
-            
-        else if (nyRas.equals(worm))
-        {
-            String fraga1 = "insert into worm values (" + alienID + ")";
-            idb.fetchSingle(fraga1);
-            JOptionPane.showMessageDialog(null, "Rasen har ändrats!");
-            if (!gammalRas.isEmpty())
-            {
-                String fraga2 = "delete from " + gammalRas + " where alien_id = " + alienID;
-                idb.fetchSingle(fraga2);
-            }
-            setInfo(nuvarandeUtomjording);
-            txtRasExtra.setVisible(false);
-            lblRasExtraAndra.setText("");
-            jComboBox1.setSelectedIndex(0);
-            
-        }
-        else if (nyRas.equals(squid))
-        {
-            String fraga1 = "insert into squid values (" + alienID + "," + antalExtra +")";
-            idb.fetchSingle(fraga1);
-            JOptionPane.showMessageDialog(null, "Rasen har ändrats!");
-            if (!gammalRas.isEmpty())
-            
-            {
-                String fraga2 = "delete from " + gammalRas + " where alien_id = " + alienID;
-                idb.fetchSingle(fraga2);
-            }
-            
-            setInfo(nuvarandeUtomjording);
-            txtRasExtra.setVisible(false);
-            lblRasExtraAndra.setText("");
-            jComboBox1.setSelectedIndex(0);
-            
-            
-        }
-        
-        }
-         catch (InfException ex) {
+
+            if (rasAnvands == false) {
+                try {
+                    if (nyRas.equals(boglodite)) {
+
+                        String fraga1 = "insert into boglodite values (" + alienID + "," + antalExtra + ")";
+                        idb.fetchSingle(fraga1);
+                        JOptionPane.showMessageDialog(null, "Rasen har ändrats!");
+
+                        if (!gammalRas.isEmpty()) {
+                            String fraga2 = "delete from " + gammalRas + " where alien_id = " + alienID;
+                            idb.fetchSingle(fraga2);
+                        }
+
+                        setInfo(nuvarandeUtomjording);
+                        txtRasExtra.setVisible(false);
+                        lblRasExtraAndra.setText("");
+                        jComboBox1.setSelectedIndex(0);
+                    } else if (nyRas.equals(worm)) {
+                        String fraga1 = "insert into worm values (" + alienID + ")";
+                        idb.fetchSingle(fraga1);
+                        JOptionPane.showMessageDialog(null, "Rasen har ändrats!");
+                        if (!gammalRas.isEmpty()) {
+                            String fraga2 = "delete from " + gammalRas + " where alien_id = " + alienID;
+                            idb.fetchSingle(fraga2);
+                        }
+                        setInfo(nuvarandeUtomjording);
+                        txtRasExtra.setVisible(false);
+                        lblRasExtraAndra.setText("");
+                        jComboBox1.setSelectedIndex(0);
+
+                    } else if (nyRas.equals(squid)) {
+                        String fraga1 = "insert into squid values (" + alienID + "," + antalExtra + ")";
+                        idb.fetchSingle(fraga1);
+                        JOptionPane.showMessageDialog(null, "Rasen har ändrats!");
+                        if (!gammalRas.isEmpty()) {
+                            String fraga2 = "delete from " + gammalRas + " where alien_id = " + alienID;
+                            idb.fetchSingle(fraga2);
+                        }
+
+                        setInfo(nuvarandeUtomjording);
+                        txtRasExtra.setVisible(false);
+                        lblRasExtraAndra.setText("");
+                        jComboBox1.setSelectedIndex(0);
+
+                    }
+
+                } catch (InfException ex) {
                     JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
                     System.out.println(ex);
                     txtRasExtra.setVisible(false);
                     lblRasExtraAndra.setText("");
                     jComboBox1.setSelectedIndex(0);
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Den nya rasen är samma som den nuvarande, vänligen välj en annan ras!");
+                txtRasExtra.setVisible(false);
+                lblRasExtraAndra.setText("");
+                jComboBox1.setSelectedIndex(0);
+            }
+
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Den nya rasen är samma som den nuvarande, vänligen skriv en annan ras!");
-            txtRasExtra.setVisible(false);
-            lblRasExtraAndra.setText("");
-            jComboBox1.setSelectedIndex(0);
+            JOptionPane.showMessageDialog(null, "Vänligen välj en ras!");
         }
-        
-        }
-        
-        
+              
     }//GEN-LAST:event_btnAndraRasActionPerformed
 
     /**
@@ -779,29 +766,33 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         
         String nyAnsvarigAgent = jComboBoxAnsvAgent.getSelectedItem().toString();
         String gammalAnsvarigAgent = lblAnsvarigAgent.getText();
-        
-        boolean agentAnvands = Validering.stringFinns(nyAnsvarigAgent, gammalAnsvarigAgent);
+        boolean agentVald = Validering.indexInteNoll(jComboBoxAnsvAgent.getSelectedIndex());
+
+        if (agentVald == true) {
+            boolean agentAnvands = Validering.stringFinns(nyAnsvarigAgent, gammalAnsvarigAgent);
 
             if (agentAnvands == false) {
 
-                    try {
-                        String fraga1 = "select agent_id from agent where namn = '" + nyAnsvarigAgent + "'";
-                        String svar1 = idb.fetchSingle(fraga1);
-                        String fraga2 = "update alien set ansvarig_Agent = '" + svar1 + "' where namn = '" + nuvarandeUtomjording + "'";
-                        String svar2 = idb.fetchSingle(fraga2);
-                        JOptionPane.showMessageDialog(null, "Ansvarig agent har ändrats!");
-                        jComboBoxAnsvAgent.setSelectedIndex(0);
-                        setInfo(nuvarandeUtomjording);
-                    } catch (InfException ex) {
+                try {
+                    String fraga1 = "select agent_id from agent where namn = '" + nyAnsvarigAgent + "'";
+                    String svar1 = idb.fetchSingle(fraga1);
+                    String fraga2 = "update alien set ansvarig_Agent = '" + svar1 + "' where namn = '" + nuvarandeUtomjording + "'";
+                    String svar2 = idb.fetchSingle(fraga2);
+                    JOptionPane.showMessageDialog(null, "Ansvarig agent har ändrats!");
+                    jComboBoxAnsvAgent.setSelectedIndex(0);
+                    setInfo(nuvarandeUtomjording);
+                } catch (InfException ex) {
                     JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
                     jComboBoxAnsvAgent.setSelectedIndex(0);
                 }
-            }
-             else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Den nya agenten är samma som den gamla. Vänligen välj en ny agent!");
                 jComboBoxAnsvAgent.setSelectedIndex(0);
             }
-     
+        } else {
+            JOptionPane.showMessageDialog(null, "Vänligen välj en agent!");
+        } 
+            
     }//GEN-LAST:event_btnAndraAnsvarigAgentActionPerformed
 
     /**

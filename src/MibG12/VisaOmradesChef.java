@@ -123,7 +123,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                         String fraga = "Select namn from agent where agent_id = (Select agent_id from omradeschef where omrade = (Select omrades_id from omrade where benamning ='" + omrade + "'))";
                         String agent = idb.fetchSingle(fraga);
                        
-                        if (agent.isEmpty())
+                        if (agent == null)
                         {
                             txtAreaVisaInfo.append("Det finns ingen områdeschef av valt område! :(");
                             

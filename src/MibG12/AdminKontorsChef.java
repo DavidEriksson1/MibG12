@@ -100,17 +100,18 @@ public class AdminKontorsChef extends javax.swing.JFrame {
                                 .addComponent(jLabelAgent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelOmrade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabelHarAndrats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblNuvChef, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)
-                                .addComponent(cbAgenter, 0, 92, Short.MAX_VALUE)
-                                .addComponent(lblNuvChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(cbAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 75, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelHarAndrats, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,22 +119,20 @@ public class AdminKontorsChef extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelAgent)
                     .addComponent(cbAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelOmrade)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelHarAndrats, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(lblNuvChef))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblNuvChef))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabelHarAndrats, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTillbaka)
                     .addComponent(btnOk))
@@ -156,18 +155,26 @@ public class AdminKontorsChef extends javax.swing.JFrame {
             String svar1 = idb.fetchSingle(namnID);
             String svar2 = idb.fetchSingle(agentAttTaBort);
 
-            String taBort = "delete from kontorschef where Agent_ID = '" + svar2 + "'";
+            String taBort = "delete from kontorschef";
             String nyChef = "insert into kontorschef values(" + svar1 + "," + "'Örebrokontoret')";
 
-            if (svar1.equals(svar2)) {
+            boolean agentVald = Validering.indexInteNoll(cbAgenter.getSelectedIndex());
 
-                JOptionPane.showMessageDialog(null, "Den valda agenter är redan kontorschef! Vänligen välj en annan agent!");
+            if (agentVald == true) {
 
+                if (svar1.equals(svar2)) {
+
+                    JOptionPane.showMessageDialog(null, "Den valda agenter är redan kontorschef! Vänligen välj en annan agent!");
+
+                } else {
+                    idb.fetchSingle(taBort);
+                    idb.fetchSingle(nyChef);
+                    jLabelHarAndrats.setText("Kontorschefen har ändrats till " + agentNamn + "!");
+                    cbAgenter.setSelectedIndex(0);
+                    visaNuvarandeChef();
+                }
             } else {
-                idb.fetchSingle(taBort);
-                idb.fetchSingle(nyChef);
-                jLabelHarAndrats.setText("Kontorschefen har ändrats till " + agentNamn + "!");
-                cbAgenter.setSelectedIndex(0);  
+                JOptionPane.showMessageDialog(null, "Välj en agent att göra till kontorschef!");
             }
         } catch (InfException ie) {
             JOptionPane.showMessageDialog(null, "Databasfel");
@@ -188,8 +195,16 @@ public class AdminKontorsChef extends javax.swing.JFrame {
         try {
                 String fraga = "Select namn from agent where agent_id = (Select agent_id from kontorschef)";
                 String svar = idb.fetchSingle(fraga);
+                
+                if (svar == null)
+                {
+                    lblNuvChef.setText("Ingen områdeschef är tillsatt för tillfället.");
+                }
+                else
+                {
                 lblNuvChef.setText(svar);
                 }
+        }
         catch (InfException e)
         {
             JOptionPane.showMessageDialog(null, "Databasfel");

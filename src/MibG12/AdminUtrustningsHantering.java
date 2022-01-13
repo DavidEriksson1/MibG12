@@ -140,8 +140,6 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
             String utrustning = cbUtr.getSelectedItem().toString();
             String hittaTyp = visaTyp(utrustning).toLowerCase();
 
-           
-
             //SQL frågor för att hämta utrustningsnamn och ID för att ta bort dem ur systemet
             String namn = "select Benamning from utrustning where Benamning ='" + utrustning + "'";
 
@@ -159,21 +157,29 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
 
             String taBortFraga = "delete from " + valdTyp + " where Utrustnings_ID = " + svarUtrustningsID;
 
-            utrustningFinns = Validering.stringFinns(svarUtrustningsNamn, utrustning);
+            boolean utrustningVald = Validering.indexInteNoll(cbUtr.getSelectedIndex());
 
-            
-
-                if (utrustningFinns == true) {
+                if (utrustningVald == true) {
+                    
+                    boolean utrustningsTypVald = Validering.indexInteNoll(cbUtr.getSelectedIndex());
+                    
+                    if (utrustningsTypVald == true) {
 
                     if (valdTyp.equals(hittaTyp)) {
                         idb.fetchSingle(taBortFraga);
                         idb.fetchSingle(taBortUtrustningsID);
                         idb.fetchSingle(taBortUtrustning);
                         lblHarTagitsBort.setText(utrustning + " har tagits bort!");
-
+                        ComboUtrustningsTyp.setSelectedIndex(0);
+                        cbUtr.setSelectedIndex(0);
                     }
+                    }
+                    else {
+                    JOptionPane.showMessageDialog(null, "Välj utrustningstyp!");
+                }
+                    
                 } else {
-                    JOptionPane.showMessageDialog(null, "Det finns ingen utrustning med namnet " + utrustning);
+                    JOptionPane.showMessageDialog(null, "Välj en utrustning att ta bort!");
                 }
             }
          catch (InfException ie) {
@@ -241,13 +247,6 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
     }
 
 
-    private void ComboUtrustningsTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboUtrustningsTypActionPerformed
-        // Combobox för att välja utrustningstyp
-        int i = ComboUtrustningsTyp.getSelectedIndex();
-
-
-    }//GEN-LAST:event_ComboUtrustningsTypActionPerformed
-
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         // Knapp för att komma tillbaka till huvudmeny admin
 
@@ -255,6 +254,12 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         huvudMenyAdmin.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void ComboUtrustningsTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboUtrustningsTypActionPerformed
+        // Combobox för att välja utrustningstyp
+        int i = ComboUtrustningsTyp.getSelectedIndex();
+
+    }//GEN-LAST:event_ComboUtrustningsTypActionPerformed
  
     /**
      * @param args the command line arguments

@@ -143,19 +143,15 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
         try {
             String agentNamn = cbGeAdmin.getSelectedItem().toString();
 
-            boolean namnFinns = kontrolleraNamn(agentNamn);
-
             String adminStatus = "select Administrator from Agent where namn = '" + agentNamn + "'";
 
             String svar1 = idb.fetchSingle(adminStatus);
 
             String AdminStatusJa = "update agent set administrator = 'J' where namn = '" + agentNamn + "'";
 
-            boolean tomTextRuta = Validering.textRutaArTom(agentNamn);
+            boolean ingenValdAgent = Validering.indexInteNoll(cbGeAdmin.getSelectedIndex());
 
-            if (tomTextRuta == false) {
-
-                if (namnFinns == true) {
+            if (ingenValdAgent == true) {
 
                     if (svar1.toUpperCase().equals("N")) {
                         idb.fetchSingle(AdminStatusJa);
@@ -163,36 +159,16 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Denna agent är redan administratör!");
                     }
-                }
+                
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Vänligen välj en agent!");
             }
 
         } catch (InfException ie) {
 
         }
-    }
-
-    public boolean kontrolleraNamn(String agentNamn) {
-        //metod som kontrollerar om namnet redan finns i systemet som administratör
-        boolean namnFinns = false;
-
-        try {
-            String namn = "select namn from Agent";
-            ArrayList<String> agenter = idb.fetchColumn(namn);
-
-            for (String agent : agenter) {
-                if (agent.toLowerCase().equals(agentNamn.toLowerCase())) {
-                    namnFinns = true;
-                    break;
-                }
-            }
-        } catch (InfException ie) {
-
-        }
-        if (namnFinns == false) {
-            JOptionPane.showMessageDialog(null, "Det finns ingen agent med det namnet!");
-        }
-
-        return namnFinns;
+    
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -216,9 +192,9 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
             String AdminStatusNej = "update agent set administrator = 'N' where namn = '" + agentNamnInteAdmin + "'";
 
             
-                boolean namnFinns = kontrolleraNamn(agentNamnInteAdmin);
+                boolean ingenValdAgent = Validering.indexInteNoll(cbGeAdmin.getSelectedIndex());
 
-                if (namnFinns == true) {
+                if (ingenValdAgent == true) {
 
                     if (svar1.toUpperCase().equals("J")) {
                         idb.fetchSingle(AdminStatusNej);
@@ -226,6 +202,10 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Denna agent är inte administratör!");
                     }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Vänligen välj en agent!");
                 }
             }
          catch (InfException ie) {

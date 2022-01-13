@@ -363,54 +363,49 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         
         String nyttNamn = txtNamn.getText();
         String gammaltNamn = lblNamn.getText();
-        
+
         boolean textRutaArTom = Validering.textRutaArTom(nyttNamn);
-        
+
         if (textRutaArTom == false) {
-            
+
             boolean endastBokstaver = Validering.arStringEndastBokstaver(nyttNamn);
-            
-            if (endastBokstaver == true)
-            {
+
+            if (endastBokstaver == true) {
                 boolean namnetEjAnvant = kollaNamn(nyttNamn);
-            
-            if (namnetEjAnvant == false) {
-                
-                boolean namnetSamma = Validering.stringFinns(nyttNamn, gammaltNamn);
-                
-                if (namnetSamma == false) {
-                    
-                    try {
-                        String fraga = "Update Agent set namn = '" + nyttNamn + "' where namn = '" + nuvarandeAgent + "'";
-                        idb.fetchSingle(fraga);
-                        JOptionPane.showMessageDialog(null, "Namnet har ändrats!");
-                        setNuvarandeUtomjording(nyttNamn);
-                        setNuvarandeAgent(nyttNamn);
-                        setInfo(nuvarandeAgent);
-                        txtNamn.setText("");
-                    } catch (InfException ex) {
-                        JOptionPane.showMessageDialog(null, "Någonting gick fel, vänligen prova igen");
+
+                if (namnetEjAnvant == false) {
+
+                    boolean namnetSamma = Validering.stringFinns(nyttNamn, gammaltNamn);
+
+                    if (namnetSamma == false) {
+
+                        try {
+                            String fraga = "Update Agent set namn = '" + nyttNamn + "' where namn = '" + nuvarandeAgent + "'";
+                            idb.fetchSingle(fraga);
+                            JOptionPane.showMessageDialog(null, "Namnet har ändrats!");
+                            setNuvarandeUtomjording(nyttNamn);
+                            setNuvarandeAgent(nyttNamn);
+                            setInfo(nuvarandeAgent);
+                            txtNamn.setText("");
+                        } catch (InfException ex) {
+                            JOptionPane.showMessageDialog(null, "Någonting gick fel, vänligen prova igen");
+                            txtNamn.setText("");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Namnet har inte ändrats, Vänligen skriv in ett annat namn!");
                         txtNamn.setText("");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Namnet har inte ändrats, Vänligen skriv in ett annat namn!");
+                    JOptionPane.showMessageDialog(null, "Namnet används redan av en annan agent. Vänligen skriv ett annat namn!");
                     txtNamn.setText("");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Namnet används redan av en annan agent. Vänligen skriv ett annat namn!");
                 txtNamn.setText("");
             }
-            }
-            else
-            {
-                txtNamn.setText("");
-            }
-            
+
         } else {
             txtNamn.setText("");
         }
-
-
     }//GEN-LAST:event_btnAndraNamnActionPerformed
 
     /**
@@ -424,30 +419,30 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         String nyttDatum = txtRegDatum.getText();
         boolean textRutaArTom = Validering.textRutaArTom(gammaltDatum);
 
-        if (textRutaArTom == false)
-        {
+        if (textRutaArTom == false) {
             boolean datumFormatKorrekt = Validering.kollaDatumFormat(nyttDatum);
-            if (datumFormatKorrekt == true)
-            {
-            boolean datumKorrekt = Validering.stringFinns(gammaltDatum, nyttDatum);
-        
-        if (datumKorrekt == false) {
+            if (datumFormatKorrekt == true) {
+                boolean datumKorrekt = Validering.stringFinns(gammaltDatum, nyttDatum);
 
-            try {
-                String fraga = "Update agent set anstallningsdatum = '" + nyttDatum + "' where namn = '" + nuvarandeAgent + "'";
-                idb.fetchSingle(fraga);
-                JOptionPane.showMessageDialog(null, "Registreingsdatumet har ändrats!");
-                txtRegDatum.setText("");
-                setInfo(nuvarandeAgent);
-            } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Databasfel");
+                if (datumKorrekt == false) {
+
+                    try {
+                        String fraga = "Update agent set anstallningsdatum = '" + nyttDatum + "' where namn = '" + nuvarandeAgent + "'";
+                        idb.fetchSingle(fraga);
+                        JOptionPane.showMessageDialog(null, "Registreingsdatumet har ändrats!");
+                        txtRegDatum.setText("");
+                        setInfo(nuvarandeAgent);
+                    } catch (InfException ex) {
+                        JOptionPane.showMessageDialog(null, "Databasfel");
+                        txtRegDatum.setText("");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Vänligen skriv ett annat datum!");
+                    txtRegDatum.setText("");
+                }
+            } else {
                 txtRegDatum.setText("");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vänligen skriv ett annat datum!");
-            txtRegDatum.setText("");
-        }
-        }
         }
     }//GEN-LAST:event_btnAndraRegDatumActionPerformed
 
@@ -462,33 +457,30 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         String gammaltLosenord = lblLosen.getText();
         boolean textRutaArTom = Validering.textRutaArTom(nyttLosenord);
 
-        if (textRutaArTom == false)
-        {
+        if (textRutaArTom == false) {
             boolean losenordsFormatKorrekt = Validering.kollaLosenordsLangd(nyttLosenord);
-            
-            if (losenordsFormatKorrekt == true)
-                    {
-        
-            boolean losenFinns = Validering.stringFinns(nyttLosenord, gammaltLosenord);
-            
-        if (losenFinns == false) {
 
-            try {
-                String fraga = "Update agent set losenord = '" + nyttLosenord + "' where namn = '" + nuvarandeAgent + "'";
-                idb.fetchSingle(fraga);
-                JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
-                txtLosenord.setText("");
-                setInfo(nuvarandeAgent);
-            } catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                txtLosenord.setText("");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats, Vänligen skriv in ett annat löseord!");
-            txtLosenord.setText("");
-        } 
-        }
-            else {
+            if (losenordsFormatKorrekt == true) {
+
+                boolean losenFinns = Validering.stringFinns(nyttLosenord, gammaltLosenord);
+
+                if (losenFinns == false) {
+
+                    try {
+                        String fraga = "Update agent set losenord = '" + nyttLosenord + "' where namn = '" + nuvarandeAgent + "'";
+                        idb.fetchSingle(fraga);
+                        JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
+                        txtLosenord.setText("");
+                        setInfo(nuvarandeAgent);
+                    } catch (InfException ex) {
+                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        txtLosenord.setText("");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Lösenordet har inte ändrats, Vänligen skriv in ett annat löseord!");
+                    txtLosenord.setText("");
+                }
+            } else {
                 JOptionPane.showMessageDialog(null, "Det nya lösenordet är för långt, vänligen skriv ett nytt med max 6 tecken!");
                 txtLosenord.setText("");
             }
@@ -505,15 +497,15 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         String nyttTelefonNummer = txtTelefon.getText();
         String gammaltTelefonNummer = lblTelefon.getText();
         boolean textRutaArTom = Validering.textRutaArTom(nyttTelefonNummer);
-        
+
         if (textRutaArTom == false) {
 
             boolean endastSiffror = Validering.endastSiffror(nyttTelefonNummer);
-            
+
             if (endastSiffror == true) {
-                
+
                 boolean TelefonFinns = Validering.stringFinns(nyttTelefonNummer, gammaltTelefonNummer);
-                
+
                 if (TelefonFinns == false) {
 
                     try {
@@ -530,15 +522,10 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Telefonnumret har inte ändrats, Vänligen skriv in ett annat nummer!");
                     txtTelefon.setText("");
                 }
-            }
-            else
-            {
+            } else {
                 txtTelefon.setText("");
             }
-
-        }
-
-          
+        }     
     }//GEN-LAST:event_btnAndraTelefonActionPerformed
 
     /**
@@ -550,31 +537,30 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         
         String nyPlats = jComboBoxOmrade.getSelectedItem().toString();
         String gammalPlats = lblPlats.getText();
-        boolean platsFinns = Validering.stringFinns(nyPlats, gammalPlats);
+        
+        boolean platsVald = Validering.indexInteNoll(jComboBoxOmrade.getSelectedIndex());
 
-            if (platsFinns == false) {
+        if (platsVald == true) {
 
-                try {
-                        String fraga = "Select benamning from omrade where omrades_id = (Select omrade from agent where namn = '" + nuvarandeAgent + "')";
-                        String svar = idb.fetchSingle(fraga);
+            try {
+                String fraga = "Select benamning from omrade where omrades_id = (Select omrade from agent where namn = '" + nuvarandeAgent + "')";
+                String svar = idb.fetchSingle(fraga);
 
-                        String fraga1 = "select omrades_id from omrade where Benamning = '" + nyPlats + "'";
-                        String svar1 = idb.fetchSingle(fraga1);
+                String fraga1 = "select omrades_id from omrade where Benamning = '" + nyPlats + "'";
+                String svar1 = idb.fetchSingle(fraga1);
 
-                        String fraga2 = "update agent set omrade = '" + svar1 + "' where namn = '" + nuvarandeAgent + "'";
-                        idb.fetchSingle(fraga2);
-                        JOptionPane.showMessageDialog(null, "Platsen har ändrats!");
-                        jComboBoxOmrade.setSelectedIndex(0);
-                        setInfo(nuvarandeAgent);
-                    } 
-                 catch (InfException ex) {
-                    JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
-                    jComboBoxOmrade.setSelectedIndex(0);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Den nya platsen är samma som den gamla. Vänligen välj en ny plats!");
-                jComboBoxOmrade.setSelectedItem(0);
+                String fraga2 = "update agent set omrade = '" + svar1 + "' where namn = '" + nuvarandeAgent + "'";
+                idb.fetchSingle(fraga2);
+                JOptionPane.showMessageDialog(null, "Området har ändrats!");
+                jComboBoxOmrade.setSelectedIndex(0);
+                setInfo(nuvarandeAgent);
+            } catch (InfException ex) {
+                JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
+                jComboBoxOmrade.setSelectedIndex(0);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Vänligen välj ett område!");
+        }
     
     }//GEN-LAST:event_btnAndraPlatsActionPerformed
 
@@ -589,33 +575,32 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     
     private void btnAndraAdminStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraAdminStatusActionPerformed
         
-        String nyAdmin = jComboBoxAndraAdmin.getSelectedItem().toString().substring(0,1);
+        String nyAdmin = jComboBoxAndraAdmin.getSelectedItem().toString().substring(0, 1);
         String gammalAdmin = lblAdminStatus.getText();
         System.out.println(nyAdmin);
         System.out.println(gammalAdmin);
+        boolean statusVald = Validering.indexInteNoll(jComboBoxAndraAdmin.getSelectedIndex());
 
-        if (!nyAdmin.equals(gammalAdmin.substring(0, 1)))
-        {
+        if (statusVald == true) {
 
-            try {
-                String fraga2 = "update agent set administrator = '" + nyAdmin + "' where namn = '" + nuvarandeAgent + "'";
-                String svar2 = idb.fetchSingle(fraga2);
-                JOptionPane.showMessageDialog(null, "Adminstatusen har ändrats!");
+            if (!nyAdmin.equals(gammalAdmin.substring(0, 1))) {
+
+                try {
+                    String fraga2 = "update agent set administrator = '" + nyAdmin + "' where namn = '" + nuvarandeAgent + "'";
+                    String svar2 = idb.fetchSingle(fraga2);
+                    JOptionPane.showMessageDialog(null, "Adminstatusen har ändrats!");
+                    jComboBoxAndraAdmin.setSelectedIndex(0);
+                    setInfo(nuvarandeAgent);
+                } catch (InfException ex) {
+                    JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Denna agent har redan vald adminstatus");
                 jComboBoxAndraAdmin.setSelectedIndex(0);
-                setInfo(nuvarandeAgent);
             }
-            catch (InfException ex) {
-                JOptionPane.showMessageDialog(null, "Något har gått fel, vänligen prova igen.");
-            }
-
+        } else {
+            JOptionPane.showMessageDialog(null, "Vänligen välj en adminstatus!");
         }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Denna agent har redan vald adminstatus");
-            jComboBoxAndraAdmin.setSelectedIndex(0);
-        }
-
-       
         
     }//GEN-LAST:event_btnAndraAdminStatusActionPerformed
 

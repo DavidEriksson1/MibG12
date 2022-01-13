@@ -138,18 +138,20 @@ public class HuvudMenyUtomjording extends javax.swing.JFrame {
     private void btnVisaChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaChefActionPerformed
         // TODO add your handling code here:
         
-        try{  
-          String fraga = "select Namn from Agent where Agent_ID=(select Agent_ID from Omradeschef where Omradeschef.Omrade =(select Omrades_ID from Omrade where Omrades_ID=(select finns_i from plats where plats_id=(select Plats from Alien where Alien.Namn='" + nuvarandeUtomjording + "'))))";
-      
-        String svar = idb.fetchSingle(fraga);        
-        
-        VisaInfoOmAgent aI = new VisaInfoOmAgent (idb, svar, false, nuvarandeUtomjording,true);
-        aI.setVisible(true);
-        aI.setInfo(svar);
-        aI.setNuvarandeUtomjording(nuvarandeUtomjording);
-        dispose();
-        
-      }
+        try {
+            String fraga = "select Namn from Agent where Agent_ID=(select Agent_ID from Omradeschef where Omradeschef.Omrade =(select Omrades_ID from Omrade where Omrades_ID=(select finns_i from plats where plats_id=(select Plats from Alien where Alien.Namn='" + nuvarandeUtomjording + "'))))";
+            String svar = idb.fetchSingle(fraga);
+
+            if (svar == null) {
+                JOptionPane.showMessageDialog(null, "Denna utomjording sområde har för tillfället ingen områdeschef.");
+            } else {
+                VisaInfoOmAgent aI = new VisaInfoOmAgent(idb, svar, false, nuvarandeUtomjording, true);
+                aI.setVisible(true);
+                aI.setInfo(svar);
+                aI.setNuvarandeUtomjording(nuvarandeUtomjording);
+                dispose();
+            }
+        }
       catch(InfException e){
           JOptionPane.showMessageDialog(null, "Något gick fel");
           System.out.println(e);

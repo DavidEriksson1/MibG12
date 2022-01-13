@@ -44,7 +44,6 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
 
         lblHuvudText = new javax.swing.JLabel();
         btnValj = new javax.swing.JButton();
-        lblFelAlienNamn = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         cbAgenter = new javax.swing.JComboBox<>();
 
@@ -83,14 +82,9 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
                         .addComponent(btnValj, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblFelAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(126, 126, 126)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(188, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,9 +95,7 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnValj)
                     .addComponent(cbAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(lblFelAlienNamn)
-                .addGap(37, 37, 37)
+                .addGap(69, 69, 69)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
@@ -119,12 +111,9 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
             String fraga1 = "SELECT namn FROM agent where namn = '" + namn + "'";
             String svar1 = idb.fetchSingle(fraga1);
 
-            boolean namnKorrekt = Validering.stringFinns(namn, svar1);
-            boolean textRutaArTom = Validering.textRutaArTom(namn);
+            boolean agentVald = Validering.indexInteNoll(cbAgenter.getSelectedIndex());
 
-            if (textRutaArTom == false) {
-
-                if (namnKorrekt == true) {
+            if (agentVald == true) {
 
                     if (visaBaraInfo == false) {
                         AndraInfoOmAgent aIOA = new AndraInfoOmAgent(idb, namn);
@@ -141,9 +130,9 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
 
                     }
                 } else {
-                    lblFelAlienNamn.setText("Det finns ingen agent med namnet: " + namn);
+                    JOptionPane.showMessageDialog(null, "Vänligen välj en agent!");
                 }
-            }
+            
 
         } catch (InfException ex) {
             Logger.getLogger(InloggningsTyp.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,7 +171,6 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
     private javax.swing.JButton btnValj;
     private javax.swing.JComboBox<String> cbAgenter;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel lblFelAlienNamn;
     private javax.swing.JLabel lblHuvudText;
     // End of variables declaration//GEN-END:variables
 }

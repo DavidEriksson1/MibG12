@@ -29,6 +29,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
+        vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent, true);
         fCB = new FyllaComboBox(idb);
         fCB.laggTillAlien(cbAlien);
         
@@ -144,6 +145,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
 
                     String svar2 = idb.fetchSingle(radera);
                     JOptionPane.showMessageDialog(null, alienAttRadera + " raderades ur systemet!");
+                    cbAlien.setSelectedIndex(0);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Det finns ingen Alien med det namnet");

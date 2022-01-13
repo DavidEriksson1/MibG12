@@ -28,7 +28,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
         this.nuvarandeAgent = nuvarandeAgent;
         jRadioButtonNej.setSelected(true);
         fCB = new FyllaComboBox(idb);
-        fCB.laggTillOmrade(cbPlats);
+        fCB.laggTillOmrade(cbOmrade);
         slumpId();
         
     }
@@ -58,7 +58,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
         btnTillbaka = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
-        cbPlats = new javax.swing.JComboBox<>();
+        cbOmrade = new javax.swing.JComboBox<>();
         jRadioButtonJa = new javax.swing.JRadioButton();
         jRadioButtonNej = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
@@ -103,7 +103,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
 
         jLabel1.setText("ID");
 
-        cbPlats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+        cbOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
 
         buttonGroup1.add(jRadioButtonJa);
         jRadioButtonJa.setText("Ja");
@@ -163,7 +163,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbPlats, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbOmrade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAnstDatum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel6))))
                 .addContainerGap())
@@ -197,7 +197,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
                                 .addGap(7, 7, 7)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
-                                    .addComponent(cbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10)))
                             .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -243,7 +243,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
         String telefon = txtAgentTelefon.getText();
 
         String id = lblID.getText();
-        
+
         //Använder validering metoden så datumrutan inte är tom
         boolean textRutaTom2 = Validering.textRutaArTom(anstDatum);
         boolean namnetAnvands = false;
@@ -270,53 +270,59 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
                                     //Kollar så lösenordet inte är för långt max 6 tecken
                                     boolean losenordKorrekt = Validering.kollaLosenordsLangd(losenord);
                                     if (losenordKorrekt == false) {
+                                        //Validering som kollar så att ett område är valt.
+                                        boolean omradeValt = Validering.indexInteNoll(cbOmrade.getSelectedIndex());
+                                        if (omradeValt == true) {
 
-                                        String omrade = cbPlats.getSelectedItem().toString().toLowerCase();
+                                            String omrade = cbOmrade.getSelectedItem().toString().toLowerCase();
 
-                                        String jamforNamn = "select namn from agent";
-                                        String omradeId = "Select omrades_id from omrade where benamning='" + omrade + "'";
+                                            String jamforNamn = "select namn from agent";
+                                            String omradeId = "Select omrades_id from omrade where benamning='" + omrade + "'";
 
-                                        try {
+                                            try {
 
-                                            agenter = idb.fetchColumn(jamforNamn);
-                                            String omradeID = idb.fetchSingle(omradeId);
-                                            String adminStatus = "";
+                                                agenter = idb.fetchColumn(jamforNamn);
+                                                String omradeID = idb.fetchSingle(omradeId);
+                                                String adminStatus = "";
 
-                                            if (jRadioButtonJa.isSelected()) {
-                                                adminStatus = "J";
-                                            } else if (jRadioButtonNej.isSelected()) {
-                                                adminStatus = "N";
-                                            }
-
-                                            String insertAgent = "insert into agent values (" + id + ",'" + namn + "','" + telefon + "','" + anstDatum + "','" + adminStatus + "','" + losenord + "'," + omradeID + ")";
-
-                                            for (String namnet : agenter) {
-
-                                                if (namnet.toLowerCase().equals(namn.toLowerCase())) {
-                                                    namnetAnvands = true;
-                                                    JOptionPane.showMessageDialog(null, "Namnet finns redan registrerat vänligen ange ett annat!");
-                                                    break;
+                                                if (jRadioButtonJa.isSelected()) {
+                                                    adminStatus = "J";
+                                                } else if (jRadioButtonNej.isSelected()) {
+                                                    adminStatus = "N";
                                                 }
+
+                                                String insertAgent = "insert into agent values (" + id + ",'" + namn + "','" + telefon + "','" + anstDatum + "','" + adminStatus + "','" + losenord + "'," + omradeID + ")";
+
+                                                for (String namnet : agenter) {
+
+                                                    if (namnet.toLowerCase().equals(namn.toLowerCase())) {
+                                                        namnetAnvands = true;
+                                                        JOptionPane.showMessageDialog(null, "Namnet finns redan registrerat vänligen ange ett annat!");
+                                                        break;
+                                                    }
+                                                }
+
+                                                if (namnetAnvands == false) {
+
+                                                    idb.fetchSingle(insertAgent);
+
+                                                    JOptionPane.showMessageDialog(null, namn + " registrerades!");
+                                                    txtAnstDatum.setText("");
+                                                    txtAgentLosen.setText("");
+                                                    txtAgentNamn.setText("");
+                                                    txtAgentTelefon.setText("");
+                                                    jRadioButtonNej.setSelected(true);
+                                                    cbOmrade.setSelectedIndex(0);
+
+                                                    slumpId();
+
+                                                }
+
+                                            } catch (InfException ie) {
+                                                System.out.println("Något gick fel " + ie);
                                             }
-
-                                            if (namnetAnvands == false) {
-
-                                                idb.fetchSingle(insertAgent);
-
-                                                JOptionPane.showMessageDialog(null, namn + " registrerades!");
-                                                txtAnstDatum.setText("");
-                                                txtAgentLosen.setText("");
-                                                txtAgentNamn.setText("");
-                                                txtAgentTelefon.setText("");
-                                                jRadioButtonNej.setSelected(true);
-                                                cbPlats.setSelectedIndex(0);
-
-                                                slumpId();
-
-                                            }
-
-                                        } catch (InfException ie) {
-                                            System.out.println("Något gick fel " + ie);
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Vänligen välj ett område!");
                                         }
 
                                     } else {
@@ -329,7 +335,6 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
                 }
             }
         }
-
 
     }//GEN-LAST:event_btnLaggTillAgentActionPerformed
 
@@ -374,7 +379,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
     private javax.swing.JButton btnLaggTillAgent;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cbPlats;
+    private javax.swing.JComboBox<String> cbOmrade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
