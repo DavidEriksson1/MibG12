@@ -64,7 +64,7 @@ public class AgentKvitteraUtrustning extends javax.swing.JFrame {
             }
         });
 
-        btnLana.setText("Låna utrustning");
+        btnLana.setText("Kvittera utrustning");
         btnLana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLanaActionPerformed(evt);

@@ -196,9 +196,6 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Databasfel");
             System.out.println(ie);
         }
-        catch (NullPointerException ne) {
-            System.out.println(ne);
-        }
    
             
     }//GEN-LAST:event_jButton1ActionPerformed
