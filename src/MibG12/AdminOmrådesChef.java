@@ -144,8 +144,6 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
             String svar2 = idb.fetchSingle(omradesID);
             String nuvChef = "Select namn from agent where agent_id = (Select agent_id from omradeschef where omrade = " + svar2 + ")";
             String svar3 = idb.fetchSingle(nuvChef);
-            System.out.println(agentNamn);
-            System.out.println(svar3);
             String taBort = "delete from omradeschef where Agent_ID = '" + svar1 + "'";
             String taBortNuvarande = "delete from omradeschef where omrade = " + svar2;
             String nyChef = "insert into omradeschef values (" + svar1 + "," + svar2 + ")";
@@ -159,8 +157,19 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
 
                 if (ejValdBox2 == true) {
 
-                    if (!agentNamn.toLowerCase().equals(svar3.toLowerCase())) {
-
+                    
+                    
+                    if (svar3 == null) {
+                        
+                        idb.fetchSingle(taBort);
+                        idb.fetchSingle(nyChef);
+                        idb.fetchSingle(nyttOmrade);
+                        JOptionPane.showMessageDialog(null, "Områdeschefen har ändrats!");
+                        cbAgenter.setSelectedIndex(0);
+                        jComboBox1.setSelectedIndex(0);
+                        }
+                    else if (!agentNamn.toLowerCase().equals(svar3.toLowerCase()))
+                    {
                         idb.fetchSingle(taBort);
                         idb.fetchSingle(taBortNuvarande);
                         idb.fetchSingle(nyChef);
@@ -168,21 +177,27 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Områdeschefen har ändrats!");
                         cbAgenter.setSelectedIndex(0);
                         jComboBox1.setSelectedIndex(0);
-                    } else {
+                    }
+                
+                    
+                     else {
                         JOptionPane.showMessageDialog(null, "Den valda agenten är redan områdeschef för valt område!");
                     }
-
-                } else {
+            }
+                 else {
                     JOptionPane.showMessageDialog(null, "Vänligen välj ett område!");
                 }
-
-            } else {
+            }
+             else {
                 JOptionPane.showMessageDialog(null, "Vänligen välj en agent!");
             }
 
         } catch (InfException ie) {
             JOptionPane.showMessageDialog(null, "Databasfel");
             System.out.println(ie);
+        }
+        catch (NullPointerException ne) {
+            System.out.println(ne);
         }
    
             

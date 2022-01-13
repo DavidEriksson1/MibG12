@@ -8,10 +8,12 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
- *
- * @author Victo
+ *JFrame klass som tillåter en agent att lämna tillbaka utrustning.
+ * 
  */
+
 public class AgentLamnaTillbakaUtrustning extends javax.swing.JFrame {
     
     private InfDB idb;
@@ -108,6 +110,11 @@ public class AgentLamnaTillbakaUtrustning extends javax.swing.JFrame {
 
     private void btnLamnaTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamnaTillbakaActionPerformed
         
+ /**
+ * Metod som tar bort utrustning från innehar_utrustningstabellen.
+ * 
+ */
+        
         String utrAttLamna = jListUtr.getSelectedValue();
         String fragaUtrID = "Select utrustnings_id from utrustning where benamning ='" + utrAttLamna + "'";
         
@@ -136,6 +143,11 @@ public class AgentLamnaTillbakaUtrustning extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btnLamnaTillbakaActionPerformed
 
+ /**
+ * Metod som fyller jListen med de vapen som nuvarandeagent just nu har utkvitterade.
+ * 
+ */    
+    
     public void fyllLista ()
     {
         DefaultListModel listModel = new DefaultListModel();
@@ -160,7 +172,10 @@ public class AgentLamnaTillbakaUtrustning extends javax.swing.JFrame {
     
     
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        
+ /**
+ * Tillbaka knapp till huvudmeny Agent.
+ * 
+ */        
         HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
         hMA.setHuvudText(nuvarandeAgent);
         hMA.setVisible(true);

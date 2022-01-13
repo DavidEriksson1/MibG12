@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author 46737
+ /**
+ * JFrame klass som tillåter en användare att lägga till ny utrustning.
+ * 
  */
 public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
@@ -244,7 +244,8 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLaggTillFordonActionPerformed
 
-    public Boolean existerandeUtrustning(String uNamn) //metod som kontrollerar om utrustningen redan finns i systemet
+    public Boolean existerandeUtrustning(String uNamn) 
+    //metod som kontrollerar om utrustningen redan finns i systemet
     {
         boolean namnetFinns = false;
         try {

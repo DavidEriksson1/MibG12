@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
- *
- * @author Victo
+ *JFrame klass som tillåter en agent att kvittera ut ny utrustning.
+ * 
  */
 public class AgentKvitteraUtrustning extends javax.swing.JFrame {
     
@@ -155,6 +155,10 @@ public class AgentKvitteraUtrustning extends javax.swing.JFrame {
 
     private void btnLanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanaActionPerformed
         
+        /**
+         * Metod som kvitterar ut en utrustning som inte redan är utkvitterad.
+         */
+        
         String utrAttLana = jListUtr.getSelectedValue();
         String fragaUtrID = "Select utrustnings_id from utrustning where benamning ='" + utrAttLana + "'";
         String fragaAgentID = "Select agent_id from agent where namn = '" + nuvarandeAgent + "'";
@@ -245,14 +249,20 @@ public class AgentKvitteraUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDatumActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        
+ /**
+ * Tillbakaknapp till agent huvudmeny.
+ * 
+ */            
         HuvudMenyAgent hMA = new HuvudMenyAgent (idb, nuvarandeAgent);
         hMA.setHuvudText(nuvarandeAgent);
         hMA.setVisible(true);
         dispose();
         
     }//GEN-LAST:event_btnTillbakaActionPerformed
-
+ /**
+ * Metod som kollar om den valda utrustningen just nu är utlånad eller inte.
+ * 
+ */ 
    public boolean kollaUtlaning (String id)
    {
        boolean utrUtlanad = false;

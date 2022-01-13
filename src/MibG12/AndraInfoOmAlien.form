@@ -27,43 +27,6 @@
               <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblTelefonRubrik" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                                          <Component id="lblPlatsRubrik" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                                          <Component id="lblLosenordRubrik" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                                          <Component id="lblRasRubrik" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblRegDatumRubrik" min="-2" pref="123" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblRas" min="-2" pref="64" max="-2" attributes="0"/>
-                                  <Component id="lblLosen" min="-2" pref="87" max="-2" attributes="0"/>
-                                  <Component id="lblTelefon" min="-2" pref="87" max="-2" attributes="0"/>
-                                  <Component id="lblNamn" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
-                                  <Component id="lblRegDatum" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                  <Component id="lblPlats" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
-                                  <Component id="lblAnsvarigAgent" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="HuvudText" min="-2" pref="162" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="119" max="32767" attributes="0"/>
-                      <Component id="lblInfoRubrik" min="-2" pref="107" max="-2" attributes="0"/>
-                      <EmptySpace pref="178" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -121,6 +84,43 @@
                       </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblTelefonRubrik" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                                          <Component id="lblPlatsRubrik" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                                          <Component id="lblLosenordRubrik" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                                          <Component id="lblRasRubrik" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblRegDatumRubrik" min="-2" pref="123" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblRas" min="-2" pref="64" max="-2" attributes="0"/>
+                                  <Component id="lblLosen" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <Component id="lblTelefon" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <Component id="lblNamn" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
+                                  <Component id="lblRegDatum" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Component id="lblPlats" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <Component id="lblAnsvarigAgent" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="HuvudText" min="-2" pref="162" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblInfoRubrik" min="-2" pref="128" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -172,7 +172,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="10" max="32767" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblTelefonRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -202,7 +202,7 @@
                   </Group>
                   <Component id="btnAndraAnsvarigAgent" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="btnTillbakaTillHM" max="32767" attributes="0"/>
                   <Component id="btnTillbaka" pref="52" max="32767" attributes="0"/>
@@ -216,7 +216,7 @@
     <Component class="javax.swing.JLabel" name="HuvudText">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="1"/>
+          <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Information om Alien"/>
       </Properties>
@@ -359,7 +359,7 @@
     <Component class="javax.swing.JLabel" name="lblInfoRubrik">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="1"/>
+          <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ny Information"/>
       </Properties>
