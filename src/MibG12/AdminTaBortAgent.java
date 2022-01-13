@@ -153,9 +153,15 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
             String svar1 = idb.fetchSingle(fraga1);
             String svar2 = idb.fetchSingle(fraga2);
             //Validering som kollar så radera agentrutan inte är tom
-            boolean textRutaTom = Validering.textRutaArTom(agentAttRadera);
+            int a1 = cbTaBort.getSelectedIndex();
+            int a2 = jComboBox1.getSelectedIndex();
+            boolean alternativVald1 = Validering.indexInteNoll(a1);
+            boolean alternativVald2 = Validering.indexInteNoll(a2);
             
-            if (textRutaTom == false) {    
+            if (alternativVald1 == true) {    
+                    
+                    if (alternativVald2 == true) {
+
                     //Validering som kollar så agenten man vill radera faktiskt finns i systemet 
                     boolean agentFinns = Validering.stringFinns(svar1, agentAttRadera);
 
@@ -186,7 +192,15 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
                         jComboBox1.setSelectedIndex(0);
                     }
                 }
-            
+                 else
+            {
+                JOptionPane.showMessageDialog(null, "Vänligen välj en agent att ersätta som kontakt!");
+            }   
+            }    
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Vänligen välj en agent att ta bort!");
+            }
 
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
