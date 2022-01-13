@@ -214,33 +214,44 @@ public class AdminLaggTillUtrustning extends javax.swing.JFrame {
 
             String laggTillUtrustningsSort = "insert into " + utrustningsTyp + " values (" + utrustningsID + ",'" + utrustningAnvander + "')";
 
-            if (utrustningsTyp.equals("Vapen")) {
-                boolean endastSiffror = Validering.endastSiffror(utrustningAnvander);
+            if (textRutaArTom1 == false) {
+                boolean textRutaArTom2 = Validering.textRutaArTom(utrustningAnvander);
 
-                if (endastSiffror == true) {
+                if (textRutaArTom2 == false) {
 
-                    if (textRutaArTom1 == false) {
-                        boolean textRutaArTom2 = Validering.textRutaArTom(utrustningAnvander);
+                    if (namnetFinns == false) {
 
-                        if (textRutaArTom2 == false) {
+                        if (utrustningsTyp.equals("Vapen")) {
+                            boolean endastSiffror = Validering.endastSiffror(utrustningAnvander);
 
-                            if (namnetFinns == false) {
+                            if (endastSiffror == true) {
                                 idb.fetchSingle(laggTillUtrustning);
                                 idb.fetchSingle(laggTillUtrustningsSort);
                                 JOptionPane.showMessageDialog(null, "Utrustningen har lagts till!");
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Utrustning med namnet " + utrustningsNamn + " finns redan!");
+                                txtFieldKaliber.setText("");
+                                txtFieldUtrustningsNamn.setText("");
+                                comboUtrustningsTyp.setSelectedIndex(0);
                             }
+                        } else {
+                            idb.fetchSingle(laggTillUtrustning);
+                            idb.fetchSingle(laggTillUtrustningsSort);
+                            JOptionPane.showMessageDialog(null, "Utrustningen har lagts till!");
+                            txtFieldKaliber.setText("");
+                            txtFieldUtrustningsNamn.setText("");
+                            comboUtrustningsTyp.setSelectedIndex(0);
                         }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Utrustning med namnet " + utrustningsNamn + " finns redan!");
+                        txtFieldUtrustningsNamn.setText("");
                     }
+
                 }
             }
+
         } catch (InfException ie) {
-            System.out.println(ie);
-
+            JOptionPane.showMessageDialog(null, "Databasfel");
         }
-
 
     }//GEN-LAST:event_btnLaggTillFordonActionPerformed
 
