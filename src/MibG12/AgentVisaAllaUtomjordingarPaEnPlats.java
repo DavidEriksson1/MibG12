@@ -21,14 +21,19 @@ import oru.inf.InfException;
  */
 public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
 
-    InfDB idb;
-    String nuvarandeAgent;
-    Validering validering;
+    private InfDB idb;
+    private String nuvarandeAgent;
+    private Validering validering;
+    private FyllaComboBox fCB;
+    
+    
     public AgentVisaAllaUtomjordingarPaEnPlats(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;  
         validering = new Validering();
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillPlats(cbPlats);
     }
 
     
@@ -39,9 +44,9 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
         btnVisaAlienPaPlats = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaVisaInfo = new javax.swing.JTextArea();
-        txtValdPlats = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cbPlats = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +71,8 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
             }
         });
 
+        cbPlats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Välj:" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,13 +86,13 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                         .addGap(259, 259, 259)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(txtValdPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(btnVisaAlienPaPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(161, 161, 161)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(btnVisaAlienPaPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,9 +101,9 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValdPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisaAlienPaPlats))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnVisaAlienPaPlats)
+                    .addComponent(cbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -117,7 +124,7 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
         
         txtAreaVisaInfo.setText("");
         ArrayList<String> utomjordingar;
-        String plats = txtValdPlats.getText();
+        String plats = cbPlats.getSelectedItem().toString();
         boolean textRutaArTom = Validering.textRutaArTom(plats);
 
         if (textRutaArTom == false) {
@@ -138,15 +145,14 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
 
                         if (utomjordingar.isEmpty()) {
                             txtAreaVisaInfo.append("Det finns ingen utomjording i " + Validering.storForstaBokstav(plats) + "! :(");
-                            txtValdPlats.setText("");
+                            cbPlats.setSelectedIndex(0);
                         } else {
                             txtAreaVisaInfo.append("Utomjordingar i " + Validering.storForstaBokstav(plats) + "\n");
                             txtAreaVisaInfo.append("\n");
                             for (String namn : utomjordingar) {
                                 txtAreaVisaInfo.append(Validering.storForstaBokstav(namn) + "\n");
                             }
-                            txtValdPlats.setText("");
-                        }
+                           cbPlats.setSelectedIndex(0);                        }
                     } catch (InfException ex) {
                         JOptionPane.showMessageDialog(null, "Ett fel har uppstått " + ex);
                     } catch (Exception ex) {
@@ -154,11 +160,11 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Det finns ingen plats med namnet " + Validering.storForstaBokstav(plats) + ".");
-                    txtValdPlats.setText("");
+                    cbPlats.setSelectedIndex(0);
                 }
 
             } else {
-                txtValdPlats.setText("");
+                cbPlats.setSelectedIndex(0);
             }
 
         }
@@ -211,11 +217,11 @@ public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVisaAlienPaPlats;
+    private javax.swing.JComboBox<String> cbPlats;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtAreaVisaInfo;
-    private javax.swing.JTextField txtValdPlats;
     // End of variables declaration//GEN-END:variables
 }
 

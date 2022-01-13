@@ -22,7 +22,7 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
     private String nuvarandeUtomjording;
     private VisaInfoOmAlien visaInfoOmAlien;
     private boolean anvandareArAdmin;
-    private NyRegistreraAlien nRA;
+    private FyllaComboBox fCB;
     
     /**
      * Creates new form AndraInfoOmAlien
@@ -32,15 +32,13 @@ public class AndraInfoOmAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.nuvarandeUtomjording = nuvarandeUtomjording;
-        this.anvandareArAdmin = anvandareArAdmin;
-        nRA = new NyRegistreraAlien (idb, nuvarandeAgent, true);
-        
+        this.anvandareArAdmin = anvandareArAdmin;        
         visaInfoOmAlien = new VisaInfoOmAlien (idb, nuvarandeAgent, true);
         visaInfoOmAlien.setInfo(nuvarandeAgent);
-        //setInfo(nuvarandeUtomjording);
+        fCB = new FyllaComboBox(idb);
         txtRasExtra.setVisible(false);
-        nRA.laggTillPlats(jComboBoxPlats);
-        nRA.laggTillAgent(jComboBoxAnsvAgent);
+        fCB.laggTillPlats(jComboBoxPlats);
+        fCB.laggTillAgent(jComboBoxAnsvAgent);
         
         
     }

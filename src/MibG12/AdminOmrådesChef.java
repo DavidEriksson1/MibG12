@@ -18,7 +18,7 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
-    private NyRegistreraAlien nRA;
+    private FyllaComboBox fCB;
 
     /**
      * Creates new form AdminOmrådesChef
@@ -27,9 +27,9 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.agent = agent;
-        nRA = new NyRegistreraAlien (idb, agent, true);
-        laggTillOmrade(jComboBox1);
-        nRA.laggTillAgent(cbAgenter);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillOmrade(jComboBox1);
+        fCB.laggTillAgent(cbAgenter);
     }
 
     /**
@@ -264,30 +264,9 @@ public class AdminOmrådesChef extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonTillbakaActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        
-        
-    
-        
+   
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    public void laggTillOmrade(JComboBox cb) {
-        String omradesFraga = "Select benamning from omrade";
-
-        ArrayList<String> allaOmraden;
-
-        try {
-            allaOmraden = idb.fetchColumn(omradesFraga);
-            for (String o : allaOmraden) {
-                cb.addItem(o);
-            }
-
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null,"Något gick fel");
-            System.out.println(ex);
-            
-        }
-    }
-    
     /**
      * @param args the command line arguments
      */

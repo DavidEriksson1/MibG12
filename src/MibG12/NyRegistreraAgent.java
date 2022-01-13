@@ -18,6 +18,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String nuvarandeAgent;
+    private FyllaComboBox fCB;
     /**
      * Konstruktor NyRegistreraAlien
      */
@@ -26,7 +27,8 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         jRadioButtonNej.setSelected(true);
-        laggTillOmrade(cbPlats);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillOmrade(cbPlats);
         slumpId();
         
     }
@@ -90,7 +92,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
         lblNyRegistrera.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         lblNyRegistrera.setText("Nyregistrera Agent");
 
-        jLabel10.setText("Plats");
+        jLabel10.setText("Område");
 
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
@@ -343,26 +345,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
-// Fyller "Plats"comboboxen med de platser som finns.
-    public static void laggTillOmrade(JComboBox cb) {
-        String omradeFraga = "SELECT benamning FROM omrade";
-
-        ArrayList<String> omraden;
-
-        try {
-            omraden = idb.fetchColumn(omradeFraga);
-            for (String a : omraden) {
-                cb.addItem(a);
-            }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println(ex);
-
-        }
-
-    }
-
+    
     private void txtAgentLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgentLosenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAgentLosenActionPerformed
