@@ -29,7 +29,7 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.anvandareArAdmin = anvandareArAdmin;
-        laggTillAlien(cbAliens);
+        FyllaComboBox.laggTillAlien(cbAliens);
         cbAliens.setSelectedIndex(0);
     }
 
@@ -217,24 +217,6 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
     public void visaBaraInfo()
     {
         visaBaraInfo = true;
-    }
-    
-    public static void laggTillAlien(JComboBox cb) {
-        String alienFraga = "SELECT namn FROM alien";
-
-        ArrayList<String> aliens;
-
-        try {
-            aliens = idb.fetchColumn(alienFraga);
-            for (String a : aliens) {
-                cb.addItem(a);
-            }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println(ex);
-
-        }
-
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

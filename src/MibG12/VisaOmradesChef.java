@@ -22,14 +22,13 @@ public class VisaOmradesChef extends javax.swing.JFrame {
 
     private InfDB idb;
     private String nuvarandeAgent;
-    private VisaInfoOmAlien visaInfoOmAlien;
+    
     
     public VisaOmradesChef(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        visaInfoOmAlien = new VisaInfoOmAlien(idb, nuvarandeAgent, false);
-        laggTillOmrade(jComboBoxOmrade);
+        FyllaComboBox.laggTillOmrade(jComboBoxOmrade);
     }
 
     
@@ -156,30 +155,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         hMA.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    /**
-     * Metod som fyller comboboxen med de områden som just nu finns i databasen.
-     * 
-     */
-    
-    public void laggTillOmrade(JComboBox cb) {
-        String omradesFraga = "Select benamning from omrade";
-
-        ArrayList<String> allaOmraden;
-
-        try {
-            allaOmraden = idb.fetchColumn(omradesFraga);
-            for (String o : allaOmraden) {
-                cb.addItem(o);
-            }
-
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null,"Något gick fel");
-            System.out.println(ex);
-            
-        }
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVisaOmradesChef;

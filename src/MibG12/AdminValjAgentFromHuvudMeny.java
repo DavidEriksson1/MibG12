@@ -21,15 +21,13 @@ public class AdminValjAgentFromHuvudMeny extends javax.swing.JFrame {
     private String nuvarandeUtomjording;
     private String nuvarandeAgent;
     private boolean visaBaraInfo;
-    private NyRegistreraAlien nRA;
     
 
     public AdminValjAgentFromHuvudMeny(InfDB idb) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        nRA = new NyRegistreraAlien (idb, nuvarandeAgent, true);
-        nRA.laggTillAgent(cbAgenter);
+        FyllaComboBox.laggTillAgent(cbAgenter);
         cbAgenter.setSelectedIndex(0);
     }
 

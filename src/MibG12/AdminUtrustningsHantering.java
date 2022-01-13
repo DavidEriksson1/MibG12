@@ -26,7 +26,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.agent = agent;
-        laggTillUtrustning(cbUtr);
+        FyllaComboBox.laggTillUtrustning(cbUtr);
     }
 
     /**
@@ -253,25 +253,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         huvudMenyAdmin.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
-
-    public static void laggTillUtrustning(JComboBox cb) {
-        String utrFraga = "SELECT benamning FROM utrustning";
-
-        ArrayList<String> utrustning;
-
-        try {
-            utrustning = idb.fetchColumn(utrFraga);
-            for (String a : utrustning) {
-                cb.addItem(a);
-            }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println(ex);
-
-        }
-
-    }
-    
+ 
     /**
      * @param args the command line arguments
      */

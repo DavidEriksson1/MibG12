@@ -18,7 +18,6 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
     private static InfDB idb;
     private String nuvarandeAgent;
     private VisaInfoOmAlien vIOA;
-    private AgentValjAlienFromHuvudMeny aVA;
 
     /**
      * Konstruktior för radera alien
@@ -29,9 +28,7 @@ public class AdminTaBortAlien extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        vIOA = new VisaInfoOmAlien(idb, nuvarandeAgent, true);
-        aVA = new AgentValjAlienFromHuvudMeny(idb, nuvarandeAgent, true);
-        aVA.laggTillAlien(cbAlien);
+        FyllaComboBox.laggTillAlien(cbAlien);
         
     }
 

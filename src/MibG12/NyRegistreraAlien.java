@@ -27,8 +27,8 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.anvandareArAdmin = anvandareArAdmin;
-        laggTillAgent(cbAgent);
-        laggTillPlats(cbPlats);
+        FyllaComboBox.laggTillAgent(cbAgent);
+        FyllaComboBox.laggTillPlats(cbPlats);
         txtRasVal.setVisible(false);
         slumpId();
         
@@ -382,44 +382,6 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }
-//Fyller "Agent" comboboxen med de agenter man kan ha som kontaktperson.
-
-    public static void laggTillAgent(JComboBox cb) {
-        String agentFraga = "SELECT namn FROM agent";
-
-        ArrayList<String> allaAgenter;
-
-        try {
-            allaAgenter = idb.fetchColumn(agentFraga);
-            for (String a : allaAgenter) {
-                cb.addItem(a);
-            }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println(ex);
-
-        }
-
-    }
-// Fyller "Plats"comboboxen med de platser som finns.
-
-    public static void laggTillPlats(JComboBox cb) {
-        String platsFraga = "SELECT benamning FROM plats";
-
-        ArrayList<String> platser;
-
-        try {
-            platser = idb.fetchColumn(platsFraga);
-            for (String a : platser) {
-                cb.addItem(a);
-            }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-            System.out.println(ex);
-
-        }
-
     }
 
     private void txtAlienLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlienLosenordActionPerformed

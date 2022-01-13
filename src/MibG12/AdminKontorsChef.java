@@ -18,7 +18,6 @@ public class AdminKontorsChef extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
-    private NyRegistreraAlien nRA;
 
     /**
      * Creates new form AdminKontorsChef
@@ -27,8 +26,7 @@ public class AdminKontorsChef extends javax.swing.JFrame {
         this.idb = idb;
         this.agent = agent;
         initComponents();
-        nRA = new NyRegistreraAlien (idb, agent, true);
-        nRA.laggTillAgent(cbAgenter);
+        FyllaComboBox.laggTillAgent(cbAgenter);
         visaNuvarandeChef();
     }
 
