@@ -18,6 +18,7 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String nuvarandeAgent;
+    private FyllaComboBox fCB;
     /**
      * Konstruktor NyRegistreraAlien
      */
@@ -26,7 +27,8 @@ public class NyRegistreraAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         jRadioButtonNej.setSelected(true);
-        FyllaComboBox.laggTillOmrade(cbPlats);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillOmrade(cbPlats);
         slumpId();
         
     }

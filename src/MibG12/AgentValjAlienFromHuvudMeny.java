@@ -23,13 +23,15 @@ public class AgentValjAlienFromHuvudMeny extends javax.swing.JFrame {
     private String nuvarandeAgent;
     private boolean visaBaraInfo;
     private boolean anvandareArAdmin;
+    private FyllaComboBox fCB;
     
     public AgentValjAlienFromHuvudMeny(InfDB idb, String nuvarandeAgent, boolean anvandareArAdmin) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.anvandareArAdmin = anvandareArAdmin;
-        FyllaComboBox.laggTillAlien(cbAliens);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillAlien(cbAliens);
         cbAliens.setSelectedIndex(0);
     }
 

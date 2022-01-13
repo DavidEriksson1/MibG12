@@ -18,9 +18,11 @@ import oru.inf.InfException;
  */
 public class AgentVisaAllaUtomjordingarMellanTvaDatum extends javax.swing.JFrame {
 
-    InfDB idb;
-    String nuvarandeAgent;
-    Validering validering;
+    private InfDB idb;
+    private String nuvarandeAgent;
+    private Validering validering;
+    
+    
     public AgentVisaAllaUtomjordingarMellanTvaDatum(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;

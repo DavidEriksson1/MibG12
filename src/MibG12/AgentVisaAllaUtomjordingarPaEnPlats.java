@@ -21,15 +21,19 @@ import oru.inf.InfException;
  */
 public class AgentVisaAllaUtomjordingarPaEnPlats extends javax.swing.JFrame {
 
-    InfDB idb;
-    String nuvarandeAgent;
-    Validering validering;
+    private InfDB idb;
+    private String nuvarandeAgent;
+    private Validering validering;
+    private FyllaComboBox fCB;
+    
+    
     public AgentVisaAllaUtomjordingarPaEnPlats(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;  
         validering = new Validering();
-        FyllaComboBox.laggTillPlats(cbPlats);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillPlats(cbPlats);
     }
 
     

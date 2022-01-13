@@ -21,7 +21,7 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
     private String nuvarandeAgent;
     private String nuvarandeUtomjording;
     private VisaInfoOmAgent visaInfoOmAgent;
-    
+    private FyllaComboBox fCB;
     /**
      * Creates new form AndraInfoOmAlien
      */
@@ -32,7 +32,8 @@ public class AndraInfoOmAgent extends javax.swing.JFrame {
         this.visaInfoOmAgent = new VisaInfoOmAgent (idb, nuvarandeAgent, true, nuvarandeUtomjording, false);
         visaInfoOmAgent.setNuvarandeAgent(nuvarandeAgent);
         visaInfoOmAgent.setInfo(nuvarandeAgent);
-        FyllaComboBox.laggTillOmrade(jComboBoxOmrade);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillOmrade(jComboBoxOmrade);
     }
 
     /**

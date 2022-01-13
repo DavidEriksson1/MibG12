@@ -18,6 +18,7 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
+    private FyllaComboBox fCB;
 
     /**
      * Creates new form AdminUtrustningsHantering
@@ -26,7 +27,8 @@ public class AdminUtrustningsHantering extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.agent = agent;
-        FyllaComboBox.laggTillUtrustning(cbUtr);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillUtrustning(cbUtr);
     }
 
     /**

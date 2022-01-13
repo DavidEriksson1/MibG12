@@ -17,6 +17,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
 
     private InfDB idb;
     private String nuvarandeAgent;
+    private FyllaComboBox fCB;
 
     /**
      * Konstruktior för att ta bort agent
@@ -25,8 +26,9 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        FyllaComboBox.laggTillAgent(jComboBox1);
-        FyllaComboBox.laggTillAgent(cbTaBort);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillAgent(jComboBox1);
+        fCB.laggTillAgent(cbTaBort);
     }
 
     /**

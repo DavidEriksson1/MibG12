@@ -22,13 +22,14 @@ public class VisaOmradesChef extends javax.swing.JFrame {
 
     private InfDB idb;
     private String nuvarandeAgent;
-    
+    private FyllaComboBox fCB;
     
     public VisaOmradesChef(InfDB idb, String nuvarandeAgent) {
         initComponents();
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
-        FyllaComboBox.laggTillOmrade(jComboBoxOmrade);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillOmrade(jComboBoxOmrade);
     }
 
     

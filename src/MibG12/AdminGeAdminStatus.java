@@ -17,7 +17,7 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String agent;
-
+    private FyllaComboBox fCB;
     /**
      * Creates new form AdminGeAdminStatus
      */
@@ -25,9 +25,9 @@ public class AdminGeAdminStatus extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.agent = agent;
-        
-        FyllaComboBox.laggTillAgent(cbGeAdmin);
-        FyllaComboBox.laggTillAgent(cbTaBort);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillAgent(cbGeAdmin);
+        fCB.laggTillAgent(cbTaBort);
 
         
     }

@@ -20,6 +20,10 @@ public class FyllaComboBox {
     
 
 
+public FyllaComboBox(InfDB idb){
+    this.idb = idb;
+}
+
 //Metod för att fylla combobox med namn på olika platser som finns i systemet
 public static void laggTillPlats(JComboBox cb) {
         String platsFraga = "SELECT benamning FROM plats";

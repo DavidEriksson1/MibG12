@@ -19,6 +19,7 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
     private static InfDB idb;
     private static String nuvarandeAgent;
     private boolean anvandareArAdmin;
+    private FyllaComboBox fCB;
     /**
      * Konstruktor för att regstrera ny alien
      */
@@ -27,8 +28,9 @@ public class NyRegistreraAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.nuvarandeAgent = nuvarandeAgent;
         this.anvandareArAdmin = anvandareArAdmin;
-        FyllaComboBox.laggTillAgent(cbAgent);
-        FyllaComboBox.laggTillPlats(cbPlats);
+        fCB = new FyllaComboBox(idb);
+        fCB.laggTillAgent(cbAgent);
+        fCB.laggTillPlats(cbPlats);
         txtRasVal.setVisible(false);
         slumpId();
         
